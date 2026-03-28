@@ -486,13 +486,16 @@ def fetch_mark12_index():
     """Fetch list of JSON files from mark12 packages/ via GitHub API"""
     try:
         url = "https://api.github.com/repos/europeincoming/mark12/contents/packages"
-        req = urllib.request.Request(url, headers={
-            "User-Agent": "EuropeIncomingFIT/1.0",
-            "Authorization": f"Bearer {GITHUB_TOKEN}" if GITHUB_TOKEN else ""
-        })
+        headers = {"User-Agent": "EuropeIncomingFIT/1.0", "Accept": "application/vnd.github.v3+json"}
+        if GITHUB_TOKEN:
+            headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, timeout=15) as r:
             files = json.loads(r.read())
-            return [f["name"] for f in files if f["name"].endswith(".json")]
+            if isinstance(files, list):
+                return [f["name"] for f in files if f.get("name","").endswith(".json")]
+            print(f"  mark12 unexpected response: {str(files)[:200]}")
+            return []
     except Exception as e:
         print(f"  mark12 index fetch failed: {e}")
         return []
@@ -1120,7 +1123,7 @@ def main():
 
             # Check if a brochure page exists for this PDF
             brochure_page = None
-            tt = pdf_data.get("tour_type","").lower().replace(" ","_").replace("-","_")
+            tt = (pdf_data.get("tour_type") or "").lower().replace(" ","_").replace("-","_")
             for sid, mpkg in mark12_pkgs.items():
                 mpkg_region = MARK12_REGION_MAP.get(mpkg.get('region',''), '')
                 if mpkg_region == folder_rel:
