@@ -79,88 +79,28 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <h1>Spain & Portugal</h1>
 <div class="brochures" id="brochuresList"><div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=75" alt="6 nights, 7 days MADBCN" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=75" alt="2 Madrid - 2 Granada - 2 Seville - 2 Barcelona" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-tour-type">Private</div>
     <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">6 nights, 7 days MADBCN</div>
-    <div class="card-duration">🕐 6 nights / 7 days</div>
-    <div class="card-route">📍 Madrid → Barcelona</div>
-    <div class="card-desc">Madrid elegance meets Barcelona charm.</div>
-    <div class="card-price">From €884 pp</div>
+    <div class="card-title">2 Madrid - 2 Granada - 2 Seville - 2 Barcelona</div>
+    <div class='card-duration'>🕐 8 nights</div>
+    <div class='card-route'>📍 Madrid → Granada → Seville → Barcelona</div>
+    <div class='card-desc'>Madrid, Granada and 2 more unmissable stops.</div>
+    <div class="card-price">From €2,707 pp</div>
   </div>
-  <div class="card-valid">✓ Valid till Nov 2026</div>
-  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="6 nights, 7 days MADBCN_Private.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
-</div>
-<div class="brochure-card">
-  <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=75" alt="8 nights, 9 days Spain" loading="lazy">
-    <div class="card-hero-overlay"></div>
-    <div class="card-tour-type">Private</div>
-    <div class="card-season season-allyear">🌍 All Year</div>
+  <div class="card-actions">
+    <a href="6.1_brochure.html" class="btn-view">View Package</a>
   </div>
-  <div class="card-body">
-    <div class="card-title">8 nights, 9 days Spain</div>
-    <div class="card-duration">🕐 8 nights / 9 days</div>
-    <div class="card-route">📍 Madrid → Granada → Seville → Barcelona</div>
-    <div class="card-desc">Madrid, Granada and 2 more unmissable stops.</div>
-    <div class="card-price">From €1,879 pp</div>
-  </div>
-  <div class="card-valid">✓ Valid till Oct 2026</div>
-  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="8 nights, 9 days Spain_Private.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
-</div>
-<div class="brochure-card">
-  <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=75" alt="8 nights, 9 days Spain" loading="lazy">
-    <div class="card-hero-overlay"></div>
-    <div class="card-tour-type">Regular</div>
-    <div class="card-season season-allyear">🌍 All Year</div>
-  </div>
-  <div class="card-body">
-    <div class="card-title">8 nights, 9 days Spain</div>
-    <div class="card-duration">🕐 8 nights / 9 days</div>
-    <div class="card-route">📍 Madrid → Granada → Seville → Barcelona</div>
-    <div class="card-desc">Madrid, Granada and 2 more unmissable stops.</div>
-    <div class="card-price">From €1,400 pp</div>
-  </div>
-  <div class="card-valid">✓ Valid till Oct 2026</div>
-  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="8 nights, 9 days Spain_Regular.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
 </div></div>
 <footer><p>Browse packages below and click View Package for full details.</p></footer>
 </div>
 <script src="../../global-search.js"></script>
-<script>window.addEventListener('load',function(){(function(){var pts=[[40.4168, -3.7038, "Madrid"], [41.3851, 2.1734, "Barcelona"]];if(!pts.length)return;
+<script>window.addEventListener('load',function(){(function(){var pts=[[40.4168, -3.7038, "Madrid"], [37.1773, -3.5986, "Granada"], [37.3891, -5.9845, "Seville"], [41.3851, 2.1734, "Barcelona"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
-  var map=L.map('map_6_nights__7_days_m_0',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
-  map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
-  pts.forEach((p,i)=>{
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
-     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
-  });
-})();
-(function(){var pts=[[40.4168, -3.7038, "Madrid"], [37.1773, -3.5986, "Granada"], [37.3891, -5.9845, "Seville"], [41.3851, 2.1734, "Barcelona"]];if(!pts.length)return;
-  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
-  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
-  var map=L.map('map_8_nights__9_days_s_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
-  map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
-  pts.forEach((p,i)=>{
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
-     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
-  });
-})();
-(function(){var pts=[[40.4168, -3.7038, "Madrid"], [37.1773, -3.5986, "Granada"], [37.3891, -5.9845, "Seville"], [41.3851, 2.1734, "Barcelona"]];if(!pts.length)return;
-  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
-  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
-  var map=L.map('map_8_nights__9_days_s_2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
+  var map=L.map('map_6_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
   if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);

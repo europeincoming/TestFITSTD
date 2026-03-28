@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna | Europe Incoming FIT Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;font-size:15px;line-height:1.65;padding-top:0;}
+.hero-header{position:sticky;top:0;z-index:200;height:68px;overflow:hidden;}
+.hero-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;}
+.hero-header-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.82),rgba(0,0,0,0.35));}
+.hero-header-inner{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;}
+.hero-back{color:rgba(255,255,255,0.75);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:color 0.2s;}
+.hero-back:hover{color:#fff;}
+.hero-title-wrap{display:flex;flex-direction:column;align-items:center;}
+.hero-title-main{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;white-space:nowrap;}
+.hero-title-sub{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-top:2px;text-align:center;}
+.hero-search-wrap{position:relative;flex:0 0 260px;}
+.hero-search{width:100%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:7px 14px 7px 32px;border-radius:4px;font-family:'Inter',sans-serif;font-size:12px;outline:none;}
+.hero-search::placeholder{color:rgba(255,255,255,0.45);}
+.search-icon-hero{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.5);font-size:13px;pointer-events:none;}
+.search-results{display:none;position:absolute;top:calc(100%+6px);right:0;background:#fff;border:1px solid #e8e8e8;border-radius:4px;width:340px;max-height:300px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:300;}
+.sri{padding:11px 16px;border-bottom:1px solid #f0f0f0;cursor:pointer;}
+.sri:last-child{border-bottom:none;}
+.sri:hover{background:#f9f9f9;}
+.sri-title{font-size:13px;font-weight:500;color:#1a1a1a;}
+.sri-meta{font-size:11px;color:#888;margin-top:2px;}
+.variant-bar{position:sticky;top:68px;z-index:190;background:#fff;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.vtabs{display:flex;}
+.vtab{padding:14px 20px;font-size:13px;font-weight:500;color:#888;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.2s,border-color 0.2s;letter-spacing:0.2px;}
+.vtab.active{color:#1a3a5c;border-bottom-color:#1a3a5c;}
+.vtab:hover:not(.active){color:#1a1a1a;}
+.dl-btn{background:#1a3a5c;color:#fff;border:none;padding:9px 18px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:opacity 0.2s;}
+.dl-btn:hover{opacity:0.85;}
+.hero-full{height:380px;position:relative;overflow:hidden;background:#1a3a5c;}
+.hero-full-img{width:100%;height:100%;object-fit:cover;opacity:0.6;display:block;}
+.hero-full-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.15) 70%);}
+.hero-full-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 48px;}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#fff;line-height:1.0;margin-bottom:8px;}
+.hero-meta{display:flex;align-items:center;gap:14px;}
+.hero-nights{font-size:13px;color:rgba(255,255,255,0.7);font-weight:300;}
+.hero-route{font-size:12px;color:rgba(255,255,255,0.45);}
+.hero-div{width:1px;height:12px;background:rgba(255,255,255,0.25);}
+.body-wrap{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;padding:0 48px;}
+.main-col{flex:1;min-width:0;padding:36px 48px 36px 0;}
+.sidebar{width:300px;flex-shrink:0;padding:36px 0;position:sticky;top:116px;max-height:calc(100vh - 116px);overflow-y:auto;}
+.vc{display:none;}
+.vc.active{display:block;}
+.section-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e8e8e8;}
+.map-wrap{margin-bottom:32px;}
+#map-r,#map-p,#map-s{height:200px;border-radius:3px;border:1px solid #e8e8e8;}
+.day-card{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:24px 0;border-bottom:1px solid #e8e8e8;}
+.day-card:first-of-type{border-top:1px solid #e8e8e8;}
+.day-num-col{text-align:center;padding-top:2px;}
+.day-num-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#888;}
+.day-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:#1a3a5c;line-height:1;}
+.day-body{}
+.day-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:3px;}
+.day-overnight{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#9a7230;margin-bottom:8px;}
+.day-photo{width:100%;height:150px;object-fit:cover;border-radius:3px;margin-bottom:10px;display:block;}
+.day-desc{font-size:13.5px;line-height:1.8;color:#555;margin-bottom:10px;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.tag{font-size:11px;padding:3px 10px;border-radius:2px;font-weight:500;}
+.tag-inc{background:#edf4ed;color:#2a6a2a;}
+.tag-opt{background:#fdf5e0;color:#7a5800;}
+.inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:32px;}
+.inc-item{font-size:13px;color:#555;padding:8px 0 8px 16px;border-bottom:1px solid #e8e8e8;position:relative;}
+.inc-item::before{content:'✓';position:absolute;left:0;color:#2a6a2a;font-size:11px;font-weight:700;}
+.hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8e8e8;margin-bottom:32px;}
+.hotel-card{background:#fff;padding:18px;}
+.hc-city{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:3px;}
+.hc-nights{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px;}
+.hc-cat{font-size:10px;font-weight:700;letter-spacing:1px;color:#1a3a5c;margin-bottom:2px;}
+.hc-name{font-size:12px;color:#555;margin-bottom:7px;line-height:1.4;}
+.price-note{font-size:12px;color:#888;font-style:italic;margin-bottom:12px;}
+.price-table{width:100%;border-collapse:collapse;margin-bottom:32px;}
+.price-table th{background:#1a3a5c;color:#fff;padding:10px 14px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-align:left;}
+.price-table td{padding:11px 14px;font-size:13px;border-bottom:1px solid #e8e8e8;}
+.price-table .ssep td{background:#f7f7f5;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#888;padding:6px 14px;border-bottom:1px solid #e8e8e8;}
+.price-table .twin{font-weight:700;color:#1a3a5c;}
+.stag{display:inline-block;background:#1a3a5c;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px;margin-right:8px;}
+.priv-grids{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
+.priv-block{background:#fff;padding:18px;}
+.priv-season{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:12px;}
+.priv-table{width:100%;border-collapse:collapse;}
+.priv-table th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a1a;padding:5px 8px;border-bottom:1px solid #e8e8e8;text-align:left;}
+.priv-table td{padding:7px 8px;font-size:12.5px;border-bottom:1px solid #e8e8e8;color:#555;}
+.priv-table td:last-child{font-weight:700;color:#1a3a5c;}
+.priv-table tr:last-child td{border-bottom:none;}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
+.opt-item{background:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.opt-name{font-size:12.5px;color:#555;}
+.opt-price{font-size:14px;font-weight:700;color:#1a1a1a;white-space:nowrap;}
+.opt-pp{font-size:11px;font-weight:400;color:#888;}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:36px;}
+.highlight-block{background:#fff;padding:24px;}
+.hb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;}
+.hb-items{list-style:none;}
+.hb-items li{padding:7px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#555;line-height:1.5;}
+.hb-items li:last-child{border-bottom:none;}
+.hb-items li strong{color:#1a1a1a;font-weight:500;}
+.sb-section{margin-bottom:28px;}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e8;}
+.sb-photo{width:100%;height:110px;object-fit:cover;border-radius:3px;margin-bottom:12px;display:block;}
+.sb-item{padding:9px 0;border-bottom:1px solid #f0f0f0;}
+.sb-item:last-child{border-bottom:none;}
+.sb-item-title{font-size:12.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;}
+.sb-item-desc{font-size:12px;color:#666;line-height:1.55;}
+.tc-wrap{margin-bottom:36px;}
+.tc-btn{width:100%;background:#f7f7f5;border:1px solid #e8e8e8;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;color:#1a1a1a;border-radius:3px;text-align:left;}
+.tc-body{display:none;border:1px solid #e8e8e8;border-top:none;padding:18px;border-radius:0 0 3px 3px;}
+.tc-body.open{display:block;}
+.tc-body li{font-size:12px;color:#666;padding:6px 0 6px 14px;border-bottom:1px solid #f0f0f0;list-style:none;position:relative;line-height:1.5;}
+.tc-body li::before{content:'·';position:absolute;left:4px;}
+.tc-body li:last-child{border-bottom:none;}
+.brochure-footer{background:#1a1a1a;color:#666;padding:18px 48px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center;}
+.brochure-footer a{color:#888;text-decoration:none;}
+.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
+.leaflet-tooltip.city-tip::before{display:none!important;}
+@media print{.hero-header,.variant-bar,.sidebar,.dl-btn,.brochure-footer{display:none!important;}.body-wrap{display:block;padding:0;}.main-col{padding:16px 0;}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04BZKH6574');</script>
+</head>
+<body>
+<script>
+(async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
+if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
+)();</script>
+<div class="hero-header">
+  <img class="hero-header-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna">
+  <div class="hero-header-overlay"></div>
+  <div class="hero-header-inner">
+    <a class="hero-back" href="../../">← All Packages</a>
+    <div class="hero-title-wrap">
+      <div class="hero-title-main">2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna</div>
+      <div class="hero-title-sub">9 NIGHTS · PARIS → LUCERNE → INNSBRUCK → VIENNA</div>
+    </div>
+    <div class="hero-search-wrap">
+      <span class="search-icon-hero">⌕</span>
+      <input class="hero-search" id="searchInput" type="text" placeholder="Search packages…" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</div>
+<div class="hero-full">
+  <img class="hero-full-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna">
+  <div class="hero-full-overlay"></div>
+  <div class="hero-full-content">
+    <div class="hero-eyebrow">Europe Incoming · FIT Packages</div>
+    <h1 class="hero-h1">2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna</h1>
+    <div class="hero-meta">
+      <span class="hero-nights">9 Nights</span>
+      <span class="hero-div"></span>
+      <span class="hero-route">Paris → Lucerne → Innsbruck → Vienna</span>
+    </div>
+  </div>
+</div>
+<div class="variant-bar">
+  <div class="vtabs"><button class="vtab active" onclick="switchVariant('regular_fit',this)">Regular FIT</button><button class="vtab " onclick="switchVariant('private',this)">Private Tour</button></div>
+  <button class="dl-btn" onclick="downloadPDF()">↓ Download PDF</button>
+</div>
+<div class="body-wrap">
+  <div class="main-col"><div class="vc active" id="vc-regular_fit"><div class="map-wrap"><div class="section-label">Route Map</div><div id="map-r"></div></div><div class="section-label" style="margin-top:8px">Day by Day</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">1</div></div>
+  <div class="day-body">
+    <div class="day-title">Paris</div>
+    <div class="day-overnight">Overnight: Paris</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="Paris" loading="lazy">
+    <div class="day-desc">Paris airport to Paris hotel private transfer</div>
+    <div class="tags"><span class="tag tag-inc">✓ Paris airport to Paris hotel private transfer</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">2</div></div>
+  <div class="day-body">
+    <div class="day-title">Lucerne</div>
+    <div class="day-overnight">Overnight: Lucerne</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="Lucerne" loading="lazy">
+    <div class="day-desc">Paris City Tour, Seine Cruise and Eiffel Tower 2nd Floor, 4 hrs coach tour</div>
+    <div class="tags"><span class="tag tag-inc">✓ Paris City Tour, Seine Cruise and Eiffel Tower 2nd Floor, 4 hrs coach tour</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">3</div></div>
+  <div class="day-body">
+    <div class="day-title">Innsbruck</div>
+    <div class="day-overnight">Overnight: Innsbruck</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1570438395701-4e41d57571b0?w=600&q=75" alt="Innsbruck" loading="lazy">
+    <div class="day-desc">Paris to Lucerne train ticket, II Class</div>
+    <div class="tags"><span class="tag tag-inc">✓ Paris to Lucerne train ticket, II Class</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">4</div></div>
+  <div class="day-body">
+    <div class="day-title">Vienna</div>
+    <div class="day-overnight">Overnight: Vienna</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&q=75" alt="Vienna" loading="lazy">
+    <div class="day-desc">Swiss travel pass, consecutive 4 days , II Class</div>
+    <div class="tags"><span class="tag tag-inc">✓ Swiss travel pass, consecutive 4 days , II Class</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">4</div></div>
+  <div class="day-body">
+    <div class="day-title">Day 4</div>
+    
+    <img class="day-photo" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="" loading="lazy">
+    <div class="day-desc">Titlis with pass, Lake Lucerne cruise free with pass</div>
+    <div class="tags"><span class="tag tag-inc">✓ Titlis with pass, Lake Lucerne cruise free with pass</span></div>
+  </div>
+</div><div class="section-label" style="margin-top:32px">Package Includes</div><div class="inc-grid" style="margin-bottom:32px"><div class="inc-item">Paris airport to Paris hotel private transfer</div><div class="inc-item">Paris City Tour, Seine Cruise and Eiffel Tower 2nd Floor, 4 hrs coach tour</div><div class="inc-item">Paris to Lucerne train ticket, II Class</div><div class="inc-item">Swiss travel pass, consecutive 4 days , II Class</div><div class="inc-item">Titlis with pass, Lake Lucerne cruise free with pass</div></div><div class="section-label">Sample Hotels</div><div class="hotels-grid"><div class="hotel-card">
+  <div class="hc-city">Paris</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Hôtel Berne Opéra</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Marceau Bastille</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Lucerne</div>
+  <div class="hc-nights">3 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Boutique Hotel Karl</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Altstadt Hotel Krone Apartments Luzern</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Innsbruck</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Basic hotel Innsbruck</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Altstadthotel Weisses Kreuz</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Vienna</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">ibis Styles Wien City Hotel</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">arte Hotel Wien</div>
+</div></div><div class="section-label">Package Rates — Per Person</div><p class="price-note">All rates in €. Twin/double occupancy unless stated.</p><table class="price-table"><thead><tr><th>Hotel</th><th>Single</th><th>Twin / Double</th><th>Child</th></tr></thead><tbody></tbody></table><div class="tc-wrap">
+  <button class="tc-btn" onclick="toggleTC(this)"><span>Terms & Conditions</span><span>▼</span></button>
+  <div class="tc-body"><ul>
+<li>All rates are net and per person for the package.</li>
+<li>Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.</li>
+<li>All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.</li>
+<li>Rates are not applicable during trade fair periods, major European public holidays, and other major events.</li>
+<li>City taxes are not included in the price.</li>
+<li>If certain attractions are closed during specific periods, alternative options will be arranged.</li>
+<li>All bookings must be confirmed at least 60 working days prior to arrival.</li>
+<li>100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.</li>
+<li>Vouchers will be issued after receipt of full payment.</li>
+</ul></div>
+</div></div><div class="vc " id="vc-private"><div class="map-wrap"><div class="section-label">Route Map</div><div id="map-p"></div></div><div class="section-label" style="margin-top:8px">Day by Day</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">1</div></div>
+  <div class="day-body">
+    <div class="day-title">Paris</div>
+    <div class="day-overnight">Overnight: Paris</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="Paris" loading="lazy">
+    <div class="day-desc">Private coach for 3 hrs on Day 2 & on disposal for 8 hrs from Day 3 till Day 10. Seine river cruise, 1 hour</div>
+    <div class="tags"><span class="tag tag-inc">✓ Private coach for 3 hrs on Day 2 & on disposal for 8 hrs from Day 3 till Day 10</span><span class="tag tag-inc">✓ Seine river cruise, 1 hour</span><span class="tag tag-inc">✓ Swarovski crystal world entrance</span><span class="tag tag-inc">✓ Schonbrunn Palace tickets</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">2</div></div>
+  <div class="day-body">
+    <div class="day-title">Lucerne</div>
+    <div class="day-overnight">Overnight: Lucerne</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="Lucerne" loading="lazy">
+    <div class="day-desc">Paris city tour with English speaking guide, 3 hrs</div>
+    <div class="tags"><span class="tag tag-inc">✓ Paris city tour with English speaking guide, 3 hrs</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">4</div></div>
+  <div class="day-body">
+    <div class="day-title">Innsbruck</div>
+    <div class="day-overnight">Overnight: Innsbruck</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1570438395701-4e41d57571b0?w=600&q=75" alt="Innsbruck" loading="lazy">
+    <div class="day-desc">Titlis and Engelberg</div>
+    <div class="tags"><span class="tag tag-inc">✓ Titlis and Engelberg</span></div>
+  </div>
+</div><div class="day-card">
+  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">9</div></div>
+  <div class="day-body">
+    <div class="day-title">Vienna</div>
+    <div class="day-overnight">Overnight: Vienna</div>
+    <img class="day-photo" src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&q=75" alt="Vienna" loading="lazy">
+    <div class="day-desc">Vienna city tour with English speaking guide, 3 hrs</div>
+    <div class="tags"><span class="tag tag-inc">✓ Vienna city tour with English speaking guide, 3 hrs</span></div>
+  </div>
+</div><div class="section-label" style="margin-top:32px">Package Includes</div><div class="inc-grid" style="margin-bottom:32px"><div class="inc-item">Private coach for 3 hrs on Day 2 & on disposal for 8 hrs from Day 3 till Day 10</div><div class="inc-item">Paris city tour with English speaking guide, 3 hrs</div><div class="inc-item">Seine river cruise, 1 hour</div><div class="inc-item">Titlis and Engelberg</div><div class="inc-item">Swarovski crystal world entrance</div><div class="inc-item">Vienna city tour with English speaking guide, 3 hrs</div><div class="inc-item">Schonbrunn Palace tickets</div></div><div class="section-label">Sample Hotels</div><div class="hotels-grid"><div class="hotel-card">
+  <div class="hc-city">Paris</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Hôtel Berne Opéra</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Marceau Bastille</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Lucerne</div>
+  <div class="hc-nights">3 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Boutique Hotel Karl</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Altstadt Hotel Krone Apartments Luzern</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Innsbruck</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">Basic hotel Innsbruck</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">Altstadthotel Weisses Kreuz</div>
+</div><div class="hotel-card">
+  <div class="hc-city">Vienna</div>
+  <div class="hc-nights">2 Nights</div>
+  <div class="hc-cat">3 Star</div><div class="hc-name">ibis Styles Wien City Hotel</div>
+  <div class="hc-cat">4 Star</div><div class="hc-name">arte Hotel Wien</div>
+</div></div><div class="section-label">Package Rates — Per Person</div><div class="tc-wrap">
+  <button class="tc-btn" onclick="toggleTC(this)"><span>Terms & Conditions</span><span>▼</span></button>
+  <div class="tc-body"><ul>
+<li>All rates are net and per person for the package.</li>
+<li>Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.</li>
+<li>All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.</li>
+<li>Rates are not applicable during trade fair periods, major European public holidays, and other major events.</li>
+<li>City taxes are not included in the price.</li>
+<li>If certain attractions are closed during specific periods, alternative options will be arranged.</li>
+<li>All bookings must be confirmed at least 60 working days prior to arrival.</li>
+<li>100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.</li>
+<li>Vouchers will be issued after receipt of full payment.</li>
+</ul></div>
+</div></div></div>
+  <div class="sidebar">
+  <div class="sb-section">
+    <div class="sb-label">About This Tour</div>
+    <img class="sb-photo" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="2 Paris - 3 Lucerne - 2 Innsbruck - 2 Vienna">
+    <div class="sb-item">
+      <div class="sb-item-title">9 nights across 4 destinations</div>
+      <div class="sb-item-desc">Route: Paris → Lucerne → Innsbruck → Vienna</div>
+    </div>
+    <div class="sb-item"><div class="sb-item-title">Paris</div></div><div class="sb-item"><div class="sb-item-title">Lucerne</div></div><div class="sb-item"><div class="sb-item-title">Innsbruck</div></div><div class="sb-item"><div class="sb-item-title">Vienna</div></div>
+  </div>
+</div>
+</div>
+<div class="brochure-footer">
+  <span>Europe Incoming Holdings Ltd · Reg. England & Wales 07053949</span>
+  <span><a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a> · +44 208 994 5001</span>
+</div>
+<script>
+function switchVariant(v,btn){
+  document.querySelectorAll('.vc').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.vtab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('vc-'+v).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleTC(btn){
+  var body=btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.querySelector('span:last-child').textContent=body.classList.contains('open')?'▲':'▼';
+}
+function downloadPDF(){
+  var hide=['.hero-header','.variant-bar','.sidebar','.brochure-footer','.dl-btn'];
+  hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display='none'));
+  document.querySelectorAll('.tc-body').forEach(el=>el.classList.add('open'));
+  document.querySelector('.body-wrap').style.display='block';
+  document.querySelector('.main-col').style.padding='16px 0';
+  html2pdf().set({margin:[8,8,8,8],filename:'2_Paris_-_3_Lucerne_-_2_Innsbruck_-_2_Vienna.pdf',image:{type:'jpeg',quality:0.9},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(document.body).save().then(()=>{
+    hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display=''));
+    document.querySelector('.body-wrap').style.display='';
+    document.querySelector('.main-col').style.padding='';
+  });
+}
+var demos=[{"title": "Paris & Switzerland", "nights": "7N/8D", "routing": "Paris \u2192 Lucerne \u2192 Zurich"}, {"title": "UK Grand Tour", "nights": "10N/11D", "routing": "London \u2192 Manchester \u2192 Edinburgh"}, {"title": "Paris Switzerland Italy", "nights": "10N/11D", "routing": "Paris \u2192 Lucerne \u2192 Venice \u2192 Rome"}, {"title": "Ireland Discovery", "nights": "6N/7D", "routing": "Dublin \u2192 Limerick \u2192 Dublin"}, {"title": "Spain Explorer", "nights": "8N/9D", "routing": "Madrid \u2192 Granada \u2192 Seville \u2192 Barcelona"}, {"title": "Swiss Lakes & Alps", "nights": "5N/6D", "routing": "Lucerne \u2192 Interlaken \u2192 Zurich"}, {"title": "Nordic Capitals", "nights": "6N/7D", "routing": "Copenhagen \u2192 Oslo \u2192 Stockholm \u2192 Helsinki"}, {"title": "Scottish Highlands", "nights": "6N/7D", "routing": "Edinburgh \u2192 Inverness \u2192 Glasgow"}];
+var si=document.getElementById('searchInput'),sr=document.getElementById('searchResults');
+si.addEventListener('input',function(){
+  var q=this.value.trim().toLowerCase();
+  if(q.length<2){sr.style.display='none';return;}
+  var m=demos.filter(p=>p.title.toLowerCase().includes(q)||p.routing.toLowerCase().includes(q));
+  sr.innerHTML=m.length?m.map(p=>`<div class="sri"><div class="sri-title">${p.title}</div><div class="sri-meta">${p.nights} · ${p.routing}</div></div>`).join(''):'<div style="padding:14px 16px;font-size:13px;color:#888">No packages found</div>';
+  sr.style.display='block';
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.hero-search-wrap'))sr.style.display='none';});
+
+function initMap(id, pts) {
+  if(!pts.length) return;
+  var lats=pts.map(p=>p[0][0]),lngs=pts.map(p=>p[0][1]),pad=0.5;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
+  var map=L.map(id,{zoomControl:false,scrollWheelZoom:false,dragging:false,attributionControl:false});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
+  map.fitBounds(bounds,{padding:[14,14]});
+  if(pts.length>1)L.polyline(pts.map(p=>p[0]),{color:'#1a3a5c',weight:2,dashArray:'5,4'}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker(p[0],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[1],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  });
+}
+window.addEventListener('load',function(){ initMap("map-r",[[[48.8566, 2.3522], "Paris"], [[47.0502, 8.3093], "Lucerne"], [[47.2692, 11.4041], "Innsbruck"], [[48.2082, 16.3738], "Vienna"]]);
+initMap("map-p",[[[48.8566, 2.3522], "Paris"], [[47.0502, 8.3093], "Lucerne"], [[47.2692, 11.4041], "Innsbruck"], [[48.2082, 16.3738], "Vienna"]]);
+ });
+
+</script>
+</body></html>
