@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Scandinavia & Iceland | Europe Incoming</title>
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#212121;line-height:1.6;padding-top:80px;}
-.top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:16px 0;}
-.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:32px;}
-.logo{height:48px;width:auto;}.logo:hover{opacity:0.8;}
-.header-right{display:flex;align-items:center;gap:32px;flex:1;justify-content:flex-end;}
-.site-title-group{text-align:right;}
-.site-title-main{font-size:1.1em;font-weight:600;color:#212121;}
-.site-title-sub{font-size:0.9em;color:#757575;}
-.contact-info{text-align:right;padding-left:32px;border-left:1px solid #e0e0e0;}
-.contact-prompt{font-size:0.85em;color:#757575;margin-bottom:4px;}
-.contact-email{font-size:0.9em;color:#2196F3;text-decoration:none;font-weight:500;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#212121;line-height:1.6;padding-top:72px;}
+.top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:12px 0;}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;}
+.logo{height:44px;width:auto;}
+.logo:hover{opacity:0.8;}
+.search-wrap{flex:1;max-width:420px;position:relative;}
+.search-box{width:100%;padding:9px 18px;font-size:0.92em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.search-box::placeholder{color:#aaa;}
+.search-box:focus{outline:none;border-color:#1a3a5c;background:white;box-shadow:0 2px 8px rgba(26,58,92,0.12);}
+.header-right{display:flex;align-items:center;gap:24px;margin-left:auto;}
+.site-title-main{font-size:1.0em;font-weight:600;color:#212121;}
+.site-title-sub{font-size:0.82em;color:#757575;}
+.contact-info{text-align:right;padding-left:24px;border-left:1px solid #e0e0e0;}
+.contact-prompt{font-size:0.78em;color:#757575;margin-bottom:2px;}
+.contact-email{font-size:0.85em;color:#1a3a5c;text-decoration:none;font-weight:500;}
 .contact-email:hover{text-decoration:underline;}
-.search-box{width:100%;max-width:350px;padding:10px 18px;font-size:0.95em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;}
-.search-box::placeholder{text-align:center;}
-.search-box:focus{outline:none;border-color:#2196F3;background:white;box-shadow:0 2px 8px rgba(33,150,243,0.15);}
-.breadcrumb{max-width:1200px;margin:0 auto;padding:24px 24px 0;font-size:0.9em;color:#757575;}
-.breadcrumb a{color:#2196F3;text-decoration:none;}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:20px 24px 0;font-size:0.88em;color:#757575;}
+.breadcrumb a{color:#1a3a5c;text-decoration:none;}
 .breadcrumb a:hover{text-decoration:underline;}
-.container{max-width:1200px;margin:0 auto;padding:32px 24px 48px;}
-h1{font-size:2.2em;font-weight:600;color:#212121;margin-bottom:32px;letter-spacing:-0.5px;}
-footer{text-align:center;margin-top:60px;padding:32px 0;color:#9e9e9e;font-size:0.9em;border-top:1px solid #e8e8e8;}
-@media(max-width:768px){body{padding-top:180px;}.nav-container{flex-wrap:wrap;gap:16px;}.header-right{width:100%;flex-direction:column;align-items:center;order:3;gap:16px;}.site-title-group{text-align:center;}.contact-info{text-align:center;border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:16px;}.search-box{max-width:100%;}}
+.container{max-width:1200px;margin:0 auto;padding:28px 24px 48px;}
+h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1a1a2e;margin-bottom:28px;}
+footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:0.88em;border-top:1px solid #e8e8e8;}
+@media(max-width:768px){body{padding-top:140px;}.nav-container{flex-wrap:wrap;gap:12px;}.header-right{width:100%;justify-content:center;}.search-wrap{max-width:100%;}.contact-info{border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:12px;text-align:center;}}
 
-.brochures{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.brochure-card{background:white;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:flex;flex-direction:row;border:1px solid #ebebeb;overflow:hidden;min-height:210px;}
-.brochure-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.11);border-color:#d0d0d0;}
-.brochure-card.expired{opacity:0.75;border-color:#ffcc80;}
-.card-info{flex:1;padding:20px 20px 16px;display:flex;flex-direction:column;gap:5px;min-width:0;}
-.card-title{font-size:1.0em;font-weight:700;color:#1a1a1a;line-height:1.3;}
-.tour-type{font-size:0.72em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#c62828;}
-.card-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px;}
-.pill{font-size:0.71em;font-weight:600;padding:3px 9px;border-radius:20px;}
-.pill-duration{background:#f3f3f3;color:#444;}
-.pill-summer{background:#fff8e1;color:#e65100;}
-.pill-winter{background:#e8f4fd;color:#0277bd;}
-.pill-allyear{background:#e8f5e9;color:#2e7d32;}
-.pill-valid{background:#e8f5e9;color:#2e7d32;}
-.pill-expired{background:#fff3e0;color:#e65100;}
-.card-description{font-size:0.81em;color:#666;font-style:italic;line-height:1.4;}
-.cities-list{font-size:0.79em;color:#555;}
-.price-tag{font-size:0.88em;color:#2e7d32;font-weight:700;margin-top:auto;padding-top:6px;}
-.pdf-badge{display:inline-block;font-size:0.65em;font-weight:700;color:#d32f2f;border:1.5px solid #d32f2f;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
-.card-map{width:200px;min-width:200px;border-left:1px solid #ebebeb;position:relative;overflow:hidden;}
-.map-inner{width:100%;height:100%;min-height:210px;}
+.brochures{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.brochure-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07);border:1px solid #ebebeb;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;text-decoration:none;color:inherit;}
+.brochure-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);border-color:#d0d0d0;}
+.card-hero{position:relative;height:170px;overflow:hidden;background:#1a3a5c;}
+.card-hero img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.3s;}
+.brochure-card:hover .card-hero img{opacity:0.85;}
+.card-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.0) 60%);}
+.card-season{position:absolute;top:12px;right:12px;font-size:0.68em;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+.season-winter{background:rgba(2,119,189,0.85);color:#fff;}
+.season-summer{background:rgba(230,81,0,0.85);color:#fff;}
+.season-allyear{background:rgba(46,125,50,0.85);color:#fff;}
+.card-tour-type{position:absolute;top:12px;left:12px;font-size:0.68em;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(26,58,92,0.85);color:#fff;}
+.card-body{padding:18px 20px 16px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-title{font-family:'Playfair Display',serif;font-size:1.08em;font-weight:700;color:#1a1a2e;line-height:1.3;}
+.card-duration{font-size:0.78em;color:#888;font-weight:500;letter-spacing:0.3px;}
+.card-route{font-size:0.80em;color:#555;margin-top:2px;}
+.card-desc{font-size:0.80em;color:#666;font-style:italic;line-height:1.5;margin-top:4px;}
+.card-price{font-size:0.92em;font-weight:700;color:#1a3a5c;margin-top:auto;padding-top:8px;}
+.card-actions{display:flex;gap:8px;padding:0 20px 16px;margin-top:4px;}
+.btn-view{flex:1;background:#1a3a5c;color:#fff;border:none;padding:9px 0;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-align:center;text-decoration:none;transition:background 0.2s;}
+.btn-view:hover{background:#0d2238;}
+.btn-pdf{background:transparent;color:#1a3a5c;border:1.5px solid #1a3a5c;padding:9px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+.btn-pdf:hover{background:#f0f4f8;}
+.card-valid{font-size:0.73em;padding:0 20px 14px;color:#888;}
+.card-valid.expired{color:#e65100;}
 .leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
 .leaflet-tooltip.city-tip::before{display:none!important;}
-@media(max-width:900px){.brochures{grid-template-columns:1fr;}.card-map{width:160px;min-width:160px;}}
-@media(max-width:768px){.brochure-card{flex-direction:column;}.card-map{width:100%;min-width:100%;height:180px;border-left:none;border-top:1px solid #ebebeb;}.map-inner{min-height:180px;}}
+@media(max-width:900px){.brochures{grid-template-columns:1fr;}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
@@ -64,175 +68,200 @@ footer{text-align:center;margin-top:60px;padding:32px 0;color:#9e9e9e;font-size:
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script><nav class="top-nav"><div class="nav-container">
 <a href="../../"><img src="../../logo.png" alt="Europe Incoming" class="logo"></a>
-<input type="text" class="search-box" placeholder="Search packages - type city or country" id="searchBox">
+<div class="search-wrap"><input type="text" class="search-box" placeholder="Search packages — city, country, landmark" id="searchBox"></div>
 <div class="header-right">
-  <div class="site-title-group"><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
+  <div><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
   <div class="contact-info"><div class="contact-prompt">Can't find what you're looking for? Email us at:</div>
   <a href="mailto:fitsales@europeincoming.com" class="contact-email">fitsales@europeincoming.com</a></div>
 </div></div></nav>
 <div class="breadcrumb"><a href="../../">Home</a> › <a href="../">Multi-Country</a> › Scandinavia & Iceland</div>
 <div class="container">
 <h1>Scandinavia & Iceland</h1>
-<div class="brochures" id="brochuresList">
-<a href="6 nights, 7 days Nordic Capitals_Regular.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">6 nights, 7 days Nordic & Capitals <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 6 nights / 7 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Mar 2027</span></div>
-    <div class="card-description">Copenhagen, Oslo and 2 more unmissable stops.</div>
-    <div class="cities-list">📍 Copenhagen · Oslo · Stockholm · Helsinki</div>
-    <div class="price-tag">From €1,017 pp (twin)</div>
+<div class="brochures" id="brochuresList"><div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=75" alt="6 nights, 7 days Nordic & Capitals" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
-  <div class="card-map"><div id="map_6_nights__7_days_n_0" class="map-inner"></div></div>
-</a>
-<a href="Iceland_Self-drive 7 nights, 8 days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Iceland Self-drive 7 nights, 8 days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Self Drive</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 7 nights / 8 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Oct 2026</span></div>
-    <div class="card-description">Reykjavik, Akureyri and 2 more unmissable stops.</div>
-    <div class="cities-list">📍 Reykjavik · Akureyri · Hofn · Vik</div>
-    <div class="price-tag">From €1,771 pp (twin)</div>
+  <div class="card-body">
+    <div class="card-title">6 nights, 7 days Nordic & Capitals</div>
+    <div class="card-duration">🕐 6 nights / 7 days</div>
+    <div class="card-route">📍 Copenhagen → Oslo → Stockholm → Helsinki</div>
+    <div class="card-desc">Copenhagen, Oslo and 2 more unmissable stops.</div>
+    <div class="card-price">From €1,017 pp</div>
   </div>
-  <div class="card-map"><div id="map_iceland_self_drive_1" class="map-inner"></div></div>
-</a>
-<a href="Kiruna_Regular_4 Nights, 5 Days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Kiruna Regular 4 Nights, 5 Days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 4 nights / 5 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Sep 2026</span></div>
-    <div class="card-description">The best of Kiruna, curated and ready to explore.</div>
-    <div class="cities-list">📍 Kiruna</div>
-    <div class="price-tag">From €1,237 pp (twin)</div>
-  </div>
-  <div class="card-map"><div id="map_kiruna_regular_4_n_2" class="map-inner"></div></div>
-</a>
-<a href="Norway Nutshell_Regular 5 nights, 6 days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Norway Nutshell Regular 5 nights, 6 days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 5 nights / 6 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Mar 2026</span></div>
-    <div class="card-description">Oslo elegance meets Bergen charm.</div>
-    <div class="cities-list">📍 Oslo · Bergen</div>
-    <div class="price-tag">From €990 pp (twin)</div>
-  </div>
-  <div class="card-map"><div id="map_norway_nutshell_re_3" class="map-inner"></div></div>
-</a>
-<a href="Swedish Lapland_Regular_7 Nights, 8 Days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Swedish Lapland Regular 7 Nights, 8 Days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 7 nights / 8 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Sep 2026</span></div>
-    <div class="card-description">Kiruna elegance meets Abisko charm.</div>
-    <div class="cities-list">📍 Kiruna · Abisko</div>
-    <div class="price-tag">From €1,989 pp (twin)</div>
-  </div>
-  <div class="card-map"><div id="map_swedish_lapland_re_4" class="map-inner"></div></div>
-</a>
-<a href="Tromso _Regular_4 Nights, 5 Days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Tromso Regular 4 Nights, 5 Days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 4 nights / 5 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Sep 2026</span></div>
-    <div class="card-description">Curated Scandinavia & Iceland package with handpicked experiences.</div>
-    
-    <div class="price-tag">From €2,118 pp (twin)</div>
-  </div>
-  
-</a>
-<a href="Tromso_Regular_7 Nights, 8 Days.pdf" class="brochure-card" target="_blank">
-  <div class="card-info">
-    <div class="card-title">Tromso Regular 7 Nights, 8 Days <span class="pdf-badge">PDF</span></div>
-    <div class="tour-type">Regular</div>
-    <div class="card-pills"><span class="pill pill-duration">🕐 7 nights / 8 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Sep 2026</span></div>
-    <div class="card-description">Curated Scandinavia & Iceland package with handpicked experiences.</div>
-    
-    <div class="price-tag">From €2,853 pp (twin)</div>
-  </div>
-  
-</a>
+  <div class="card-valid">✓ Valid till Mar 2027</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="6 nights, 7 days Nordic Capitals_Regular.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
 </div>
-<footer><p>All packages are available for download in PDF format</p></footer>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=75" alt="Iceland Self-drive 7 nights, 8 days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Self Drive</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Iceland Self-drive 7 nights, 8 days</div>
+    <div class="card-duration">🕐 7 nights / 8 days</div>
+    <div class="card-route">📍 Reykjavik → Akureyri → Hofn → Vik</div>
+    <div class="card-desc">Reykjavik, Akureyri and 2 more unmissable stops.</div>
+    <div class="card-price">From €1,771 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Oct 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Iceland_Self-drive 7 nights, 8 days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=75" alt="Kiruna Regular 4 Nights, 5 Days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Kiruna Regular 4 Nights, 5 Days</div>
+    <div class="card-duration">🕐 4 nights / 5 days</div>
+    <div class="card-route">📍 Kiruna</div>
+    <div class="card-desc">The best of Kiruna, curated and ready to explore.</div>
+    <div class="card-price">From €1,237 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Sep 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Kiruna_Regular_4 Nights, 5 Days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=75" alt="Norway Nutshell Regular 5 nights, 6 days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Norway Nutshell Regular 5 nights, 6 days</div>
+    <div class="card-duration">🕐 5 nights / 6 days</div>
+    <div class="card-route">📍 Oslo → Bergen</div>
+    <div class="card-desc">Oslo elegance meets Bergen charm.</div>
+    <div class="card-price">From €990 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Mar 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Norway Nutshell_Regular 5 nights, 6 days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=75" alt="Swedish Lapland Regular 7 Nights, 8 Days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Swedish Lapland Regular 7 Nights, 8 Days</div>
+    <div class="card-duration">🕐 7 nights / 8 days</div>
+    <div class="card-route">📍 Kiruna → Abisko</div>
+    <div class="card-desc">Kiruna elegance meets Abisko charm.</div>
+    <div class="card-price">From €1,989 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Sep 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Swedish Lapland_Regular_7 Nights, 8 Days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=75" alt="Tromso Regular 4 Nights, 5 Days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Tromso Regular 4 Nights, 5 Days</div>
+    <div class="card-duration">🕐 4 nights / 5 days</div>
+    
+    <div class="card-desc">Curated Scandinavia & Iceland package with handpicked experiences.</div>
+    <div class="card-price">From €2,118 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Sep 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Tromso _Regular_4 Nights, 5 Days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div>
+<div class="brochure-card">
+  <div class="card-hero">
+    <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=75" alt="Tromso Regular 7 Nights, 8 Days" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-tour-type">Regular</div>
+    <div class="card-season season-allyear">🌍 All Year</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Tromso Regular 7 Nights, 8 Days</div>
+    <div class="card-duration">🕐 7 nights / 8 days</div>
+    
+    <div class="card-desc">Curated Scandinavia & Iceland package with handpicked experiences.</div>
+    <div class="card-price">From €2,853 pp</div>
+  </div>
+  <div class="card-valid">✓ Valid till Sep 2026</div>
+  <div class="card-actions"><span class="btn-view" style="opacity:0.4;cursor:default">View Package</span><a href="Tromso_Regular_7 Nights, 8 Days.pdf" class="btn-pdf" target="_blank">↓ PDF</a></div>
+</div></div>
+<footer><p>Browse packages below and click View Package for full details.</p></footer>
 </div>
 <script src="../../global-search.js"></script>
-<script>window.addEventListener('load',function(){(function(){
-  var pts=[[55.6761, 12.5683, "Copenhagen"], [59.9139, 10.7522, "Oslo"], [59.3293, 18.0686, "Stockholm"], [60.1699, 24.9384, "Helsinki"]];
-  if(!pts.length) return;
-  var lats=pts.map(function(p){return p[0];});
-  var lngs=pts.map(function(p){return p[1];});
-  var pad=0.4;
-  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+<script>window.addEventListener('load',function(){(function(){var pts=[[55.6761, 12.5683, "Copenhagen"], [59.9139, 10.7522, "Oslo"], [59.3293, 18.0686, "Stockholm"], [60.1699, 24.9384, "Helsinki"]];if(!pts.length)return;
+  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_6_nights__7_days_n_0',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
-  pts.forEach(function(p,i){
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){
-  var pts=[[64.1265, -21.8174, "Reykjavik"], [65.6826364, -18.0912993, "Akureyri"], [64.2532647, -15.2080441, "Hofn"], [64.1265, -21.8174, "Vik"]];
-  if(!pts.length) return;
-  var lats=pts.map(function(p){return p[0];});
-  var lngs=pts.map(function(p){return p[1];});
-  var pad=0.4;
-  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+(function(){var pts=[[64.1265, -21.8174, "Reykjavik"], [65.6826364, -18.0912993, "Akureyri"], [64.2532647, -15.2080441, "Hofn"], [61.0349664, 6.5941051, "Vik"]];if(!pts.length)return;
+  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_iceland_self_drive_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
-  pts.forEach(function(p,i){
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){
-  var pts=[[67.8558, 20.2253, "Kiruna"]];
-  if(!pts.length) return;
-  var lats=pts.map(function(p){return p[0];});
-  var lngs=pts.map(function(p){return p[1];});
-  var pad=0.4;
-  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+(function(){var pts=[[67.8558, 20.2253, "Kiruna"]];if(!pts.length)return;
+  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_kiruna_regular_4_n_2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
-  pts.forEach(function(p,i){
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){
-  var pts=[[59.9139, 10.7522, "Oslo"], [60.3913, 5.3221, "Bergen"]];
-  if(!pts.length) return;
-  var lats=pts.map(function(p){return p[0];});
-  var lngs=pts.map(function(p){return p[1];});
-  var pad=0.4;
-  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+(function(){var pts=[[59.9139, 10.7522, "Oslo"], [60.3913, 5.3221, "Bergen"]];if(!pts.length)return;
+  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_norway_nutshell_re_3',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
-  pts.forEach(function(p,i){
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){
-  var pts=[[67.8558, 20.2253, "Kiruna"], [68.3493, 18.8306, "Abisko"]];
-  if(!pts.length) return;
-  var lats=pts.map(function(p){return p[0];});
-  var lngs=pts.map(function(p){return p[1];});
-  var pad=0.4;
-  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+(function(){var pts=[[67.8558, 20.2253, "Kiruna"], [68.3493, 18.8306, "Abisko"]];if(!pts.length)return;
+  var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
+  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_swedish_lapland_re_4',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
-  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
-  pts.forEach(function(p,i){
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
-    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
+  pts.forEach((p,i)=>{
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
+     .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();});</script>
 </body></html>

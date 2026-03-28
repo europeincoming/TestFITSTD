@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Multi-City & Country Packages | Europe Incoming</title>
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#212121;line-height:1.6;padding-top:80px;}
-.top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:16px 0;}
-.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:32px;}
-.logo{height:48px;width:auto;}.logo:hover{opacity:0.8;}
-.header-right{display:flex;align-items:center;gap:32px;flex:1;justify-content:flex-end;}
-.site-title-group{text-align:right;}
-.site-title-main{font-size:1.1em;font-weight:600;color:#212121;}
-.site-title-sub{font-size:0.9em;color:#757575;}
-.contact-info{text-align:right;padding-left:32px;border-left:1px solid #e0e0e0;}
-.contact-prompt{font-size:0.85em;color:#757575;margin-bottom:4px;}
-.contact-email{font-size:0.9em;color:#2196F3;text-decoration:none;font-weight:500;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#212121;line-height:1.6;padding-top:72px;}
+.top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:12px 0;}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;}
+.logo{height:44px;width:auto;}
+.logo:hover{opacity:0.8;}
+.search-wrap{flex:1;max-width:420px;position:relative;}
+.search-box{width:100%;padding:9px 18px;font-size:0.92em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.search-box::placeholder{color:#aaa;}
+.search-box:focus{outline:none;border-color:#1a3a5c;background:white;box-shadow:0 2px 8px rgba(26,58,92,0.12);}
+.header-right{display:flex;align-items:center;gap:24px;margin-left:auto;}
+.site-title-main{font-size:1.0em;font-weight:600;color:#212121;}
+.site-title-sub{font-size:0.82em;color:#757575;}
+.contact-info{text-align:right;padding-left:24px;border-left:1px solid #e0e0e0;}
+.contact-prompt{font-size:0.78em;color:#757575;margin-bottom:2px;}
+.contact-email{font-size:0.85em;color:#1a3a5c;text-decoration:none;font-weight:500;}
 .contact-email:hover{text-decoration:underline;}
-.search-box{width:100%;max-width:350px;padding:10px 18px;font-size:0.95em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;}
-.search-box::placeholder{text-align:center;}
-.search-box:focus{outline:none;border-color:#2196F3;background:white;box-shadow:0 2px 8px rgba(33,150,243,0.15);}
-.breadcrumb{max-width:1200px;margin:0 auto;padding:24px 24px 0;font-size:0.9em;color:#757575;}
-.breadcrumb a{color:#2196F3;text-decoration:none;}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:20px 24px 0;font-size:0.88em;color:#757575;}
+.breadcrumb a{color:#1a3a5c;text-decoration:none;}
 .breadcrumb a:hover{text-decoration:underline;}
-.container{max-width:1200px;margin:0 auto;padding:32px 24px 48px;}
-h1{font-size:2.2em;font-weight:600;color:#212121;margin-bottom:32px;letter-spacing:-0.5px;}
-footer{text-align:center;margin-top:60px;padding:32px 0;color:#9e9e9e;font-size:0.9em;border-top:1px solid #e8e8e8;}
-@media(max-width:768px){body{padding-top:180px;}.nav-container{flex-wrap:wrap;gap:16px;}.header-right{width:100%;flex-direction:column;align-items:center;order:3;gap:16px;}.site-title-group{text-align:center;}.contact-info{text-align:center;border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:16px;}.search-box{max-width:100%;}}
+.container{max-width:1200px;margin:0 auto;padding:28px 24px 48px;}
+h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1a1a2e;margin-bottom:28px;}
+footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:0.88em;border-top:1px solid #e8e8e8;}
+@media(max-width:768px){body{padding-top:140px;}.nav-container{flex-wrap:wrap;gap:12px;}.header-right{width:100%;justify-content:center;}.search-wrap{max-width:100%;}.contact-info{border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:12px;text-align:center;}}
 
 .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
-.category-card{background:white;padding:32px;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:block;border:1px solid #f5f5f5;}
+.category-card{background:white;padding:28px 32px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:block;border:1px solid #f5f5f5;}
 .category-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12);border-color:#e0e0e0;}
-.category-card h2{font-size:1.4em;color:#212121;margin-bottom:10px;font-weight:600;}
+.category-card h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1a1a2e;margin-bottom:8px;}
 .category-meta{font-size:0.82em;color:#757575;margin-bottom:6px;}
 .category-types{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
-.type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#f0f4ff;color:#1565c0;}
-.arrow{float:right;color:#2196F3;font-size:1.4em;transition:transform 0.2s;}
+.type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#eef2f8;color:#1a3a5c;}
+.arrow{float:right;color:#1a3a5c;font-size:1.4em;transition:transform 0.2s;}
 .category-card:hover .arrow{transform:translateX(4px);}
 @media(max-width:768px){.categories{grid-template-columns:1fr;}}
-</style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
+</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04BZKH6574');</script>
 </head>
 <body>
@@ -48,17 +48,16 @@ footer{text-align:center;margin-top:60px;padding:32px 0;color:#9e9e9e;font-size:
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script><nav class="top-nav"><div class="nav-container">
 <a href="../"><img src="../logo.png" alt="Europe Incoming" class="logo"></a>
-<input type="text" class="search-box" placeholder="Search packages - type city or country" id="searchBox">
+<div class="search-wrap"><input type="text" class="search-box" placeholder="Search packages — city, country, landmark" id="searchBox"></div>
 <div class="header-right">
-  <div class="site-title-group"><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
+  <div><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
   <div class="contact-info"><div class="contact-prompt">Can't find what you're looking for? Email us at:</div>
   <a href="mailto:fitsales@europeincoming.com" class="contact-email">fitsales@europeincoming.com</a></div>
 </div></div></nav>
 <div class="breadcrumb"><a href="../">Home</a> › Multi-City & Country Packages</div>
 <div class="container">
 <h1>Multi-City & Country Packages</h1>
-<div class="categories" id="categoriesList">
-<a href="italy/" class="category-card">
+<div class="categories" id="categoriesList"><a href="italy/" class="category-card">
   <span class="arrow">→</span>
   <h2>Italy</h2>
   <div class="category-meta">5 packages</div>
@@ -105,9 +104,8 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   <h2>Western & Central Europe</h2>
   <div class="category-meta">8 packages</div>
   <div class="category-types"><span class="type-tag">Private</span><span class="type-tag">Regular</span></div>
-</a>
-</div>
-<footer><p>All packages are available for download in PDF format</p></footer>
+</a></div>
+<footer><p>All packages available with full details and PDF download.</p></footer>
 </div>
 <script src="../global-search.js"></script>
 </body></html>
