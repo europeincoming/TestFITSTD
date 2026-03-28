@@ -511,6 +511,9 @@ MARK12_FILES = [
     "10.6_4_Kiruna_-_3_Abisko_(Stockholm_Pre_post).json",
 ]
 
+# Also fix fetch_mark12_package to URL-encode parentheses
+
+
 def fetch_mark12_index():
     """Try GitHub API first, fall back to hardcoded list"""
     try:
@@ -532,7 +535,7 @@ def fetch_mark12_index():
 def fetch_mark12_package(filename):
     """Fetch a single package JSON from mark12"""
     try:
-        url = f"{MARK12_RAW}/packages/{urllib.parse.quote(filename)}"
+        url = f"{MARK12_RAW}/packages/{urllib.parse.quote(filename, safe='')}"
         req = urllib.request.Request(url, headers={"User-Agent":"EuropeIncomingFIT/1.0"})
         with urllib.request.urlopen(req, timeout=15) as r:
             return json.loads(r.read())
