@@ -482,23 +482,52 @@ def make_region_card(slug, display_name, pkg_count, tour_types):
 
 
 # ── mark12 INTEGRATION ────────────────────────────────────────────────────────
+# Known package filenames in mark12 (update when new packages added)
+MARK12_FILES = [
+    "1.1_3_London_private.json",
+    "1.2_3_London_-_2_Manchester-_2_Edinburgh_-_2.json",
+    "1.3_3_London_-_1_Glasgow_-_2_Inverness_-_2_E.json",
+    "1.4_2_Edinburgh_-_2_Inverness_-_1_Fort_Willi.json",
+    "1.5_2_Dublin_-_3_Limerick_-_1_Dublin.json",
+    "2.1_3_Paris_-_3_Lucerne_-_1_Zurich.json",
+    "2.2_2_Paris_-_3_Lucerne_-_2_Innsbruck_-_2_Vi.json",
+    "2.3_2_Paris_-_3_Lucerne_-_2_Venice_-_1_Flore.json",
+    "2.4_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_1_Zu.json",
+    "2.5_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_2_Ve.json",
+    "2.6_3_Lucerne_-_2_Venice_-_1_Florence_-_2_Ro.json",
+    "3.1_2_Venice_-_2_Florence_-_2_Rome.json",
+    "3.2_2_Rome_-_2_Naples_-_2_Florence_-_2_Venic.json",
+    "4.1_2_Lucerne_-_2_Interlaken_-_1_Zurich.json",
+    "4.2_2_Lucerne_-_2_Interlaken_-_2_Montreux_-_.json",
+    "5.1_2_Paris_-_2_Avignon_-_2_Aix_-_2_Nice.json",
+    "5.2_2_Paris_-_2_Bayeux_-_2_Tours_-_1_Paris.json",
+    "6.1_2_Madrid_-_2_Granada_-_2_Seville_-_2_Bar.json",
+    "7.1_2_Prague_-_2_Vienna_-_2_Budapest.json",
+    "9.1_1_CPH_-_1_Ferry_-_1_Oslo_-_1_Stockholm_-.json",
+    "10.1_4_Rovaniemi_(Helsinki_pre_post)_winter.json",
+    "10.3_4_Tromso_(Oslo_pre_post)_winter.json",
+    "10.4_7_Tromso_(Oslo_pre_post)_winter.json",
+    "10.5_4_Kiruna_(Stockholm_pre_post)_winter.json",
+    "10.6_4_Kiruna_-_3_Abisko_(Stockholm_Pre_post).json",
+]
+
 def fetch_mark12_index():
-    """Fetch list of JSON files from mark12 packages/ via GitHub API"""
+    """Try GitHub API first, fall back to hardcoded list"""
     try:
         url = "https://api.github.com/repos/europeincoming/mark12/contents/packages"
-        headers = {"User-Agent": "EuropeIncomingFIT/1.0", "Accept": "application/vnd.github.v3+json"}
-        if GITHUB_TOKEN:
-            headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as r:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "EuropeIncomingFIT/1.0",
+            "Accept": "application/vnd.github.v3+json"
+        })
+        with urllib.request.urlopen(req, timeout=20) as r:
             files = json.loads(r.read())
             if isinstance(files, list):
-                return [f["name"] for f in files if f.get("name","").endswith(".json")]
-            print(f"  mark12 unexpected response: {str(files)[:200]}")
-            return []
+                names = [f["name"] for f in files if f.get("name","").endswith(".json")]
+                print(f"  mark12 API: found {len(names)} files")
+                return names
     except Exception as e:
-        print(f"  mark12 index fetch failed: {e}")
-        return []
+        print(f"  mark12 API failed ({e}), using hardcoded list")
+    return MARK12_FILES
 
 def fetch_mark12_package(filename):
     """Fetch a single package JSON from mark12"""
@@ -1087,10 +1116,13 @@ def main():
     # ── Fetch mark12 packages ──────────────────────────────────────────────
     mark12_pkgs = fetch_mark12_packages()
 
-    # ── PDF loop (unchanged logic, new card template) ──────────────────────
+    # ── PDF loop: city-break only. Multi-country uses mark12 JSONs ──────────
     for folder_rel, config in FOLDER_CONFIG.items():
         folder_abs=os.path.join(REPO_ROOT,folder_rel)
         if not os.path.isdir(folder_abs): continue
+        # Skip multi-country folders - handled by mark12 JSON loop below
+        if folder_rel.startswith("multi-country"):
+            continue
         pdfs=sorted([f for f in os.listdir(folder_abs) if f.lower().endswith('.pdf')])
         if not pdfs: continue
         print(f"\n{folder_rel} — {len(pdfs)} PDFs")
@@ -1153,28 +1185,130 @@ def main():
             slug=folder_rel.replace("multi-country/","")
             region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen}
 
-    # ── Generate brochure pages from mark12 ───────────────────────────────
+    # ── Generate brochure pages + region index pages from mark12 ────────────
     print("\nGenerating brochure pages from mark12...")
+
+    # Group packages by region folder
+    region_packages = {}
     for sid, mpkg in mark12_pkgs.items():
         folder_rel = MARK12_REGION_MAP.get(mpkg.get('region',''))
         if not folder_rel: continue
-        folder_abs = os.path.join(REPO_ROOT, folder_rel)
-        if not os.path.isdir(folder_abs): continue
-        depth = FOLDER_CONFIG.get(folder_rel,{}).get('depth',2)
+        if folder_rel not in region_packages:
+            region_packages[folder_rel] = []
+        region_packages[folder_rel].append((sid, mpkg))
 
-        # Ensure coords for all cities
-        for h in mpkg.get('hotels',[]):
-            city = h.get('city','')
-            if city:
+    for folder_rel, pkgs in region_packages.items():
+        folder_abs = os.path.join(REPO_ROOT, folder_rel)
+        os.makedirs(folder_abs, exist_ok=True)
+        config = FOLDER_CONFIG.get(folder_rel, {})
+        depth = config.get('depth', 2)
+        logo_src = "../"*depth + "logo.png"
+        logo_href = "../"*depth
+        search_js = "../"*depth + "global-search.js"
+        breadcrumb = (f'<a href="../../">Home</a> › <a href="../">Multi-Country</a> › {config.get("breadcrumb","")}')
+
+        cards = []
+        maps_js_parts = []
+        tour_types_seen = []
+
+        for sid, mpkg in sorted(pkgs, key=lambda x: x[0]):
+            # Ensure coords
+            cities = [h.get('city','') for h in mpkg.get('hotels',[]) if h.get('city')]
+            for city in cities:
                 was_missing = city not in coords_cache
                 get_coords(city, coords_cache)
                 if was_missing and city in coords_cache: coords_dirty = True
 
-        page_html = generate_brochure_page(mpkg, coords_cache, depth)
-        out_path = os.path.join(folder_abs, f"{sid}_brochure.html")
-        with open(out_path,'w',encoding='utf-8') as f:
-            f.write(page_html)
-        print(f"  ✓ {folder_rel}/{sid}_brochure.html")
+            # Generate brochure page
+            page_html = generate_brochure_page(mpkg, coords_cache, depth)
+            brochure_fname = f"{sid}_brochure.html"
+            out_path = os.path.join(folder_abs, brochure_fname)
+            with open(out_path,'w',encoding='utf-8') as f:
+                f.write(page_html)
+            print(f"  ✓ {folder_rel}/{brochure_fname}")
+
+            # Build card for index page
+            variants = mpkg.get('variants',{})
+            title = mpkg.get('title','')
+            nights = mpkg.get('nights','')
+            winter_only = mpkg.get('winter_only', False)
+            season = 'winter' if winter_only else 'all-year'
+            curr_sym = '£' if mpkg.get('currency','EUR')=='GBP' else '€'
+
+            # Get lowest twin price from first available variant
+            price = None
+            for vkey in ['regular_fit','private','self_drive']:
+                vdata = variants.get(vkey,{})
+                pricing = vdata.get('pricing',{})
+                for market in ['Standard','Premium']:
+                    for skey in ['winter','summer']:
+                        sp = pricing.get(market,{}).get(skey)
+                        if isinstance(sp, dict):
+                            t = sp.get('3star',{}).get('twin') or sp.get('4star',{}).get('twin')
+                            if t:
+                                price = float(t)
+                                break
+                        elif isinstance(sp, list) and sp:
+                            t = sp[0].get('3star') or sp[0].get('4star')
+                            if t:
+                                price = float(t)
+                                break
+                    if price: break
+                if price: break
+
+            desc = mpkg.get('description','') or _fallback_desc(cities, config.get('region',''), '')
+            route = ' → '.join(cities)
+            img = get_card_image(cities)
+            dur = f"{nights} nights" if nights else ""
+
+            # Tour type pills from variants
+            for vk in variants:
+                vl = {'regular_fit':'Regular','private':'Private','self_drive':'Self Drive'}.get(vk,'')
+                if vl and vl not in tour_types_seen: tour_types_seen.append(vl)
+
+            # Variant tabs for card subtitle
+            vtypes = ' · '.join({'regular_fit':'Regular FIT','private':'Private','self_drive':'Self Drive'}.get(v,'') for v in variants if v in ('regular_fit','private','self_drive'))
+
+            season_cls = 'season-winter' if winter_only else 'season-allyear'
+            season_lbl = '❄️ Winter' if winter_only else '🌍 All Year'
+            price_html = f'<div class="card-price">From {curr_sym}{price:,.0f} pp</div>' if price else ''
+
+            card = f"""<div class="brochure-card">
+  <div class="card-hero">
+    <img src="{img}" alt="{title}" loading="lazy">
+    <div class="card-hero-overlay"></div>
+    <div class="card-season {season_cls}">{season_lbl}</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">{title}</div>
+    {"<div class='card-duration'>🕐 " + dur + "</div>" if dur else ""}
+    {"<div class='card-route'>📍 " + route + "</div>" if route else ""}
+    {"<div class='card-desc'>" + desc + "</div>" if desc else ""}
+    {price_html}
+  </div>
+  <div class="card-actions">
+    <a href="{brochure_fname}" class="btn-view">View Package</a>
+  </div>
+</div>"""
+            cards.append(card)
+
+            # Map JS for index
+            map_id = f"map_{sid.replace('.','_')}"
+            js = make_map_js(map_id, cities, coords_cache)
+            if js: maps_js_parts.append(js)
+
+        # Write region index
+        html = build_brochure_index(
+            config.get('title',''), breadcrumb,
+            "\n".join(cards), "\n".join(maps_js_parts),
+            logo_src, logo_href, search_js
+        )
+        with open(os.path.join(folder_abs,"index.html"),'w',encoding='utf-8') as f:
+            f.write(html)
+        print(f"  Rebuilt {folder_rel}/index.html ({len(cards)} packages)")
+
+        slug = folder_rel.replace("multi-country/","")
+        region_stats[slug] = {"count": len(cards), "tour_types": tour_types_seen}
 
     if coords_dirty:
         save_coords_cache(coords_cache)
