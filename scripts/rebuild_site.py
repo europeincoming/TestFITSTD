@@ -533,7 +533,8 @@ def main():
             print(f"  {pdf}")
             pdf_data=extract_pdf_data(os.path.join(folder_abs,pdf),pdf)
             title=make_title(pdf)
-            desc=generate_description(pdf_data.get("cities",[]),config["region"],pdf_data.get("tour_type",""),pdf_data.get("season","all-year"),os.path.join(folder_abs,pdf))            map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
+            desc=generate_description(pdf_data.get("cities",[]),config["region"],pdf_data.get("tour_type",""),pdf_data.get("season","all-year"),os.path.join(folder_abs,pdf))
+            map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
             all_found.append({"filename":pdf,"title":title,"folder":folder_rel,"region":config["region"],"pdf_data":pdf_data})
             cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id))
             js=make_map_js(map_id,pdf_data.get("cities",[]))
