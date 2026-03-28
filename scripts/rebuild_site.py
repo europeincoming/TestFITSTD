@@ -1,12 +1,13 @@
 """
-rebuild_site.py — v8
-Fixes:
-- Private tour pricing: detects Min Pax table, shows lowest 3* price
-- Date parsing: handles both 2-digit (01.11.25) and 4-digit (01.11.2025) years
-- Auto-geocoding via Nominatim for unknown cities
-- Description caching in packages.json
+rebuild_site.py — v9
+Complete rewrite with all fixes:
+- Private tour pricing (Min Pax table)
+- Regular/Self Drive pricing (column-based Twin extraction)
+- 4-digit and 2-digit year date parsing
+- Auto-geocoding via Nominatim
+- Description caching
 - Fixed title join logic
-- Fuzzy city coord matching
+- Fuzzy city matching
 """
 
 import os, re, json, urllib.request, urllib.parse, time
@@ -217,7 +218,7 @@ def get_coords(city_name, cache):
     coords = geocode_city(city_name)
     cache[city_name] = coords
     if coords:
-        print(f"    Found: {city_name} → {coords}")
+        print(f"    Found: {city_name} -> {coords}")
     else:
         print(f"    Not found: {city_name}")
     time.sleep(1)
@@ -239,120 +240,162 @@ def smart_destination(words):
     return f"{', '.join(words[:-1])} & {words[-1]}"
 
 def make_title(filename):
-    name = filename.replace('.pdf','').replace('_',' ')
-    name = re.sub(r'\s+',' ',name).strip()
-    m = re.search(r'(\d+)\s*nights?,\s*(\d+)\s*days?\s+(.+)',name,re.IGNORECASE)
+    name = filename.replace('.pdf', '').replace('_', ' ')
+    name = re.sub(r'\s+', ' ', name).strip()
+    m = re.search(r'(\d+)\s*nights?,\s*(\d+)\s*days?\s+(.+)', name, re.IGNORECASE)
     if m:
-        duration=f"{m.group(1)} nights, {m.group(2)} days"; rest=m.group(3).strip()
+        duration = f"{m.group(1)} nights, {m.group(2)} days"
+        rest = m.group(3).strip()
     else:
-        m2=re.search(r'(\d+)\s*nights?\s*[/]?\s*(\d+)\s*days?',name,re.IGNORECASE)
+        m2 = re.search(r'(\d+)\s*nights?\s*[/]?\s*(\d+)\s*days?', name, re.IGNORECASE)
         if m2:
-            duration=f"{m2.group(1)} nights, {m2.group(2)} days"; rest=name[m2.end():].strip()
+            duration = f"{m2.group(1)} nights, {m2.group(2)} days"
+            rest = name[m2.end():].strip()
         else:
-            m3=re.search(r'(\d+)\s*[Dd]ays?\s+(.+)',name,re.IGNORECASE)
-            if m3: duration=f"{m3.group(1)} days"; rest=m3.group(2).strip()
-            else: return name
-    rest=re.sub(r'\b(Private|Regular|Self.?[Dd]rive)\b','',rest,flags=re.IGNORECASE)
-    rest=re.sub(r'\d{4}-\d{2,4}','',rest)
-    rest=re.sub(r'Europe\s+Incoming','',rest,flags=re.IGNORECASE)
-    rest=re.sub(r'\s+',' ',rest).strip().strip('-').strip()
+            m3 = re.search(r'(\d+)\s*[Dd]ays?\s+(.+)', name, re.IGNORECASE)
+            if m3:
+                duration = f"{m3.group(1)} days"
+                rest = m3.group(2).strip()
+            else:
+                return name
+    rest = re.sub(r'\b(Private|Regular|Self.?[Dd]rive)\b', '', rest, flags=re.IGNORECASE)
+    rest = re.sub(r'\d{4}-\d{2,4}', '', rest)
+    rest = re.sub(r'Europe\s+Incoming', '', rest, flags=re.IGNORECASE)
+    rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
     return f"{duration} {smart_destination(rest.split())}".strip()
 
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
 
 def parse_date(d):
-    """Parse date string handling both 2-digit and 4-digit years."""
     for fmt in ['%d.%m.%Y', '%d.%m.%y']:
         try:
             return datetime.strptime(d, fmt)
-        except: pass
+        except:
+            pass
     return None
 
 def detect_seasons(date_pairs):
-    SUMMER={4,5,6,7,8,9,10}; WINTER={11,12,1,2,3}
-    hs=hw=False
-    for s,e in date_pairs:
-        sd=parse_date(s); ed=parse_date(e)
+    SUMMER = {4, 5, 6, 7, 8, 9, 10}
+    WINTER = {11, 12, 1, 2, 3}
+    hs = hw = False
+    for s, e in date_pairs:
+        sd = parse_date(s)
+        ed = parse_date(e)
         if sd and ed:
-            if sd.month in SUMMER or ed.month in SUMMER: hs=True
-            if sd.month in WINTER or ed.month in WINTER: hw=True
-    if hs and hw: return "all-year"
-    elif hs: return "summer"
-    elif hw: return "winter"
+            if sd.month in SUMMER or ed.month in SUMMER:
+                hs = True
+            if sd.month in WINTER or ed.month in WINTER:
+                hw = True
+    if hs and hw:
+        return "all-year"
+    elif hs:
+        return "summer"
+    elif hw:
+        return "winter"
     return "all-year"
 
+def extract_price(txt, lines):
+    """
+    Extract the lowest starting price from a PDF.
+    Handles two formats:
+    - Private (Min Pax table): finds lowest price > 500 in the Min Pax section
+    - Regular/Self Drive (Twin column): finds Twin prices using column position
+    Returns int or None.
+    """
+    # Detect private tour pricing
+    if re.search(r'Min\s*Pax', txt, re.IGNORECASE):
+        pricing_section = re.search(
+            r'Min\s*Pax.*?(?:Sample Hotels|Terms)',
+            txt, re.DOTALL | re.IGNORECASE
+        )
+        if pricing_section:
+            amounts = re.findall(r'€\s*([\d,]+)', pricing_section.group(0))
+            package_prices = [int(a.replace(',', '')) for a in amounts
+                              if int(a.replace(',', '')) > 500]
+            if package_prices:
+                return min(package_prices)
+        return None
+
+    # Regular/Self Drive: column-based Twin extraction
+    # Table format is: Single, Twin/Do, Child — prices repeat in that order
+    ti = next((i for i, l in enumerate(lines) if 'Twin' in l and 'Do' in l), None)
+    if ti:
+        ep = []
+        for l in lines[ti:ti + 30]:
+            m = re.match(r'€\s*([\d,]+)', l)
+            if m:
+                ep.append(int(m.group(1).replace(',', '')))
+        # Twin is 2nd in each group of 3 (Single=0, Twin=1, Child=2)
+        twins = ep[1::3] if len(ep) >= 3 else ep[1:2] if len(ep) >= 2 else []
+        if twins:
+            return min(twins)
+    return None
+
 def extract_pdf_data(pdf_path, filename):
-    r={"duration":None,"tour_type":None,"cities":[],"price_twin":None,
-       "season":"all-year","valid_till":None,"is_expired":False,"includes":[]}
-    name=filename.replace('_',' ')
-    dur=re.search(r'(\d+)\s*nights?\s*/?,?\s*(\d+)\s*days?',name,re.IGNORECASE)
-    if dur: r["duration"]=f"{dur.group(1)} nights / {dur.group(2)} days"
+    r = {
+        "duration": None, "tour_type": None, "cities": [],
+        "price_twin": None, "season": "all-year",
+        "valid_till": None, "is_expired": False, "includes": []
+    }
+
+    # From filename
+    name = filename.replace('_', ' ')
+    dur = re.search(r'(\d+)\s*nights?\s*/?,?\s*(\d+)\s*days?', name, re.IGNORECASE)
+    if dur:
+        r["duration"] = f"{dur.group(1)} nights / {dur.group(2)} days"
     else:
-        d=re.search(r'(\d+)\s*days?',name,re.IGNORECASE)
-        if d: r["duration"]=f"{d.group(1)} days"
-    t=re.search(r'(Self.?[Dd]rive|Private|Regular)',name)
-    if t: r["tour_type"]=t.group(1).replace('-',' ').title()
+        d = re.search(r'(\d+)\s*days?', name, re.IGNORECASE)
+        if d:
+            r["duration"] = f"{d.group(1)} days"
+    t = re.search(r'(Self.?[Dd]rive|Private|Regular)', name)
+    if t:
+        r["tour_type"] = t.group(1).replace('-', ' ').title()
+
     try:
-        doc=fitz.open(pdf_path)
-        txt="\n".join(p.get_text() for p in doc)
-        lines=[l.strip() for l in txt.split('\n')]
+        doc = fitz.open(pdf_path)
+        txt = "\n".join(p.get_text() for p in doc)
+        lines = [l.strip() for l in txt.split('\n')]
 
-        # Cities from "Overnight in X"
-        oc=re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]',txt)
-        r["cities"]=list(dict.fromkeys([c.strip() for c in oc]))[:6]
+        # Cities
+        oc = re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]', txt)
+        r["cities"] = list(dict.fromkeys([c.strip() for c in oc]))[:6]
 
-        # Dates — handles both DD.MM.YY and DD.MM.YYYY formats
-        all_dates_raw=re.findall(r'\b(\d{2}\.\d{2}\.\d{2,4})\b',txt)
-        valid_dates=[]
+        # Dates — handles DD.MM.YY and DD.MM.YYYY
+        all_dates_raw = re.findall(r'\b(\d{2}\.\d{2}\.\d{2,4})\b', txt)
+        valid_date_objs = []
+        valid_date_strs = []
         for d in all_dates_raw:
-            parsed=parse_date(d)
-            if parsed: valid_dates.append((d, parsed))
+            parsed = parse_date(d)
+            if parsed:
+                valid_date_objs.append(parsed)
+                valid_date_strs.append(d)
+        if valid_date_strs:
+            dp = [(valid_date_strs[i], valid_date_strs[i + 1])
+                  for i in range(0, len(valid_date_strs) - 1, 2)]
+            if dp:
+                r["season"] = detect_seasons(dp)
+            if valid_date_objs:
+                latest = max(valid_date_objs)
+                r["valid_till"] = latest.strftime("%b %Y")
+                r["is_expired"] = latest < datetime.now()
 
-        if valid_dates:
-            # Pair as start/end
-            date_strs=[d[0] for d in valid_dates]
-            dp=[(date_strs[i],date_strs[i+1]) for i in range(0,len(date_strs)-1,2)]
-            if dp: r["season"]=detect_seasons(dp)
-            end_dates=[d[1] for d in valid_dates]
-            if end_dates:
-                latest=max(end_dates)
-                r["valid_till"]=latest.strftime("%b %Y")
-                r["is_expired"]=latest < datetime.now()
+        # Price
+        r["price_twin"] = extract_price(txt, lines)
 
-        # Price extraction — detect private (Min Pax) vs regular (Twin/Double) pricing
-        if re.search(r'Min\s*Pax', txt, re.IGNORECASE):
-            # Private tour: Min Pax table — find lowest price (largest group, 3*)
-            pricing_section = re.search(
-                r'Min\s*Pax.*?(?:Sample Hotels|Terms)',
-                txt, re.DOTALL|re.IGNORECASE
-            )
-            if pricing_section:
-                amounts = re.findall(r'€\s*([\d,]+)', pricing_section.group(0))
-                package_prices = [int(a.replace(',','')) for a in amounts
-                                  if int(a.replace(',','')) > 500]
-                if package_prices:
-                    r["price_twin"] = min(package_prices)
-                else:
-            # Regular/Self Drive: column-based Twin extraction (Single, Twin, Child order)
-            ti = next((i for i,l in enumerate(lines) if 'Twin' in l and 'Do' in l), None)
-            if ti:
-                ep = []
-                for l in lines[ti:ti+30]:
-                    m = re.match(r'€\s*([\d,]+)', l)
-                    if m: ep.append(int(m.group(1).replace(',','')))
-                twins = ep[1::3] if len(ep) >= 3 else ep[1:2] if len(ep) >= 2 else []
-                if twins: r["price_twin"] = min(twins)
-                    
         # Includes
-        im=re.search(r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels)',txt,re.DOTALL|re.IGNORECASE)
+        im = re.search(
+            r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels)',
+            txt, re.DOTALL | re.IGNORECASE
+        )
         if im:
-            il=[l.strip().lstrip('•').strip() for l in im.group(1).split('\n')
-                if l.strip() and not l.strip().startswith('**') and len(l.strip())>5]
-            r["includes"]=il[:3]
+            il = [l.strip().lstrip('•').strip() for l in im.group(1).split('\n')
+                  if l.strip() and not l.strip().startswith('**') and len(l.strip()) > 5]
+            r["includes"] = il[:3]
 
     except Exception as e:
         print(f"  WARNING {filename}: {e}")
+
     return r
 
 
@@ -360,16 +403,16 @@ def extract_pdf_data(pdf_path, filename):
 
 def extract_itinerary(pdf_path):
     try:
-        doc=fitz.open(pdf_path)
-        txt="\n".join(p.get_text() for p in doc)
-        m=re.search(
+        doc = fitz.open(pdf_path)
+        txt = "\n".join(p.get_text() for p in doc)
+        m = re.search(
             r'(Day\s*1\s*[,:\-\s].+?)(?:This package price includes|Sample Tours|Terms\s*[&\n]|Sample Hotels|$)',
-            txt, re.DOTALL|re.IGNORECASE
+            txt, re.DOTALL | re.IGNORECASE
         )
         if m:
-            raw=m.group(1).strip()
-            raw=re.sub(r'Optional:.*?(?=Day\s*\d|$)','',raw,flags=re.DOTALL)
-            raw=re.sub(r'\s+',' ',raw).strip()
+            raw = m.group(1).strip()
+            raw = re.sub(r'Optional:.*?(?=Day\s*\d|$)', '', raw, flags=re.DOTALL)
+            raw = re.sub(r'\s+', ' ', raw).strip()
             return raw[:1500]
     except Exception as e:
         print(f"    Itinerary extract failed: {e}")
@@ -380,32 +423,34 @@ def extract_itinerary(pdf_path):
 
 def generate_description(cities, region, tour_type, season, pdf_path, cached_desc=None):
     FALLBACK_MARKERS = [
-        "Curated","The best of","elegance meets","unmissable stops",
-        "handpicked experiences","curated and ready"
+        "Curated", "The best of", "elegance meets", "unmissable stops",
+        "handpicked experiences", "curated and ready"
     ]
     if cached_desc and not any(m in cached_desc for m in FALLBACK_MARKERS):
         print(f"    cached: {cached_desc}")
         return cached_desc
 
-    itinerary=extract_itinerary(pdf_path)
+    itinerary = extract_itinerary(pdf_path)
     if not GITHUB_TOKEN or not itinerary:
-        return _fallback_desc(cities,region,tour_type)
+        return _fallback_desc(cities, region, tour_type)
 
-    season_hint=""
-    if season=="winter": season_hint="This is a winter package. Highlight cold-weather experiences if relevant. "
-    elif season=="summer": season_hint="This is a summer/warm season package. "
+    season_hint = ""
+    if season == "winter":
+        season_hint = "This is a winter package. Highlight cold-weather experiences if relevant. "
+    elif season == "summer":
+        season_hint = "This is a summer/warm season package. "
 
-    prompt=(
+    prompt = (
         f"Tour itinerary:\n{itinerary}\n\n"
         f"Tour type: {tour_type or 'guided'}. {season_hint}"
         f"Write ONE punchy sentence (max 12 words) capturing the ESSENCE and VIBE of this specific tour. "
         f"Don't list city names. Don't say 'explore' or 'journey through'. "
         f"Be vivid and specific to what actually happens. Just the sentence, no quotes, no preamble."
     )
-    payload=json.dumps({
-        "model":"gpt-4o-mini",
-        "messages":[
-            {"role":"system","content":(
+    payload = json.dumps({
+        "model": "gpt-4o-mini",
+        "messages": [
+            {"role": "system", "content": (
                 "You write punchy one-sentence travel vibes capturing the soul of a tour. "
                 "Specific, sensory, evocative. Never generic. Never list city names. "
                 "Never mention the region name. Focus on what's unique about THIS itinerary. "
@@ -415,42 +460,49 @@ def generate_description(cities, region, tour_type, season, pdf_path, cached_des
                 "'Thermal baths, Habsburg grandeur and Danube river evenings.' "
                 "'Northern lights hunting, reindeer safaris and Arctic silence.'"
             )},
-            {"role":"user","content":prompt}
+            {"role": "user", "content": prompt}
         ],
-        "max_tokens":80,"temperature":0.9
+        "max_tokens": 80,
+        "temperature": 0.9
     }).encode()
+
     try:
-        req=urllib.request.Request(
+        req = urllib.request.Request(
             "https://models.inference.ai.azure.com/chat/completions",
             data=payload,
-            headers={"Content-Type":"application/json","Authorization":f"Bearer {GITHUB_TOKEN}"}
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {GITHUB_TOKEN}"}
         )
-        with urllib.request.urlopen(req,timeout=20) as resp:
-            desc=json.loads(resp.read())["choices"][0]["message"]["content"].strip().strip('"').strip("'")
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            desc = json.loads(resp.read())["choices"][0]["message"]["content"].strip().strip('"').strip("'")
             print(f"    AI: {desc}")
             time.sleep(2)
             return desc
     except Exception as e:
         print(f"    AI failed ({e}), fallback")
-        return _fallback_desc(cities,region,tour_type)
+        return _fallback_desc(cities, region, tour_type)
 
-def _fallback_desc(cities,region,tour_type):
-    if not cities: return f"Curated {region} package with handpicked experiences."
-    if len(cities)==1: return f"The best of {cities[0]}, curated and ready to explore."
-    elif len(cities)==2: return f"{cities[0]} elegance meets {cities[1]} charm."
-    else: return f"{cities[0]}, {cities[1]} and {len(cities)-2} more unmissable stops."
+def _fallback_desc(cities, region, tour_type):
+    if not cities:
+        return f"Curated {region} package with handpicked experiences."
+    if len(cities) == 1:
+        return f"The best of {cities[0]}, curated and ready to explore."
+    elif len(cities) == 2:
+        return f"{cities[0]} elegance meets {cities[1]} charm."
+    else:
+        return f"{cities[0]}, {cities[1]} and {len(cities) - 2} more unmissable stops."
 
 
 # ── MAP JS ────────────────────────────────────────────────────────────────────
 
 def make_map_js(map_id, cities, coords_cache):
-    points=[]
+    points = []
     for city in cities:
-        coords=get_coords(city, coords_cache)
+        coords = get_coords(city, coords_cache)
         if coords:
             points.append([coords[0], coords[1], city])
-    if not points: return ""
-    coords_js=json.dumps(points)
+    if not points:
+        return ""
+    coords_js = json.dumps(points)
     return f"""(function(){{
   var pts={coords_js};
   if(!pts.length) return;
@@ -472,45 +524,51 @@ def make_map_js(map_id, cities, coords_cache):
 # ── BROCHURE CARD ─────────────────────────────────────────────────────────────
 
 def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coords_cache):
-    tt=pdf_data.get("tour_type","")
-    dur=pdf_data.get("duration","")
-    cities=pdf_data.get("cities",[])
-    price=pdf_data.get("price_twin")
-    season=pdf_data.get("season","all-year")
-    valid_till=pdf_data.get("valid_till")
-    is_expired=pdf_data.get("is_expired",False)
-    is_private=tt.lower()=="private" if tt else False
+    tt = pdf_data.get("tour_type", "")
+    dur = pdf_data.get("duration", "")
+    cities = pdf_data.get("cities", [])
+    price = pdf_data.get("price_twin")
+    season = pdf_data.get("season", "all-year")
+    valid_till = pdf_data.get("valid_till")
+    is_expired = pdf_data.get("is_expired", False)
+    is_private = tt.lower() == "private" if tt else False
 
-    pills=""
-    if dur: pills+=f'<span class="pill pill-duration">🕐 {dur}</span>'
-    if season=="summer": pills+='<span class="pill pill-summer">☀️ Summer</span>'
-    elif season=="winter": pills+='<span class="pill pill-winter">❄️ Winter</span>'
-    else: pills+='<span class="pill pill-allyear">🌍 All Year Round</span>'
+    pills = ""
+    if dur:
+        pills += f'<span class="pill pill-duration">🕐 {dur}</span>'
+    if season == "summer":
+        pills += '<span class="pill pill-summer">☀️ Summer</span>'
+    elif season == "winter":
+        pills += '<span class="pill pill-winter">❄️ Winter</span>'
+    else:
+        pills += '<span class="pill pill-allyear">🌍 All Year Round</span>'
     if valid_till:
-        if is_expired: pills+=f'<span class="pill pill-expired">⚠️ Expired {valid_till}</span>'
-        else: pills+=f'<span class="pill pill-valid">✓ Valid till {valid_till}</span>'
+        if is_expired:
+            pills += f'<span class="pill pill-expired">⚠️ Expired {valid_till}</span>'
+        else:
+            pills += f'<span class="pill pill-valid">✓ Valid till {valid_till}</span>'
 
-    has_map=any(get_coords(c, coords_cache) for c in cities)
-    map_html=f'<div class="card-map"><div id="{map_id}" class="map-inner"></div></div>' if has_map else ''
-    expired_class=" expired" if is_expired else ""
+    has_map = any(get_coords(c, coords_cache) for c in cities)
+    map_html = f'<div class="card-map"><div id="{map_id}" class="map-inner"></div></div>' if has_map else ''
+    expired_class = " expired" if is_expired else ""
 
     if price:
         if is_expired:
-            price_html='<div class="price-tag" style="color:#e65100;">Check availability</div>'
+            price_html = '<div class="price-tag" style="color:#e65100;">Check availability</div>'
         elif is_private:
-            price_html=f'<div class="price-tag">From €{price:,} pp (group rate)</div>'
+            price_html = f'<div class="price-tag">From €{price:,} pp (group rate)</div>'
         else:
-            price_html=f'<div class="price-tag">From €{price:,} pp (twin)</div>'
+            price_html = f'<div class="price-tag">From €{price:,} pp (twin)</div>'
     else:
-        price_html=""
+        price_html = ""
 
     return f"""<a href="{pdf_filename}" class="brochure-card{expired_class}" target="_blank">
   <div class="card-info">
     <div class="card-title">{title} <span class="pdf-badge">PDF</span></div>
-    {'<div class="tour-type">'+tt+'</div>' if tt else ''}
+    {'<div class="tour-type">' + tt + '</div>' if tt else ''}
     <div class="card-pills">{pills}</div>
-    {'<div class="card-description">'+description+'</div>' if description else ''}
-    {'<div class="cities-list">📍 '+' · '.join(cities)+'</div>' if cities else ''}
+    {'<div class="card-description">' + description + '</div>' if description else ''}
+    {'<div class="cities-list">📍 ' + ' · '.join(cities) + '</div>' if cities else ''}
     {price_html}
   </div>
   {map_html}
@@ -520,8 +578,8 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coord
 # ── REGION CARD ───────────────────────────────────────────────────────────────
 
 def make_region_card(slug, display_name, pkg_count, tour_types):
-    types_html=''.join(f'<span class="type-tag">{t}</span>' for t in tour_types)
-    pkg_label=f"{pkg_count} package{'s' if pkg_count!=1 else ''}"
+    types_html = ''.join(f'<span class="type-tag">{t}</span>' for t in tour_types)
+    pkg_label = f"{pkg_count} package{'s' if pkg_count != 1 else ''}"
     return f"""<a href="{slug}/" class="category-card">
   <span class="arrow">→</span>
   <h2>{display_name}</h2>
@@ -533,7 +591,7 @@ def make_region_card(slug, display_name, pkg_count, tour_types):
 # ── INDEX BUILDERS ────────────────────────────────────────────────────────────
 
 def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_href, search_js):
-    nav=NAV.format(lh=logo_href,ls=logo_src)
+    nav = NAV.format(lh=logo_href, ls=logo_src)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -557,8 +615,8 @@ def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_
 </body></html>"""
 
 def build_multicountry_index(region_cards_html, logo_href, search_js):
-    nav=NAV.format(lh=logo_href,ls=logo_href+"logo.png")
-    breadcrumb=f'<a href="{logo_href}">Home</a> › Multi-City & Country Packages'
+    nav = NAV.format(lh=logo_href, ls=logo_href + "logo.png")
+    breadcrumb = f'<a href="{logo_href}">Home</a> › Multi-City & Country Packages'
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -584,121 +642,140 @@ def build_multicountry_index(region_cards_html, logo_href, search_js):
 # ── PACKAGES JSON ─────────────────────────────────────────────────────────────
 
 def load_existing_packages(packages_path):
-    existing={}
+    existing = {}
     if os.path.exists(packages_path):
-        with open(packages_path,'r') as f:
-            for pkg in json.load(f).get("packages",[]):
-                existing[pkg.get("folder","")+"/"+pkg.get("filename","")]=pkg
+        with open(packages_path, 'r') as f:
+            for pkg in json.load(f).get("packages", []):
+                existing[pkg.get("folder", "") + "/" + pkg.get("filename", "")] = pkg
     return existing
 
 def update_packages_json(packages_path, all_found, desc_cache):
-    existing=load_existing_packages(packages_path)
-    new_pkgs=[]
+    existing = load_existing_packages(packages_path)
+    new_pkgs = []
     for item in all_found:
-        key=item["folder"]+"/"+item["filename"]
+        key = item["folder"] + "/" + item["filename"]
         if key in existing:
-            pkg=existing[key].copy()
-            pkg["description"]=desc_cache.get(key, pkg.get("description",""))
+            pkg = existing[key].copy()
+            pkg["description"] = desc_cache.get(key, pkg.get("description", ""))
             new_pkgs.append(pkg)
         else:
-            pid=re.sub(r'[^a-z0-9]','-',item["filename"].lower().replace('.pdf',''))[:30]
-            pd=item["pdf_data"]
-            new_pkgs.append({"id":pid,"name":item["title"],"filename":item["filename"],
-                "region":item["region"],"folder":item["folder"],"cities":pd.get("cities",[]),
-                "duration":pd.get("duration",""),"type":pd.get("tour_type",""),
-                "season":pd.get("season","all-year"),"price_twin":pd.get("price_twin"),
-                "valid_till":pd.get("valid_till"),
-                "description":desc_cache.get(key,""),
-                "tags":pd.get("cities",[])})
-    with open(packages_path,'w') as f:
-        json.dump({"packages":new_pkgs},f,indent=2)
+            pid = re.sub(r'[^a-z0-9]', '-', item["filename"].lower().replace('.pdf', ''))[:30]
+            pd = item["pdf_data"]
+            new_pkgs.append({
+                "id": pid, "name": item["title"], "filename": item["filename"],
+                "region": item["region"], "folder": item["folder"],
+                "cities": pd.get("cities", []), "duration": pd.get("duration", ""),
+                "type": pd.get("tour_type", ""), "season": pd.get("season", "all-year"),
+                "price_twin": pd.get("price_twin"), "valid_till": pd.get("valid_till"),
+                "description": desc_cache.get(key, ""), "tags": pd.get("cities", [])
+            })
+    with open(packages_path, 'w') as f:
+        json.dump({"packages": new_pkgs}, f, indent=2)
     print(f"  packages.json: {len(new_pkgs)} entries")
 
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    packages_path=os.path.join(REPO_ROOT,"packages.json")
-    all_found=[]
-    region_stats={}
-    desc_cache={}
-    coords_cache=load_coords_cache()
-    coords_cache_dirty=False
-    existing_pkgs=load_existing_packages(packages_path)
+    packages_path = os.path.join(REPO_ROOT, "packages.json")
+    all_found = []
+    region_stats = {}
+    desc_cache = {}
+    coords_cache = load_coords_cache()
+    coords_cache_dirty = False
+    existing_pkgs = load_existing_packages(packages_path)
 
     for folder_rel, config in FOLDER_CONFIG.items():
-        folder_abs=os.path.join(REPO_ROOT,folder_rel)
-        if not os.path.isdir(folder_abs): continue
-        pdfs=sorted([f for f in os.listdir(folder_abs) if f.lower().endswith('.pdf')])
-        if not pdfs: continue
+        folder_abs = os.path.join(REPO_ROOT, folder_rel)
+        if not os.path.isdir(folder_abs):
+            continue
+        pdfs = sorted([f for f in os.listdir(folder_abs) if f.lower().endswith('.pdf')])
+        if not pdfs:
+            continue
         print(f"\n{folder_rel} — {len(pdfs)} PDFs")
 
-        depth=config["depth"]
-        logo_src="../"*depth+"logo.png"
-        logo_href="../"*depth
-        search_js="../"*depth+"global-search.js"
-        if depth==1:
-            breadcrumb=f'<a href="../">Home</a> › {config["breadcrumb"]}'
+        depth = config["depth"]
+        logo_src = "../" * depth + "logo.png"
+        logo_href = "../" * depth
+        search_js = "../" * depth + "global-search.js"
+        if depth == 1:
+            breadcrumb = f'<a href="../">Home</a> › {config["breadcrumb"]}'
         else:
-            breadcrumb=f'<a href="../../">Home</a> › <a href="../">Multi-Country</a> › {config["breadcrumb"]}'
+            breadcrumb = f'<a href="../../">Home</a> › <a href="../">Multi-Country</a> › {config["breadcrumb"]}'
 
-        cards=[]; maps_js_parts=[]; tour_types_seen=[]
+        cards = []
+        maps_js_parts = []
+        tour_types_seen = []
+
         for idx, pdf in enumerate(pdfs):
             print(f"  {pdf}")
-            pkg_key=folder_rel+"/"+pdf
-            pdf_data=extract_pdf_data(os.path.join(folder_abs,pdf),pdf)
-            title=make_title(pdf)
-            cached_desc=existing_pkgs.get(pkg_key,{}).get("description",None)
-            desc=generate_description(
-                pdf_data.get("cities",[]),config["region"],
-                pdf_data.get("tour_type",""),pdf_data.get("season","all-year"),
-                os.path.join(folder_abs,pdf),cached_desc
+            pkg_key = folder_rel + "/" + pdf
+            pdf_data = extract_pdf_data(os.path.join(folder_abs, pdf), pdf)
+            title = make_title(pdf)
+            cached_desc = existing_pkgs.get(pkg_key, {}).get("description", None)
+            desc = generate_description(
+                pdf_data.get("cities", []), config["region"],
+                pdf_data.get("tour_type", ""), pdf_data.get("season", "all-year"),
+                os.path.join(folder_abs, pdf), cached_desc
             )
-            desc_cache[pkg_key]=desc
+            desc_cache[pkg_key] = desc
 
-            for city in pdf_data.get("cities",[]):
+            for city in pdf_data.get("cities", []):
                 was_missing = city not in coords_cache
                 get_coords(city, coords_cache)
                 if was_missing and city in coords_cache:
-                    coords_cache_dirty=True
+                    coords_cache_dirty = True
 
-            map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
-            all_found.append({"filename":pdf,"title":title,"folder":folder_rel,"region":config["region"],"pdf_data":pdf_data})
-            cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id,coords_cache))
-            js=make_map_js(map_id,pdf_data.get("cities",[]),coords_cache)
-            if js: maps_js_parts.append(js)
-            tt=pdf_data.get("tour_type","")
-            if tt and tt not in tour_types_seen: tour_types_seen.append(tt)
+            map_id = f"map_{re.sub(r'[^a-z0-9]', '_', pdf.lower()[:18])}_{idx}"
+            all_found.append({
+                "filename": pdf, "title": title,
+                "folder": folder_rel, "region": config["region"], "pdf_data": pdf_data
+            })
+            cards.append(make_brochure_card(pdf, pdf_data, title, desc, map_id, coords_cache))
+            js = make_map_js(map_id, pdf_data.get("cities", []), coords_cache)
+            if js:
+                maps_js_parts.append(js)
+            tt = pdf_data.get("tour_type", "")
+            if tt and tt not in tour_types_seen:
+                tour_types_seen.append(tt)
 
-        html=build_brochure_index(config["title"],breadcrumb,"\n".join(cards),"\n".join(maps_js_parts),logo_src,logo_href,search_js)
-        with open(os.path.join(folder_abs,"index.html"),'w',encoding='utf-8') as f:
+        html = build_brochure_index(
+            config["title"], breadcrumb, "\n".join(cards),
+            "\n".join(maps_js_parts), logo_src, logo_href, search_js
+        )
+        with open(os.path.join(folder_abs, "index.html"), 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"  Rebuilt {folder_rel}/index.html")
 
-        if depth==2:
-            slug=folder_rel.replace("multi-country/","")
-            region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen}
+        if depth == 2:
+            slug = folder_rel.replace("multi-country/", "")
+            region_stats[slug] = {"count": len(pdfs), "tour_types": tour_types_seen}
 
     if coords_cache_dirty:
         save_coords_cache(coords_cache)
         print(f"\n  Saved updated city_coords_cache.json")
 
     print("\nRebuilding multi-country/index.html...")
-    mc_folder=os.path.join(REPO_ROOT,"multi-country")
+    mc_folder = os.path.join(REPO_ROOT, "multi-country")
     if os.path.isdir(mc_folder):
-        region_cards=[]
-        for slug,display in REGION_DISPLAY.items():
-            stats=region_stats.get(slug,{"count":0,"tour_types":[]})
-            if stats["count"]>0:
-                region_cards.append(make_region_card(slug,display,stats["count"],stats["tour_types"]))
-        mc_html=build_multicountry_index("\n".join(region_cards),"../","../global-search.js")
-        with open(os.path.join(mc_folder,"index.html"),'w',encoding='utf-8') as f:
+        region_cards = []
+        for slug, display in REGION_DISPLAY.items():
+            stats = region_stats.get(slug, {"count": 0, "tour_types": []})
+            if stats["count"] > 0:
+                region_cards.append(make_region_card(
+                    slug, display, stats["count"], stats["tour_types"]
+                ))
+        mc_html = build_multicountry_index(
+            "\n".join(region_cards), "../", "../global-search.js"
+        )
+        with open(os.path.join(mc_folder, "index.html"), 'w', encoding='utf-8') as f:
             f.write(mc_html)
         print("  Rebuilt multi-country/index.html")
 
     print(f"\nUpdating packages.json...")
-    update_packages_json(packages_path,all_found,desc_cache)
+    update_packages_json(packages_path, all_found, desc_cache)
     print("\nDone!")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
