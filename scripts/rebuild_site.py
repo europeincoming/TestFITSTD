@@ -1,11 +1,12 @@
 """
-rebuild_site.py — v7
-- Auto-geocodes unknown cities via Nominatim (free, no API key)
-- Caches coords in city_coords_cache.json — never hardcode cities again
-- Descriptions cached in packages.json — AI only called for new PDFs
-- Fixed title join logic (Cotswolds, Devon & Cornwall not Cotswolds & Devon & & Cornwall)
-- Better price extraction targeting Twin/Double rows
-- Fuzzy city name matching
+rebuild_site.py — v8
+Fixes:
+- Private tour pricing: detects Min Pax table, shows lowest 3* price
+- Date parsing: handles both 2-digit (01.11.25) and 4-digit (01.11.2025) years
+- Auto-geocoding via Nominatim for unknown cities
+- Description caching in packages.json
+- Fixed title join logic
+- Fuzzy city coord matching
 """
 
 import os, re, json, urllib.request, urllib.parse, time
@@ -35,8 +36,6 @@ REGION_DISPLAY = {
     "western-central-europe": "Western & Central Europe",
 }
 
-# Seed coords — common cities for instant lookup, no geocoding needed
-# Any city NOT here gets auto-geocoded and cached in city_coords_cache.json
 SEED_COORDS = {
     "Amsterdam": [52.3676, 4.9041], "Athens": [37.9838, 23.7275], "Barcelona": [41.3851, 2.1734],
     "Berlin": [52.5200, 13.4050], "Brussels": [50.8503, 4.3517], "Budapest": [47.4979, 19.0402],
@@ -176,7 +175,6 @@ NAV = """<nav class="top-nav"><div class="nav-container">
 # ── COORDS CACHE ──────────────────────────────────────────────────────────────
 
 def load_coords_cache():
-    """Load city_coords_cache.json, merge with seed coords."""
     cache = dict(SEED_COORDS)
     if os.path.exists(COORDS_CACHE_PATH):
         with open(COORDS_CACHE_PATH, 'r') as f:
@@ -184,13 +182,11 @@ def load_coords_cache():
     return cache
 
 def save_coords_cache(cache):
-    """Save only non-seed entries to city_coords_cache.json."""
     to_save = {k: v for k, v in cache.items() if k not in SEED_COORDS}
     with open(COORDS_CACHE_PATH, 'w') as f:
         json.dump(to_save, f, indent=2)
 
 def geocode_city(city_name):
-    """Look up city coordinates via Nominatim. Returns [lat, lng] or None."""
     for query in [city_name, f"{city_name} Europe"]:
         try:
             encoded = urllib.parse.quote(query)
@@ -204,45 +200,33 @@ def geocode_city(city_name):
                     return [float(results[0]["lat"]), float(results[0]["lon"])]
             time.sleep(1)
         except Exception as e:
-            print(f"    Geocode error for {city_name}: {e}")
+            print(f"    Geocode error {city_name}: {e}")
     return None
 
 def get_coords(city_name, cache):
-    """
-    Get coords for a city. Tries:
-    1. Exact match in cache
-    2. Fuzzy match (partial name overlap)
-    3. Nominatim geocoding — saves result to cache
-    """
-    # Exact
     if city_name in cache:
         return cache[city_name]
-    # Case-insensitive exact
     city_lower = city_name.lower()
     for k, v in cache.items():
         if k.lower() == city_lower:
             return v
-    # Fuzzy — "London Victoria" matches "London", "Stratford" matches "Stratford upon Avon"
     for k, v in cache.items():
-        if city_lower in k.lower() or k.lower() in city_lower:
+        if v and (city_lower in k.lower() or k.lower() in city_lower):
             return v
-    # Geocode via Nominatim
     print(f"    Geocoding: {city_name}...")
     coords = geocode_city(city_name)
+    cache[city_name] = coords
     if coords:
-        cache[city_name] = coords
         print(f"    Found: {city_name} → {coords}")
     else:
-        cache[city_name] = None  # cache the miss too, avoid repeat lookups
         print(f"    Not found: {city_name}")
-    time.sleep(1)  # Nominatim rate limit
+    time.sleep(1)
     return coords
 
 
 # ── TITLE ─────────────────────────────────────────────────────────────────────
 
 def smart_destination(words):
-    """Join destination words cleanly: Paris, Switzerland & Austria"""
     if not words: return ""
     if len(words) == 1: return words[0]
     two = ' '.join(words[:2])
@@ -277,16 +261,22 @@ def make_title(filename):
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
 
+def parse_date(d):
+    """Parse date string handling both 2-digit and 4-digit years."""
+    for fmt in ['%d.%m.%Y', '%d.%m.%y']:
+        try:
+            return datetime.strptime(d, fmt)
+        except: pass
+    return None
+
 def detect_seasons(date_pairs):
     SUMMER={4,5,6,7,8,9,10}; WINTER={11,12,1,2,3}
     hs=hw=False
     for s,e in date_pairs:
-        try:
-            sm=datetime.strptime(s,'%d.%m.%y').month
-            em=datetime.strptime(e,'%d.%m.%y').month
-            if sm in SUMMER or em in SUMMER: hs=True
-            if sm in WINTER or em in WINTER: hw=True
-        except: pass
+        sd=parse_date(s); ed=parse_date(e)
+        if sd and ed:
+            if sd.month in SUMMER or ed.month in SUMMER: hs=True
+            if sd.month in WINTER or ed.month in WINTER: hw=True
     if hs and hw: return "all-year"
     elif hs: return "summer"
     elif hw: return "winter"
@@ -312,38 +302,51 @@ def extract_pdf_data(pdf_path, filename):
         oc=re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]',txt)
         r["cities"]=list(dict.fromkeys([c.strip() for c in oc]))[:6]
 
-        # Dates — find all, pair consecutively
-        all_dates_raw=re.findall(r'\b(\d{2}\.\d{2}\.\d{2})\b',txt)
+        # Dates — handles both DD.MM.YY and DD.MM.YYYY formats
+        all_dates_raw=re.findall(r'\b(\d{2}\.\d{2}\.\d{2,4})\b',txt)
         valid_dates=[]
         for d in all_dates_raw:
-            try: datetime.strptime(d,'%d.%m.%y'); valid_dates.append(d)
-            except: pass
-        dp=[(valid_dates[i],valid_dates[i+1]) for i in range(0,len(valid_dates)-1,2)]
-        if dp:
-            r["season"]=detect_seasons(dp)
-            end_dates=[]
-            for s,e in dp:
-                try: end_dates.append(datetime.strptime(e,'%d.%m.%y'))
-                except: pass
+            parsed=parse_date(d)
+            if parsed: valid_dates.append((d, parsed))
+
+        if valid_dates:
+            # Pair as start/end
+            date_strs=[d[0] for d in valid_dates]
+            dp=[(date_strs[i],date_strs[i+1]) for i in range(0,len(date_strs)-1,2)]
+            if dp: r["season"]=detect_seasons(dp)
+            end_dates=[d[1] for d in valid_dates]
             if end_dates:
                 latest=max(end_dates)
                 r["valid_till"]=latest.strftime("%b %Y")
                 r["is_expired"]=latest < datetime.now()
 
-        # Twin price — target Twin/Double rows specifically (Gemini's better regex)
-        twin_price_m = re.search(r'(?:Twin|Double).{0,30}?€\s*([\d,]+)', txt, re.IGNORECASE)
-        if twin_price_m:
-            r["price_twin"] = int(twin_price_m.group(1).replace(',',''))
+        # Price extraction — detect private (Min Pax) vs regular (Twin/Double) pricing
+        if re.search(r'Min\s*Pax', txt, re.IGNORECASE):
+            # Private tour: Min Pax table — find lowest price (largest group, 3*)
+            pricing_section = re.search(
+                r'Min\s*Pax.*?(?:Sample Hotels|Terms)',
+                txt, re.DOTALL|re.IGNORECASE
+            )
+            if pricing_section:
+                amounts = re.findall(r'€\s*([\d,]+)', pricing_section.group(0))
+                package_prices = [int(a.replace(',','')) for a in amounts
+                                  if int(a.replace(',','')) > 500]
+                if package_prices:
+                    r["price_twin"] = min(package_prices)
         else:
-            # Fallback to column-based extraction
-            ti=next((i for i,l in enumerate(lines) if 'Twin' in l and 'Do' in l),None)
-            if ti:
-                ep=[]
-                for l in lines[ti:ti+30]:
-                    m=re.match(r'€\s*([\d,]+)',l)
-                    if m: ep.append(int(m.group(1).replace(',','')))
-                tw=ep[1::3] if len(ep)>=3 else ep[1:2] if len(ep)>=2 else []
-                if tw: r["price_twin"]=min(tw)
+            # Regular/Self Drive: Twin/Double column
+            twin_m = re.search(r'(?:Twin|Double).{0,50}?€\s*([\d,]+)', txt, re.IGNORECASE|re.DOTALL)
+            if twin_m:
+                r["price_twin"] = int(twin_m.group(1).replace(',',''))
+            else:
+                ti=next((i for i,l in enumerate(lines) if 'Twin' in l and 'Do' in l),None)
+                if ti:
+                    ep=[]
+                    for l in lines[ti:ti+30]:
+                        m=re.match(r'€\s*([\d,]+)',l)
+                        if m: ep.append(int(m.group(1).replace(',','')))
+                    tw=ep[1::3] if len(ep)>=3 else ep[1:2] if len(ep)>=2 else []
+                    if tw: r["price_twin"]=min(tw)
 
         # Includes
         im=re.search(r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels)',txt,re.DOTALL|re.IGNORECASE)
@@ -364,7 +367,7 @@ def extract_itinerary(pdf_path):
         doc=fitz.open(pdf_path)
         txt="\n".join(p.get_text() for p in doc)
         m=re.search(
-            r'(Day\s*1\s*[:\-\s].+?)(?:This package price includes|Sample Tours|Terms\s*[&\n]|Sample Hotels|$)',
+            r'(Day\s*1\s*[,:\-\s].+?)(?:This package price includes|Sample Tours|Terms\s*[&\n]|Sample Hotels|$)',
             txt, re.DOTALL|re.IGNORECASE
         )
         if m:
@@ -407,14 +410,14 @@ def generate_description(cities, region, tour_type, season, pdf_path, cached_des
         "model":"gpt-4o-mini",
         "messages":[
             {"role":"system","content":(
-                "You write punchy one-sentence travel vibes that capture the soul of a tour. "
+                "You write punchy one-sentence travel vibes capturing the soul of a tour. "
                 "Specific, sensory, evocative. Never generic. Never list city names. "
                 "Never mention the region name. Focus on what's unique about THIS itinerary. "
                 "Good examples: "
                 "'Cliffside drives, Bronze Age towers and Neptune's hidden sea caves.' "
-                "'Northern lights hunting, reindeer safaris and Arctic silence.' "
                 "'D-Day beaches, Loire chateaux and Montmartre twilight strolls.' "
-                "'Thermal baths, Habsburg grandeur and Danube river evenings.'"
+                "'Thermal baths, Habsburg grandeur and Danube river evenings.' "
+                "'Northern lights hunting, reindeer safaris and Arctic silence.'"
             )},
             {"role":"user","content":prompt}
         ],
@@ -480,6 +483,7 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coord
     season=pdf_data.get("season","all-year")
     valid_till=pdf_data.get("valid_till")
     is_expired=pdf_data.get("is_expired",False)
+    is_private=tt.lower()=="private" if tt else False
 
     pills=""
     if dur: pills+=f'<span class="pill pill-duration">🕐 {dur}</span>'
@@ -493,8 +497,14 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coord
     has_map=any(get_coords(c, coords_cache) for c in cities)
     map_html=f'<div class="card-map"><div id="{map_id}" class="map-inner"></div></div>' if has_map else ''
     expired_class=" expired" if is_expired else ""
+
     if price:
-        price_html='<div class="price-tag" style="color:#e65100;">Check availability</div>' if is_expired else f'<div class="price-tag">From €{price:,} pp (twin)</div>'
+        if is_expired:
+            price_html='<div class="price-tag" style="color:#e65100;">Check availability</div>'
+        elif is_private:
+            price_html=f'<div class="price-tag">From €{price:,} pp (group rate)</div>'
+        else:
+            price_html=f'<div class="price-tag">From €{price:,} pp (twin)</div>'
     else:
         price_html=""
 
@@ -616,11 +626,8 @@ def main():
     all_found=[]
     region_stats={}
     desc_cache={}
-
-    # Load coords cache (seed + previously geocoded cities)
     coords_cache=load_coords_cache()
     coords_cache_dirty=False
-
     existing_pkgs=load_existing_packages(packages_path)
 
     for folder_rel, config in FOLDER_CONFIG.items():
@@ -653,11 +660,10 @@ def main():
             )
             desc_cache[pkg_key]=desc
 
-            # Geocode any unknown cities
             for city in pdf_data.get("cities",[]):
-                before=city in coords_cache
+                was_missing = city not in coords_cache
                 get_coords(city, coords_cache)
-                if city in coords_cache and not before:
+                if was_missing and city in coords_cache:
                     coords_cache_dirty=True
 
             map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
@@ -677,12 +683,10 @@ def main():
             slug=folder_rel.replace("multi-country/","")
             region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen}
 
-    # Save coords cache if anything new was geocoded
     if coords_cache_dirty:
         save_coords_cache(coords_cache)
         print(f"\n  Saved updated city_coords_cache.json")
 
-    # Auto-generate multi-country/index.html
     print("\nRebuilding multi-country/index.html...")
     mc_folder=os.path.join(REPO_ROOT,"multi-country")
     if os.path.isdir(mc_folder):
