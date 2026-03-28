@@ -186,14 +186,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </a>
 <a href="9 nights, 10 days Cotswolds Devon & Cornwall_Self-drive.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">9 nights, 10 days Cotswolds & Devon & & & Cornwall <span class="pdf-badge">PDF</span></div>
+    <div class="card-title">9 nights, 10 days Cotswolds, Devon, & & Cornwall <span class="pdf-badge">PDF</span></div>
     <div class="tour-type">Self Drive</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 9 nights / 10 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Oct 2026</span></div>
     <div class="card-description">Cheltenham, Barnstaple and 4 more unmissable stops.</div>
     <div class="cities-list">📍 Cheltenham · Barnstaple · Truro · Plymouth · Exeter · Bournemouth</div>
     
   </div>
-  
+  <div class="card-map"><div id="map_9_nights__10_days__10" class="map-inner"></div></div>
 </a>
 </div>
 <footer><p>All packages are available for download in PDF format</p></footer>
@@ -296,7 +296,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   });
 })();
 (function(){
-  var pts=[[55.9533, -3.1883, "Edinburgh"], [57.4778, -4.2247, "Inverness"], [55.8642, -4.2518, "Glasgow"]];
+  var pts=[[55.9533, -3.1883, "Edinburgh"], [57.4745541, -4.2291087, "Invernes s"], [57.4778, -4.2247, "Inverness"], [55.8642, -4.2518, "Glasgow"]];
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
@@ -351,6 +351,22 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   var pad=0.4;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_9_nights_10_days_e_9',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
+  map.fitBounds(bounds,{padding:[10,10]});
+  if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
+  pts.forEach(function(p,i){
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
+    L.circleMarker([p[0],p[1]],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map).bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
+  });
+})();
+(function(){
+  var pts=[[51.8995685, -2.0711559, "Cheltenham"], [51.0809012, -4.0605978, "Barnstaple"], [50.2633354, -5.0510781, "Truro"], [50.3714122, -4.1424451, "Plymouth"], [50.7256138, -3.5269209, "Exeter"], [50.7201514, -1.8799118, "Bournemouth"]];
+  if(!pts.length) return;
+  var lats=pts.map(function(p){return p[0];});
+  var lngs=pts.map(function(p){return p[1];});
+  var pad=0.4;
+  var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
+  var map=L.map('map_9_nights__10_days__10',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
   if(pts.length>1){var ll=pts.map(function(p){return[p[0],p[1]];});L.polyline(ll,{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}).addTo(map);}
