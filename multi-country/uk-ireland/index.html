@@ -397,7 +397,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
      .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){var pts=[[51.8995685, -2.0711559, "Cheltenham"], [51.0809012, -4.0605978, "Barnstaple"], [50.2633354, -5.0510781, "Truro"], [50.3714122, -4.1424451, "Plymouth"], [50.7256138, -3.5269209, "Exeter"], [50.7201514, -1.8799118, "Bournemouth"]];if(!pts.length)return;
+(function(){var pts=[[51.8994, -2.0783, "Cheltenham"], [51.0803, -4.0588, "Barnstaple"], [50.2632, -5.051, "Truro"], [50.3755, -4.1427, "Plymouth"], [50.7184, -3.5339, "Exeter"], [50.7192, -1.8808, "Bournemouth"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_9_nights__10_days__10',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
