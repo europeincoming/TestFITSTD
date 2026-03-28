@@ -1,16 +1,20 @@
 """
-rebuild_site.py — v5
-- Brochure cards: Leaflet maps, AI descriptions from itinerary text, valid-till, expired warning
-- Region cards: package count + tour types, auto-generated from folders
-- Auto-generates multi-country/index.html
+rebuild_site.py — v7
+- Auto-geocodes unknown cities via Nominatim (free, no API key)
+- Caches coords in city_coords_cache.json — never hardcode cities again
+- Descriptions cached in packages.json — AI only called for new PDFs
+- Fixed title join logic (Cotswolds, Devon & Cornwall not Cotswolds & Devon & & Cornwall)
+- Better price extraction targeting Twin/Double rows
+- Fuzzy city name matching
 """
 
-import os, re, json, urllib.request
+import os, re, json, urllib.request, urllib.parse, time
 from datetime import datetime
 import fitz
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+COORDS_CACHE_PATH = os.path.join(REPO_ROOT, "city_coords_cache.json")
 
 FOLDER_CONFIG = {
     "city-break": {"title": "City Breaks Packages", "breadcrumb": "City Breaks", "region": "City Break", "depth": 1},
@@ -25,17 +29,15 @@ FOLDER_CONFIG = {
 }
 
 REGION_DISPLAY = {
-    "italy": "Italy",
-    "eastern-europe": "Eastern Europe",
-    "france": "France",
-    "scandinavia-iceland": "Scandinavia & Iceland",
-    "spain-portugal": "Spain & Portugal",
-    "switzerland": "Switzerland",
-    "uk-ireland": "UK & Ireland",
+    "italy": "Italy", "eastern-europe": "Eastern Europe", "france": "France",
+    "scandinavia-iceland": "Scandinavia & Iceland", "spain-portugal": "Spain & Portugal",
+    "switzerland": "Switzerland", "uk-ireland": "UK & Ireland",
     "western-central-europe": "Western & Central Europe",
 }
 
-CITY_COORDS = {
+# Seed coords — common cities for instant lookup, no geocoding needed
+# Any city NOT here gets auto-geocoded and cached in city_coords_cache.json
+SEED_COORDS = {
     "Amsterdam": [52.3676, 4.9041], "Athens": [37.9838, 23.7275], "Barcelona": [41.3851, 2.1734],
     "Berlin": [52.5200, 13.4050], "Brussels": [50.8503, 4.3517], "Budapest": [47.4979, 19.0402],
     "Copenhagen": [55.6761, 12.5683], "Dublin": [53.3498, -6.2603], "Edinburgh": [55.9533, -3.1883],
@@ -57,12 +59,10 @@ CITY_COORDS = {
     "Bologna": [44.4949, 11.3426], "Pisa": [43.7228, 10.4017], "Siena": [43.3186, 11.3307],
     "Cagliari": [39.2238, 9.1217], "Cala Gonone": [40.2833, 9.6167], "Alghero": [40.5594, 8.3197],
     "Olbia": [40.9167, 9.5000], "Villasimius": [39.1333, 9.5167], "Bosa": [40.2981, 8.4983],
-    "Nuoro": [40.3212, 9.3300], "Sassari": [40.7259, 8.5556],
     "Ajaccio": [41.9192, 8.7386], "Corte": [42.3069, 9.1497], "Bonifacio": [41.3871, 9.1597],
-    "Bastia": [42.7003, 9.4500],
-    "Seville": [37.3891, -5.9845], "Granada": [37.1773, -3.5986], "Valencia": [39.4699, -0.3763],
-    "Bilbao": [43.2627, -2.9253], "Porto": [41.1579, -8.6291], "Sintra": [38.7977, -9.3877],
-    "Coimbra": [40.2033, -8.4103],
+    "Bastia": [42.7003, 9.4500], "Seville": [37.3891, -5.9845], "Granada": [37.1773, -3.5986],
+    "Valencia": [39.4699, -0.3763], "Bilbao": [43.2627, -2.9253], "Porto": [41.1579, -8.6291],
+    "Sintra": [38.7977, -9.3877], "Coimbra": [40.2033, -8.4103],
     "Cologne": [50.9333, 6.9500], "Hamburg": [53.5753, 10.0153], "Dresden": [51.0504, 13.7373],
     "Dusseldorf": [51.2217, 6.7762], "Nuremberg": [49.4521, 11.0767],
     "Krakow": [50.0647, 19.9450], "Warsaw": [52.2297, 21.0122], "Bratislava": [48.1486, 17.1077],
@@ -70,21 +70,19 @@ CITY_COORDS = {
     "Bruges": [51.2093, 3.2247], "Ghent": [51.0543, 3.7174], "Antwerp": [51.2194, 4.4025],
     "Rotterdam": [51.9244, 4.4777], "Luxembourg": [49.6117, 6.1319],
     "Gothenburg": [57.7089, 11.9746], "Tallinn": [59.4370, 24.7536],
-    "York": [53.9600, -1.0873], "Bath": [51.3758, -2.3599], "Killarney": [52.0599, -9.5044],
     "Hallstatt": [47.5622, 13.6493], "Graz": [47.0707, 15.4395],
     "Amalfi": [40.6340, 14.6025], "Positano": [40.6281, 14.4850], "Pompeii": [40.7461, 14.5019],
     "Venice Mestre": [45.4847, 12.2386],
-    # Arctic / Scandinavia
     "Tromso": [69.6489, 18.9551], "Kiruna": [67.8558, 20.2253], "Abisko": [68.3493, 18.8306],
     "Narvik": [68.4385, 17.4279], "Alta": [69.9689, 23.2716], "Rovaniemi": [66.5039, 25.7294],
-    "Lulea": [65.5848, 22.1567], "Longyearbyen": [78.2232, 15.6267], "Harstad": [68.7983, 16.5439],
     "Lofoten": [68.1566, 13.9989], "Flam": [60.8633, 7.1159], "Geiranger": [62.1008, 7.2050],
-    "Alesund": [62.4723, 6.1549], "Trondheim": [63.4305, 10.3951], "Bodo": [67.2804, 14.4049],
+    "Trondheim": [63.4305, 10.3951],
 }
 
 COMPOUND_NAMES = {
-    'East Europe','Eastern Europe','Western Europe','Central Europe','Western Central Europe',
-    'Costa Smeralda','Cala Gonone','Fort William','San Sebastian','Czech Republic','Venice Mestre',
+    'East Europe', 'Eastern Europe', 'Western Europe', 'Central Europe', 'Western Central Europe',
+    'Costa Smeralda', 'Cala Gonone', 'Fort William', 'San Sebastian', 'Czech Republic',
+    'Venice Mestre', 'Isle of Skye', 'Lake District', 'Stratford upon Avon',
 }
 
 GEO_BLOCK = """<script>
@@ -175,7 +173,86 @@ NAV = """<nav class="top-nav"><div class="nav-container">
 </div></div></nav>"""
 
 
+# ── COORDS CACHE ──────────────────────────────────────────────────────────────
+
+def load_coords_cache():
+    """Load city_coords_cache.json, merge with seed coords."""
+    cache = dict(SEED_COORDS)
+    if os.path.exists(COORDS_CACHE_PATH):
+        with open(COORDS_CACHE_PATH, 'r') as f:
+            cache.update(json.load(f))
+    return cache
+
+def save_coords_cache(cache):
+    """Save only non-seed entries to city_coords_cache.json."""
+    to_save = {k: v for k, v in cache.items() if k not in SEED_COORDS}
+    with open(COORDS_CACHE_PATH, 'w') as f:
+        json.dump(to_save, f, indent=2)
+
+def geocode_city(city_name):
+    """Look up city coordinates via Nominatim. Returns [lat, lng] or None."""
+    for query in [city_name, f"{city_name} Europe"]:
+        try:
+            encoded = urllib.parse.quote(query)
+            url = f"https://nominatim.openstreetmap.org/search?q={encoded}&format=json&limit=1"
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "EuropeIncomingFIT/1.0 (fitsales@europeincoming.com)"
+            })
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                results = json.loads(resp.read())
+                if results:
+                    return [float(results[0]["lat"]), float(results[0]["lon"])]
+            time.sleep(1)
+        except Exception as e:
+            print(f"    Geocode error for {city_name}: {e}")
+    return None
+
+def get_coords(city_name, cache):
+    """
+    Get coords for a city. Tries:
+    1. Exact match in cache
+    2. Fuzzy match (partial name overlap)
+    3. Nominatim geocoding — saves result to cache
+    """
+    # Exact
+    if city_name in cache:
+        return cache[city_name]
+    # Case-insensitive exact
+    city_lower = city_name.lower()
+    for k, v in cache.items():
+        if k.lower() == city_lower:
+            return v
+    # Fuzzy — "London Victoria" matches "London", "Stratford" matches "Stratford upon Avon"
+    for k, v in cache.items():
+        if city_lower in k.lower() or k.lower() in city_lower:
+            return v
+    # Geocode via Nominatim
+    print(f"    Geocoding: {city_name}...")
+    coords = geocode_city(city_name)
+    if coords:
+        cache[city_name] = coords
+        print(f"    Found: {city_name} → {coords}")
+    else:
+        cache[city_name] = None  # cache the miss too, avoid repeat lookups
+        print(f"    Not found: {city_name}")
+    time.sleep(1)  # Nominatim rate limit
+    return coords
+
+
 # ── TITLE ─────────────────────────────────────────────────────────────────────
+
+def smart_destination(words):
+    """Join destination words cleanly: Paris, Switzerland & Austria"""
+    if not words: return ""
+    if len(words) == 1: return words[0]
+    two = ' '.join(words[:2])
+    if len(words) == 2:
+        return two if two in COMPOUND_NAMES else f"{words[0]} & {words[1]}"
+    if len(words) == 3:
+        return f"{words[0]}, {words[1]} & {words[2]}"
+    if len(words) == 4:
+        return f"{words[0]}, {words[1]}, {words[2]} & {words[3]}"
+    return f"{', '.join(words[:-1])} & {words[-1]}"
 
 def make_title(filename):
     name = filename.replace('.pdf','').replace('_',' ')
@@ -195,12 +272,7 @@ def make_title(filename):
     rest=re.sub(r'\d{4}-\d{2,4}','',rest)
     rest=re.sub(r'Europe\s+Incoming','',rest,flags=re.IGNORECASE)
     rest=re.sub(r'\s+',' ',rest).strip().strip('-').strip()
-    words=rest.split()
-    if not words: dest=""
-    elif len(words)==1: dest=words[0]
-    elif len(words)==2: dest=rest if rest in COMPOUND_NAMES else f"{words[0]} & {words[1]}"
-    else: dest=' & '.join(words)
-    return f"{duration} {dest}".strip()
+    return f"{duration} {smart_destination(rest.split())}".strip()
 
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
@@ -240,13 +312,11 @@ def extract_pdf_data(pdf_path, filename):
         oc=re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]',txt)
         r["cities"]=list(dict.fromkeys([c.strip() for c in oc]))[:6]
 
-        # Date extraction — find all dates, pair consecutively
+        # Dates — find all, pair consecutively
         all_dates_raw=re.findall(r'\b(\d{2}\.\d{2}\.\d{2})\b',txt)
         valid_dates=[]
         for d in all_dates_raw:
-            try:
-                datetime.strptime(d,'%d.%m.%y')
-                valid_dates.append(d)
+            try: datetime.strptime(d,'%d.%m.%y'); valid_dates.append(d)
             except: pass
         dp=[(valid_dates[i],valid_dates[i+1]) for i in range(0,len(valid_dates)-1,2)]
         if dp:
@@ -260,15 +330,20 @@ def extract_pdf_data(pdf_path, filename):
                 r["valid_till"]=latest.strftime("%b %Y")
                 r["is_expired"]=latest < datetime.now()
 
-        # Twin price — lowest across all seasons
-        ti=next((i for i,l in enumerate(lines) if 'Twin' in l and 'Do' in l),None)
-        if ti:
-            ep=[]
-            for l in lines[ti:ti+30]:
-                m=re.match(r'€\s*([\d,]+)',l)
-                if m: ep.append(int(m.group(1).replace(',','')))
-            tw=ep[1::3] if len(ep)>=3 else ep[1:2] if len(ep)>=2 else []
-            if tw: r["price_twin"]=min(tw)
+        # Twin price — target Twin/Double rows specifically (Gemini's better regex)
+        twin_price_m = re.search(r'(?:Twin|Double).{0,30}?€\s*([\d,]+)', txt, re.IGNORECASE)
+        if twin_price_m:
+            r["price_twin"] = int(twin_price_m.group(1).replace(',',''))
+        else:
+            # Fallback to column-based extraction
+            ti=next((i for i,l in enumerate(lines) if 'Twin' in l and 'Do' in l),None)
+            if ti:
+                ep=[]
+                for l in lines[ti:ti+30]:
+                    m=re.match(r'€\s*([\d,]+)',l)
+                    if m: ep.append(int(m.group(1).replace(',','')))
+                tw=ep[1::3] if len(ep)>=3 else ep[1:2] if len(ep)>=2 else []
+                if tw: r["price_twin"]=min(tw)
 
         # Includes
         im=re.search(r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels)',txt,re.DOTALL|re.IGNORECASE)
@@ -285,7 +360,6 @@ def extract_pdf_data(pdf_path, filename):
 # ── ITINERARY EXTRACTION ──────────────────────────────────────────────────────
 
 def extract_itinerary(pdf_path):
-    """Pull day-by-day itinerary text from PDF. Flexible on format and end marker."""
     try:
         doc=fitz.open(pdf_path)
         txt="\n".join(p.get_text() for p in doc)
@@ -305,10 +379,18 @@ def extract_itinerary(pdf_path):
 
 # ── AI DESCRIPTION ────────────────────────────────────────────────────────────
 
-def generate_description(cities, region, tour_type, season, pdf_path):
+def generate_description(cities, region, tour_type, season, pdf_path, cached_desc=None):
+    FALLBACK_MARKERS = [
+        "Curated","The best of","elegance meets","unmissable stops",
+        "handpicked experiences","curated and ready"
+    ]
+    if cached_desc and not any(m in cached_desc for m in FALLBACK_MARKERS):
+        print(f"    cached: {cached_desc}")
+        return cached_desc
+
     itinerary=extract_itinerary(pdf_path)
     if not GITHUB_TOKEN or not itinerary:
-        return _fallback_desc(cities, region, tour_type)
+        return _fallback_desc(cities,region,tour_type)
 
     season_hint=""
     if season=="winter": season_hint="This is a winter package. Highlight cold-weather experiences if relevant. "
@@ -318,9 +400,8 @@ def generate_description(cities, region, tour_type, season, pdf_path):
         f"Tour itinerary:\n{itinerary}\n\n"
         f"Tour type: {tour_type or 'guided'}. {season_hint}"
         f"Write ONE punchy sentence (max 12 words) capturing the ESSENCE and VIBE of this specific tour. "
-        f"Don't list city names — they're shown elsewhere. Don't say 'explore' or 'journey through'. "
-        f"Be vivid and specific to what actually happens — landscapes, culture, unique experiences. "
-        f"Just the sentence, no quotes, no preamble."
+        f"Don't list city names. Don't say 'explore' or 'journey through'. "
+        f"Be vivid and specific to what actually happens. Just the sentence, no quotes, no preamble."
     )
     payload=json.dumps({
         "model":"gpt-4o-mini",
@@ -337,8 +418,7 @@ def generate_description(cities, region, tour_type, season, pdf_path):
             )},
             {"role":"user","content":prompt}
         ],
-        "max_tokens":80,
-        "temperature":0.9
+        "max_tokens":80,"temperature":0.9
     }).encode()
     try:
         req=urllib.request.Request(
@@ -349,12 +429,13 @@ def generate_description(cities, region, tour_type, season, pdf_path):
         with urllib.request.urlopen(req,timeout=20) as resp:
             desc=json.loads(resp.read())["choices"][0]["message"]["content"].strip().strip('"').strip("'")
             print(f"    AI: {desc}")
+            time.sleep(2)
             return desc
     except Exception as e:
         print(f"    AI failed ({e}), fallback")
         return _fallback_desc(cities,region,tour_type)
 
-def _fallback_desc(cities, region, tour_type):
+def _fallback_desc(cities,region,tour_type):
     if not cities: return f"Curated {region} package with handpicked experiences."
     if len(cities)==1: return f"The best of {cities[0]}, curated and ready to explore."
     elif len(cities)==2: return f"{cities[0]} elegance meets {cities[1]} charm."
@@ -363,10 +444,14 @@ def _fallback_desc(cities, region, tour_type):
 
 # ── MAP JS ────────────────────────────────────────────────────────────────────
 
-def make_map_js(map_id, cities):
-    known=[(c,CITY_COORDS[c]) for c in cities if c in CITY_COORDS]
-    if not known: return ""
-    coords_js=json.dumps([[lat,lng,name] for name,(lat,lng) in known])
+def make_map_js(map_id, cities, coords_cache):
+    points=[]
+    for city in cities:
+        coords=get_coords(city, coords_cache)
+        if coords:
+            points.append([coords[0], coords[1], city])
+    if not points: return ""
+    coords_js=json.dumps(points)
     return f"""(function(){{
   var pts={coords_js};
   if(!pts.length) return;
@@ -387,7 +472,7 @@ def make_map_js(map_id, cities):
 
 # ── BROCHURE CARD ─────────────────────────────────────────────────────────────
 
-def make_brochure_card(pdf_filename, pdf_data, title, description, map_id):
+def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coords_cache):
     tt=pdf_data.get("tour_type","")
     dur=pdf_data.get("duration","")
     cities=pdf_data.get("cities",[])
@@ -402,12 +487,10 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id):
     elif season=="winter": pills+='<span class="pill pill-winter">❄️ Winter</span>'
     else: pills+='<span class="pill pill-allyear">🌍 All Year Round</span>'
     if valid_till:
-        if is_expired:
-            pills+=f'<span class="pill pill-expired">⚠️ Expired {valid_till}</span>'
-        else:
-            pills+=f'<span class="pill pill-valid">✓ Valid till {valid_till}</span>'
+        if is_expired: pills+=f'<span class="pill pill-expired">⚠️ Expired {valid_till}</span>'
+        else: pills+=f'<span class="pill pill-valid">✓ Valid till {valid_till}</span>'
 
-    has_map=any(c in CITY_COORDS for c in cities)
+    has_map=any(get_coords(c, coords_cache) for c in cities)
     map_html=f'<div class="card-map"><div id="{map_id}" class="map-inner"></div></div>' if has_map else ''
     expired_class=" expired" if is_expired else ""
     if price:
@@ -494,17 +577,23 @@ def build_multicountry_index(region_cards_html, logo_href, search_js):
 
 # ── PACKAGES JSON ─────────────────────────────────────────────────────────────
 
-def update_packages_json(packages_path, all_found):
+def load_existing_packages(packages_path):
     existing={}
     if os.path.exists(packages_path):
         with open(packages_path,'r') as f:
             for pkg in json.load(f).get("packages",[]):
                 existing[pkg.get("folder","")+"/"+pkg.get("filename","")]=pkg
+    return existing
+
+def update_packages_json(packages_path, all_found, desc_cache):
+    existing=load_existing_packages(packages_path)
     new_pkgs=[]
     for item in all_found:
         key=item["folder"]+"/"+item["filename"]
         if key in existing:
-            new_pkgs.append(existing[key])
+            pkg=existing[key].copy()
+            pkg["description"]=desc_cache.get(key, pkg.get("description",""))
+            new_pkgs.append(pkg)
         else:
             pid=re.sub(r'[^a-z0-9]','-',item["filename"].lower().replace('.pdf',''))[:30]
             pd=item["pdf_data"]
@@ -512,7 +601,9 @@ def update_packages_json(packages_path, all_found):
                 "region":item["region"],"folder":item["folder"],"cities":pd.get("cities",[]),
                 "duration":pd.get("duration",""),"type":pd.get("tour_type",""),
                 "season":pd.get("season","all-year"),"price_twin":pd.get("price_twin"),
-                "valid_till":pd.get("valid_till"),"tags":pd.get("cities",[])})
+                "valid_till":pd.get("valid_till"),
+                "description":desc_cache.get(key,""),
+                "tags":pd.get("cities",[])})
     with open(packages_path,'w') as f:
         json.dump({"packages":new_pkgs},f,indent=2)
     print(f"  packages.json: {len(new_pkgs)} entries")
@@ -524,6 +615,13 @@ def main():
     packages_path=os.path.join(REPO_ROOT,"packages.json")
     all_found=[]
     region_stats={}
+    desc_cache={}
+
+    # Load coords cache (seed + previously geocoded cities)
+    coords_cache=load_coords_cache()
+    coords_cache_dirty=False
+
+    existing_pkgs=load_existing_packages(packages_path)
 
     for folder_rel, config in FOLDER_CONFIG.items():
         folder_abs=os.path.join(REPO_ROOT,folder_rel)
@@ -544,19 +642,28 @@ def main():
         cards=[]; maps_js_parts=[]; tour_types_seen=[]
         for idx, pdf in enumerate(pdfs):
             print(f"  {pdf}")
+            pkg_key=folder_rel+"/"+pdf
             pdf_data=extract_pdf_data(os.path.join(folder_abs,pdf),pdf)
             title=make_title(pdf)
+            cached_desc=existing_pkgs.get(pkg_key,{}).get("description",None)
             desc=generate_description(
-                pdf_data.get("cities",[]),
-                config["region"],
-                pdf_data.get("tour_type",""),
-                pdf_data.get("season","all-year"),
-                os.path.join(folder_abs,pdf)
+                pdf_data.get("cities",[]),config["region"],
+                pdf_data.get("tour_type",""),pdf_data.get("season","all-year"),
+                os.path.join(folder_abs,pdf),cached_desc
             )
+            desc_cache[pkg_key]=desc
+
+            # Geocode any unknown cities
+            for city in pdf_data.get("cities",[]):
+                before=city in coords_cache
+                get_coords(city, coords_cache)
+                if city in coords_cache and not before:
+                    coords_cache_dirty=True
+
             map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
             all_found.append({"filename":pdf,"title":title,"folder":folder_rel,"region":config["region"],"pdf_data":pdf_data})
-            cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id))
-            js=make_map_js(map_id,pdf_data.get("cities",[]))
+            cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id,coords_cache))
+            js=make_map_js(map_id,pdf_data.get("cities",[]),coords_cache)
             if js: maps_js_parts.append(js)
             tt=pdf_data.get("tour_type","")
             if tt and tt not in tour_types_seen: tour_types_seen.append(tt)
@@ -568,7 +675,12 @@ def main():
 
         if depth==2:
             slug=folder_rel.replace("multi-country/","")
-            region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen,"display":config["title"]}
+            region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen}
+
+    # Save coords cache if anything new was geocoded
+    if coords_cache_dirty:
+        save_coords_cache(coords_cache)
+        print(f"\n  Saved updated city_coords_cache.json")
 
     # Auto-generate multi-country/index.html
     print("\nRebuilding multi-country/index.html...")
@@ -585,7 +697,7 @@ def main():
         print("  Rebuilt multi-country/index.html")
 
     print(f"\nUpdating packages.json...")
-    update_packages_json(packages_path,all_found)
+    update_packages_json(packages_path,all_found,desc_cache)
     print("\nDone!")
 
 if __name__=="__main__":
