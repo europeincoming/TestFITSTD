@@ -484,27 +484,48 @@ def make_region_card(slug, display_name, pkg_count, tour_types):
 # ── mark12 INTEGRATION ────────────────────────────────────────────────────────
 # Known package filenames in mark12 (update when new packages added)
 MARK12_FILES = [
+    # UK & Ireland
     "1.1_3_London_private.json",
     "1.2_3_London_-_2_Manchester-_2_Edinburgh_-_2.json",
     "1.3_3_London_-_1_Glasgow_-_2_Inverness_-_2_E.json",
     "1.4_2_Edinburgh_-_2_Inverness_-_1_Fort_Willi.json",
     "1.5_2_Dublin_-_3_Limerick_-_1_Dublin.json",
+    "1.6_2_London_-_1_Cheltenham_-_1_Barnstaple_-.json",
+    # Western & Central Europe
     "2.1_3_Paris_-_3_Lucerne_-_1_Zurich.json",
     "2.2_2_Paris_-_3_Lucerne_-_2_Innsbruck_-_2_Vi.json",
     "2.3_2_Paris_-_3_Lucerne_-_2_Venice_-_1_Flore.json",
     "2.4_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_1_Zu.json",
     "2.5_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_2_Ve.json",
     "2.6_3_Lucerne_-_2_Venice_-_1_Florence_-_2_Ro.json",
+    "2.7_3_Amsterdam_-_3_Bruges_-_2_Brussels_-_1_.json",
+    # Italy
     "3.1_2_Venice_-_2_Florence_-_2_Rome.json",
     "3.2_2_Rome_-_2_Naples_-_2_Florence_-_2_Venic.json",
+    "3.3_2_Cagliari_-_2_Cala_Gonone_-_2_Alghero_-.json",
+    # Switzerland
     "4.1_2_Lucerne_-_2_Interlaken_-_1_Zurich.json",
     "4.2_2_Lucerne_-_2_Interlaken_-_2_Montreux_-_.json",
+    # France
     "5.1_2_Paris_-_2_Avignon_-_2_Aix_-_2_Nice.json",
     "5.2_2_Paris_-_2_Bayeux_-_2_Tours_-_1_Paris.json",
+    "5.3_1_Ajaccio_-_2_Porto-Ota_-_2_Corte_-_2_Bo.json",
+    # Spain
     "6.1_2_Madrid_-_2_Granada_-_2_Seville_-_2_Bar.json",
+    "6.2_3_Madrid_-_3_Barcelona.json",
+    # Eastern Europe
     "7.1_2_Prague_-_2_Vienna_-_2_Budapest.json",
+    "7.2_1_Zagreb_-_2_Zadar_-_1_Split_-_2_Dubrovn.json",
+    # Scandinavia & Iceland
+    "8.1_1_Reykjavik_-_1_Akureyri_-_1_Myvatn_-_1_.json",
+    "8.2_4_Reykjavik.json",
+    "8.3_4_Reykjavik_-_3_Akureyri_-_flight.json",
     "9.1_1_CPH_-_1_Ferry_-_1_Oslo_-_1_Stockholm_-.json",
+    "9.2_2_Oslo_-_1_Flam_-_2_Bergen.json",
+    "9.3_2_Oslo_-_1_Flam_-_2_Bergen_-_2_Stavanger.json",
+    # Winter
     "10.1_4_Rovaniemi_(Helsinki_pre_post)_winter.json",
+    "10.2_4_Rovaniemi_(Helsinki_pre_post)_winter_N.json",
     "10.3_4_Tromso_(Oslo_pre_post)_winter.json",
     "10.4_7_Tromso_(Oslo_pre_post)_winter.json",
     "10.5_4_Kiruna_(Stockholm_pre_post)_winter.json",
