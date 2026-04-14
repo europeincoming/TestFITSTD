@@ -105,6 +105,16 @@ COMPOUND_NAMES = {
     'Aix en Provence',
     'Swedish Lapland',
     'Norway Nutshell',
+    'Nordic Capitals',
+    'Bavarian Christmas Markets',
+}
+
+# Maps cleaned destination strings to exact final display strings, bypassing smart_destination.
+# Use for abbreviations, spelling corrections, and destinations whose "&" was stripped by cleanup.
+DESTINATION_FIXES = {
+    'MADBCN': 'Madrid & Barcelona',
+    'Tromso': 'Tromsø',
+    'Bavarian Austrian Christmas Markets': 'Bavarian & Austrian Christmas Markets',
 }
 
 GEO_BLOCK = """<script>
@@ -253,6 +263,8 @@ def get_coords(city_name, cache):
 
 def smart_destination(words):
     if not words: return ""
+    full = ' '.join(words)
+    if full in COMPOUND_NAMES: return full   # exact full-phrase match wins
     if len(words) == 1: return words[0]
     two = ' '.join(words[:2])
     if len(words) == 2:
@@ -266,14 +278,14 @@ def smart_destination(words):
 def make_title(filename):
     name = filename.replace('.pdf', '').replace('_', ' ')
     name = re.sub(r'\s+', ' ', name).strip()
-    # Pattern 1: "6 nights, 7 days Destination"
-    m = re.search(r'(\d+)\s*nights?,\s*(\d+)\s*days?\s+(.+)', name, re.IGNORECASE)
+    # Pattern 1: "6 nights, 7 days Destination" — comma optional, handles "6 Nights 7 Days …" too
+    m = re.search(r'(\d+)\s*nights?,?\s+(\d+)\s*days?\s+(.+)', name, re.IGNORECASE)
     if m:
         duration = f"{m.group(1)} nights, {m.group(2)} days"
         rest = m.group(3).strip()
     else:
-        # Pattern 2: "Destination 6 nights, 7 days" or "Destination_6 nights 7 days"
-        m2 = re.search(r'(\d+)\s*nights?,\s*(\d+)\s*days?', name, re.IGNORECASE)
+        # Pattern 2: "Destination 6 nights[,] 7 days" — destination before duration marker
+        m2 = re.search(r'(\d+)\s*nights?,?\s*(\d+)\s*days?', name, re.IGNORECASE)
         if m2:
             duration = f"{m2.group(1)} nights, {m2.group(2)} days"
             before = name[:m2.start()].strip()
@@ -306,7 +318,11 @@ def make_title(filename):
     rest = re.sub(r'\d{4}-\d{2,4}', '', rest)
     rest = re.sub(r'Europe\s+Incoming', '', rest, flags=re.IGNORECASE)
     rest = re.sub(r'\s*&\s*', ' ', rest)
+    rest = re.sub(r'-', ' ', rest)             # "England-Scotland" → "England Scotland"
     rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
+    fixed = DESTINATION_FIXES.get(rest)
+    if fixed is not None:
+        return f"{duration} {fixed}".strip()   # exact override — bypass smart_destination
     return f"{duration} {smart_destination(rest.split())}".strip()
 
 
@@ -734,6 +750,7 @@ def update_packages_json(packages_path, all_found, desc_cache):
         key = item["folder"] + "/" + item["filename"]
         if key in existing:
             pkg = existing[key].copy()
+            pkg["name"] = item["title"]   # always recalculate from make_title() so fixes propagate
             pkg["description"] = desc_cache.get(key, pkg.get("description", ""))
             # Update cities/duration/price from fresh PDF extraction if they were empty
             pd = item["pdf_data"]
