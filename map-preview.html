@@ -2,104 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Map Style Preview — Mapbox</title>
+<title>Map Style Preview — Clean Routes</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-  body { font-family: sans-serif; background: #f0f0f0; padding: 24px; margin: 0; }
-  h1 { font-size: 20px; margin-bottom: 4px; }
-  p  { font-size: 13px; color: #666; margin-bottom: 24px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1100px; }
-  .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
-  .card h2 { font-size: 14px; font-weight: 600; margin: 0; padding: 12px 14px 10px; border-bottom: 1px solid #eee; }
-  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin-left: 8px; font-weight: 400; }
-  .current { background: #e3f2fd; color: #1565c0; }
-  .map { height: 320px; }
-  .label { font-size: 11px; color: #555; padding: 8px 14px; background: #fafafa; border-top: 1px solid #eee; }
+  * { box-sizing: border-box; }
+  body { font-family: sans-serif; background: #e8e8e8; padding: 24px; margin: 0; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p  { font-size: 13px; color: #555; margin: 0 0 20px; }
+  .note { font-size: 12px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 8px 12px; margin-bottom: 20px; max-width: 900px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; }
+  .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  .card h2 { font-size: 13px; font-weight: 700; margin: 0; padding: 10px 14px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 8px; }
+  .tag { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 10px; }
+  .tag-natgeo { background: #fff3e0; color: #e65100; }
+  .tag-clean  { background: #e8f5e9; color: #2e7d32; }
+  .map { height: 340px; }
+  .desc { font-size: 11px; color: #666; padding: 8px 14px; background: #fafafa; border-top: 1px solid #eee; line-height: 1.5; }
+  .city-label {
+    background: white;
+    border: 1.5px solid #c62828;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  }
+  .leaflet-tooltip.city-label::before { display: none; }
 </style>
 </head>
 <body>
-<h1>Mapbox Style Preview — France route (Paris → Bayeux → Tours)</h1>
-<p>All four are Mapbox. Pick the one that looks best for a travel site.</p>
+
+<h1>Map Style Preview — Route Display Options</h1>
+<p>France: Paris → Bayeux → Tours &nbsp;|&nbsp; All maps show only tour cities, connected by curved arrows.</p>
+
+<div class="note">
+  <strong>Note on ESRI NatGeo:</strong> NatGeo is a pre-rendered raster image — other city/town labels are baked in and cannot be removed. Options B, C, D use label-free base tiles so only <em>our</em> cities appear.
+</div>
 
 <div class="grid">
 
   <div class="card">
-    <h2>Mapbox Outdoors</h2>
+    <h2>A — ESRI NatGeo <span class="tag tag-natgeo">has baked-in labels</span></h2>
     <div id="m1" class="map"></div>
-    <div class="label">Terrain contours, hiking trails, natural colours. Great for travel.</div>
+    <div class="desc">Warm illustrated look. Other city names always visible — cannot be removed.</div>
   </div>
 
   <div class="card">
-    <h2>Mapbox Light</h2>
+    <h2>B — CartoDB Voyager (no labels) <span class="tag tag-clean">clean</span></h2>
     <div id="m2" class="map"></div>
-    <div class="label">Clean minimal white. Similar to current CartoDB Light but sharper.</div>
+    <div class="desc">Warm tan/beige tones, roads visible. No city names — only ours show.</div>
   </div>
 
   <div class="card">
-    <h2>Mapbox Streets</h2>
+    <h2>C — ESRI World Terrain (no labels) <span class="tag tag-clean">clean</span></h2>
     <div id="m3" class="map"></div>
-    <div class="label">Full street detail, colour-coded roads. Familiar Google Maps look.</div>
+    <div class="desc">Physical terrain shading, natural earth colours. Completely label-free — only ours show.</div>
   </div>
 
   <div class="card">
-    <h2>Mapbox Navigation Day <span class="badge current">warmest</span></h2>
+    <h2>D — CartoDB Light (no labels) <span class="tag tag-clean">clean</span></h2>
     <div id="m4" class="map"></div>
-    <div class="label">Warm cream/beige tones. Closest to Inspiring Vacations illustrated style.</div>
+    <div class="desc">Minimal white/grey. Very clean modern look. Only our city names show.</div>
   </div>
 
 </div>
 
 <script>
-// Paste your Mapbox public token here before opening
-var TOKEN = 'pk.eyJ1Ijoic2F1cmFiaGpvc2hpIiwiYSI6ImNtbnp1bzh6ODAxbHMyd3F3czN4NWRodXQifQ.PvfYISB3DlSAn__yaWOjcg';
-
 var cities = [
   [48.8566,  2.3522, "Paris"],
   [49.2764, -0.7024, "Bayeux"],
   [47.3941,  0.6848, "Tours"]
 ];
 
-var styles = [
-  'mapbox/outdoors-v12',
-  'mapbox/light-v11',
-  'mapbox/streets-v12',
-  'mapbox/navigation-day-v1'
+var tiles = [
+  'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
+  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}',
+  'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
 ];
 
 var ids = ['m1','m2','m3','m4'];
 
-ids.forEach(function(id, idx) {
-  var map = L.map(id, {
-    zoomControl: false, scrollWheelZoom: false, dragging: false,
-    touchZoom: false, doubleClickZoom: false, boxZoom: false,
-    keyboard: false, attributionControl: false
-  });
+// Quadratic bezier curve approximated by N points
+function bezierCurve(p1, p2, steps) {
+  var lat1=p1[0], lng1=p1[1], lat2=p2[0], lng2=p2[1];
+  var mlat=(lat1+lat2)/2, mlng=(lng1+lng2)/2;
+  var dlat=lat2-lat1, dlng=lng2-lng1;
+  var len=Math.sqrt(dlat*dlat+dlng*dlng);
+  var offset=len*0.28;
+  var clat=mlat-(dlng/len)*offset, clng=mlng+(dlat/len)*offset;
+  var pts=[];
+  for(var i=0;i<=steps;i++){
+    var t=i/steps;
+    pts.push([(1-t)*(1-t)*lat1+2*(1-t)*t*clat+t*t*lat2,
+              (1-t)*(1-t)*lng1+2*(1-t)*t*clng+t*t*lng2]);
+  }
+  return pts;
+}
 
-  L.tileLayer(
-    'https://api.mapbox.com/styles/v1/' + styles[idx] + '/tiles/256/{z}/{x}/{y}@2x?access_token=' + TOKEN,
-    { maxZoom: 19, tileSize: 256 }
-  ).addTo(map);
+function bearing(p1,p2){
+  return Math.atan2(p2[1]-p1[1],p2[0]-p1[0])*180/Math.PI;
+}
 
-  var lats = cities.map(function(c){ return c[0]; });
-  var lngs = cities.map(function(c){ return c[1]; });
-  var pad = 0.6;
-  map.fitBounds([
-    [Math.min.apply(null,lats)-pad, Math.min.apply(null,lngs)-pad],
-    [Math.max.apply(null,lats)+pad, Math.max.apply(null,lngs)+pad]
-  ]);
+ids.forEach(function(id,idx){
+  var map=L.map(id,{zoomControl:false,scrollWheelZoom:false,dragging:false,
+    touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
+  L.tileLayer(tiles[idx],{maxZoom:19}).addTo(map);
 
-  var ll = cities.map(function(c){ return [c[0], c[1]]; });
-  L.polyline(ll, { color: '#e53935', weight: 2.5, dashArray: '6,4', opacity: 0.9 }).addTo(map);
+  var lats=cities.map(function(c){return c[0];}),
+      lngs=cities.map(function(c){return c[1];});
+  var pad=0.7;
+  map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],
+                 [Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]]);
 
-  cities.forEach(function(c, i) {
-    var icon = L.divIcon({
-      className: '',
-      html: '<div style="width:22px;height:22px;border-radius:50%;background:#e53935;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)">' + (i+1) + '</div>',
-      iconSize: [22,22], iconAnchor: [11,11]
-    });
-    L.marker([c[0], c[1]], { icon: icon }).addTo(map)
-      .bindTooltip(c[2], { permanent: true, direction: 'top', className: 'city-tip', offset: [0, -8] });
+  // Curved arrows
+  for(var i=0;i<cities.length-1;i++){
+    var curve=bezierCurve(cities[i],cities[i+1],60);
+    L.polyline(curve,{color:'#c62828',weight:2.5,opacity:0.9}).addTo(map);
+    var n=curve.length;
+    var ang=bearing(curve[n-5],curve[n-1]);
+    L.marker(curve[n-1],{icon:L.divIcon({
+      className:'',
+      html:'<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:12px solid #c62828;transform-origin:50% 100%;transform:rotate('+(ang-90)+'deg)"></div>',
+      iconSize:[10,12],iconAnchor:[5,6]
+    })}).addTo(map);
+  }
+
+  // City dots + labels
+  cities.forEach(function(c,i){
+    L.circleMarker([c[0],c[1]],{radius:6,fillColor:'#c62828',color:'white',weight:2.5,fillOpacity:1})
+      .addTo(map)
+      .bindTooltip(c[2],{
+        permanent:true,
+        direction:i===0?'left':'top',
+        className:'city-label',
+        offset:i===0?[-8,0]:[0,-6]
+      }).openTooltip();
   });
 });
 </script>
