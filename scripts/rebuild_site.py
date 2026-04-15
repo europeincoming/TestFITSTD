@@ -117,6 +117,18 @@ DESTINATION_FIXES = {
     'Bavarian Austrian Christmas Markets': 'Bavarian & Austrian Christmas Markets',
 }
 
+# Full title overrides keyed on "<duration> <dest>" — replace the entire generated title.
+FULL_TITLE_OVERRIDES = {
+    '6 nights, 7 days Italy':   '6 nights, 7 days Classic Italy',
+    '10 nights, 11 days Italy': '10 nights, 11 days Italy with Naples',
+    '7 nights, 8 days France':  '7 nights, 8 days Paris with Normandy & Loire Valley',
+    '8 nights, 9 days France':  '8 nights, 9 days Paris with Provence & French Riviera',
+    '4 nights, 5 days Rovaniemi': '4 nights, 5 days Finnish Lapland',
+    '4 nights, 5 days Tromsø':  '4 nights, 5 days Northern Norway, Arctic Gateway',
+    '7 nights, 8 days Tromsø':  '7 nights, 8 days Northern Norway, Arctic Gateway',
+    '4 nights, 5 days Kiruna':  '4 nights, 5 days Swedish Lapland',
+}
+
 GEO_BLOCK = """<script>
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}
@@ -321,9 +333,12 @@ def make_title(filename):
     rest = re.sub(r'-', ' ', rest)             # "England-Scotland" → "England Scotland"
     rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
     fixed = DESTINATION_FIXES.get(rest)
-    if fixed is not None:
-        return f"{duration} {fixed}".strip()   # exact override — bypass smart_destination
-    return f"{duration} {smart_destination(rest.split())}".strip()
+    dest = fixed if fixed is not None else smart_destination(rest.split())
+    base = f"{duration} {dest}".strip()
+    # Apply curated title overrides for specific packages
+    if base in FULL_TITLE_OVERRIDES:
+        return FULL_TITLE_OVERRIDES[base]
+    return base
 
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
@@ -602,12 +617,17 @@ def make_map_js(map_id, cities, coords_cache):
             points.append([coords[0], coords[1], city])
     if not points: return ""
     coords_js = json.dumps(points)
+    # Dynamic padding: tighter for single/close cities, wider for long-haul routes
+    lat_spread = max(p[0] for p in points) - min(p[0] for p in points)
+    lng_spread = max(p[1] for p in points) - min(p[1] for p in points)
+    spread = max(lat_spread, lng_spread)
+    pad = 1.2 if spread > 5 else (0.6 if spread > 1 else 0.3)
     return f"""(function(){{
   var pts={coords_js};
   if(!pts.length) return;
   var lats=pts.map(function(p){{return p[0];}});
   var lngs=pts.map(function(p){{return p[1];}});
-  var pad=0.6;
+  var pad={pad};
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}});
   L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19,attribution:''}}).addTo(map);
