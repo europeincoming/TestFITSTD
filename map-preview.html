@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Map Style Preview</title>
+<title>Map Style Preview — Mapbox</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -14,55 +14,57 @@
   .card h2 { font-size: 14px; font-weight: 600; margin: 0; padding: 12px 14px 10px; border-bottom: 1px solid #eee; }
   .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin-left: 8px; font-weight: 400; }
   .current { background: #e3f2fd; color: #1565c0; }
-  .new     { background: #e8f5e9; color: #2e7d32; }
   .map { height: 320px; }
   .label { font-size: 11px; color: #555; padding: 8px 14px; background: #fafafa; border-top: 1px solid #eee; }
 </style>
 </head>
 <body>
-<h1>Map Style Preview — France route (Paris → Bayeux → Tours)</h1>
-<p>Compare tile styles. Green = new option. Blue = what the site uses today.</p>
+<h1>Mapbox Style Preview — France route (Paris → Bayeux → Tours)</h1>
+<p>All four are Mapbox. Pick the one that looks best for a travel site.</p>
 
 <div class="grid">
 
   <div class="card">
-    <h2>CartoDB Light <span class="badge current">current</span></h2>
+    <h2>Mapbox Outdoors</h2>
     <div id="m1" class="map"></div>
-    <div class="label">Clean grey/white. Roads visible. Used today.</div>
+    <div class="label">Terrain contours, hiking trails, natural colours. Great for travel.</div>
   </div>
 
   <div class="card">
-    <h2>CartoDB Voyager <span class="badge new">option A</span></h2>
+    <h2>Mapbox Light</h2>
     <div id="m2" class="map"></div>
-    <div class="label">Warmer tones, subtle roads. More travel-friendly feel.</div>
+    <div class="label">Clean minimal white. Similar to current CartoDB Light but sharper.</div>
   </div>
 
   <div class="card">
-    <h2>ESRI NatGeo World Map <span class="badge new">option B</span></h2>
+    <h2>Mapbox Streets</h2>
     <div id="m3" class="map"></div>
-    <div class="label">Closest to Inspiring Vacations. Warm beige, illustrated, no clutter.</div>
+    <div class="label">Full street detail, colour-coded roads. Familiar Google Maps look.</div>
   </div>
 
   <div class="card">
-    <h2>ESRI World Physical <span class="badge new">option C</span></h2>
+    <h2>Mapbox Navigation Day <span class="badge current">warmest</span></h2>
     <div id="m4" class="map"></div>
-    <div class="label">Terrain/elevation shading. Natural earth tones.</div>
+    <div class="label">Warm cream/beige tones. Closest to Inspiring Vacations illustrated style.</div>
   </div>
 
 </div>
 
 <script>
+// Paste your Mapbox public token here before opening
+var TOKEN = 'YOUR_MAPBOX_TOKEN';
+
 var cities = [
   [48.8566,  2.3522, "Paris"],
   [49.2764, -0.7024, "Bayeux"],
   [47.3941,  0.6848, "Tours"]
 ];
 
-var tiles = [
-  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-  'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
-  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}'
+var styles = [
+  'mapbox/outdoors-v12',
+  'mapbox/light-v11',
+  'mapbox/streets-v12',
+  'mapbox/navigation-day-v1'
 ];
 
 var ids = ['m1','m2','m3','m4'];
@@ -74,9 +76,11 @@ ids.forEach(function(id, idx) {
     keyboard: false, attributionControl: false
   });
 
-  L.tileLayer(tiles[idx], { maxZoom: 19 }).addTo(map);
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/' + styles[idx] + '/tiles/256/{z}/{x}/{y}@2x?access_token=' + TOKEN,
+    { maxZoom: 19, tileSize: 256 }
+  ).addTo(map);
 
-  // Fit bounds
   var lats = cities.map(function(c){ return c[0]; });
   var lngs = cities.map(function(c){ return c[1]; });
   var pad = 0.6;
@@ -85,17 +89,14 @@ ids.forEach(function(id, idx) {
     [Math.max.apply(null,lats)+pad, Math.max.apply(null,lngs)+pad]
   ]);
 
-  // Route line
   var ll = cities.map(function(c){ return [c[0], c[1]]; });
   L.polyline(ll, { color: '#e53935', weight: 2.5, dashArray: '6,4', opacity: 0.9 }).addTo(map);
 
-  // Markers with stop numbers
   cities.forEach(function(c, i) {
     var icon = L.divIcon({
       className: '',
       html: '<div style="width:22px;height:22px;border-radius:50%;background:#e53935;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)">' + (i+1) + '</div>',
-      iconSize: [22,22],
-      iconAnchor: [11,11]
+      iconSize: [22,22], iconAnchor: [11,11]
     });
     L.marker([c[0], c[1]], { icon: icon }).addTo(map)
       .bindTooltip(c[2], { permanent: true, direction: 'top', className: 'city-tip', offset: [0, -8] });
