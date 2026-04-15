@@ -837,7 +837,7 @@
     },
     {
       "id": "italy-003",
-      "name": "10 nights, 11 days Italy",
+      "name": "10 nights, 11 days Italy with Naples",
       "filename": "10 nights, 11 days Italy_Private.pdf",
       "region": "Italy",
       "folder": "multi-country/italy",
@@ -865,7 +865,7 @@
     },
     {
       "id": "italy-004",
-      "name": "10 nights, 11 days Italy",
+      "name": "10 nights, 11 days Italy with Naples",
       "filename": "10 nights, 11 days Italy_Regular.pdf",
       "region": "Italy",
       "folder": "multi-country/italy",
@@ -893,7 +893,7 @@
     },
     {
       "id": "italy-001",
-      "name": "6 nights, 7 days Italy",
+      "name": "6 nights, 7 days Classic Italy",
       "filename": "6 nights, 7 days Italy_Private.pdf",
       "region": "Italy",
       "folder": "multi-country/italy",
@@ -918,7 +918,7 @@
     },
     {
       "id": "italy-002",
-      "name": "6 nights, 7 days Italy",
+      "name": "6 nights, 7 days Classic Italy",
       "filename": "6 nights, 7 days Italy_Regular.pdf",
       "region": "Italy",
       "folder": "multi-country/italy",
@@ -1021,7 +1021,7 @@
     },
     {
       "id": "7-nights--8-days-france-privat",
-      "name": "7 nights, 8 days France",
+      "name": "7 nights, 8 days Paris with Normandy & Loire Valley",
       "filename": "7 nights, 8 days France_Private.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1046,7 +1046,7 @@
     },
     {
       "id": "7-nights--8-days-france-regula",
-      "name": "7 nights, 8 days France",
+      "name": "7 nights, 8 days Paris with Normandy & Loire Valley",
       "filename": "7 nights, 8 days France_Regular.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1071,7 +1071,7 @@
     },
     {
       "id": "7-nights--8-days-france-self-d",
-      "name": "7 nights, 8 days France",
+      "name": "7 nights, 8 days Paris with Normandy & Loire Valley",
       "filename": "7 nights, 8 days France_Self-drive.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1122,7 +1122,7 @@
     },
     {
       "id": "8-nights--9-days-france-privat",
-      "name": "8 nights, 9 days France",
+      "name": "8 nights, 9 days Paris with Provence & French Riviera",
       "filename": "8 nights, 9 days France_Private.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1148,7 +1148,7 @@
     },
     {
       "id": "8-nights--9-days-france-regula",
-      "name": "8 nights, 9 days France",
+      "name": "8 nights, 9 days Paris with Provence & French Riviera",
       "filename": "8 nights, 9 days France_Regular.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1174,7 +1174,7 @@
     },
     {
       "id": "8-nights--9-days-france-self-d",
-      "name": "8 nights, 9 days France",
+      "name": "8 nights, 9 days Paris with Provence & French Riviera",
       "filename": "8 nights, 9 days France_Self drive.pdf",
       "region": "France",
       "folder": "multi-country/france",
@@ -1255,7 +1255,7 @@
     },
     {
       "id": "kiruna-4n-regular-winter",
-      "name": "4 nights, 5 days Kiruna",
+      "name": "4 nights, 5 days Swedish Lapland",
       "filename": "Kiruna 4N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
@@ -1304,7 +1304,7 @@
     },
     {
       "id": "rovaniemi-4n-regular-winter",
-      "name": "4 nights, 5 days Rovaniemi",
+      "name": "4 nights, 5 days Finnish Lapland",
       "filename": "Rovaniemi 4N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
@@ -1355,7 +1355,7 @@
     },
     {
       "id": "tromso-4n-regular-winter",
-      "name": "4 nights, 5 days Tromsø",
+      "name": "4 nights, 5 days Northern Norway, Arctic Gateway",
       "filename": "Tromso 4N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
@@ -1380,7 +1380,7 @@
     },
     {
       "id": "tromso-7n-regular-winter",
-      "name": "7 nights, 8 days Tromsø",
+      "name": "7 nights, 8 days Northern Norway, Arctic Gateway",
       "filename": "Tromso 7N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",

@@ -98,7 +98,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </a>
 <a href="Kiruna 4N_Regular Winter.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">4 nights, 5 days Kiruna</div>
+    <div class="card-title">4 nights, 5 days Swedish Lapland</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 4 nights / 5 days</span><span class="pill pill-winter">❄️ Winter</span><span class="pill pill-valid">✓ Valid till Mar 2027</span></div>
     <div class="card-description">Dog sledding, the ICEHOTEL at Jukkasjärvi, a snowmobile wildlife safari and a Northern Lights chase in the deep Arctic.</div>
@@ -120,7 +120,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </a>
 <a href="Rovaniemi 4N_Regular Winter.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">4 nights, 5 days Rovaniemi</div>
+    <div class="card-title">4 nights, 5 days Finnish Lapland</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 4 nights / 5 days</span><span class="pill pill-winter">❄️ Winter</span><span class="pill pill-valid">✓ Valid till Mar 2027</span></div>
     <div class="card-description">Reindeer farm safari, husky experience and a guaranteed Northern Lights excursion from Santa's Arctic hometown.</div>
@@ -142,7 +142,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </a>
 <a href="Tromso 4N_Regular Winter.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">4 nights, 5 days Tromsø</div>
+    <div class="card-title">4 nights, 5 days Northern Norway, Arctic Gateway</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 4 nights / 5 days</span><span class="pill pill-winter">❄️ Winter</span><span class="pill pill-valid">✓ Valid till Mar 2027</span></div>
     <div class="card-description">Northern Lights cruise, Sámi reindeer camp dinner, Lyngen Alps snowmobile safari and a polar whale watching expedition.</div>
@@ -153,7 +153,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </a>
 <a href="Tromso 7N_Regular Winter.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">7 nights, 8 days Tromsø</div>
+    <div class="card-title">7 nights, 8 days Northern Norway, Arctic Gateway</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 7 nights / 8 days</span><span class="pill pill-winter">❄️ Winter</span><span class="pill pill-valid">✓ Valid till Mar 2027</span></div>
     <div class="card-description">Seven nights of Arctic immersion — whale watching, snowmobiles, reindeer sledding, Aurora cruises and a coastal fjord safari.</div>
@@ -171,7 +171,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=1.2;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_6_nights__7_days_n_0',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -187,7 +187,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=1.2;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_iceland_self_drive_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -203,7 +203,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=0.3;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_kiruna_4n_regular__2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -219,7 +219,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=1.2;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_norway_nutshell_re_3',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -235,7 +235,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=0.3;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_rovaniemi_4n_regul_4',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -267,7 +267,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=0.3;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_tromso_4n_regular__6',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
@@ -283,7 +283,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
-  var pad=0.6;
+  var pad=0.3;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('map_tromso_7n_regular__7',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:''}).addTo(map);
