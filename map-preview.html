@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Map Style Preview — ESRI Warm Styles</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: sans-serif; background: #e0e0e0; padding: 20px; margin: 0; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  .subtitle { font-size: 12px; color: #666; margin: 0 0 20px; }
+
+  /* Style header row */
+  .style-header { display: grid; grid-template-columns: 160px 1fr 1fr 1fr; gap: 10px; margin-bottom: 6px; max-width: 1300px; }
+  .style-header div { font-size: 12px; font-weight: 700; text-align: center; padding: 6px 8px; background: #333; color: white; border-radius: 6px; }
+  .style-header .lbl { background: transparent; color: transparent; }
+
+  /* Tour rows */
+  .tour-row { display: grid; grid-template-columns: 160px 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; max-width: 1300px; align-items: center; }
+  .tour-label { font-size: 12px; font-weight: 600; color: #333; line-height: 1.4; padding: 0 4px; }
+  .tour-label span { display: block; font-size: 10px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  .map-cell { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  .map { height: 240px; }
+
+  .city-label {
+    background: white;
+    border: 1.5px solid #c62828;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #1a1a1a;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+  }
+  .leaflet-tooltip.city-label::before { display: none; }
+</style>
+</head>
+<body>
+
+<h1>ESRI Map Style Preview — 3 styles × 4 tour routes</h1>
+<p class="subtitle">NatGeo has baked-in labels (all towns visible). Physical and Shaded Relief are much cleaner at card zoom.</p>
+
+<div class="style-header">
+  <div class="lbl">Tour</div>
+  <div>A — ESRI NatGeo<br><span style="font-weight:400;font-size:10px">Warm illustrated · all labels baked in</span></div>
+  <div>B — ESRI World Physical<br><span style="font-weight:400;font-size:10px">Warm · country names only</span></div>
+  <div>C — ESRI World Shaded Relief<br><span style="font-weight:400;font-size:10px">Warm terrain · zero labels</span></div>
+</div>
+
+<!-- Row 1: France -->
+<div class="tour-row" data-cities='[[48.8566,2.3522,"Paris"],[49.2764,-0.7024,"Bayeux"],[47.3941,0.6848,"Tours"]]' data-pad="0.7">
+  <div class="tour-label">France 7N<span>Paris · Bayeux · Tours</span></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+</div>
+
+<!-- Row 2: East Europe -->
+<div class="tour-row" data-cities='[[50.0755,14.4378,"Prague"],[48.2082,16.3738,"Vienna"],[47.4979,19.0402,"Budapest"]]' data-pad="0.8">
+  <div class="tour-label">East Europe 6N<span>Prague · Vienna · Budapest</span></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+</div>
+
+<!-- Row 3: Nordic Capitals -->
+<div class="tour-row" data-cities='[[55.6761,12.5683,"Copenhagen"],[59.9139,10.7522,"Oslo"],[59.3293,18.0686,"Stockholm"],[60.1699,24.9384,"Helsinki"]]' data-pad="1.2">
+  <div class="tour-label">Nordic Capitals 7N<span>Copenhagen · Oslo · Stockholm · Helsinki</span></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+</div>
+
+<!-- Row 4: Iceland -->
+<div class="tour-row" data-cities='[[64.1466,-21.9426,"Reykjavik"],[65.6835,-18.1002,"Akureyri"],[64.2539,-15.2082,"Hofn"]]' data-pad="0.8">
+  <div class="tour-label">Iceland 7N<span>Reykjavik · Akureyri · Hofn</span></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+  <div class="map-cell"><div class="map"></div></div>
+</div>
+
+<script>
+var TILES = [
+  'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}',
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}'
+];
+
+var mapCounter = 0;
+
+function bezierCurve(p1, p2, steps) {
+  var lat1=p1[0],lng1=p1[1],lat2=p2[0],lng2=p2[1];
+  var mlat=(lat1+lat2)/2, mlng=(lng1+lng2)/2;
+  var dlat=lat2-lat1, dlng=lng2-lng1;
+  var len=Math.sqrt(dlat*dlat+dlng*dlng);
+  var offset=len*0.25;
+  var clat=mlat-(dlng/len)*offset, clng=mlng+(dlat/len)*offset;
+  var pts=[];
+  for(var i=0;i<=steps;i++){
+    var t=i/steps;
+    pts.push([(1-t)*(1-t)*lat1+2*(1-t)*t*clat+t*t*lat2,
+              (1-t)*(1-t)*lng1+2*(1-t)*t*clng+t*t*lng2]);
+  }
+  return pts;
+}
+
+function bearing(p1,p2){
+  return Math.atan2(p2[1]-p1[1],p2[0]-p1[0])*180/Math.PI;
+}
+
+function buildMap(el, tileUrl, cities, pad) {
+  var id = 'map-' + (mapCounter++);
+  el.id = id;
+
+  var map = L.map(id, {
+    zoomControl:false, scrollWheelZoom:false, dragging:false,
+    touchZoom:false, doubleClickZoom:false, boxZoom:false,
+    keyboard:false, attributionControl:false
+  });
+  L.tileLayer(tileUrl, {maxZoom:19}).addTo(map);
+
+  var lats=cities.map(function(c){return c[0];}),
+      lngs=cities.map(function(c){return c[1];});
+  map.fitBounds([
+    [Math.min.apply(null,lats)-pad, Math.min.apply(null,lngs)-pad],
+    [Math.max.apply(null,lats)+pad, Math.max.apply(null,lngs)+pad]
+  ]);
+
+  for(var i=0;i<cities.length-1;i++){
+    var curve=bezierCurve(cities[i],cities[i+1],60);
+    L.polyline(curve,{color:'#c62828',weight:2.5,opacity:0.9}).addTo(map);
+    var n=curve.length;
+    var ang=bearing(curve[n-5],curve[n-1]);
+    L.marker(curve[n-1],{icon:L.divIcon({
+      className:'',
+      html:'<div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:12px solid #c62828;transform-origin:50% 100%;transform:rotate('+(ang-90)+'deg)"></div>',
+      iconSize:[10,12],iconAnchor:[5,6]
+    })}).addTo(map);
+  }
+
+  cities.forEach(function(c,i){
+    var dirs=['left','top','right','bottom'];
+    var dir = i===0 ? 'left' : (i===cities.length-1 ? 'right' : 'top');
+    var off = i===0 ? [-8,0] : (i===cities.length-1 ? [8,0] : [0,-6]);
+    L.circleMarker([c[0],c[1]],{radius:5,fillColor:'#c62828',color:'white',weight:2,fillOpacity:1})
+      .addTo(map)
+      .bindTooltip(c[2],{permanent:true,direction:dir,className:'city-label',offset:off})
+      .openTooltip();
+  });
+}
+
+document.querySelectorAll('.tour-row').forEach(function(row){
+  var cities = JSON.parse(row.dataset.cities);
+  var pad    = parseFloat(row.dataset.pad);
+  var cells  = row.querySelectorAll('.map');
+  cells.forEach(function(el, idx){
+    buildMap(el, TILES[idx], cities, pad);
+  });
+});
+</script>
+</body>
+</html>
