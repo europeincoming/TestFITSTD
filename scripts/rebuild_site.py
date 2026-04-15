@@ -122,8 +122,14 @@ NO_CITY_APPEND = {'Nordic Capitals'}
 
 # Full title overrides keyed on "<duration> <dest>" — replace the entire generated title.
 FULL_TITLE_OVERRIDES = {
-    '6 nights, 7 days Italy':  '6 nights, 7 days Classic Italy',
+    '6 nights, 7 days Italy':   '6 nights, 7 days Classic Italy',
     '10 nights, 11 days Italy': '10 nights, 11 days Italy with Naples',
+    '7 nights, 8 days France':  '7 nights, 8 days Paris with Normandy & Loire Valley',
+    '8 nights, 9 days France':  '8 nights, 9 days Paris with Provence & French Riviera',
+    '4 nights, 5 days Rovaniemi': '4 nights, 5 days Finnish Lapland',
+    '4 nights, 5 days Tromsø':  '4 nights, 5 days Northern Norway, Arctic Gateway',
+    '7 nights, 8 days Tromsø':  '7 nights, 8 days Northern Norway, Arctic Gateway',
+    '4 nights, 5 days Kiruna':  '4 nights, 5 days Swedish Lapland',
 }
 
 GEO_BLOCK = """<script>
