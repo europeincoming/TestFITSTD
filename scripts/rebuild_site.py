@@ -117,9 +117,6 @@ DESTINATION_FIXES = {
     'Bavarian Austrian Christmas Markets': 'Bavarian & Austrian Christmas Markets',
 }
 
-# Destinations that should never have cities appended (name already descriptive enough).
-NO_CITY_APPEND = {'Nordic Capitals'}
-
 # Full title overrides keyed on "<duration> <dest>" — replace the entire generated title.
 FULL_TITLE_OVERRIDES = {
     '6 nights, 7 days Italy':   '6 nights, 7 days Classic Italy',
@@ -290,7 +287,7 @@ def smart_destination(words):
         return f"{words[0]}, {words[1]}, {words[2]} & {words[3]}"
     return f"{', '.join(words[:-1])} & {words[-1]}"
 
-def make_title(filename, cities=None):
+def make_title(filename):
     name = filename.replace('.pdf', '').replace('_', ' ')
     name = re.sub(r'\s+', ' ', name).strip()
     # Pattern 1: "6 nights, 7 days Destination" — comma optional, handles "6 Nights 7 Days …" too
@@ -338,16 +335,9 @@ def make_title(filename, cities=None):
     fixed = DESTINATION_FIXES.get(rest)
     dest = fixed if fixed is not None else smart_destination(rest.split())
     base = f"{duration} {dest}".strip()
-    # Check for a full-title override first (e.g. "Classic Italy", "Italy with Naples")
+    # Apply curated title overrides for specific packages
     if base in FULL_TITLE_OVERRIDES:
         return FULL_TITLE_OVERRIDES[base]
-    # Append city context for generic country/region names when ≥2 cities are available,
-    # unless the destination is excluded from city appending (e.g. Nordic Capitals).
-    if (cities and len(cities) >= 2
-            and dest not in NO_CITY_APPEND
-            and not any(c.lower() in dest.lower() for c in cities)):
-        city_str = smart_destination(cities[:3])
-        return f"{base} \u2014 {city_str}"
     return base
 
 
@@ -849,7 +839,7 @@ def main():
             print(f"  {pdf}")
             pkg_key = folder_rel + "/" + pdf
             pdf_data = extract_pdf_data(os.path.join(folder_abs, pdf), pdf)
-            title = make_title(pdf, pdf_data.get("cities", []))
+            title = make_title(pdf)
 
             # Use cached description if it's a good one
             cached_desc = existing_pkgs.get(pkg_key, {}).get("description", None)
