@@ -275,7 +275,7 @@ def smart_destination(words):
         return f"{words[0]}, {words[1]}, {words[2]} & {words[3]}"
     return f"{', '.join(words[:-1])} & {words[-1]}"
 
-def make_title(filename):
+def make_title(filename, cities=None):
     name = filename.replace('.pdf', '').replace('_', ' ')
     name = re.sub(r'\s+', ' ', name).strip()
     # Pattern 1: "6 nights, 7 days Destination" — comma optional, handles "6 Nights 7 Days …" too
@@ -321,9 +321,12 @@ def make_title(filename):
     rest = re.sub(r'-', ' ', rest)             # "England-Scotland" → "England Scotland"
     rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
     fixed = DESTINATION_FIXES.get(rest)
-    if fixed is not None:
-        return f"{duration} {fixed}".strip()   # exact override — bypass smart_destination
-    return f"{duration} {smart_destination(rest.split())}".strip()
+    dest = fixed if fixed is not None else smart_destination(rest.split())
+    # Append city context for generic country/region names when ≥2 cities are available
+    if cities and len(cities) >= 2 and not any(c.lower() in dest.lower() for c in cities):
+        city_str = smart_destination(cities[:3])
+        return f"{duration} {dest} \u2014 {city_str}".strip()
+    return f"{duration} {dest}".strip()
 
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
@@ -602,12 +605,17 @@ def make_map_js(map_id, cities, coords_cache):
             points.append([coords[0], coords[1], city])
     if not points: return ""
     coords_js = json.dumps(points)
+    # Dynamic padding: tighter for single/close cities, wider for long-haul routes
+    lat_spread = max(p[0] for p in points) - min(p[0] for p in points)
+    lng_spread = max(p[1] for p in points) - min(p[1] for p in points)
+    spread = max(lat_spread, lng_spread)
+    pad = 1.2 if spread > 5 else (0.6 if spread > 1 else 0.3)
     return f"""(function(){{
   var pts={coords_js};
   if(!pts.length) return;
   var lats=pts.map(function(p){{return p[0];}});
   var lngs=pts.map(function(p){{return p[1];}});
-  var pad=0.6;
+  var pad={pad};
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}});
   L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19,attribution:''}}).addTo(map);
@@ -819,7 +827,7 @@ def main():
             print(f"  {pdf}")
             pkg_key = folder_rel + "/" + pdf
             pdf_data = extract_pdf_data(os.path.join(folder_abs, pdf), pdf)
-            title = make_title(pdf)
+            title = make_title(pdf, pdf_data.get("cities", []))
 
             # Use cached description if it's a good one
             cached_desc = existing_pkgs.get(pkg_key, {}).get("description", None)
