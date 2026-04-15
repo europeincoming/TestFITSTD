@@ -117,6 +117,15 @@ DESTINATION_FIXES = {
     'Bavarian Austrian Christmas Markets': 'Bavarian & Austrian Christmas Markets',
 }
 
+# Destinations that should never have cities appended (name already descriptive enough).
+NO_CITY_APPEND = {'Nordic Capitals'}
+
+# Full title overrides keyed on "<duration> <dest>" — replace the entire generated title.
+FULL_TITLE_OVERRIDES = {
+    '6 nights, 7 days Italy':  '6 nights, 7 days Classic Italy',
+    '10 nights, 11 days Italy': '10 nights, 11 days Italy with Naples',
+}
+
 GEO_BLOCK = """<script>
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}
@@ -322,11 +331,18 @@ def make_title(filename, cities=None):
     rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
     fixed = DESTINATION_FIXES.get(rest)
     dest = fixed if fixed is not None else smart_destination(rest.split())
-    # Append city context for generic country/region names when ≥2 cities are available
-    if cities and len(cities) >= 2 and not any(c.lower() in dest.lower() for c in cities):
+    base = f"{duration} {dest}".strip()
+    # Check for a full-title override first (e.g. "Classic Italy", "Italy with Naples")
+    if base in FULL_TITLE_OVERRIDES:
+        return FULL_TITLE_OVERRIDES[base]
+    # Append city context for generic country/region names when ≥2 cities are available,
+    # unless the destination is excluded from city appending (e.g. Nordic Capitals).
+    if (cities and len(cities) >= 2
+            and dest not in NO_CITY_APPEND
+            and not any(c.lower() in dest.lower() for c in cities)):
         city_str = smart_destination(cities[:3])
-        return f"{duration} {dest} \u2014 {city_str}".strip()
-    return f"{duration} {dest}".strip()
+        return f"{base} \u2014 {city_str}"
+    return base
 
 
 # ── PDF EXTRACTION ────────────────────────────────────────────────────────────
