@@ -124,6 +124,7 @@ FULL_TITLE_OVERRIDES = {
     '7 nights, 8 days France':  '7 nights, 8 days Paris with Normandy & Loire Valley',
     '8 nights, 9 days France':  '8 nights, 9 days Paris with Provence & French Riviera',
     '4 nights, 5 days Rovaniemi': '4 nights, 5 days Finnish Lapland',
+    '7 nights, 8 days Rovaniemi': '7 nights, 8 days Finnish Lapland',
     '4 nights, 5 days Tromsø':  '4 nights, 5 days Northern Norway, Arctic Gateway',
     '7 nights, 8 days Tromsø':  '7 nights, 8 days Northern Norway, Arctic Gateway',
     '4 nights, 5 days Kiruna':  '4 nights, 5 days Swedish Lapland',
