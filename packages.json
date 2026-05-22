@@ -1328,6 +1328,27 @@
       ]
     },
     {
+      "id": "rovaniemi-7n-regular-winter",
+      "name": "7 nights, 8 days Finnish Lapland",
+      "filename": "Rovaniemi 7N_Regular Winter.pdf",
+      "region": "Scandinavia & Iceland",
+      "folder": "multi-country/scandinavia-iceland",
+      "cities": [
+        "Rovaniemi"
+      ],
+      "duration": "7 nights / 8 days",
+      "type": "Regular",
+      "season": "winter",
+      "price_twin": 2115,
+      "currency": "€",
+      "valid_till": "Mar 2027",
+      "is_expired": false,
+      "description": "Reindeer safaris, husky experiences and guaranteed Northern Lights from Santa's hometown.",
+      "tags": [
+        "Rovaniemi"
+      ]
+    },
+    {
       "id": "swedish-lapland-7n-regular-win",
       "name": "7 nights, 8 days Swedish Lapland",
       "filename": "Swedish Lapland 7N_Regular Winter.pdf",
