@@ -5,24 +5,121 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1345, "twin": 1050, "child": 735 },
-        "winter": { "single": 1170, "twin": 915, "child": 640 }
+        "summer": {
+          "single": 1345,
+          "twin": 1050,
+          "child": 735
+        },
+        "winter": {
+          "single": 1170,
+          "twin": 915,
+          "child": 640
+        }
       },
       "4": {
-        "summer": { "single": 1615, "twin": 1260, "child": 880 },
-        "winter": { "single": 1400, "twin": 1095, "child": 765 }
+        "summer": {
+          "single": 1615,
+          "twin": 1260,
+          "child": 880
+        },
+        "winter": {
+          "single": 1400,
+          "twin": 1095,
+          "child": 765
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 2495, "twin": 1950, "child": 1365 },
-        "winter": { "single": 2170, "twin": 1695, "child": 1185 }
-      },
-      "4": {
-        "summer": { "single": 2765, "twin": 2160, "child": 1510 },
-        "winter": { "single": 2405, "twin": 1880, "child": 1315 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1948,
+            "4star": 2168
+          },
+          {
+            "pax": 10,
+            "3star": 1714,
+            "4star": 1934
+          },
+          {
+            "pax": 12,
+            "3star": 1559,
+            "4star": 1778
+          },
+          {
+            "pax": 14,
+            "3star": 1447,
+            "4star": 1667
+          },
+          {
+            "pax": 16,
+            "3star": 1364,
+            "4star": 1583
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2037,
+            "4star": 2266
+          },
+          {
+            "pax": 10,
+            "3star": 1792,
+            "4star": 2022
+          },
+          {
+            "pax": 12,
+            "3star": 1629,
+            "4star": 1859
+          },
+          {
+            "pax": 14,
+            "3star": 1513,
+            "4star": 1742
+          },
+          {
+            "pax": 16,
+            "3star": 1426,
+            "4star": 1655
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 165
+    },
+    {
+      "name": "Louvre Museum (Audioguide €5 pp)",
+      "price": 17
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 149
+    },
+    {
+      "name": "Guided Tour of Versailles Palace with coach transfer",
+      "price": 104
+    },
+    {
+      "name": "Grindelwald First (with any two activities)",
+      "price": 75
+    },
+    {
+      "name": "Rhine Falls, 30 mins boat ride",
+      "price": 22
+    },
+    {
+      "name": "Grindelwald First (any 2 activities)",
+      "price": 104
+    },
+    {
+      "name": "Lindt chocolate museum ticket",
+      "price": 15
+    }
+  ]
 }

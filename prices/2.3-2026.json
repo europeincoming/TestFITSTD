@@ -5,24 +5,119 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1856, "twin": 1450, "child": 1015 },
-        "winter": { "single": 1633, "twin": 1276, "child": 893 }
+        "summer": {
+          "single": 1856,
+          "twin": 1450,
+          "child": 1015
+        },
+        "winter": {
+          "single": 1633,
+          "twin": 1276,
+          "child": 893
+        }
       },
       "4": {
-        "summer": { "single": 2227, "twin": 1740, "child": 1218 },
-        "winter": { "single": 1960, "twin": 1531, "child": 1072 }
+        "summer": {
+          "single": 2227,
+          "twin": 1740,
+          "child": 1218
+        },
+        "winter": {
+          "single": 1960,
+          "twin": 1531,
+          "child": 1072
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 2510, "twin": 1960, "child": 1372 },
-        "winter": { "single": 2208, "twin": 1725, "child": 1208 }
-      },
-      "4": {
-        "summer": { "single": 3010, "twin": 2350, "child": 1645 },
-        "winter": { "single": 2650, "twin": 2068, "child": 1448 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2289,
+            "4star": 2551
+          },
+          {
+            "pax": 10,
+            "3star": 1992,
+            "4star": 2254
+          },
+          {
+            "pax": 12,
+            "3star": 1794,
+            "4star": 2056
+          },
+          {
+            "pax": 16,
+            "3star": 1653,
+            "4star": 1915
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2393,
+            "4star": 2667
+          },
+          {
+            "pax": 10,
+            "3star": 2083,
+            "4star": 2357
+          },
+          {
+            "pax": 12,
+            "3star": 1876,
+            "4star": 2150
+          },
+          {
+            "pax": 16,
+            "3star": 1728,
+            "4star": 2002
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 185
+    },
+    {
+      "name": "Louvre Museum (Audioguide €5 pp)",
+      "price": 25
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 149
+    },
+    {
+      "name": "Grindelwald First (with any two activities)",
+      "price": 75
+    },
+    {
+      "name": "Gondola ride, shared 30 mins",
+      "price": 38
+    },
+    {
+      "name": "Half day coach tour to Pisa, 5.5 hrs",
+      "price": 65
+    },
+    {
+      "name": "Half day coach tour to Chianti vineyards & wine tastings, 5.5 hrs",
+      "price": 75
+    },
+    {
+      "name": "Vatican museums walking tour, small group 3 hrs",
+      "price": 72
+    },
+    {
+      "name": "Versailles Palace admission ticket",
+      "price": 30
+    },
+    {
+      "name": "Grindelwald First (any 2 activities)",
+      "price": 116
+    }
+  ]
 }

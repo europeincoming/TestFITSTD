@@ -5,14 +5,51 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1860, "twin": 1450, "child": 1015 },
-        "winter": { "single": 1620, "twin": 1260, "child": 880 }
+        "summer": {
+          "single": 1860,
+          "twin": 1450,
+          "child": 1015
+        },
+        "winter": {
+          "single": 1620,
+          "twin": 1260,
+          "child": 880
+        }
       },
       "4": {
-        "summer": { "single": 2240, "twin": 1750, "child": 1225 },
-        "winter": { "single": 1950, "twin": 1520, "child": 1065 }
+        "summer": {
+          "single": 2240,
+          "twin": 1750,
+          "child": 1225
+        },
+        "winter": {
+          "single": 1950,
+          "twin": 1520,
+          "child": 1065
+        }
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "London Eye standard ticket",
+      "price": 26
+    },
+    {
+      "name": "London - Stonehenge and Bath Tour, 10 hrs regular coach including all entrance tickets",
+      "price": 116
+    },
+    {
+      "name": "Glasgow 1 day hop on hop off pass",
+      "price": 20
+    },
+    {
+      "name": "Edinburgh 1 day hop on hop off pass",
+      "price": 20
+    },
+    {
+      "name": "Edinburgh - Loch Lomond, Stirling Castle, 10 hrs coach regular",
+      "price": 95
+    }
+  ]
 }
