@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_ds/europe-incoming-design-system-019e26c6-5581-7b80-8380-1378fb59a35b/colors_and_type.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body{margin:0;background:#FFFFFF;}
+    a{color:#0B1733;} a:hover{color:#B8870A;}
+    .leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:#0B1733;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+    .leaflet-tooltip.city-tip::before{display:none!important;}
+    @media print{
+      .no-print{display:none!important;}
+      .print-block{display:block!important;padding:0!important;}
+      .print-full{padding:24px 0!important;}
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'Open Sans',sans-serif;color:#1A1D2E;font-size:15px;line-height:1.65;background:#FFFFFF">
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="no-print" style="position:sticky;top:0;z-index:300;background:#FFFFFF;border-bottom:1px solid #E5E7EC;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px">
+    <div style="display:flex;align-items:center;gap:20px">
+      <img src="assets/logo-europe-incoming.png" alt="Europe Incoming" style="height:38px;width:auto;display:block">
+      <a href="#" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;text-decoration:none" style-hover="color:#0B1733">← All packages</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="text-align:right">
+        <div style="font-size:11px;color:#6B7280">Trade enquiries</div>
+        <a href="mailto:fitsales@europeincoming.com" style="font-size:12px;font-weight:600;color:#0B1733;text-decoration:none">fitsales@europeincoming.com</a>
+      </div>
+      <button onClick="{{ printPdf }}" style="background:#F2B91D;color:#0B1733;border:none;padding:11px 22px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 220ms cubic-bezier(0.22,0.61,0.36,1)" style-hover="background:#E0A810">↓ Download PDF</button>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <div style="position:relative;height:{{ heroHeight }};background:#0B1733;overflow:hidden">
+    <div style="position:absolute;inset:0">{{ heroImgEl }}</div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,0.75) 0%,rgba(3,7,20,0.05) 65%)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:40px 48px;max-width:1200px;margin:0 auto;box-sizing:border-box">
+      <div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F2B91D;margin-bottom:10px">{{ eyebrow }}</div>
+      <h1 style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:56px;line-height:1.05;letter-spacing:-0.02em;text-transform:uppercase;color:#FFFFFF;margin:0 0 12px">{{ title }}</h1>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="font-size:14px;color:rgba(255,255,255,0.85);font-weight:600">{{ heroNights }}</span>
+        <span style="width:1px;height:14px;background:rgba(255,255,255,0.35)"></span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.65)">{{ heroRoute }}</span>
+        <span style="width:1px;height:14px;background:rgba(255,255,255,0.35)"></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#F2B91D">From {{ fromPrice }} pp</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ VARIANT BAR ============ -->
+  <div class="no-print" style="position:sticky;top:64px;z-index:290;background:#FFFFFF;border-bottom:1px solid #E5E7EC;box-shadow:0 1px 2px rgba(11,23,51,0.06)">
+    <div style="max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280">Travel style</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ styleOptions }}" as="opt" hint-placeholder-count="3">
+          <button onClick="{{ opt.select }}" style="{{ opt.style }}">{{ opt.label }}</button>
+        </sc-for>
+      </div>
+      <span style="margin-left:auto;font-size:12px;color:#6B7280">{{ styleBlurb }}</span>
+    </div>
+  </div>
+
+  <!-- ============ BODY ============ -->
+  <div class="print-block" style="display:flex;align-items:flex-start;gap:48px;max-width:1200px;margin:0 auto;padding:40px 48px;box-sizing:border-box">
+
+    <!-- MAIN COLUMN -->
+    <div class="print-full" style="flex:1;min-width:0">
+
+      <!-- Day by day -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin-bottom:4px">Day by day — {{ styleName }}</div>
+      <sc-for list="{{ days }}" as="day" hint-placeholder-count="7">
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid #E5E7EC">
+          <div style="text-align:center;padding-top:2px">
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9AA1AE">Day</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:#0B1733;line-height:1">{{ day.num }}</div>
+          </div>
+          <div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;color:#1A1D2E;margin-bottom:2px">{{ day.title }}</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8870A;margin-bottom:10px">{{ day.overnight }}</div>
+            <p style="font-family:'Open Sans',sans-serif;font-size:14px;line-height:1.75;color:#4B5563;margin:0 0 10px">{{ day.desc }}</p>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;gap:8px;align-items:baseline">
+                <span style="flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#1F8A5B;background:#EEF5F0;padding:3px 10px;border-radius:999px">Included</span>
+                <span style="font-size:13px;color:#4B5563">{{ day.included }}</span>
+              </div>
+              <sc-for list="{{ day.extras }}" as="ex" hint-placeholder-count="0">
+                <div style="display:flex;gap:8px;align-items:baseline">
+                  <span style="{{ ex.pillStyle }}">{{ ex.label }}</span>
+                  <span style="font-size:13px;color:#4B5563">{{ ex.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+
+      <!-- Inclusions -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin:40px 0 4px">Package includes — {{ styleName }}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin-bottom:36px">
+        <sc-for list="{{ inclusions }}" as="inc" hint-placeholder-count="6">
+          <div style="font-size:13.5px;color:#4B5563;padding:9px 0 9px 20px;border-bottom:1px solid #F2F4F7;position:relative"><span style="position:absolute;left:0;color:#1F8A5B;font-weight:700;font-size:12px">✓</span>{{ inc }}</div>
+        </sc-for>
+      </div>
+
+      <!-- Sample hotels -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin-bottom:14px">Sample hotels</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E5E7EC;border:1px solid #E5E7EC;border-radius:10px;overflow:hidden;margin-bottom:36px">
+        <sc-for list="{{ hotels }}" as="h" hint-placeholder-count="3">
+          <div style="background:#FFFFFF;padding:18px">
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9AA1AE;margin-bottom:2px">{{ h.city }}</div>
+            <div style="font-size:13px;font-weight:600;color:#1A1D2E;margin-bottom:10px">{{ h.nights }}</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.04em;color:#0B1733">3 STAR</div>
+            <div style="font-size:12.5px;color:#4B5563;margin-bottom:8px;line-height:1.4">{{ h.h3 }}</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.04em;color:#0B1733">4 STAR</div>
+            <div style="font-size:12.5px;color:#4B5563;line-height:1.4">{{ h.h4 }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Rates -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin-bottom:14px">Package rates — per person · {{ styleName }} · Valid {{ validity }}</div>
+      <div class="no-print" style="display:flex;gap:24px;align-items:center;margin-bottom:16px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:12px;color:#6B7280;font-weight:600">Hotel category</span>
+          <div style="display:flex;border:1px solid #E5E7EC;border-radius:6px;overflow:hidden">
+            <button onClick="{{ pick3 }}" style="{{ cat3Style }}">3★</button>
+            <button onClick="{{ pick4 }}" style="{{ cat4Style }}">4★</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:12px;color:#6B7280;font-weight:600">Season</span>
+          <div style="display:flex;border:1px solid #E5E7EC;border-radius:6px;overflow:hidden">
+            <button onClick="{{ pickSummer }}" style="{{ summerStyle }}">Apr–Oct</button>
+            <button onClick="{{ pickWinter }}" style="{{ winterStyle }}">Nov–Mar</button>
+          </div>
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:8px">
+        <thead>
+          <tr>
+            <th style="background:#0B1733;color:#FFFFFF;padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:left">Occupancy</th>
+            <th style="background:#0B1733;color:#FFFFFF;padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:right">Rate — {{ rateHeading }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ rateRows }}" as="row" hint-placeholder-count="3">
+            <tr>
+              <td style="padding:12px 16px;font-size:13.5px;border-bottom:1px solid #E5E7EC;color:#1A1D2E">{{ row.label }}</td>
+              <td style="padding:12px 16px;font-size:15px;border-bottom:1px solid #E5E7EC;text-align:right;font-weight:700;color:#0B1733">{{ row.price }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:#6B7280;font-style:italic;margin:0 0 36px">All rates in €, net, per person. Twin/double occupancy unless stated. Child 2–11 yrs sharing with 2 adults.</p>
+
+      <!-- Optional tours -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin-bottom:14px">Optional tours & extras</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E5E7EC;border:1px solid #E5E7EC;border-radius:10px;overflow:hidden;margin-bottom:36px">
+        <sc-for list="{{ optionalTours }}" as="t" hint-placeholder-count="6">
+          <div style="background:#FFFFFF;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <span style="font-size:13px;color:#4B5563">{{ t.name }}</span>
+            <span style="font-size:14px;font-weight:700;color:#0B1733;white-space:nowrap">{{ t.priceLabel }} <span style="font-size:11px;font-weight:400;color:#9AA1AE">pp</span></span>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Good to know -->
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;padding-bottom:8px;border-bottom:1px solid #E5E7EC;margin-bottom:14px">Good to know</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E5E7EC;border:1px solid #E5E7EC;border-radius:10px;overflow:hidden;margin-bottom:36px">
+        <sc-for list="{{ goodToKnow }}" as="g" hint-placeholder-count="4">
+          <div style="background:#FFFFFF;padding:18px 20px">
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8870A;margin-bottom:6px">{{ g.title }}</div>
+            <div style="font-size:13px;color:#4B5563;line-height:1.6">{{ g.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- T&C -->
+      <div style="margin-bottom:40px">
+        <button class="no-print" onClick="{{ toggleTc }}" style="width:100%;background:#FAFAF8;border:1px solid #E5E7EC;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#1A1D2E;border-radius:6px;text-align:left"><span>Terms & conditions</span><span>{{ tcArrow }}</span></button>
+        <sc-if value="{{ tcOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid #E5E7EC;border-top:none;padding:18px 22px;border-radius:0 0 6px 6px">
+            <sc-for list="{{ terms }}" as="t" hint-placeholder-count="5">
+              <div style="font-size:12.5px;color:#4B5563;padding:6px 0 6px 14px;border-bottom:1px solid #F2F4F7;position:relative;line-height:1.55"><span style="position:absolute;left:2px">·</span>{{ t }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="no-print" style="width:300px;flex-shrink:0;position:sticky;top:132px">
+      <div style="border:1px solid #E5E7EC;border-radius:10px;padding:22px;background:#FAFAF8;margin-bottom:20px">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8870A;margin-bottom:12px">About this tour</div>
+        <div onClick="{{ openMap }}" style="position:relative;cursor:zoom-in;margin-bottom:14px">
+          <div id="route-map" style="height:180px;border-radius:6px;border:1px solid #E5E7EC;overflow:hidden;pointer-events:none"></div>
+          <div style="position:absolute;right:8px;bottom:8px;background:#0B1733;color:#FFFFFF;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px">⤢ Enlarge</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="padding:9px 0;border-bottom:1px solid #E5E7EC"><div style="font-size:13px;font-weight:600;color:#1A1D2E">{{ aboutNights }}</div><div style="font-size:12px;color:#6B7280">{{ aboutRoute }}</div></div>
+          <sc-for list="{{ aboutItems }}" as="a" hint-placeholder-count="3">
+            <div style="padding:9px 0;border-bottom:1px solid #E5E7EC"><div style="font-size:13px;font-weight:600;color:#1A1D2E">{{ a.title }}</div><div style="font-size:12px;color:#6B7280">{{ a.body }}</div></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border:1px solid #E5E7EC;border-radius:10px;padding:22px;background:#0B1733">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F2B91D;margin-bottom:8px">Ready to quote?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:14px">Send us your dates and party size — we respond within one working day.</div>
+        <a href="mailto:fitsales@europeincoming.com" style="display:block;text-align:center;background:#F2B91D;color:#0B1733;padding:11px 0;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none" style-hover="background:#E0A810">Email the FIT team</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP POPUP -->
+  <sc-if value="{{ mapOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="no-print" onClick="{{ closeMap }}" style="position:fixed;inset:0;z-index:1000;background:rgba(11,23,51,0.65);display:flex;align-items:center;justify-content:center;padding:40px">
+      <div onClick="{{ stopClick }}" style="position:relative;background:#FFFFFF;border-radius:10px;box-shadow:0 14px 32px rgba(11,23,51,0.12),0 4px 8px rgba(11,23,51,0.06);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #E5E7EC">
+          <div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0B1733">Route map — {{ title }}</div>
+          <button onClick="{{ closeMap }}" aria-label="Close map" style="background:none;border:none;cursor:pointer;font-size:20px;line-height:1;color:#6B7280;padding:6px" style-hover="color:#0B1733">✕</button>
+        </div>
+        <div id="route-map-large" style="flex:1"></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <div style="background:#0B1733;color:rgba(255,255,255,0.55);padding:20px 48px;font-size:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <span>Europe Incoming Holdings Ltd · Reg. England & Wales 07053949</span>
+    <span><a href="mailto:fitsales@europeincoming.com" style="color:rgba(255,255,255,0.75);text-decoration:none">fitsales@europeincoming.com</a> · +44 208 994 5001</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;productFile&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;products/ireland-discovery.json&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Data&quot;}, &quot;defaultStyle&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;trains&quot;, &quot;selfdrive&quot;, &quot;private&quot;], &quot;default&quot;: &quot;trains&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Defaults&quot;}, &quot;showFoodTips&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;heroHeight&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 420, &quot;min&quot;: 300, &quot;max&quot;: 560, &quot;step&quot;: 20, &quot;unit&quot;: &quot;px&quot;, &quot;section&quot;: &quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { style: null, cat: '3', season: 'summer', tcOpen: false, mapOpen: false, product: null, prices: null };
+
+  productFile() { return this.props.productFile ?? 'products/ireland-discovery.json'; }
+
+  componentDidMount() {
+    fetch(this.productFile()).then(r => r.json()).then(product => {
+      this.setState({ product });
+      return fetch(product.pricesFile).then(r => r.json()).then(prices => this.setState({ prices }));
+    }).catch(() => {});
+    this._mapTimer = setInterval(() => {
+      if (window.L && document.getElementById('route-map') && this.state.product && !this._map) {
+        clearInterval(this._mapTimer);
+        this._map = this.drawMap('route-map', false);
+      }
+    }, 200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._mapTimer);
+    if (this._escHandler) document.removeEventListener('keydown', this._escHandler);
+  }
+
+  drawMap(elId, interactive) {
+    const cfg = this.state.product.map;
+    const pts = cfg.points;
+    const lats = pts.map(p => p.lat), lngs = pts.map(p => p.lng), pad = 0.4;
+    const map = L.map(elId, interactive
+      ? { zoomControl: true, scrollWheelZoom: true, attributionControl: false }
+      : { zoomControl: false, scrollWheelZoom: false, dragging: false, attributionControl: false });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 13 }).addTo(map);
+    map.fitBounds([[Math.min(...lats) - pad, Math.min(...lngs) - pad], [Math.max(...lats) + pad, Math.max(...lngs) + pad]], { padding: [14, 14] });
+    const route = pts.map(p => [p.lat, p.lng]);
+    if (cfg.closeLoop) route.push([pts[0].lat, pts[0].lng]);
+    L.polyline(route, { color: '#0B1733', weight: 2, dashArray: '5,4' }).addTo(map);
+    pts.forEach(p => {
+      if (p.nights > 0) {
+        const size = interactive ? 22 : 18;
+        L.marker([p.lat, p.lng], { icon: L.divIcon({
+          className: '',
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2],
+          html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:#0B1733;border:2px solid #F2B91D;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-size:' + (interactive ? 11 : 9) + 'px;font-weight:700;color:#FFFFFF">' + p.nights + '</div>'
+        }) }).addTo(map)
+          .bindTooltip(p.label + ' · ' + p.nights + 'N', { permanent: true, direction: 'top', className: 'city-tip', offset: [0, -size / 2] });
+      } else {
+        L.circleMarker([p.lat, p.lng], { radius: interactive ? 5 : 4, fillColor: '#9AA1AE', color: 'white', weight: 2, fillOpacity: 1 }).addTo(map)
+          .bindTooltip(p.label, { permanent: true, direction: 'top', className: 'city-tip', offset: [0, -5] });
+      }
+    });
+    return map;
+  }
+
+  openMapPopup() {
+    this.setState({ mapOpen: true }, () => {
+      if (!this._escHandler) {
+        this._escHandler = e => { if (e.key === 'Escape') this.closeMapPopup(); };
+        document.addEventListener('keydown', this._escHandler);
+      }
+      setTimeout(() => {
+        if (window.L && document.getElementById('route-map-large')) {
+          this._largeMap = this.drawMap('route-map-large', true);
+        }
+      }, 50);
+    });
+  }
+
+  closeMapPopup() {
+    if (this._largeMap) { this._largeMap.remove(); this._largeMap = null; }
+    if (this._escHandler) { document.removeEventListener('keydown', this._escHandler); this._escHandler = null; }
+    this.setState({ mapOpen: false });
+  }
+
+  renderVals() {
+    const { cat, season, tcOpen, mapOpen, product, prices } = this.state;
+    const eur = n => '\u20AC' + n.toLocaleString('en-GB');
+    const heroHeight = (this.props.heroHeight ?? 420) + 'px';
+
+    if (!product) {
+      return { heroHeight, heroImgEl: null, title: '', eyebrow: '', heroNights: '', heroRoute: '', fromPrice: '…',
+        styleOptions: [], styleBlurb: '', styleName: '', days: [], inclusions: [], hotels: [], rateRows: [],
+        validity: '', rateHeading: '', optionalTours: [], goodToKnow: [], terms: [], aboutNights: '', aboutRoute: '',
+        aboutItems: [], tcOpen: false, mapOpen: false, tcArrow: '▼',
+        pick3: () => {}, pick4: () => {}, pickSummer: () => {}, pickWinter: () => {},
+        cat3Style: {}, cat4Style: {}, summerStyle: {}, winterStyle: {},
+        toggleTc: () => {}, openMap: () => {}, closeMap: () => {}, stopClick: () => {}, printPdf: () => {} };
+    }
+
+    const styleKeys = Object.keys(product.styles);
+    const style = this.state.style ?? this.props.defaultStyle ?? styleKeys[0];
+    const cur = product.styles[style];
+
+    const styleOptions = styleKeys.map(key => ({
+      label: product.styles[key].name,
+      select: () => this.setState({ style: key }),
+      style: key === style
+        ? { background: '#0B1733', color: '#FFFFFF', border: '1px solid #0B1733', padding: '8px 16px', borderRadius: '999px', fontFamily: "'Montserrat',sans-serif", fontSize: '12px', fontWeight: 700, letterSpacing: '0.04em', cursor: 'pointer', transition: 'all 220ms cubic-bezier(0.22,0.61,0.36,1)' }
+        : { background: '#FFFFFF', color: '#4B5563', border: '1px solid #CBD0DA', padding: '8px 16px', borderRadius: '999px', fontFamily: "'Montserrat',sans-serif", fontSize: '12px', fontWeight: 600, letterSpacing: '0.04em', cursor: 'pointer', transition: 'all 220ms cubic-bezier(0.22,0.61,0.36,1)' }
+    }));
+
+    const segBtn = on => ({
+      background: on ? '#0B1733' : '#FFFFFF', color: on ? '#FFFFFF' : '#4B5563', border: 'none',
+      padding: '7px 14px', fontFamily: "'Montserrat',sans-serif", fontSize: '12px', fontWeight: 700, cursor: 'pointer'
+    });
+
+    const p = prices && prices.variants[style] && prices.variants[style][cat] && prices.variants[style][cat][season];
+    const rateRows = p ? [
+      { label: 'Single', price: eur(p.single) },
+      { label: 'Twin / Double', price: eur(p.twin) },
+      { label: 'Child (2–11)', price: eur(p.child) }
+    ] : [{ label: 'Loading rates…', price: '' }];
+
+    let fromPrice = '…';
+    if (prices && prices.variants[style]) {
+      const all = [];
+      Object.values(prices.variants[style]).forEach(c => Object.values(c).forEach(s => all.push(s.twin)));
+      fromPrice = eur(Math.min(...all));
+    }
+
+    const pill = (color, bg) => ({ flexShrink: 0, fontFamily: "'Montserrat',sans-serif", fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color, background: bg, padding: '3px 10px', borderRadius: '999px' });
+    const showFood = this.props.showFoodTips ?? true;
+    const days = product.days.map(d => {
+      const extras = [];
+      if (d.taste && showFood) extras.push({ label: 'Local taste', text: d.taste, pillStyle: pill('#B8870A', '#FEF7DC') });
+      if (d.experience) extras.push({ label: 'Local experience', text: d.experience, pillStyle: pill('#14245A', '#EEF1F8') });
+      if (d.shopping) extras.push({ label: 'Shopping', text: d.shopping, pillStyle: pill('#4B5563', '#F2F4F7') });
+      return {
+        ...d,
+        extras,
+        included: cur.transport[String(d.num)] || d.fallbackIncluded || 'Day at leisure.'
+      };
+    });
+
+    return {
+      heroHeight,
+      heroImgEl: React.createElement('img', { src: product.heroImage, alt: product.title, style: { width: '100%', height: '100%', objectFit: 'cover', opacity: 0.65, display: 'block' } }),
+      title: product.title,
+      eyebrow: product.eyebrow,
+      heroImage: product.heroImage,
+      heroNights: cur.nights,
+      heroRoute: cur.route,
+      aboutNights: cur.aboutNights,
+      aboutRoute: cur.route,
+      aboutItems: product.about,
+      styleName: cur.name,
+      styleBlurb: cur.blurb,
+      styleOptions,
+      days,
+      inclusions: cur.inclusions,
+      hotels: product.hotels,
+      rateRows,
+      fromPrice,
+      validity: prices ? prices.validFrom + ' – ' + prices.validTo : '',
+      rateHeading: (cat === '3' ? '3★ hotels' : '4★ hotels') + ' · ' + (season === 'summer' ? 'Apr–Oct' : 'Nov–Mar'),
+      pick3: () => this.setState({ cat: '3' }),
+      pick4: () => this.setState({ cat: '4' }),
+      pickSummer: () => this.setState({ season: 'summer' }),
+      pickWinter: () => this.setState({ season: 'winter' }),
+      cat3Style: segBtn(cat === '3'),
+      cat4Style: segBtn(cat === '4'),
+      summerStyle: segBtn(season === 'summer'),
+      winterStyle: segBtn(season === 'winter'),
+      optionalTours: (prices ? prices.optionalTours : []).map(t => ({ name: t.name, priceLabel: eur(t.price) })),
+      goodToKnow: product.goodToKnow.filter(g => !g.styles || g.styles.includes(style)),
+      terms: product.terms,
+      tcOpen,
+      mapOpen,
+      openMap: () => this.openMapPopup(),
+      closeMap: () => this.closeMapPopup(),
+      stopClick: e => e.stopPropagation(),
+      tcArrow: tcOpen ? '▲' : '▼',
+      toggleTc: () => this.setState(s => ({ tcOpen: !s.tcOpen })),
+      printPdf: () => { this.setState({ tcOpen: true }, () => setTimeout(() => window.print(), 150)); }
+    };
+  }
+}
+</script>
+</body>
+</html>
