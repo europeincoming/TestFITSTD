@@ -5,24 +5,121 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 2350, "twin": 1850, "child": 1295 },
-        "winter": { "single": 2070, "twin": 1630, "child": 1141 }
+        "summer": {
+          "single": 2350,
+          "twin": 1850,
+          "child": 1295
+        },
+        "winter": {
+          "single": 2070,
+          "twin": 1630,
+          "child": 1141
+        }
       },
       "4": {
-        "summer": { "single": 2820, "twin": 2220, "child": 1554 },
-        "winter": { "single": 2480, "twin": 1950, "child": 1365 }
+        "summer": {
+          "single": 2820,
+          "twin": 2220,
+          "child": 1554
+        },
+        "winter": {
+          "single": 2480,
+          "twin": 1950,
+          "child": 1365
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 3110, "twin": 2450, "child": 1715 },
-        "winter": { "single": 2740, "twin": 2160, "child": 1512 }
-      },
-      "4": {
-        "summer": { "single": 3730, "twin": 2940, "child": 2058 },
-        "winter": { "single": 3290, "twin": 2590, "child": 1813 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2200,
+            "4star": 2486
+          },
+          {
+            "pax": 10,
+            "3star": 1873,
+            "4star": 2159
+          },
+          {
+            "pax": 12,
+            "3star": 1655,
+            "4star": 1941
+          },
+          {
+            "pax": 14,
+            "3star": 1499,
+            "4star": 1785
+          },
+          {
+            "pax": 16,
+            "3star": 1382,
+            "4star": 1668
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2300,
+            "4star": 2599
+          },
+          {
+            "pax": 10,
+            "3star": 1958,
+            "4star": 2257
+          },
+          {
+            "pax": 12,
+            "3star": 1730,
+            "4star": 2029
+          },
+          {
+            "pax": 14,
+            "3star": 1567,
+            "4star": 1866
+          },
+          {
+            "pax": 16,
+            "3star": 1445,
+            "4star": 1744
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Rome - Small group walking tour of Vatican Museums, 2.5 hrs",
+      "price": 72
+    },
+    {
+      "name": "Rome - Food tour, small group walking, 3.5 hrs",
+      "price": 85
+    },
+    {
+      "name": "Day trip to Amalfi and Pompeii, 8 hrs coach tour",
+      "price": 105
+    },
+    {
+      "name": "Day trip to Capri and Anacapri with lunch, 8 hrs coach tour",
+      "price": 141
+    },
+    {
+      "name": "Naples food tour, 3.5 hrs walking",
+      "price": 85
+    },
+    {
+      "name": "Florence - Food tour, small group walking, 3.5 hrs",
+      "price": 85
+    },
+    {
+      "name": "Venice - Gondola ride, 30 mins shared",
+      "price": 38
+    },
+    {
+      "name": "Gondola ride, shared 30 mins",
+      "price": 38
+    }
+  ]
 }
