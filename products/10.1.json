@@ -30,7 +30,8 @@
       "num": 1,
       "title": "Arrive Rovaniemi",
       "overnight": "Overnight: Rovaniemi",
-      "desc": "Fly into Rovaniemi, gateway to Finnish Lapland and the official hometown of Santa Claus, right on the Arctic Circle. A private transfer takes you to your hotel, leaving the rest of the day free to adjust to the polar winter light and settle in.",
+      "desc": "Fly into Rovaniemi, gateway to Finnish Lapland and the official hometown of Santa Claus, sitting right on the Arctic Circle where the Kemijoki and Ounasjoki rivers meet. A private transfer takes you to your hotel, leaving the rest of the day free to adjust to the polar winter light and settle in.",
+      "taste": "A glass of Lapin Kulta, Finland's own Arctic-brewed lager, is the classic first drink after checking in.",
       "fallbackIncluded": ""
     },
     {
@@ -38,6 +39,7 @@
       "title": "Reindeer Farm & Northern Lights",
       "overnight": "Overnight: Rovaniemi",
       "desc": "Visit a working reindeer farm for a hands-on introduction to Lapland's traditional reindeer husbandry, followed by a short reindeer-pulled safari through snow-covered forest. After dark, head out on a guaranteed Northern Lights excursion away from the town's light pollution to watch for the Aurora Borealis dancing overhead.",
+      "taste": "Poronkäristys — sautéed reindeer served with mashed potato and lingonberry sauce — is Lapland's signature dish and often the farm's own lunch offering.",
       "experience": "A guaranteed Aurora Borealis hunt is one of the defining experiences of a Lapland winter, best seen on clear nights between September and March."
     },
     {
@@ -45,13 +47,15 @@
       "title": "Husky Experience",
       "overnight": "Overnight: Rovaniemi",
       "desc": "Spend the day at a husky farm, meeting the dogs before a short sledding safari across frozen trails behind your own team of huskies. It is one of the quintessential Lapland winter activities and a highlight for most first-time visitors to the Arctic Circle.",
+      "taste": "Warm up afterwards with glögi, the spiced and berry-sweetened mulled wine served at farms and cafés across Finland all winter.",
       "experience": "Mushing your own husky sled team through snowy taiga forest is a genuine Lapland classic, dating back to the region's traditional working dogs."
     },
     {
       "num": 4,
       "title": "Rovaniemi at leisure",
       "overnight": "Overnight: Rovaniemi",
-      "desc": "A free day to explore Rovaniemi at your own pace. Visit the Arktikum museum to learn about Arctic life and science, or cross the Arctic Circle line itself at Santa Claus Village, just north of the town centre.",
+      "desc": "A free day to explore Rovaniemi at your own pace. Visit the Arktikum museum, its glass-and-steel tunnel built into the riverbank to tell the story of Arctic life and science, or cross the Arctic Circle line itself at Santa Claus Village, just north of the town centre.",
+      "taste": "Try leipäjuusto, Finland's traditional squeaky cheese, warmed and served with cloudberry jam in the town's cafés.",
       "fallbackIncluded": "Day at leisure — optional Santa Claus Village visit or snowmobile safari available."
     },
     {
@@ -59,6 +63,7 @@
       "title": "Rovaniemi at leisure",
       "overnight": "Overnight: Rovaniemi",
       "desc": "Another free day in Rovaniemi to relax or add further Arctic activities such as ice fishing, a snowmobile safari, or a visit to a real reindeer or snow hotel in the surrounding forests.",
+      "experience": "A traditional Finnish sauna followed by a plunge through the ice — avanto swimming — is a genuine local ritual, not just a tourist add-on.",
       "fallbackIncluded": "Day at leisure — optional ice fishing or snowmobile safari available."
     },
     {
@@ -97,7 +102,7 @@
     },
     {
       "title": "Daylight hours",
-      "body": "In deep winter Rovaniemi sees only a few hours of daylight, with a long blue twilight either side — plan sightseeing around the brightest midday hours."
+      "body": "In deep winter Rovaniemi enters kaamos, the polar night, with only a few hours of daylight and a long blue twilight either side — plan sightseeing around the brightest midday hours."
     },
     {
       "title": "Northern Lights",
@@ -112,7 +117,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere in Finland, including for small purchases; carrying cash is rarely necessary."
+      "body": "Cards are accepted almost everywhere in Finland, including for small purchases; carrying cash is rarely necessary, and tipping is appreciated but not customary."
     }
   ],
   "map": {

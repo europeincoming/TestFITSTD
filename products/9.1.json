@@ -41,13 +41,15 @@
       "num": 2,
       "title": "Copenhagen → Ferry to Oslo",
       "overnight": "Overnight: DFDS Ferry to Oslo",
-      "desc": "A full day exploring Copenhagen with the Hop-On Hop-Off bus — the Little Mermaid statue, Amalienborg Palace and the canal-side Christiansborg Palace are all on the route. In the evening, board the DFDS ferry for the overnight crossing to Oslo through the Kattegat and Oslofjord."
+      "desc": "A full day exploring Copenhagen with the Hop-On Hop-Off bus — the Little Mermaid statue, Amalienborg Palace and the canal-side Christiansborg Palace are all on the route. In the evening, board the DFDS ferry for the overnight crossing to Oslo through the Kattegat and Oslofjord.",
+      "taste": "Stop for a wienerbrød (Danish pastry) at a bakery near Nyhavn before boarding — the Danes claim to have perfected the flaky, laminated dough that took their name abroad."
     },
     {
       "num": 3,
       "title": "Oslo",
       "overnight": "Overnight: Oslo",
       "desc": "Wake up sailing into the Oslofjord, one of Europe's most scenic ferry approaches. Spend the day on the Hop-On Hop-Off bus taking in Akershus Fortress, the striking Oslo Opera House and the harbourside Aker Brygge district.",
+      "taste": "Try brunost, Norway's caramel-coloured brown cheese, on a waffle at one of the harbourside cafés in Aker Brygge — a breakfast staple in Norwegian households since the 1800s.",
       "experience": "Vigeland Sculpture Park in Frogner Park is the world's largest sculpture park created by a single artist — over 200 bronze and granite works by Gustav Vigeland."
     },
     {
@@ -69,6 +71,7 @@
       "title": "Helsinki",
       "overnight": "Overnight: Helsinki",
       "desc": "Arrive into Helsinki harbour through the archipelago. Sightseeing takes in Senate Square, the neoclassical Helsinki Cathedral and the bustling Market Square, with a Panorama tour in winter or a Hop-On Hop-Off bus and canal cruise in the summer months.",
+      "taste": "Try lohikeitto, a creamy salmon and leek soup, or fresh Baltic herring from the stalls at Kauppatori (Market Square), trading on the harbourfront since 1889.",
       "experience": "Suomenlinna, the UNESCO-listed sea fortress spread across six islands, is a short public ferry ride from Market Square."
     },
     {
@@ -115,7 +118,7 @@
     },
     {
       "title": "Currency & docs",
-      "body": "Four currencies are used across the route — Danish krone, Norwegian krone, Swedish krona and the Euro in Finland — but all four countries are within the Schengen area with no border checks between them."
+      "body": "Four currencies are used across the route — Danish krone, Norwegian krone, Swedish krona, and the Euro in Finland since 2002 — but all four countries are within the Schengen area with no border checks between them."
     }
   ],
   "goodToKnow": [
@@ -125,7 +128,7 @@
     },
     {
       "title": "Currencies",
-      "body": "Card payments are accepted almost everywhere across all four countries, so very little cash is needed beyond small purchases."
+      "body": "Card payments are accepted almost everywhere across all four countries — even at market stalls and on the ferries — so very little cash is needed beyond the odd coin for a public toilet."
     },
     {
       "title": "Rail travel",

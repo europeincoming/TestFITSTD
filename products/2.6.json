@@ -60,7 +60,7 @@
       "title": "Arrive Zurich",
       "overnight": "Overnight: Zurich",
       "desc": "Arrive into Zurich, Switzerland's largest city on the shores of Lake Zurich. Settle into your hotel with time to explore the cobbled Old Town, the shopfronts of Bahnhofstrasse, and the twin towers of the Grossmünster.",
-      "taste": "Sample Swiss chocolate and a classic cheese fondue in one of the Old Town's traditional restaurants."
+      "taste": "Luxemburgerli macarons at Confiserie Sprüngli on Paradeplatz, made to the same recipe since 1836, followed by cheese fondue at the Zeughauskeller, a former armoury dating to 1487."
     },
     {
       "num": 2,
@@ -74,20 +74,22 @@
       "title": "Zurich at leisure",
       "overnight": "Overnight: Zurich",
       "desc": "A free day to explore Zurich further — browse the boutiques on Bahnhofstrasse, take a cruise on Lake Zurich, or visit the Kunsthaus for its Swiss and European art collections.",
+      "taste": "Zürcher Geschnetzeltes, veal in a white wine and cream sauce served with rösti, a dish that takes its name from the city.",
       "fallbackIncluded": "Day at leisure — optional Rhine Falls or Zurich city tour available."
     },
     {
       "num": 4,
       "title": "Zurich → Venice (Mestre)",
       "overnight": "Overnight: Mestre",
-      "desc": "Travel south from Switzerland into Italy, crossing the Alps into the Veneto plain. Arrive in Mestre, the mainland gateway to Venice, just minutes from the lagoon."
+      "desc": "Travel south from Switzerland into Italy via the Gotthard Pass, home to the world's longest transport tunnel, before descending into the Veneto plain. Arrive in Mestre, the mainland gateway to Venice, just minutes from the lagoon."
     },
     {
       "num": 5,
       "title": "Venice",
       "overnight": "Overnight: Mestre",
       "desc": "Spend the day in Venice: St Mark's Square, the Byzantine domes of St Mark's Basilica, and the Doge's Palace overlooking the lagoon. Wander the maze of canals and bridges linking the city's six sestieri.",
-      "experience": "Glide along the Grand Canal on a traditional gondola, passing beneath the Rialto Bridge."
+      "experience": "Glide along the Grand Canal on a traditional gondola, passing beneath the Rialto Bridge.",
+      "taste": "Cicchetti and a glass of Prosecco at the Rialto Market's bacari, or a coffee at Caffè Florian in St Mark's Square, trading since 1720 as the oldest café in Europe."
     },
     {
       "num": 6,
@@ -101,7 +103,7 @@
       "num": 7,
       "title": "Florence → Rome",
       "overnight": "Overnight: Rome",
-      "desc": "A final morning in Florence before travelling south to Rome. Settle into your hotel with the Eternal City's ancient streets, piazzas and fountains waiting to be explored."
+      "desc": "A final morning in Florence — perhaps the Officina Profumo-Farmaceutica di Santa Maria Novella, trading since 1221 as one of the oldest pharmacies in the world — before travelling south to Rome. Settle into your hotel with the Eternal City's ancient streets, piazzas and fountains waiting to be explored."
     },
     {
       "num": 8,
@@ -228,7 +230,7 @@
   "region": "western-central-europe",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/2.6-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1541370976299-4d24be63b012?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

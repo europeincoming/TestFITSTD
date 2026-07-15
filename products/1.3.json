@@ -33,21 +33,22 @@
       "title": "Arrive London",
       "overnight": "Overnight: London",
       "desc": "Arrive into the British capital and transfer to your central hotel. Depending on arrival time, the rest of the day is free to explore nearby — Westminster Abbey, Big Ben and the Houses of Parliament are all within easy reach of most central hotels.",
-      "taste": "A classic pub dinner of fish and chips is the perfect first-night introduction to London."
+      "taste": "Fish and chips with a pint of London Pride at a historic pub — Ye Olde Cheshire Cheese, rebuilt after the Great Fire of 1666, is one of the city's oldest."
     },
     {
       "num": 2,
       "title": "London sightseeing",
       "overnight": "Overnight: London",
       "desc": "A full day discovering London with the Hop-on Hop-off ticket, taking in Buckingham Palace, the Tower of London and St Paul's Cathedral, before a one-way Thames river cruise gives a different perspective on the city's landmarks.",
-      "shopping": "Oxford Street and Regent Street offer some of the world's best-known flagship department stores.",
+      "shopping": "Selfridges on Oxford Street and the Art Nouveau Liberty department store on Regent Street are two of the world's most famous flagship stores.",
       "fallbackIncluded": "London Hop-on Hop-off 1-day pass with one-way Thames river cruise."
     },
     {
       "num": 3,
       "title": "London at leisure",
       "overnight": "Overnight: London",
-      "desc": "A free day to explore further — the British Museum, Covent Garden and the West End theatre district are all popular choices, or take a walk through Hyde Park and Kensington Gardens.",
+      "desc": "A free day to explore further — the British Museum's Rosetta Stone and Egyptian galleries, Covent Garden and the West End theatre district are all popular choices, or take a walk through Hyde Park and Kensington Gardens.",
+      "taste": "Borough Market, trading in some form since the 13th century, is one of London's oldest food markets — good for a lunch of artisan cheeses, salt beef and street food.",
       "experience": "Catch a West End show — London's theatre district rivals Broadway for range and quality.",
       "fallbackIncluded": "Day at leisure — optional West End show or Harry Potter Studio Tour available."
     },
@@ -56,6 +57,7 @@
       "title": "London → Glasgow",
       "overnight": "Overnight: Glasgow",
       "desc": "Travel north by train to Glasgow, Scotland's largest city. On arrival, explore George Square, the Merchant City and the Victorian architecture along Buchanan Street.",
+      "taste": "Glasgow lays claim to inventing chicken tikka masala in the 1970s, and the curry houses along the West End's Gibson Street are still renowned for it.",
       "experience": "Glasgow's Kelvingrove Art Gallery and Museum is one of Europe's great civic collections, and free to enter."
     },
     {
@@ -69,7 +71,7 @@
       "title": "Inverness & Loch Ness",
       "overnight": "Overnight: Inverness",
       "desc": "A day to explore the Highland capital and its surroundings — the ruins of 13th-century Urquhart Castle sit dramatically on the shores of Loch Ness, and boat cruises run regularly along the loch.",
-      "taste": "Try a wee dram at one of the Highland whisky bars — Inverness is a gateway to the Speyside distilleries.",
+      "taste": "Try a dram of Highland single malt at Hootananny on Church Street, Inverness's best-known venue for whisky and nightly live folk music, or order venison, a Highland speciality, at dinner.",
       "fallbackIncluded": "Day at leisure — optional Loch Ness & Urquhart Castle tour available."
     },
     {
@@ -83,7 +85,8 @@
       "title": "Edinburgh sightseeing",
       "overnight": "Overnight: Edinburgh",
       "desc": "A full day in Edinburgh: Edinburgh Castle dominates the skyline atop its volcanic crag, the Royal Mile links it to the Palace of Holyroodhouse, and Arthur's Seat offers panoramic views over the city.",
-      "experience": "Explore a Royal Mile whisky tasting experience, tracing Scotland's national drink through its regions.",
+      "taste": "Haggis, neeps and tatties at Deacon Brodie's Tavern on the Royal Mile — named after the 18th-century Edinburgh councillor and secret burglar said to have inspired Jekyll and Hyde.",
+      "experience": "The Scotch Whisky Experience, just below the Castle esplanade, traces the drink through Scotland's whisky regions with a barrel-ride tour and tastings.",
       "fallbackIncluded": "Day at leisure — optional Edinburgh Castle & Royal Mile walking tour available."
     },
     {
@@ -122,7 +125,7 @@
   "about": [
     {
       "title": "Best season",
-      "body": "May to September offers the longest, mildest days for city and Highland sightseeing alike."
+      "body": "May to September brings the longest, mildest days; August adds Edinburgh's Festival Fringe, the world's largest arts festival, so book hotels and trains well ahead."
     },
     {
       "title": "Weather",
@@ -151,7 +154,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere across England and Scotland; tipping around 10-12.5% in restaurants is customary."
+      "body": "Cards are accepted almost everywhere across England and Scotland; tipping around 10-12.5% in restaurants is customary. Scotland issues its own Bank of Scotland and RBS banknotes, legal tender UK-wide but occasionally refused in England."
     },
     {
       "title": "Highlands distances",
@@ -190,7 +193,7 @@
   "region": "uk-ireland",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/1.3-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1541849546-216549ae216d?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

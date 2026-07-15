@@ -31,7 +31,7 @@
       "num": 1,
       "title": "Arrive Kiruna",
       "overnight": "Overnight: Kiruna",
-      "desc": "Fly into Kiruna, Sweden's northernmost town and gateway to Swedish Lapland, some 145 km above the Arctic Circle. A private transfer takes you to your hotel, where the rest of the day is free to acclimatise to the polar winter and, if skies are clear, watch for the aurora borealis after dark.",
+      "desc": "Fly into Kiruna, Sweden's northernmost town and gateway to Swedish Lapland, some 145 km above the Arctic Circle. A private transfer takes you to your hotel; the rest of the day is free to acclimatise to the polar winter, take in the timber-built Kiruna Church — one of Sweden's largest wooden buildings, now being relocated as the whole town shifts to make way for the LKAB iron-ore mine — and, if skies are clear, watch for the aurora borealis after dark.",
       "experience": "Kiruna sits in the heart of Sápmi, home to the indigenous Sami people and their reindeer-herding traditions."
     },
     {
@@ -39,14 +39,15 @@
       "title": "Dog Sledding in the Wilderness",
       "overnight": "Overnight: Kiruna",
       "desc": "Head out by dog sled across snow-covered forest and frozen lakes for two to three hours, mushing your own team behind an experienced guide. In the evening, an optional Northern Lights chase by minibus or snowmobile sleigh heads away from town lights in search of clear, dark skies.",
-      "taste": "Warm up afterwards with reindeer stew and cloudberries, classic winter fare across Swedish Lapland."
+      "taste": "Warm up afterwards with reindeer stew (renskav) and cloudberries at Camp Ripan's restaurant, known locally for a Sami-inspired kitchen built on local game, Arctic char and forest berries."
     },
     {
       "num": 3,
       "title": "ICEHOTEL & Jukkasjärvi",
       "overnight": "Overnight: Kiruna",
       "desc": "Visit Jukkasjärvi, 20 km from Kiruna, home of the original ICEHOTEL, rebuilt every winter from blocks of ice cut from the Torne River since 1989. Wander its ice bar, ice church and hand-carved suites before returning to Kiruna.",
-      "experience": "See resident artists sculpting that season's ice suites, a new design unveiled each winter."
+      "experience": "See resident artists sculpting that season's ice suites, a new design unveiled each winter.",
+      "shopping": "Jukkasjärvi's craft shop sells Sami duodji — hand-carved reindeer-horn knives, woven bands and silverwork made by Sápmi artisans."
     },
     {
       "num": 4,

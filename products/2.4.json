@@ -62,27 +62,30 @@
       "title": "Arrive Amsterdam",
       "overnight": "Overnight: Amsterdam",
       "desc": "Arrive into the Dutch capital, a city built around a ring of 17th-century canals now protected as a UNESCO World Heritage Site. The rest of the day is free to wander the Jordaan district or the gabled houses along the Herengracht.",
-      "taste": "A wedge of aged Gouda and a glass of Dutch genever at a traditional brown café near the Nine Streets."
+      "taste": "A wedge of aged Gouda and a jenever at Café 't Smalle, a Jordaan brown café that has been pouring drinks on the Egelantiersgracht since 1780."
     },
     {
       "num": 2,
       "title": "Windmills & Volendam",
       "overnight": "Overnight: Amsterdam",
       "desc": "A full day beyond the city: the working windmills of Zaanse Schans, a cheese-making demonstration, and the picturesque former fishing village of Volendam with its wooden houses and harbour front.",
-      "experience": "Traditional clog-making demonstration at Zaanse Schans, a craft still practised on site."
+      "experience": "Traditional clog-making demonstration at Zaanse Schans, a craft still practised on site.",
+      "taste": "Smoked eel sold straight from the barrel at Volendam's harbourside stalls, a local speciality of the old Zuiderzee fishing fleet."
     },
     {
       "num": 3,
       "title": "Amsterdam to Paris",
       "overnight": "Overnight: Paris",
-      "desc": "Travel south by train into France, arriving in the City of Light in time to settle in before an evening stroll along the Seine or through the Marais."
+      "desc": "Travel south by train into France, arriving in the City of Light in time to settle in before an evening stroll along the Seine or through the Marais.",
+      "taste": "Steak-frites and a carafe of house red at a Marais bistro, the classic first-night dinner for arrivals in Paris."
     },
     {
       "num": 4,
       "title": "Paris City Tour",
       "overnight": "Overnight: Paris",
       "desc": "A guided tour taking in Notre-Dame, the Champs-Élysées and the Arc de Triomphe, a cruise along the Seine, and an ascent of the Eiffel Tower to its second floor for sweeping views over the rooftops of Paris.",
-      "shopping": "The Champs-Élysées and the department stores of Boulevard Haussmann, among the world's most famous shopping avenues."
+      "taste": "Macarons at Ladurée, the Paris confectioner trading on the Champs-Élysées since 1862, or an onion soup gratinée for dinner.",
+      "shopping": "Galeries Lafayette on Boulevard Haussmann, its 1912 stained-glass dome presiding over one of the world's most famous department stores."
     },
     {
       "num": 5,
@@ -95,20 +98,23 @@
       "title": "Mount Titlis excursion",
       "overnight": "Overnight: Lucerne",
       "desc": "Ride the world's first revolving cable car up to the glacier at Mount Titlis, over 3,000 metres above sea level, before returning to Lucerne for an included cruise on Lake Lucerne.",
-      "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, spanning a ridge just below the summit."
+      "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, spanning a ridge just below the summit.",
+      "taste": "Cheese fondue in a lakeside Stübli back in Lucerne after the descent from the glacier."
     },
     {
       "num": 7,
       "title": "Lucerne at leisure",
       "overnight": "Overnight: Lucerne",
       "desc": "A free day to explore Lucerne's compact old town at your own pace: the Lion Monument carved into a sandstone cliff, the frescoed Chapel Bridge, and the lakeside promenades.",
+      "taste": "Kirschtorte and pralines at Confiserie Bachmann, Lucerne's own confectioner and bakery since 1938.",
       "fallbackIncluded": "Day at leisure — optional excursions available."
     },
     {
       "num": 8,
       "title": "Lucerne to Zurich",
       "overnight": "Overnight: Zurich",
-      "desc": "Travel on to Zurich, Switzerland's largest city, with time to explore the cobbled Altstadt, the twin towers of the Grossmünster, and the boutiques along Bahnhofstrasse before dinner beside Lake Zurich."
+      "desc": "Travel on to Zurich, Switzerland's largest city, with time to explore the cobbled Altstadt, the twin towers of the Grossmünster, and the boutiques along Bahnhofstrasse before dinner beside Lake Zurich.",
+      "taste": "Luxemburgerli macarons and hot chocolate at Confiserie Sprüngli on Paradeplatz, trading since 1836."
     },
     {
       "num": 9,
@@ -171,7 +177,7 @@
     },
     {
       "title": "Your vehicle",
-      "body": "Driver working hours are limited by law, so day-trip timings are planned around required rest breaks. Luggage space fits one large case per guest.",
+      "body": "Driver working hours are limited to 10 hrs per day by EU and Swiss law, so day-trip timings are planned around required rest breaks. Luggage space fits one large case per guest.",
       "styles": [
         "private"
       ]
@@ -182,7 +188,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere; a little cash is useful for markets in Volendam and rural Switzerland. Tipping 10% in restaurants is customary, not obligatory."
+      "body": "Cards are accepted almost everywhere; a little cash is useful for the Volendam harbour stalls and Alpine cable-car kiosks. Tipping 10% in restaurants is customary, not obligatory."
     }
   ],
   "map": {
@@ -217,7 +223,7 @@
   "region": "western-central-europe",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/2.4-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

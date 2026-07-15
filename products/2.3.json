@@ -61,7 +61,8 @@
       "num": 1,
       "title": "Arrive Paris",
       "overnight": "Overnight: Paris",
-      "desc": "Arrive into the City of Light and transfer to your hotel. Depending on arrival time, take a first stroll along the Seine or up to Montmartre and Sacré-Cœur for sweeping views over the rooftops."
+      "desc": "Arrive into the City of Light and transfer to your hotel. Depending on arrival time, take a first stroll along the Seine or up to Montmartre and Sacré-Cœur for sweeping views over the rooftops.",
+      "taste": "A croissant and café crème at a zinc-topped counter, or steak-frites at a classic Left Bank bistro, are the simplest first tastes of Paris."
     },
     {
       "num": 2,
@@ -74,7 +75,8 @@
       "num": 3,
       "title": "Paris → Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Board the train for Lucerne, arriving in this compact lakeside city framed by snow-capped peaks. Walk across the wooden Chapel Bridge, one of Europe's oldest covered bridges, and along the Reuss River in the old town."
+      "desc": "Board the train for Lucerne, arriving in this compact lakeside city framed by snow-capped peaks. Walk across the wooden Chapel Bridge, one of Europe's oldest covered bridges, and along the Reuss River in the old town.",
+      "shopping": "Kapellplatz and the arcaded lanes of the old town are lined with Swiss watch and chocolate specialists, including the long-established Bucherer flagship."
     },
     {
       "num": 4,
@@ -101,14 +103,16 @@
       "title": "Venice",
       "overnight": "Overnight: Venice (Mestre)",
       "desc": "Cross into Venice to wander St Mark's Square, the Doge's Palace and the Rialto Bridge, with canals and gondolas at every turn in one of the world's most singular cities.",
-      "experience": "A gondola glide along the smaller canals away from the crowds is the classic Venetian experience, best taken in the early evening light."
+      "experience": "A gondola glide along the smaller canals away from the crowds is the classic Venetian experience, best taken in the early evening light.",
+      "taste": "The Bellini — prosecco and white peach purée — was invented at Harry's Bar near St Mark's Square in the 1930s and remains Venice's signature aperitif."
     },
     {
       "num": 8,
       "title": "Venice → Florence",
       "overnight": "Overnight: Florence",
       "desc": "Continue on to Florence, cradle of the Renaissance. Spend the afternoon around the Duomo, Ponte Vecchio and Piazza della Signoria before dinner in the Oltrarno district.",
-      "taste": "A Florentine bistecca alla fiorentina, a thick T-bone steak grilled rare, paired with a glass of Chianti Classico."
+      "taste": "A Florentine bistecca alla fiorentina, a thick T-bone steak grilled rare, paired with a glass of Chianti Classico.",
+      "shopping": "Ponte Vecchio's jewellers have traded from the same bridge-top workshops since the 16th century, when the Medici replaced its butchers' stalls with goldsmiths."
     },
     {
       "num": 9,
@@ -121,7 +125,8 @@
       "title": "Rome City Tour",
       "overnight": "Overnight: Rome",
       "desc": "A guided city tour covers the Colosseum, Roman Forum and Vatican-area highlights, tracing over two thousand years of history from ancient Rome to the Renaissance and Baroque.",
-      "experience": "Standing inside the Colosseum, where gladiators once fought before 50,000 spectators, remains one of Europe's most powerful historical experiences."
+      "experience": "Standing inside the Colosseum, where gladiators once fought before 50,000 spectators, remains one of Europe's most powerful historical experiences.",
+      "taste": "Cacio e pepe or carbonara in a Trastevere trattoria, with a carafe of chilled Frascati, is the classic Roman meal after a day among the ruins."
     },
     {
       "num": 11,
@@ -173,7 +178,7 @@
     },
     {
       "title": "Currency & docs",
-      "body": "Euro (€) in France and Italy, Swiss Franc (CHF) in Switzerland; all four countries lie within the Schengen area with no border checks between them."
+      "body": "Euro (€) in France and Italy, Swiss Franc (CHF) in Switzerland; all three countries lie within the Schengen area with no border checks between them."
     }
   ],
   "goodToKnow": [
@@ -201,7 +206,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere; keep some local cash for markets and smaller cafés. A 10% tip in restaurants is customary, not obligatory."
+      "body": "Cards are accepted almost everywhere, though vaporetto tickets and small trattorias in Venice's backstreets still often prefer cash. A 10% tip in restaurants is customary, not obligatory."
     }
   ],
   "map": {
@@ -242,7 +247,7 @@
   "region": "western-central-europe",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/2.3-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
