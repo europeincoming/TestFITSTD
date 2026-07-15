@@ -61,48 +61,48 @@
       "num": 1,
       "title": "Arrive Paris",
       "overnight": "Overnight: Paris",
-      "desc": "Arrive into the City of Light and transfer to your hotel. Depending on arrival time, take a first stroll along the Seine or up to Montmartre and Sacré-Cœur for sweeping views over the rooftops.",
+      "desc": "Welcome to the enchanting French capital! Upon arrival at the airport, enjoy a seamless transfer to your hotel. Dive into Parisian life by exploring iconic sites like the Champs-Élysées for high-end shopping, or relishing the artistic vibes of Montmartre. Experience the city's allure with a stroll along the Seine River or indulge in renowned French cuisine. Overnight in Paris",
       "taste": "A croissant and café crème at a zinc-topped counter, or steak-frites at a classic Left Bank bistro, are the simplest first tastes of Paris."
     },
     {
       "num": 2,
       "title": "Paris City Tour & Eiffel Tower",
       "overnight": "Overnight: Paris",
-      "desc": "A guided coach tour takes in the Champs-Élysées, Arc de Triomphe, Notre-Dame and the Louvre, followed by a Seine river cruise and a visit to the Eiffel Tower's 2nd floor for panoramic views across Paris.",
+      "desc": "Embark on a captivating 4-hour coach tour of Paris, immersing yourself in its timeless beauty. Cruise along the Seine River for an hour, admiring iconic landmarks from a unique perspective. Ascend to the Eiffel Tower's second floor, embracing panoramic views of the city's splendour. Overnight in Paris.",
       "shopping": "The Champs-Élysées and the grand department stores of Boulevard Haussmann, Galeries Lafayette and Printemps, are Paris's classic shopping stretches."
     },
     {
       "num": 3,
       "title": "Paris → Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Board the train for Lucerne, arriving in this compact lakeside city framed by snow-capped peaks. Walk across the wooden Chapel Bridge, one of Europe's oldest covered bridges, and along the Reuss River in the old town.",
+      "desc": "Check out and board the train to Basel or Zurich, commencing your Swiss adventure. Upon arrival in Switzerland, utilize the Swiss Travel Pass for your onward journey to Lucerne. The Pass covers seamless travel across the Swiss Travel System, enjoying unlimited travel on trains, boats, trams, and buses. Overnight in Lucerne.",
       "shopping": "Kapellplatz and the arcaded lanes of the old town are lined with Swiss watch and chocolate specialists, including the long-established Bucherer flagship."
     },
     {
       "num": 4,
       "title": "Mount Titlis Excursion",
       "overnight": "Overnight: Lucerne",
-      "desc": "Ride the rotating Titlis Rotair cableway up to almost 3,000 metres for glacier views and, snow permitting, the Ice Flyer chairlift and Glacier Cave. Return to Lucerne with time for a cruise on Lake Lucerne.",
+      "desc": "Utilize your Swiss Travel Pass to explore Mount Titlis, a breathtaking alpine experience. Revel in the stunning vistas, engage in snow activities, and relish the revolving Titlis Rotair gondola. Later, you can take a cruise on Lake Lucerne, enjoying the serene waters and picturesque surroundings. Overnight in Lucerne.",
       "taste": "Swiss chocolate and a wheel of melted raclette or a pot of cheese fondue are the classic warming treats after a day on the mountain."
     },
     {
       "num": 5,
       "title": "Lucerne at Leisure",
       "overnight": "Overnight: Lucerne",
-      "desc": "A free day to explore Lucerne at your own pace — the Lion Monument carved into the rock face, the Swiss Museum of Transport, or a further lake cruise to one of the lakeside villages.",
+      "desc": "Enjoy the freedom to explore Switzerland at your leisure using the Swiss Travel Pass. Delve into the scenic wonders of Grindelwald and Interlaken, known for their stunning landscapes. Optionally, consider a visit to Grindelwald First for panoramic views and thrilling activities. Overnight in Lucerne.",
       "fallbackIncluded": "Day at leisure in Lucerne — optional excursions such as Mount Pilatus available."
     },
     {
       "num": 6,
       "title": "Lucerne → Venice",
       "overnight": "Overnight: Venice (Mestre)",
-      "desc": "Travel south over the Alps into Italy, arriving at Mestre on the Venetian mainland, the gateway to Venice's historic islands just a short train or bus ride across the lagoon."
+      "desc": "Depart Lucerne by train, with two interchanges, en route to Venice Mestre. Venice is known for picturesque canals, iconic gondolas, and enchanting architecture of St. Mark's Square and the Doge's Palace. Delve into the romantic allure of Italy's floating city. Overnight stay in Venice Mestre."
     },
     {
       "num": 7,
       "title": "Venice",
       "overnight": "Overnight: Venice (Mestre)",
-      "desc": "Cross into Venice to wander St Mark's Square, the Doge's Palace and the Rialto Bridge, with canals and gondolas at every turn in one of the world's most singular cities.",
+      "desc": "Explore Venice's intricate streets, elegant palaces, and captivating churches with a Small Group Walking Tour. Starting at the iconic Piazza San Marco, uncover the secrets and history of St. Mark's Basilica, the Doge's Palace, and the Bell Tower. Traverse Campo SS. Giovanni e Paolo, Marco Polo’s House, and the Mercerie for a glimpse into Venice's rich history, art, and architecture. Overnight stay in Venice.",
       "experience": "A gondola glide along the smaller canals away from the crowds is the classic Venetian experience, best taken in the early evening light.",
       "taste": "The Bellini — prosecco and white peach purée — was invented at Harry's Bar near St Mark's Square in the 1930s and remains Venice's signature aperitif."
     },
@@ -110,7 +110,7 @@
       "num": 8,
       "title": "Venice → Florence",
       "overnight": "Overnight: Florence",
-      "desc": "Continue on to Florence, cradle of the Renaissance. Spend the afternoon around the Duomo, Ponte Vecchio and Piazza della Signoria before dinner in the Oltrarno district.",
+      "desc": "Depart Venice for Florence by train. Florence, known as the \"Cradle of the Renaissance,\" is famed for its historic art and cultural richness. Marvel at the iconic Duomo, Ponte Vecchio, and the vibrant streets of Florence. Immerse yourself in its artistry and history. Overnight stay in Florence.",
       "taste": "A Florentine bistecca alla fiorentina, a thick T-bone steak grilled rare, paired with a glass of Chianti Classico.",
       "shopping": "Ponte Vecchio's jewellers have traded from the same bridge-top workshops since the 16th century, when the Medici replaced its butchers' stalls with goldsmiths."
     },
@@ -118,13 +118,13 @@
       "num": 9,
       "title": "Florence → Rome",
       "overnight": "Overnight: Rome",
-      "desc": "Travel south to Rome, the Eternal City. Settle in with an evening walk past the Trevi Fountain and the Spanish Steps, both within easy reach of the historic centre."
+      "desc": "Depart Florence for Rome by train. Rome, known as the \"Eternal City,\" boasts iconic landmarks like the Trevi Fountain and the Spanish Steps. Immerse yourself in its rich history, from the Colosseum to Vatican City. Enjoy the timeless allure of Rome's ancient and modern marvels. Overnight stay in Rome."
     },
     {
       "num": 10,
       "title": "Rome City Tour",
       "overnight": "Overnight: Rome",
-      "desc": "A guided city tour covers the Colosseum, Roman Forum and Vatican-area highlights, tracing over two thousand years of history from ancient Rome to the Renaissance and Baroque.",
+      "desc": "Embark on an immersive Colosseum and Roman Forum walking tour, delving into the ancient heart of the Eternal City. Unravel the history of Rome with a local guide, uncovering stories of emperors, gladiators, and the city's captivating past. Explore the monumental Colosseum, an emblem of ancient grandeur, and the evocative ruins of the Roman Forum, where echoes of a glorious past linger. Overnight in Rome.",
       "experience": "Standing inside the Colosseum, where gladiators once fought before 50,000 spectators, remains one of Europe's most powerful historical experiences.",
       "taste": "Cacio e pepe or carbonara in a Trastevere trattoria, with a carafe of chilled Frascati, is the classic Roman meal after a day among the ruins."
     },
@@ -132,7 +132,7 @@
       "num": 11,
       "title": "Depart Rome",
       "overnight": "Departure day",
-      "desc": "Free time until your transfer to the airport, depending on flight schedule — a last espresso in a Roman piazza is the perfect send-off."
+      "desc": "Enjoy a private transfer from your Rome hotel to Rome airport, marking the conclusion of this captivating tour through Paris, Switzerland, and Italy."
     }
   ],
   "hotels": [
