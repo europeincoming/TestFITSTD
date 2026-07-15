@@ -1,0 +1,243 @@
+{
+  "id": "2.6",
+  "title": "Swiss Alps to the Italian Riviera.",
+  "styles": {
+    "trains": {
+      "name": "Trains & Taxi Transfers",
+      "blurb": "Scheduled Swiss and Italian trains linking Lucerne, Venice, Florence and Rome, with private taxi transfers on arrival and departure.",
+      "nights": "8 nights · 9 days",
+      "route": "Zurich (3N) → Mestre (2N) → Florence (1N) → Rome (2N)",
+      "aboutNights": "8 nights across 4 stays",
+      "transport": {
+        "1": "Private taxi transfer from Zurich airport to your Zurich hotel; the Swiss Travel Pass (3 days II class consecutive) begins.",
+        "2": "Lucerne excursion by train using the Swiss Travel Pass, with the cable car ascent to Mount Titlis.",
+        "4": "Scheduled train from Zurich to Venice (Mestre), II class.",
+        "6": "Scheduled train from Venice (Mestre) to Florence, II class.",
+        "7": "Scheduled train from Florence to Rome, II class.",
+        "9": "Private taxi transfer from your Rome hotel to Rome airport."
+      },
+      "inclusions": [
+        "Swiss Travel Pass, 3 days II class consecutive",
+        "Lucerne excursion with cable car ascent to Mount Titlis",
+        "Private taxi transfer, Zurich airport to hotel on arrival",
+        "Train ticket, Zurich to Venice (Mestre), II class",
+        "Train ticket, Venice (Mestre) to Florence, II class",
+        "Train ticket, Florence to Rome, II class",
+        "Private taxi transfer, Rome hotel to airport on departure",
+        "8 nights accommodation with daily breakfast"
+      ]
+    },
+    "private": {
+      "name": "Private Exclusive Coach",
+      "blurb": "A private coach and driver at your disposal throughout, covering every transfer between Lucerne, Venice, Florence and Rome.",
+      "nights": "8 nights · 9 days",
+      "route": "Zurich (3N) → Mestre (2N) → Florence (1N) → Rome (2N)",
+      "aboutNights": "8 nights across 4 stays",
+      "transport": {
+        "1": "Arrival transfer by private vehicle from Zurich airport to your hotel; private coach and driver on disposal from Day 1 to Day 9.",
+        "2": "Private transfer to Lucerne and Mount Titlis for an excursion, including the cable car to the glacier.",
+        "4": "Private coach transfer from Zurich to Venice (Mestre).",
+        "5": "Venice walking tour, 2 hours with an English-speaking guide.",
+        "6": "Private coach transfer from Venice (Mestre) to Florence.",
+        "7": "Private coach transfer from Florence to Rome.",
+        "8": "Rome city tour, 3 hours with an English-speaking guide (no entrances included).",
+        "9": "Private transfer from your Rome hotel to Rome airport."
+      },
+      "inclusions": [
+        "Private coach and driver on disposal from Day 1 to Day 9",
+        "Lucerne - Titlis excursion with private transfer",
+        "Venice walking tour, 2 hrs with English-speaking guide",
+        "Rome city tour, 3 hrs with English-speaking guide, no entrances",
+        "All inter-city transfers by private vehicle (Zurich - Venice - Florence - Rome)",
+        "Airport arrival and departure transfers by private vehicle",
+        "8 nights accommodation with daily breakfast"
+      ]
+    }
+  },
+  "days": [
+    {
+      "num": 1,
+      "title": "Arrive Zurich",
+      "overnight": "Overnight: Zurich",
+      "desc": "Arrive into Zurich, Switzerland's largest city on the shores of Lake Zurich. Settle into your hotel with time to explore the cobbled Old Town, the shopfronts of Bahnhofstrasse, and the twin towers of the Grossmünster.",
+      "taste": "Sample Swiss chocolate and a classic cheese fondue in one of the Old Town's traditional restaurants."
+    },
+    {
+      "num": 2,
+      "title": "Lucerne & Mount Titlis",
+      "overnight": "Overnight: Zurich",
+      "desc": "A full day trip to Lucerne, with its wooden Chapel Bridge and Water Tower reflected in the Reuss River, followed by the cable car ascent of Mount Titlis to the glacier for panoramic Alpine views.",
+      "experience": "Ride the world's first revolving cable car, the Titlis Rotair, up to 3,020 metres above sea level."
+    },
+    {
+      "num": 3,
+      "title": "Zurich at leisure",
+      "overnight": "Overnight: Zurich",
+      "desc": "A free day to explore Zurich further — browse the boutiques on Bahnhofstrasse, take a cruise on Lake Zurich, or visit the Kunsthaus for its Swiss and European art collections.",
+      "fallbackIncluded": "Day at leisure — optional Rhine Falls or Zurich city tour available."
+    },
+    {
+      "num": 4,
+      "title": "Zurich → Venice (Mestre)",
+      "overnight": "Overnight: Mestre",
+      "desc": "Travel south from Switzerland into Italy, crossing the Alps into the Veneto plain. Arrive in Mestre, the mainland gateway to Venice, just minutes from the lagoon."
+    },
+    {
+      "num": 5,
+      "title": "Venice",
+      "overnight": "Overnight: Mestre",
+      "desc": "Spend the day in Venice: St Mark's Square, the Byzantine domes of St Mark's Basilica, and the Doge's Palace overlooking the lagoon. Wander the maze of canals and bridges linking the city's six sestieri.",
+      "experience": "Glide along the Grand Canal on a traditional gondola, passing beneath the Rialto Bridge."
+    },
+    {
+      "num": 6,
+      "title": "Venice (Mestre) → Florence",
+      "overnight": "Overnight: Florence",
+      "desc": "Travel through the Tuscan countryside to Florence, cradle of the Renaissance. On arrival, take in the Duomo's terracotta dome, the Baptistery's bronze doors, and the shops lining the Ponte Vecchio.",
+      "shopping": "Browse Florentine leather goods around the Ponte Vecchio and the San Lorenzo market stalls.",
+      "taste": "Try Florentine gelato and, for dinner, a classic bistecca alla fiorentina."
+    },
+    {
+      "num": 7,
+      "title": "Florence → Rome",
+      "overnight": "Overnight: Rome",
+      "desc": "A final morning in Florence before travelling south to Rome. Settle into your hotel with the Eternal City's ancient streets, piazzas and fountains waiting to be explored."
+    },
+    {
+      "num": 8,
+      "title": "Rome city tour",
+      "overnight": "Overnight: Rome",
+      "desc": "A city tour taking in the Colosseum, the Roman Forum and Palatine Hill, before continuing past the Pantheon, Piazza Navona and the Trevi Fountain.",
+      "experience": "Stand within the Colosseum's outer ring, the largest amphitheatre ever built by the Roman Empire.",
+      "taste": "Enjoy Roman classics such as carbonara, cacio e pepe and supplì in a trattoria near the historic centre."
+    },
+    {
+      "num": 9,
+      "title": "Depart Rome",
+      "overnight": "Departure day",
+      "desc": "Free time until your private transfer to Rome airport for your onward flight, depending on departure time."
+    }
+  ],
+  "hotels": [
+    {
+      "city": "Zurich",
+      "nights": "3 Nights",
+      "h3": "Hotel Drei Konige",
+      "h4": "Hotel Ambassador à l'Opéra"
+    },
+    {
+      "city": "Mestre",
+      "nights": "2 Nights",
+      "h3": "Aaron Hotel",
+      "h4": "Novotel Venezia Mestre Castellana"
+    },
+    {
+      "city": "Florence",
+      "nights": "1 Night",
+      "h3": "Diana Park Hotel",
+      "h4": "Hotel Baglioni"
+    },
+    {
+      "city": "Rome",
+      "nights": "2 Nights",
+      "h3": "Hotel Nord Nuova",
+      "h4": "Hotel Diocleziano"
+    }
+  ],
+  "about": [
+    {
+      "title": "Best season",
+      "body": "April to June and September to October for mild weather across both the Alps and Italy, avoiding the peak summer heat and crowds."
+    },
+    {
+      "title": "Weather",
+      "body": "Cooler Alpine conditions in Zurich and Lucerne give way to warmer Mediterranean weather in Venice, Florence and Rome, especially in summer."
+    },
+    {
+      "title": "Currency & docs",
+      "body": "Switzerland uses the Swiss Franc (CHF) while Italy uses the Euro (€); both countries are within the Schengen Area, so no border checks apply for Schengen visa holders."
+    }
+  ],
+  "goodToKnow": [
+    {
+      "title": "Tickets & timing",
+      "body": "Book the Titlis cable car and Venice's St Mark's Basilica ahead in peak summer months — both can have long queues without a reservation."
+    },
+    {
+      "title": "Money",
+      "body": "Switzerland uses the Swiss Franc (CHF) while Italy uses the Euro (€) — cards are widely accepted in both, though a little local cash is useful for small purchases."
+    },
+    {
+      "title": "Rail travel",
+      "body": "The Swiss Travel Pass covers 3 consecutive days of II class rail travel within Switzerland, including the Lucerne excursion — plan sightseeing around its validity.",
+      "styles": [
+        "trains"
+      ]
+    },
+    {
+      "title": "Your vehicle",
+      "body": "Your private coach and driver are on disposal from Day 1 to Day 9 for all transfers and excursions — driver hours are limited by law, so daily timings are planned accordingly.",
+      "styles": [
+        "private"
+      ]
+    },
+    {
+      "title": "What to pack",
+      "body": "Pack layers for cooler Alpine mornings in Zurich and Lucerne, and comfortable shoes for Venice's bridges and the cobbled streets of Florence and Rome."
+    },
+    {
+      "title": "Border crossing",
+      "body": "Switzerland and Italy are both within the Schengen Area, so there are no passport checks crossing between them for Schengen visa holders."
+    }
+  ],
+  "map": {
+    "points": [
+      {
+        "lat": 47.3769,
+        "lng": 8.5417,
+        "label": "Zurich",
+        "nights": 3
+      },
+      {
+        "lat": 47.0502,
+        "lng": 8.3093,
+        "label": "Lucerne",
+        "nights": 0
+      },
+      {
+        "lat": 45.4903,
+        "lng": 12.2424,
+        "label": "Venice (Mestre)",
+        "nights": 2
+      },
+      {
+        "lat": 43.7696,
+        "lng": 11.2558,
+        "label": "Florence",
+        "nights": 1
+      },
+      {
+        "lat": 41.9028,
+        "lng": 12.4964,
+        "label": "Rome",
+        "nights": 2
+      }
+    ],
+    "closeLoop": false
+  },
+  "region": "western-central-europe",
+  "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
+  "pricesFile": "prices/2.6-2026.json",
+  "heroImage": "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1600&q=80",
+  "terms": [
+    "All rates are net and per person for the package.",
+    "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
+    "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.",
+    "Rates are not applicable during trade fair periods, major European public holidays, and other major events.",
+    "City taxes are not included in the price.",
+    "If certain attractions are closed during specific periods, alternative options will be arranged.",
+    "All bookings must be confirmed at least 60 working days prior to arrival.",
+    "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.",
+    "Vouchers will be issued after receipt of full payment."
+  ]
+}

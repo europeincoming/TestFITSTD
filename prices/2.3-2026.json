@@ -1,0 +1,28 @@
+{
+  "validFrom": "1 Apr 2026",
+  "validTo": "31 Mar 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "summer": { "single": 1856, "twin": 1450, "child": 1015 },
+        "winter": { "single": 1633, "twin": 1276, "child": 893 }
+      },
+      "4": {
+        "summer": { "single": 2227, "twin": 1740, "child": 1218 },
+        "winter": { "single": 1960, "twin": 1531, "child": 1072 }
+      }
+    },
+    "private": {
+      "3": {
+        "summer": { "single": 2510, "twin": 1960, "child": 1372 },
+        "winter": { "single": 2208, "twin": 1725, "child": 1208 }
+      },
+      "4": {
+        "summer": { "single": 3010, "twin": 2350, "child": 1645 },
+        "winter": { "single": 2650, "twin": 2068, "child": 1448 }
+      }
+    }
+  },
+  "optionalTours": []
+}

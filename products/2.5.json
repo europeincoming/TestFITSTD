@@ -1,0 +1,288 @@
+{
+  "id": "2.5",
+  "title": "Amsterdam, Paris, Lucerne & Italy Grand Tour.",
+  "styles": {
+    "trains": {
+      "name": "Trains & Taxi Transfers",
+      "blurb": "High-speed trains and private transfers link four countries, from Amsterdam's canals to Rome's ruins.",
+      "nights": "12 nights · 13 days",
+      "route": "Amsterdam (2N) → Paris (2N) → Lucerne (3N) → Mestre Venice (2N) → Florence (1N) → Rome (2N)",
+      "aboutNights": "12 nights across 6 stays",
+      "transport": {
+        "1": "Amsterdam airport to Amsterdam hotel private transfer.",
+        "2": "Full-day coach tour to the windmills of Zaanse Schans and the Volendam cheese factory, 5.5 hours.",
+        "3": "Amsterdam to Paris train ticket, II Class.",
+        "4": "Paris city tour by coach with a Seine river cruise and a visit to the Eiffel Tower's 2nd floor, 4 hours.",
+        "5": "Paris to Lucerne train ticket, II Class, with a 4-day consecutive Swiss Travel Pass beginning today.",
+        "6": "Full-day excursion to Mount Titlis on the Swiss Travel Pass, including a complimentary Lake Lucerne cruise."
+      },
+      "inclusions": [
+        "Amsterdam airport to hotel private transfer",
+        "Windmills, Zaanse Schans and Volendam cheese factory coach tour, 5.5 hrs",
+        "Amsterdam to Paris train ticket, II Class",
+        "Paris city tour, Seine cruise and Eiffel Tower 2nd floor visit, 4 hrs coach tour",
+        "Paris to Lucerne train ticket, II Class",
+        "4-day consecutive Swiss Travel Pass, II Class",
+        "Mount Titlis excursion with pass, Lake Lucerne cruise included",
+        "12 nights accommodation with daily breakfast"
+      ]
+    },
+    "private": {
+      "name": "Private Exclusive Coach",
+      "blurb": "A private coach and driver stay with you from Amsterdam to Rome, with guided stops along the way.",
+      "nights": "12 nights · 13 days",
+      "route": "Amsterdam (2N) → Paris (2N) → Lucerne (3N) → Mestre Venice (2N) → Florence (1N) → Rome (2N)",
+      "aboutNights": "12 nights across 6 stays",
+      "transport": {
+        "1": "Amsterdam airport to Amsterdam hotel private transfer; private coach at your disposal from Day 1 through Day 13.",
+        "2": "Private canal cruise combined with a Volendam and Marken excursion.",
+        "4": "Paris panoramic tour with a private English-speaking guide, 3 hours, plus a 1-hour Seine river cruise.",
+        "6": "Excursion to Titlis and Engelberg by private vehicle.",
+        "9": "Venice walking tour, 2 hours, with a private English-speaking guide.",
+        "12": "Rome city tour with a private English-speaking guide, 3 hours.",
+        "13": "Private coach transfer from Rome hotel to Rome airport, concluding the private vehicle service (Day 1-13)."
+      },
+      "inclusions": [
+        "Private coach on disposal from Day 1 till Day 13",
+        "Amsterdam airport to hotel private transfer",
+        "Canal cruise combined with Volendam and Marken excursion",
+        "Paris panoramic tour with English-speaking guide, 3 hrs",
+        "Seine river cruise, 1 hour",
+        "Titlis and Engelberg excursion by private vehicle",
+        "Venice walking tour, 2 hrs with English-speaking guide",
+        "Rome city tour with English-speaking guide, 3 hrs"
+      ]
+    }
+  },
+  "days": [
+    {
+      "num": 1,
+      "title": "Arrive Amsterdam",
+      "overnight": "Overnight: Amsterdam",
+      "desc": "Arrive into the Dutch capital, a city defined by its concentric 17th-century canal ring and Golden Age merchant houses. After the transfer to your hotel, the rest of the day is free to explore the nearby streets on foot or by bike.",
+      "taste": "A glass of genever and a plate of bitterballen at a classic brown café is the quintessential first-evening Amsterdam experience."
+    },
+    {
+      "num": 2,
+      "title": "Windmills & Volendam",
+      "overnight": "Overnight: Amsterdam",
+      "desc": "A full day outside the city: the working windmills and green-painted warehouses of Zaanse Schans, followed by the traditional fishing village of Volendam with its wooden-clog workshops and harbourside houses, and a stop at a working cheese farm.",
+      "taste": "Fresh Edam and Gouda cheese tasting at the Volendam cheese factory."
+    },
+    {
+      "num": 3,
+      "title": "Amsterdam to Paris",
+      "overnight": "Overnight: Paris",
+      "desc": "Travel by high-speed train from Amsterdam Centraal to Paris, crossing the Dutch and Belgian countryside before arriving in the French capital by afternoon. Settle into your hotel with the evening free to enjoy the city's illuminated boulevards."
+    },
+    {
+      "num": 4,
+      "title": "Paris",
+      "overnight": "Overnight: Paris",
+      "desc": "A full day discovering Paris: the grand avenues around the Arc de Triomphe and Champs-Élysées, a cruise along the Seine past Notre-Dame and the Louvre, and a visit to the Eiffel Tower's second floor for sweeping views over the city.",
+      "experience": "An evening Seine river cruise past the illuminated monuments is one of Paris's classic experiences.",
+      "shopping": "The Champs-Élysées and the Galeries Lafayette department store are famed Paris shopping destinations."
+    },
+    {
+      "num": 5,
+      "title": "Paris to Lucerne",
+      "overnight": "Overnight: Lucerne",
+      "desc": "Travel by train from Paris into Switzerland, arriving in Lucerne on the shores of Lake Lucerne beneath the snow-capped peaks of Mount Pilatus and Rigi. Explore the medieval Old Town and the covered Chapel Bridge in the evening light."
+    },
+    {
+      "num": 6,
+      "title": "Mount Titlis excursion",
+      "overnight": "Overnight: Lucerne",
+      "desc": "A full-day excursion to Mount Titlis, reached by revolving cable car to 3,020 metres, where a glacier, the Cliff Walk suspension bridge and an ice grotto await above the clouds. Return via a scenic cruise on Lake Lucerne.",
+      "experience": "The rotating Titlis cable car and the glacier ice grotto are among Switzerland's most memorable high-alpine experiences."
+    },
+    {
+      "num": 7,
+      "title": "Lucerne at leisure",
+      "overnight": "Overnight: Lucerne",
+      "desc": "A free day in Lucerne to explore at your own pace: the wooden Chapel Bridge and its octagonal water tower, the carved Lion Monument mourning the Swiss Guard, and the lakeside promenade lined with Belle Époque hotels.",
+      "fallbackIncluded": "Day at leisure — optional lake cruise or mountain excursion available."
+    },
+    {
+      "num": 8,
+      "title": "Lucerne to Venice (Mestre)",
+      "overnight": "Overnight: Mestre Venice",
+      "desc": "Travel south across the Alps via the Gotthard route, one of Europe's most scenic rail and road corridors, descending into the Italian plain and on to Mestre, the gateway town for Venice on the mainland.",
+      "fallbackIncluded": "Day at leisure — self-arranged travel to Venice today."
+    },
+    {
+      "num": 9,
+      "title": "Venice",
+      "overnight": "Overnight: Mestre Venice",
+      "desc": "A guided walking tour through Venice's historic centre: St Mark's Square and Basilica, the Doge's Palace, and the winding canals and bridges of the sestieri, crossing the Rialto Bridge over the Grand Canal.",
+      "experience": "A gondola ride along the quieter canals is the definitive Venetian experience."
+    },
+    {
+      "num": 10,
+      "title": "Venice to Florence",
+      "overnight": "Overnight: Florence",
+      "desc": "Travel through the Veneto and into Tuscany, arriving in Florence, cradle of the Renaissance. Spend the evening strolling past the Duomo's marble facade and across the Ponte Vecchio over the Arno.",
+      "fallbackIncluded": "Day at leisure — self-arranged travel to Florence today."
+    },
+    {
+      "num": 11,
+      "title": "Florence to Rome",
+      "overnight": "Overnight: Rome",
+      "desc": "A morning free in Florence near the Uffizi Gallery and the Piazza della Signoria before travelling south through the Tuscan and Umbrian hills to Rome, the Eternal City, in time for an evening stroll near the Trevi Fountain.",
+      "fallbackIncluded": "Day at leisure — self-arranged travel to Rome today."
+    },
+    {
+      "num": 12,
+      "title": "Rome",
+      "overnight": "Overnight: Rome",
+      "desc": "A guided city tour of Rome taking in the Colosseum and the Roman Forum, the Pantheon's ancient dome, and the baroque Trevi Fountain and Spanish Steps, tracing more than two thousand years of history.",
+      "taste": "Classic Roman dishes such as carbonara and cacio e pepe, followed by gelato near the Pantheon, are not to be missed."
+    },
+    {
+      "num": 13,
+      "title": "Depart Rome",
+      "overnight": "Departure day",
+      "desc": "Free time until your transfer to Rome airport, depending on flight schedule, bringing the journey from Amsterdam to Rome to a close."
+    }
+  ],
+  "hotels": [
+    {
+      "city": "Amsterdam",
+      "nights": "2 Nights",
+      "h3": "ibis Amsterdam City West",
+      "h4": "Mercure Amsterdam City Hotel"
+    },
+    {
+      "city": "Paris",
+      "nights": "2 Nights",
+      "h3": "Hôtel Londres et New York",
+      "h4": "Mercure Paris Montmartre Sacre Coeur"
+    },
+    {
+      "city": "Lucerne",
+      "nights": "3 Nights",
+      "h3": "De la Paix",
+      "h4": "Hotel Monopol"
+    },
+    {
+      "city": "Mestre Venice",
+      "nights": "2 Nights",
+      "h3": "Hotel Aaron",
+      "h4": "Hotel Plaza"
+    },
+    {
+      "city": "Florence",
+      "nights": "1 Night",
+      "h3": "Diana Park Hotel",
+      "h4": "Hotel Diplomat"
+    },
+    {
+      "city": "Rome",
+      "nights": "2 Nights",
+      "h3": "Hotel Nord Nuova",
+      "h4": "Palladium Palace"
+    }
+  ],
+  "about": [
+    {
+      "title": "Best season",
+      "body": "April to June and September to October offer mild weather across all four countries and thinner crowds than midsummer."
+    },
+    {
+      "title": "Weather",
+      "body": "Expect cooler, changeable conditions in Amsterdam, Paris and Lucerne (10-22°C) and warmer Mediterranean conditions in Florence and Rome (15-30°C in summer)."
+    },
+    {
+      "title": "Currency & docs",
+      "body": "The Netherlands, France, Italy and Vatican-adjacent Rome use the Euro (€), but Switzerland uses the Swiss Franc (CHF) despite being within the Schengen border-free area, so a small amount of local currency for Lucerne is worth carrying."
+    }
+  ],
+  "goodToKnow": [
+    {
+      "title": "Tickets & timing",
+      "body": "Book the Eiffel Tower, Uffizi Gallery and Colosseum slots ahead in summer — all three sell out days in advance. Mount Titlis is quietest on the first cable car up."
+    },
+    {
+      "title": "Rail travel",
+      "body": "Seat reservations are included on the Amsterdam-Paris and Paris-Lucerne trains. The Swiss Travel Pass also covers city transport and museum discounts in Lucerne.",
+      "styles": [
+        "trains"
+      ]
+    },
+    {
+      "title": "Your vehicle",
+      "body": "Driver working hours are limited to 10 hrs per day by law, so long transfer days such as Lucerne to Venice are paced with rest stops. Luggage space fits one large case per guest.",
+      "styles": [
+        "private"
+      ]
+    },
+    {
+      "title": "Border crossings",
+      "body": "Switzerland is in the Schengen area but not the EU, so a currency change is the main practical difference — no passport control is expected at the borders."
+    },
+    {
+      "title": "What to pack",
+      "body": "Layers for alpine evenings in Lucerne, comfortable shoes for cobblestones in Florence and Rome, and a light rain layer for Amsterdam and Paris."
+    },
+    {
+      "title": "Money",
+      "body": "Cards are accepted almost everywhere; keep small Euro and Swiss Franc cash amounts for markets, cafés and Volendam's stalls."
+    }
+  ],
+  "map": {
+    "points": [
+      {
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "label": "Amsterdam",
+        "nights": 2
+      },
+      {
+        "lat": 48.8566,
+        "lng": 2.3522,
+        "label": "Paris",
+        "nights": 2
+      },
+      {
+        "lat": 47.0502,
+        "lng": 8.3093,
+        "label": "Lucerne",
+        "nights": 3
+      },
+      {
+        "lat": 45.4903,
+        "lng": 12.2424,
+        "label": "Mestre Venice",
+        "nights": 2
+      },
+      {
+        "lat": 43.7696,
+        "lng": 11.2558,
+        "label": "Florence",
+        "nights": 1
+      },
+      {
+        "lat": 41.9028,
+        "lng": 12.4964,
+        "label": "Rome",
+        "nights": 2
+      }
+    ],
+    "closeLoop": false
+  },
+  "region": "western-central-europe",
+  "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
+  "pricesFile": "prices/2.5-2026.json",
+  "heroImage": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1600&q=80",
+  "terms": [
+    "All rates are net and per person for the package.",
+    "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
+    "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.",
+    "Rates are not applicable during trade fair periods, major European public holidays, and other major events.",
+    "City taxes are not included in the price.",
+    "If certain attractions are closed during specific periods, alternative options will be arranged.",
+    "All bookings must be confirmed at least 60 working days prior to arrival.",
+    "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.",
+    "Vouchers will be issued after receipt of full payment."
+  ]
+}

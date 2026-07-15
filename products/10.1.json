@@ -1,0 +1,144 @@
+{
+  "id": "10.1",
+  "title": "Rovaniemi Arctic Winter Escape.",
+  "styles": {
+    "trains": {
+      "name": "Trains & Taxi Transfers",
+      "blurb": "Private taxi transfers linking Rovaniemi airport, hotel and included Arctic excursions.",
+      "nights": "5 nights · 6 days",
+      "route": "Rovaniemi (5N)",
+      "aboutNights": "5 nights across 1 stay",
+      "transport": {
+        "1": "Private transfer from Rovaniemi airport to the hotel on arrival.",
+        "2": "Private transfer to and from a working reindeer farm for a 1-hour safari, with an evening pickup for the guaranteed Northern Lights excursion.",
+        "3": "Private transfer to and from a husky farm for the husky sledding experience.",
+        "6": "Private transfer from the Rovaniemi hotel to the airport for departure."
+      },
+      "inclusions": [
+        "Private airport–hotel transfer on arrival in Rovaniemi",
+        "Private hotel–airport transfer on departure",
+        "Reindeer Farm visit with 1-hour reindeer safari",
+        "Guaranteed Northern Lights (Aurora) evening excursion",
+        "Husky Experience with farm visit and short sledding safari",
+        "4 nights at Scandic Pohjanovi (or similar) on a Full Board basis",
+        "Daily breakfast throughout the stay"
+      ]
+    }
+  },
+  "days": [
+    {
+      "num": 1,
+      "title": "Arrive Rovaniemi",
+      "overnight": "Overnight: Rovaniemi",
+      "desc": "Fly into Rovaniemi, gateway to Finnish Lapland and the official hometown of Santa Claus, right on the Arctic Circle. A private transfer takes you to your hotel, leaving the rest of the day free to adjust to the polar winter light and settle in.",
+      "fallbackIncluded": ""
+    },
+    {
+      "num": 2,
+      "title": "Reindeer Farm & Northern Lights",
+      "overnight": "Overnight: Rovaniemi",
+      "desc": "Visit a working reindeer farm for a hands-on introduction to Lapland's traditional reindeer husbandry, followed by a short reindeer-pulled safari through snow-covered forest. After dark, head out on a guaranteed Northern Lights excursion away from the town's light pollution to watch for the Aurora Borealis dancing overhead.",
+      "experience": "A guaranteed Aurora Borealis hunt is one of the defining experiences of a Lapland winter, best seen on clear nights between September and March."
+    },
+    {
+      "num": 3,
+      "title": "Husky Experience",
+      "overnight": "Overnight: Rovaniemi",
+      "desc": "Spend the day at a husky farm, meeting the dogs before a short sledding safari across frozen trails behind your own team of huskies. It is one of the quintessential Lapland winter activities and a highlight for most first-time visitors to the Arctic Circle.",
+      "experience": "Mushing your own husky sled team through snowy taiga forest is a genuine Lapland classic, dating back to the region's traditional working dogs."
+    },
+    {
+      "num": 4,
+      "title": "Rovaniemi at leisure",
+      "overnight": "Overnight: Rovaniemi",
+      "desc": "A free day to explore Rovaniemi at your own pace. Visit the Arktikum museum to learn about Arctic life and science, or cross the Arctic Circle line itself at Santa Claus Village, just north of the town centre.",
+      "fallbackIncluded": "Day at leisure — optional Santa Claus Village visit or snowmobile safari available."
+    },
+    {
+      "num": 5,
+      "title": "Rovaniemi at leisure",
+      "overnight": "Overnight: Rovaniemi",
+      "desc": "Another free day in Rovaniemi to relax or add further Arctic activities such as ice fishing, a snowmobile safari, or a visit to a real reindeer or snow hotel in the surrounding forests.",
+      "fallbackIncluded": "Day at leisure — optional ice fishing or snowmobile safari available."
+    },
+    {
+      "num": 6,
+      "title": "Depart Rovaniemi",
+      "overnight": "Departure day",
+      "desc": "A private transfer takes you from your hotel to Rovaniemi airport in time for your onward or homebound flight, bringing your Arctic Circle winter break to a close."
+    }
+  ],
+  "hotels": [
+    {
+      "city": "Rovaniemi",
+      "nights": "5 Nights",
+      "h3": "Original Sokos Hotel Vaakuna Rovaniemi",
+      "h4": "Scandic Pohjanovi"
+    }
+  ],
+  "about": [
+    {
+      "title": "Best season",
+      "body": "This is a winter-only programme, best enjoyed between November and March when snow, huskies and Northern Lights excursions are all in season."
+    },
+    {
+      "title": "Weather",
+      "body": "Expect true Arctic winter conditions, typically -15°C to -5°C with heavy snow cover and short daylight hours."
+    },
+    {
+      "title": "Currency & docs",
+      "body": "Finland uses the Euro (€) and is part of the Schengen Area, so no internal border checks apply for Schengen-area travellers."
+    }
+  ],
+  "goodToKnow": [
+    {
+      "title": "What to pack",
+      "body": "Thermal layers, insulated waterproof boots and warm gloves are essential — outdoor excursions run regardless of temperature."
+    },
+    {
+      "title": "Daylight hours",
+      "body": "In deep winter Rovaniemi sees only a few hours of daylight, with a long blue twilight either side — plan sightseeing around the brightest midday hours."
+    },
+    {
+      "title": "Northern Lights",
+      "body": "Sightings depend on clear skies and solar activity; the guaranteed excursion includes a repeat outing on request if the Aurora is not seen."
+    },
+    {
+      "title": "Your transfers",
+      "body": "Airport, farm and departure transfers are private and run to your flight and excursion times.",
+      "styles": [
+        "trains"
+      ]
+    },
+    {
+      "title": "Money",
+      "body": "Cards are accepted almost everywhere in Finland, including for small purchases; carrying cash is rarely necessary."
+    }
+  ],
+  "map": {
+    "points": [
+      {
+        "lat": 66.5039,
+        "lng": 25.7294,
+        "label": "Rovaniemi",
+        "nights": 5
+      }
+    ],
+    "closeLoop": true
+  },
+  "region": "scandinavia-iceland",
+  "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
+  "pricesFile": "prices/10.1-2026.json",
+  "heroImage": "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?w=1600&q=80",
+  "terms": [
+    "All rates are net and per person for the package.",
+    "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
+    "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.",
+    "Rates are not applicable during trade fair periods, major European public holidays, and other major events.",
+    "City taxes are not included in the price.",
+    "If certain attractions are closed during specific periods, alternative options will be arranged.",
+    "All bookings must be confirmed at least 60 working days prior to arrival.",
+    "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.",
+    "Vouchers will be issued after receipt of full payment."
+  ]
+}

@@ -79,16 +79,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <h1>France</h1>
 <div class="brochures" id="brochuresList"><div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="2 Paris - 2 Avignon - 2 Aix - 2 Nice" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="Paris, Provence & the Côte d'Azur" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Paris - 2 Avignon - 2 Aix - 2 Nice</div>
-    <div class='card-duration'>🕐 8 nights</div>
-    <div class='card-route'>📍 Paris → Avignon → Aix en Provence → Nice</div>
-    <div class='card-desc'>Paris, Avignon and 2 more unmissable stops.</div>
-    
+    <div class="card-title">Paris, Provence & the Côte d'Azur</div>
+    <div class="card-duration">🕐 8 nights · 9 days</div>
+    <div class="card-route">📍 Paris (2N) → Avignon (2N) → Aix-en-Provence (2N) → Nice (2N)</div>
+    <div class="card-price">From €780 pp</div>
   </div>
   <div class="card-actions">
     <a href="5.1_brochure.html" class="btn-view">View Package</a>
@@ -96,16 +94,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </div>
 <div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="2 Paris - 2 Bayeux - 2 Tours - 1 Paris" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=75" alt="Paris, Normandy & Loire Valley Discovery" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Paris - 2 Bayeux - 2 Tours - 1 Paris</div>
-    
-    <div class='card-route'>📍 Paris → Bayeux → Tours → Paris</div>
-    <div class='card-desc'>Paris, Bayeux and 2 more unmissable stops.</div>
-    <div class="card-price">From €1,820 pp</div>
+    <div class="card-title">Paris, Normandy & Loire Valley Discovery</div>
+    <div class="card-duration">🕐 7 nights · 8 days</div>
+    <div class="card-route">📍 Paris (2N) → Bayeux (2N) → Tours (2N) → Paris (1N)</div>
+    <div class="card-price">From €930 pp</div>
   </div>
   <div class="card-actions">
     <a href="5.2_brochure.html" class="btn-view">View Package</a>
@@ -114,7 +110,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <footer><p>Browse packages below and click View Package for full details.</p></footer>
 </div>
 <script src="../../global-search.js"></script>
-<script>window.addEventListener('load',function(){(function(){var pts=[[48.8566, 2.3522, "Paris"], [43.9493, 4.8055, "Avignon"], [43.5298424, 5.4474738, "Aix en Provence"], [43.7102, 7.262, "Nice"]];if(!pts.length)return;
+<script>window.addEventListener('load',function(){(function(){var pts=[[48.8566, 2.3522, "Paris"], [43.9493, 4.8055, "Avignon"], [43.7102, 7.262, "Nice"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_5_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
@@ -127,7 +123,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
      .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){var pts=[[48.8566, 2.3522, "Paris"], [49.2764, -0.7024, "Bayeux"], [47.3941, 0.6848, "Tours"], [48.8566, 2.3522, "Paris"]];if(!pts.length)return;
+(function(){var pts=[[48.8566, 2.3522, "Paris"], [49.2764, -0.7024, "Bayeux"], [47.3941, 0.6848, "Tours"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_5_2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});

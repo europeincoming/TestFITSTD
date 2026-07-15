@@ -1,0 +1,31 @@
+{
+  "validFrom": "1 Apr 2026",
+  "validTo": "31 Mar 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "summer": { "single": 1380, "twin": 1085, "child": 760 },
+        "winter": { "single": 1215, "twin": 955, "child": 670 }
+      },
+      "4": {
+        "summer": { "single": 1785, "twin": 1405, "child": 985 },
+        "winter": { "single": 1570, "twin": 1235, "child": 865 }
+      }
+    },
+    "private": {
+      "3": {
+        "summer": { "single": 2070, "twin": 1630, "child": 1140 },
+        "winter": { "single": 1820, "twin": 1435, "child": 1005 }
+      },
+      "4": {
+        "summer": { "single": 2680, "twin": 2110, "child": 1480 },
+        "winter": { "single": 2360, "twin": 1860, "child": 1300 }
+      }
+    }
+  },
+  "optionalTours": [
+    { "name": "Rome - Colosseum admission ticket", "price": 35 },
+    { "name": "Rome - Vatican Museum admission ticket", "price": 45 }
+  ]
+}

@@ -1,12 +1,13 @@
 """
-rebuild_site.py — v11
-Changes from v10:
-- Modern card design with hero images, clean typography
-- Full brochure HTML pages generated per package (from mark12 JSONs)
-- Cards link to brochure pages + PDF download
-- mark12 integration: fetches package JSONs at build time
-- pricing_locked respected: locked packages keep stored prices
-- All v10 functionality preserved
+rebuild_site.py — v12
+Changes from v11:
+- Replaced the mark12-fetch brochure pipeline with a data-driven package
+  page: one static HTML page per products/<id>.json, paired with a
+  prices/<id>-<year>.json file (the only file touched for annual repricing).
+- Package pages render client-side from inline PRODUCT/PRICES JSON via the
+  shared assets/package-page.js (travel-style / hotel-category / season
+  switching, route map, print-to-PDF).
+- Modern card design with hero images, clean typography (v10/v11, unchanged)
 """
 
 import os, re, json, urllib.request, urllib.parse, time
@@ -16,7 +17,6 @@ import fitz
 REPO_ROOT     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GITHUB_TOKEN  = os.environ.get("GITHUB_TOKEN", "")
 COORDS_CACHE  = os.path.join(REPO_ROOT, "city_coords_cache.json")
-MARK12_RAW    = "https://raw.githubusercontent.com/europeincoming/mark12/main"
 
 # ── CITY IMAGES (Unsplash, royalty-free) ─────────────────────────────────────
 CITY_IMAGES = {
@@ -78,18 +78,6 @@ REGION_DISPLAY = {
     "scandinavia-iceland": "Scandinavia & Iceland", "spain-portugal": "Spain & Portugal",
     "switzerland": "Switzerland", "uk-ireland": "UK & Ireland",
     "western-central-europe": "Western & Central Europe",
-}
-
-# map12 region slug → folder_rel
-MARK12_REGION_MAP = {
-    "uk-ireland":             "multi-country/uk-ireland",
-    "western-central-europe": "multi-country/western-central-europe",
-    "italy":                  "multi-country/italy",
-    "france":                 "multi-country/france",
-    "switzerland":            "multi-country/switzerland",
-    "spain-portugal":         "multi-country/spain-portugal",
-    "eastern-europe":         "multi-country/eastern-europe",
-    "scandinavia":            "multi-country/scandinavia-iceland",
 }
 
 SEED_COORDS = {
@@ -481,574 +469,358 @@ def make_region_card(slug, display_name, pkg_count, tour_types):
 </a>"""
 
 
-# ── mark12 INTEGRATION ────────────────────────────────────────────────────────
-# Known package filenames in mark12 (update when new packages added)
-MARK12_FILES = [
-    # UK & Ireland
-    "1.1_3_London_private.json",
-    "1.2_3_London_-_2_Manchester-_2_Edinburgh_-_2.json",
-    "1.3_3_London_-_1_Glasgow_-_2_Inverness_-_2_E.json",
-    "1.4_2_Edinburgh_-_2_Inverness_-_1_Fort_Willi.json",
-    "1.5_2_Dublin_-_3_Limerick_-_1_Dublin.json",
-    "1.6_2_London_-_1_Cheltenham_-_1_Barnstaple_-.json",
-    # Western & Central Europe
-    "2.1_3_Paris_-_3_Lucerne_-_1_Zurich.json",
-    "2.2_2_Paris_-_3_Lucerne_-_2_Innsbruck_-_2_Vi.json",
-    "2.3_2_Paris_-_3_Lucerne_-_2_Venice_-_1_Flore.json",
-    "2.4_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_1_Zu.json",
-    "2.5_2_Amsterdam_-_2_Paris_-_3_Lucerne_-_2_Ve.json",
-    "2.6_3_Lucerne_-_2_Venice_-_1_Florence_-_2_Ro.json",
-    "2.7_3_Amsterdam_-_3_Bruges_-_2_Brussels_-_1_.json",
-    # Italy
-    "3.1_2_Venice_-_2_Florence_-_2_Rome.json",
-    "3.2_2_Rome_-_2_Naples_-_2_Florence_-_2_Venic.json",
-    "3.3_2_Cagliari_-_2_Cala_Gonone_-_2_Alghero_-.json",
-    # Switzerland
-    "4.1_2_Lucerne_-_2_Interlaken_-_1_Zurich.json",
-    "4.2_2_Lucerne_-_2_Interlaken_-_2_Montreux_-_.json",
-    # France
-    "5.1_2_Paris_-_2_Avignon_-_2_Aix_-_2_Nice.json",
-    "5.2_2_Paris_-_2_Bayeux_-_2_Tours_-_1_Paris.json",
-    "5.3_1_Ajaccio_-_2_Porto-Ota_-_2_Corte_-_2_Bo.json",
-    # Spain
-    "6.1_2_Madrid_-_2_Granada_-_2_Seville_-_2_Bar.json",
-    "6.2_3_Madrid_-_3_Barcelona.json",
-    # Eastern Europe
-    "7.1_2_Prague_-_2_Vienna_-_2_Budapest.json",
-    "7.2_1_Zagreb_-_2_Zadar_-_1_Split_-_2_Dubrovn.json",
-    # Scandinavia & Iceland
-    "8.1_1_Reykjavik_-_1_Akureyri_-_1_Myvatn_-_1_.json",
-    "8.2_4_Reykjavik.json",
-    "8.3_4_Reykjavik_-_3_Akureyri_-_flight.json",
-    "9.1_1_CPH_-_1_Ferry_-_1_Oslo_-_1_Stockholm_-.json",
-    "9.2_2_Oslo_-_1_Flam_-_2_Bergen.json",
-    "9.3_2_Oslo_-_1_Flam_-_2_Bergen_-_2_Stavanger.json",
-    # Winter
-    "10.1_4_Rovaniemi_(Helsinki_pre_post)_winter.json",
-    "10.2_4_Rovaniemi_(Helsinki_pre_post)_winter_N.json",
-    "10.3_4_Tromso_(Oslo_pre_post)_winter.json",
-    "10.4_7_Tromso_(Oslo_pre_post)_winter.json",
-    "10.5_4_Kiruna_(Stockholm_pre_post)_winter.json",
-    "10.6_4_Kiruna_-_3_Abisko_(Stockholm_Pre_post).json",
-]
+# ── PACKAGE PAGE (products/*.json + prices/*.json) ───────────────────────────
+# Replaces the old mark12-fetch brochure pipeline. Each product JSON is paired
+# with a prices JSON (product["pricesFile"]); rebuild_site.py renders one
+# static HTML page per product using PACKAGE_PAGE_CSS + assets/package-page.js.
+# Editing only the prices file updates that product's page on next rebuild.
 
-# Also fix fetch_mark12_package to URL-encode parentheses
+PRODUCTS_DIR = os.path.join(REPO_ROOT, "products")
+PRICES_DIR   = os.path.join(REPO_ROOT, "prices")
 
+PACKAGE_PAGE_CSS = """
+:root{--navy:#0B1733;--gold:#F2B91D;--gold-hover:#E0A810;--gold-dark:#B8870A;
+--ink:#1A1D2E;--body:#4B5563;--muted:#6B7280;--faint:#9AA1AE;--line:#E5E7EC;
+--faint-line:#F2F4F7;--offwhite:#FAFAF8;--green:#1F8A5B;--green-bg:#EEF5F0;
+--taste-bg:#FEF7DC;--exp-bg:#EEF1F8;--shop-bg:#F2F4F7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;padding-top:64px;}
+a{color:inherit;}
+.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
 
-def fetch_mark12_index():
-    """Try GitHub API first, fall back to hardcoded list"""
-    try:
-        url = "https://api.github.com/repos/europeincoming/mark12/contents/packages"
-        req = urllib.request.Request(url, headers={
-            "User-Agent": "EuropeIncomingFIT/1.0",
-            "Accept": "application/vnd.github.v3+json"
-        })
-        with urllib.request.urlopen(req, timeout=20) as r:
-            files = json.loads(r.read())
-            if isinstance(files, list):
-                names = [f["name"] for f in files if f.get("name","").endswith(".json")]
-                print(f"  mark12 API: found {len(names)} files")
-                return names
-    except Exception as e:
-        print(f"  mark12 API failed ({e}), using hardcoded list")
-    return MARK12_FILES
+/* Top bar */
+.pkg-topbar{position:fixed;top:0;left:0;right:0;height:64px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
+.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.pkg-topbar-left{display:flex;align-items:center;gap:20px;}
+.pkg-logo{height:38px;width:auto;display:block;}
+.pkg-back-link{font-size:13px;font-weight:600;color:var(--body);text-decoration:none;transition:color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-back-link:hover{color:var(--navy);}
+.pkg-topbar-right{display:flex;align-items:center;gap:20px;}
+.pkg-trade{font-size:12px;color:var(--muted);}
+.pkg-trade a{color:var(--navy);font-weight:600;text-decoration:none;}
+.pkg-dl-btn{background:var(--gold);color:var(--navy);border:none;padding:11px 20px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1);white-space:nowrap;}
+.pkg-dl-btn:hover{background:var(--gold-hover);}
 
-def fetch_mark12_package(filename):
-    """Fetch a single package JSON from mark12"""
-    try:
-        url = f"{MARK12_RAW}/packages/{urllib.parse.quote(filename, safe='')}"
-        req = urllib.request.Request(url, headers={"User-Agent":"EuropeIncomingFIT/1.0"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            return json.loads(r.read())
-    except Exception as e:
-        print(f"  Failed to fetch {filename}: {e}")
-        return None
+/* Hero */
+.pkg-hero{position:relative;height:420px;background:var(--navy);overflow:hidden;}
+.pkg-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.65;}
+.pkg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,.75),rgba(3,7,20,.05) 65%);}
+.pkg-hero-content{position:absolute;left:0;right:0;bottom:0;max-width:1200px;margin:0 auto;padding:0 48px 32px;}
+.pkg-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.pkg-hero-title{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-bottom:12px;}
+.pkg-hero-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.85);}
+.pkg-hero-meta .sep{width:1px;height:12px;background:rgba(255,255,255,.3);}
+.pkg-hero-price{color:var(--gold);font-weight:700;}
 
-def fetch_mark12_packages():
-    """Returns dict of sheet_id -> package JSON"""
-    print("\nFetching packages from mark12...")
-    files = fetch_mark12_index()
-    packages = {}
-    for fname in files:
-        sid = fname.split('_')[0]
-        pkg = fetch_mark12_package(fname)
-        if pkg:
-            packages[sid] = pkg
-            print(f"  ✓ {sid}: {pkg.get('title','')[:50]}")
-    print(f"  Fetched {len(packages)} packages from mark12")
-    return packages
+/* Variant bar */
+.pkg-variantbar{position:sticky;top:64px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.pkg-variant-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.pkg-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pkg-pill{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 18px;border-radius:999px;border:1px solid #CBD0DA;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1),border-color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pkg-variant-blurb{font-size:13px;color:var(--muted);text-align:right;}
 
+/* Body columns */
+.pkg-body{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:48px;align-items:flex-start;}
+.pkg-main{flex:1;min-width:0;padding:36px 0;}
+.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:132px;padding:36px 0;}
 
-# ── BROCHURE PAGE GENERATOR ───────────────────────────────────────────────────
-def fmt_price(val, curr="€"):
-    if val is None: return "—"
-    try: return f"{curr}{float(val):,.0f}"
-    except: return str(val)
+.pkg-section{margin-bottom:40px;}
+.pkg-section-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;margin-bottom:18px;border-bottom:1px solid var(--line);}
 
-def make_brochure_map_js(map_id, cities, coords_cache):
-    return make_map_js(map_id, cities, coords_cache)
+/* Day by day */
+.pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-day:first-child{border-top:1px solid var(--faint-line);}
+.pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
+.pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
+.pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+.pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
+.pkg-pill-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;}
+.pkg-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+.pkg-tag-inc{background:var(--green-bg);color:var(--green);}
+.pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
+.pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
+.pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
+.pkg-tag-text{font-size:13px;color:var(--body);}
 
-def render_day_services(services):
-    if not services: return ""
-    tags = []
-    for s in services:
-        if s.get('rate',0) == 0 and 'pass' not in s.get('description','').lower():
-            continue
-        label = s.get('description','')
-        rt    = s.get('rate_type','')
-        rate  = s.get('rate',0)
-        curr  = s.get('currency','EUR')
-        curr_sym = '£' if curr=='GBP' else '€'
-        if rt=='PP' and rate:
-            tags.append(f'<span class="tag tag-inc">✓ {label}</span>')
-        elif rt=='PI' and rate:
-            tags.append(f'<span class="tag tag-inc">✓ {label}</span>')
-    return '<div class="tags">' + ''.join(tags) + '</div>' if tags else ''
+/* Includes */
+.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-inc-item{font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
+.pkg-check{color:var(--green);font-weight:700;}
 
-def render_regular_pricing(pricing, curr_sym):
-    html = '<table class="price-table"><thead><tr><th>Hotel</th><th>Single</th><th>Twin / Double</th><th>Child</th></tr></thead><tbody>'
-    for market in ['Premium','Standard']:
-        mp = pricing.get(market,{})
-        for season_key in ['winter','summer']:
-            sp = mp.get(season_key)
-            if not sp: continue
-            label = sp.get('date_start','') + ' – ' + sp.get('date_end','')
-            html += f'<tr class="ssep"><td colspan="4">{label}</td></tr>'
-            for star in ['3star','4star']:
-                sd = sp.get(star,{})
-                if not sd: continue
-                s_lbl = '3★ Standard' if star=='3star' else '4★ Superior'
-                html += (f'<tr><td><span class="stag">{"3★" if star=="3star" else "4★"}</span>{s_lbl}</td>'
-                         f'<td>{curr_sym}{sd.get("single",0):,.0f}</td>'
-                         f'<td class="twin">{curr_sym}{sd.get("twin",0):,.0f}</td>'
-                         f'<td>{curr_sym}{sd.get("child",0):,.0f}</td></tr>')
-    html += '</tbody></table>'
-    return html
+/* Hotels */
+.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.pkg-hotel-card{background:#fff;padding:18px;}
+.pkg-hotel-city{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.pkg-hotel-nights{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.pkg-hotel-cat{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--navy);margin-top:6px;}
+.pkg-hotel-name{font-size:13px;color:var(--body);}
 
-def render_private_pricing(pricing, curr_sym):
-    blocks = []
-    for market in ['Premium','Standard']:
-        mp = pricing.get(market,{})
-        for season_key in ['winter','summer']:
-            rows = mp.get(season_key,[])
-            if not rows: continue
-            season_label = 'Winter 2025/26' if season_key=='winter' else 'Summer 2026'
-            tbl = f'<div class="priv-block"><div class="priv-season">{season_label}</div>'
-            tbl += '<table class="priv-table"><thead><tr><th>Min Pax</th><th>3★ per adult</th><th>4★ per adult</th></tr></thead><tbody>'
-            for row in rows:
-                r3 = f'{curr_sym}{row["3star"]:,.0f}' if row.get('3star') else '—'
-                r4 = f'{curr_sym}{row["4star"]:,.0f}' if row.get('4star') else '—'
-                tbl += f'<tr><td>{row["pax"]}</td><td>{r3}</td><td>{r4}</td></tr>'
-            tbl += '</tbody></table></div>'
-            blocks.append(tbl)
-    if not blocks: return ''
-    return '<div class="priv-grids">' + ''.join(blocks) + '</div>'
+/* Rates */
+.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.pkg-seg-group{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.pkg-seg{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border:none;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-seg.active{background:var(--navy);color:#fff;}
+.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
+.pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
+.pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
+.pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
+.pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
 
-def render_hotels(hotels, curr_sym):
-    if not hotels: return ''
-    cards = ''
-    for h in hotels:
-        city    = h.get('city','')
-        nights  = h.get('nights','')
-        h3      = h.get('hotel_3star') or '—'
-        h4      = h.get('hotel_4star') or '—'
-        cards += f'''<div class="hotel-card">
-  <div class="hc-city">{city}</div>
-  <div class="hc-nights">{nights} Night{"s" if nights!=1 else ""}</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">{h3}</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">{h4}</div>
-</div>'''
-    return f'<div class="hotels-grid">{cards}</div>'
+/* Optional tours */
+.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-opt-item{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-opt-price{font-weight:700;color:var(--ink);white-space:nowrap;}
 
-def render_optionals(optionals):
-    if not optionals: return ''
-    items = ''
-    for o in optionals:
-        curr = '£' if o.get('currency','EUR')=='GBP' else '€'
-        rate = o.get('rate',0)
-        items += f'<div class="opt-item"><span class="opt-name">{o["description"]}</span><span class="opt-price">{curr}{rate:,.0f} <span class="opt-pp">pp</span></span></div>'
-    return f'<div class="opt-grid">{items}</div>'
+/* Good to know */
+.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+.pkg-gtk-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+.pkg-gtk-body{font-size:13px;color:var(--body);line-height:1.6;}
 
-BROCHURE_PAGE_CSS = """
-body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;font-size:15px;line-height:1.65;padding-top:0;}
-.hero-header{position:sticky;top:0;z-index:200;height:68px;overflow:hidden;}
-.hero-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;}
-.hero-header-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.82),rgba(0,0,0,0.35));}
-.hero-header-inner{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;}
-.hero-back{color:rgba(255,255,255,0.75);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:color 0.2s;}
-.hero-back:hover{color:#fff;}
-.hero-title-wrap{display:flex;flex-direction:column;align-items:center;}
-.hero-title-main{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;white-space:nowrap;}
-.hero-title-sub{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-top:2px;text-align:center;}
-.hero-search-wrap{position:relative;flex:0 0 260px;}
-.hero-search{width:100%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:7px 14px 7px 32px;border-radius:4px;font-family:'Inter',sans-serif;font-size:12px;outline:none;}
-.hero-search::placeholder{color:rgba(255,255,255,0.45);}
-.search-icon-hero{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.5);font-size:13px;pointer-events:none;}
-.search-results{display:none;position:absolute;top:calc(100%+6px);right:0;background:#fff;border:1px solid #e8e8e8;border-radius:4px;width:340px;max-height:300px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:300;}
-.sri{padding:11px 16px;border-bottom:1px solid #f0f0f0;cursor:pointer;}
-.sri:last-child{border-bottom:none;}
-.sri:hover{background:#f9f9f9;}
-.sri-title{font-size:13px;font-weight:500;color:#1a1a1a;}
-.sri-meta{font-size:11px;color:#888;margin-top:2px;}
-.variant-bar{position:sticky;top:68px;z-index:190;background:#fff;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
-.vtabs{display:flex;}
-.vtab{padding:14px 20px;font-size:13px;font-weight:500;color:#888;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.2s,border-color 0.2s;letter-spacing:0.2px;}
-.vtab.active{color:#1a3a5c;border-bottom-color:#1a3a5c;}
-.vtab:hover:not(.active){color:#1a1a1a;}
-.dl-btn{background:#1a3a5c;color:#fff;border:none;padding:9px 18px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:opacity 0.2s;}
-.dl-btn:hover{opacity:0.85;}
-.hero-full{height:380px;position:relative;overflow:hidden;background:#1a3a5c;}
-.hero-full-img{width:100%;height:100%;object-fit:cover;opacity:0.6;display:block;}
-.hero-full-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.15) 70%);}
-.hero-full-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 48px;}
-.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
-.hero-h1{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#fff;line-height:1.0;margin-bottom:8px;}
-.hero-meta{display:flex;align-items:center;gap:14px;}
-.hero-nights{font-size:13px;color:rgba(255,255,255,0.7);font-weight:300;}
-.hero-route{font-size:12px;color:rgba(255,255,255,0.45);}
-.hero-div{width:1px;height:12px;background:rgba(255,255,255,0.25);}
-.body-wrap{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;padding:0 48px;}
-.main-col{flex:1;min-width:0;padding:36px 48px 36px 0;}
-.sidebar{width:300px;flex-shrink:0;padding:36px 0;position:sticky;top:116px;max-height:calc(100vh - 116px);overflow-y:auto;}
-.vc{display:none;}
-.vc.active{display:block;}
-.section-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e8e8e8;}
-.map-wrap{margin-bottom:32px;}
-#map-r,#map-p,#map-s{height:200px;border-radius:3px;border:1px solid #e8e8e8;}
-.day-card{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:24px 0;border-bottom:1px solid #e8e8e8;}
-.day-card:first-of-type{border-top:1px solid #e8e8e8;}
-.day-num-col{text-align:center;padding-top:2px;}
-.day-num-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#888;}
-.day-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:#1a3a5c;line-height:1;}
-.day-body{}
-.day-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:3px;}
-.day-overnight{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#9a7230;margin-bottom:8px;}
-.day-photo{width:100%;height:150px;object-fit:cover;border-radius:3px;margin-bottom:10px;display:block;}
-.day-desc{font-size:13.5px;line-height:1.8;color:#555;margin-bottom:10px;}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
-.tag{font-size:11px;padding:3px 10px;border-radius:2px;font-weight:500;}
-.tag-inc{background:#edf4ed;color:#2a6a2a;}
-.tag-opt{background:#fdf5e0;color:#7a5800;}
-.inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:32px;}
-.inc-item{font-size:13px;color:#555;padding:8px 0 8px 16px;border-bottom:1px solid #e8e8e8;position:relative;}
-.inc-item::before{content:'✓';position:absolute;left:0;color:#2a6a2a;font-size:11px;font-weight:700;}
-.hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.hotel-card{background:#fff;padding:18px;}
-.hc-city{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:3px;}
-.hc-nights{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px;}
-.hc-cat{font-size:10px;font-weight:700;letter-spacing:1px;color:#1a3a5c;margin-bottom:2px;}
-.hc-name{font-size:12px;color:#555;margin-bottom:7px;line-height:1.4;}
-.price-note{font-size:12px;color:#888;font-style:italic;margin-bottom:12px;}
-.price-table{width:100%;border-collapse:collapse;margin-bottom:32px;}
-.price-table th{background:#1a3a5c;color:#fff;padding:10px 14px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-align:left;}
-.price-table td{padding:11px 14px;font-size:13px;border-bottom:1px solid #e8e8e8;}
-.price-table .ssep td{background:#f7f7f5;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#888;padding:6px 14px;border-bottom:1px solid #e8e8e8;}
-.price-table .twin{font-weight:700;color:#1a3a5c;}
-.stag{display:inline-block;background:#1a3a5c;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px;margin-right:8px;}
-.priv-grids{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.priv-block{background:#fff;padding:18px;}
-.priv-season{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:12px;}
-.priv-table{width:100%;border-collapse:collapse;}
-.priv-table th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a1a;padding:5px 8px;border-bottom:1px solid #e8e8e8;text-align:left;}
-.priv-table td{padding:7px 8px;font-size:12.5px;border-bottom:1px solid #e8e8e8;color:#555;}
-.priv-table td:last-child{font-weight:700;color:#1a3a5c;}
-.priv-table tr:last-child td{border-bottom:none;}
-.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.opt-item{background:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.opt-name{font-size:12.5px;color:#555;}
-.opt-price{font-size:14px;font-weight:700;color:#1a1a1a;white-space:nowrap;}
-.opt-pp{font-size:11px;font-weight:400;color:#888;}
-.highlights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:36px;}
-.highlight-block{background:#fff;padding:24px;}
-.hb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;}
-.hb-items{list-style:none;}
-.hb-items li{padding:7px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#555;line-height:1.5;}
-.hb-items li:last-child{border-bottom:none;}
-.hb-items li strong{color:#1a1a1a;font-weight:500;}
-.sb-section{margin-bottom:28px;}
-.sb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e8;}
-.sb-photo{width:100%;height:110px;object-fit:cover;border-radius:3px;margin-bottom:12px;display:block;}
-.sb-item{padding:9px 0;border-bottom:1px solid #f0f0f0;}
-.sb-item:last-child{border-bottom:none;}
-.sb-item-title{font-size:12.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;}
-.sb-item-desc{font-size:12px;color:#666;line-height:1.55;}
-.tc-wrap{margin-bottom:36px;}
-.tc-btn{width:100%;background:#f7f7f5;border:1px solid #e8e8e8;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;color:#1a1a1a;border-radius:3px;text-align:left;}
-.tc-body{display:none;border:1px solid #e8e8e8;border-top:none;padding:18px;border-radius:0 0 3px 3px;}
-.tc-body.open{display:block;}
-.tc-body li{font-size:12px;color:#666;padding:6px 0 6px 14px;border-bottom:1px solid #f0f0f0;list-style:none;position:relative;line-height:1.5;}
-.tc-body li::before{content:'·';position:absolute;left:4px;}
-.tc-body li:last-child{border-bottom:none;}
-.brochure-footer{background:#1a1a1a;color:#666;padding:18px 48px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center;}
-.brochure-footer a{color:#888;text-decoration:none;}
-.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
-.leaflet-tooltip.city-tip::before{display:none!important;}
-@media print{.hero-header,.variant-bar,.sidebar,.dl-btn,.brochure-footer{display:none!important;}.body-wrap{display:block;padding:0;}.main-col{padding:16px 0;}}
+/* T&C accordion */
+.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--faint-line);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;}
+.pkg-tc-body{display:none;padding:16px 4px 4px;}
+.pkg-tc-body.open{display:block;}
+.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:6px 0;list-style:disc;margin-left:18px;}
+
+/* Sidebar */
+.pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
+.pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);}
+.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;}
+.pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
+.pkg-fact-row:last-child{border-bottom:none;}
+.pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
+.pkg-fact-body{font-size:12px;color:var(--muted);margin-top:2px;}
+.pkg-sb-quote{background:var(--navy);}
+.pkg-sb-quote .pkg-sb-title{color:var(--gold);}
+.pkg-sb-quote-body{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6;}
+.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:6px;text-decoration:none;transition:background .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-sb-quote-btn:hover{background:var(--gold-hover);}
+.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 0;text-align:center;}
+
+/* Map markers */
+.pkg-badge-icon{background:transparent;border:none;}
+.pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.leaflet-tooltip.pkg-map-tip::before{display:none!important;}
+
+/* Map modal */
+.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.65);z-index:1000;align-items:center;justify-content:center;}
+.pkg-map-modal.open{display:flex;}
+.pkg-map-modal-panel{background:#fff;border-radius:10px;box-shadow:0 24px 64px rgba(11,23,51,.35);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
+.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.pkg-map-modal-header h3{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink);}
+.pkg-map-modal-close{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;}
+.pkg-map-modal-canvas{flex:1;}
+
+@media(max-width:960px){
+  .pkg-body{flex-direction:column;}
+  .pkg-sidebar{width:100%;position:static;}
+  .pkg-hero-title{font-size:38px;}
+  .pkg-inc-grid,.pkg-opt-grid,.pkg-gtk-grid,.pkg-hotels-grid{grid-template-columns:1fr;}
+}
+
+@media print{
+  .no-print{display:none!important;}
+  body{padding-top:0;}
+  .pkg-body{display:block;padding:0;max-width:none;}
+  .pkg-main{padding:16px 0;}
+  .pkg-hero{height:auto;}
+}
 """
 
-TC_HTML = """<ul>
-<li>All rates are net and per person for the package.</li>
-<li>Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.</li>
-<li>All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.</li>
-<li>Rates are not applicable during trade fair periods, major European public holidays, and other major events.</li>
-<li>City taxes are not included in the price.</li>
-<li>If certain attractions are closed during specific periods, alternative options will be arranged.</li>
-<li>All bookings must be confirmed at least 60 working days prior to arrival.</li>
-<li>100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.</li>
-<li>Vouchers will be issued after receipt of full payment.</li>
-</ul>"""
+def _cheapest_twin(prices, style_id):
+    variant = (prices.get("variants") or {}).get(style_id) or {}
+    best = None
+    for cat_rates in variant.values():
+        for row in (cat_rates or {}).values():
+            twin = row.get("twin")
+            if twin is not None and (best is None or twin < best):
+                best = twin
+    return best
 
-def generate_brochure_page(pkg, coords_cache, depth=2):
-    """Generate full HTML brochure page from a mark12 package JSON"""
-    pkg_id   = pkg.get('id','')
-    title    = pkg.get('title','')
-    nights   = pkg.get('nights','')
-    hotels   = pkg.get('hotels',[])
-    variants = pkg.get('variants',{})
-    optionals= pkg.get('optionals',[])
-    curr_sym = '£' if pkg.get('currency','EUR')=='GBP' else '€'
+def _fmt_money(val, curr):
+    if val is None: return "—"
+    return f"{curr}{val:,.0f}"
 
-    # Cities from hotels
-    cities = [h.get('city','') for h in hotels if h.get('city')]
-    route  = ' → '.join(cities)
-    hero_img = get_card_image(cities)
-
-    # Back link depth
-    back_href = '../' * depth
-    logo_src  = back_href + 'logo.png'
-
-    # Build variant tabs and content
-    variant_tabs_html = ''
-    variant_content_html = ''
-    maps_js = ''
-    variant_labels = {'regular_fit':'Regular FIT','private':'Private Tour','self_drive':'Self Drive'}
-    first = True
-
-    for vkey in ['regular_fit','private','self_drive']:
-        if vkey not in variants: continue
-        vdata   = variants[vkey]
-        services= vdata.get('services',[])
-        pricing = vdata.get('pricing',{})
-        active  = 'active' if first else ''
-        vlabel  = variant_labels[vkey]
-        map_id  = f'map-{vkey[0]}'
-
-        variant_tabs_html += f'<button class="vtab {active}" onclick="switchVariant(\'{vkey}\',this)">{vlabel}</button>'
-
-        # Map
-        map_html = f'<div class="map-wrap"><div class="section-label">Route Map</div><div id="{map_id}"></div></div>'
-        maps_js += f'initMap("{map_id}",{json.dumps([[get_coords(c,coords_cache) or [0,0],c] for c in cities if get_coords(c,coords_cache)])});\n'
-
-        # Day-by-day from services
-        days_html = '<div class="section-label" style="margin-top:8px">Day by Day</div>'
-        current_day = None
-        day_services = {}
-        for s in services:
-            d = s.get('day','')
-            if d and d != current_day:
-                current_day = d
-            if d not in day_services: day_services[d] = []
-            day_services[d].append(s)
-
-        # Group by day number
-        day_cards = ''
-        day_num = 0
-        for d, svcs in day_services.items():
-            day_num += 1
-            day_match = re.search(r'\d+', d) if d else None
-            dn = day_match.group(0) if day_match else str(day_num)
-
-            # Find overnight city for this day
-            overnight = ''
-            if hotels and day_num <= len(cities):
-                overnight = cities[min(day_num-1, len(cities)-1)]
-            overnight_html = f'<div class="day-overnight">Overnight: {overnight}</div>' if overnight else ''
-
-            # Day photo
-            day_img = get_card_image([overnight] if overnight else cities)
-            photo_html = f'<img class="day-photo" src="{day_img}" alt="{overnight}" loading="lazy">'
-
-            # Services as tags
-            tags_html = render_day_services(svcs)
-            desc_items = [s['description'] for s in svcs if s.get('description')]
-            desc_text = '. '.join(desc_items[:2]) if desc_items else ''
-
-            day_cards += f'''<div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">{dn}</div></div>
-  <div class="day-body">
-    <div class="day-title">{overnight or f"Day {dn}"}</div>
-    {overnight_html}
-    {photo_html}
-    <div class="day-desc">{desc_text}</div>
-    {tags_html}
-  </div>
-</div>'''
-
-        # Inclusions
-        inc_items = [s for s in services if s.get('rate_type') in ('PP','PI') and s.get('rate',0)>0]
-        inc_html = ''
-        if inc_items:
-            items_html = ''.join(f'<div class="inc-item">{s["description"]}</div>' for s in inc_items[:10])
-            inc_html = f'<div class="section-label" style="margin-top:32px">Package Includes</div><div class="inc-grid" style="margin-bottom:32px">{items_html}</div>'
-
-        # Hotels
-        hotels_html = f'<div class="section-label">Sample Hotels</div>{render_hotels(hotels,curr_sym)}'
-
-        # Pricing
-        pricing_html = f'<div class="section-label">Package Rates — Per Person</div>'
-        if vkey == 'private':
-            pricing_html += render_private_pricing(pricing, curr_sym)
-        else:
-            pricing_html += f'<p class="price-note">All rates in {curr_sym}. Twin/double occupancy unless stated.</p>'
-            pricing_html += render_regular_pricing(pricing, curr_sym)
-
-        # Optionals
-        opt_html = ''
-        if optionals:
-            opt_html = f'<div class="section-label">Optional Extras</div>{render_optionals(optionals)}'
-
-        # T&C
-        tc_html = f'''<div class="tc-wrap">
-  <button class="tc-btn" onclick="toggleTC(this)"><span>Terms & Conditions</span><span>▼</span></button>
-  <div class="tc-body">{TC_HTML}</div>
-</div>'''
-
-        content = map_html + days_html + day_cards + inc_html + hotels_html + pricing_html + opt_html + tc_html
-        variant_content_html += f'<div class="vc {active}" id="vc-{vkey}">{content}</div>'
-        first = False
-
-    # Sidebar highlights (generic, can be enhanced per destination later)
-    sidebar_html = f'''<div class="sidebar">
-  <div class="sb-section">
-    <div class="sb-label">About This Tour</div>
-    <img class="sb-photo" src="{hero_img}" alt="{title}">
-    <div class="sb-item">
-      <div class="sb-item-title">{nights} nights across {len(cities)} destinations</div>
-      <div class="sb-item-desc">Route: {route}</div>
-    </div>
-    {"".join(f'<div class="sb-item"><div class="sb-item-title">{c}</div></div>' for c in cities)}
-  </div>
-</div>'''
-
-    # Map init JS
-    map_init_js = f'''
-function initMap(id, pts) {{
-  if(!pts.length) return;
-  var lats=pts.map(p=>p[0][0]),lngs=pts.map(p=>p[0][1]),pad=0.5;
-  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
-  var map=L.map(id,{{zoomControl:false,scrollWheelZoom:false,dragging:false,attributionControl:false}});
-  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:13}}).addTo(map);
-  map.fitBounds(bounds,{{padding:[14,14]}});
-  if(pts.length>1)L.polyline(pts.map(p=>p[0]),{{color:'#1a3a5c',weight:2,dashArray:'5,4'}}).addTo(map);
-  pts.forEach((p,i)=>{{
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
-    L.circleMarker(p[0],{{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}}).addTo(map)
-     .bindTooltip(p[1],{{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]}});
-  }});
-}}
-window.addEventListener('load',function(){{ {maps_js} }});
-'''
-
-    search_demos = json.dumps([
-        {"title":"Paris & Switzerland","nights":"7N/8D","routing":"Paris → Lucerne → Zurich"},
-        {"title":"UK Grand Tour","nights":"10N/11D","routing":"London → Manchester → Edinburgh"},
-        {"title":"Paris Switzerland Italy","nights":"10N/11D","routing":"Paris → Lucerne → Venice → Rome"},
-        {"title":"Ireland Discovery","nights":"6N/7D","routing":"Dublin → Limerick → Dublin"},
-        {"title":"Spain Explorer","nights":"8N/9D","routing":"Madrid → Granada → Seville → Barcelona"},
-        {"title":"Swiss Lakes & Alps","nights":"5N/6D","routing":"Lucerne → Interlaken → Zurich"},
-        {"title":"Nordic Capitals","nights":"6N/7D","routing":"Copenhagen → Oslo → Stockholm → Helsinki"},
-        {"title":"Scottish Highlands","nights":"6N/7D","routing":"Edinburgh → Inverness → Glasgow"},
-    ])
+def render_package_page(product, prices, depth, back_href):
+    """Render one static package page. depth = folder depth for relative asset paths."""
+    root_rel = "../" * depth
+    logo_src = root_rel + "logo.png"
+    js_src   = root_rel + "assets/package-page.js"
+    title    = product.get("title", "")
+    style_keys = list(product.get("styles", {}).keys())
+    first_style = style_keys[0] if style_keys else ""
+    currency = prices.get("currency", "€")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{title} | Europe Incoming FIT Packages</title>
-{GF_FONTS}
-<style>{BROCHURE_PAGE_CSS}</style>
-{LEAFLET_HEAD}{HTML2PDF}{GA}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>{PACKAGE_PAGE_CSS}</style>
+{LEAFLET_HEAD}{GA}
 </head>
 <body>
 {GEO_BLOCK}
-<div class="hero-header">
-  <img class="hero-header-img" src="{hero_img}" alt="{title}">
-  <div class="hero-header-overlay"></div>
-  <div class="hero-header-inner">
-    <a class="hero-back" href="{back_href}">← All Packages</a>
-    <div class="hero-title-wrap">
-      <div class="hero-title-main">{title}</div>
-      <div class="hero-title-sub">{nights} NIGHTS · {route.upper()}</div>
-    </div>
-    <div class="hero-search-wrap">
-      <span class="search-icon-hero">⌕</span>
-      <input class="hero-search" id="searchInput" type="text" placeholder="Search packages…" autocomplete="off">
-      <div class="search-results" id="searchResults"></div>
+<div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
+  <div class="pkg-topbar-left">
+    <a href="{root_rel}"><img class="pkg-logo" src="{logo_src}" alt="Europe Incoming"></a>
+    <a class="pkg-back-link" href="{back_href}">← All packages</a>
+  </div>
+  <div class="pkg-topbar-right">
+    <div class="pkg-trade">Trade enquiries / <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a></div>
+    <button class="pkg-dl-btn" id="pkgDownloadBtn">↓ DOWNLOAD PDF</button>
+  </div>
+</div></div>
+
+<div class="pkg-hero">
+  <div class="pkg-hero-img" id="pkgHeroImg"></div>
+  <div class="pkg-hero-overlay"></div>
+  <div class="pkg-hero-content">
+    <div class="pkg-eyebrow" id="pkgEyebrow"></div>
+    <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
+    <div class="pkg-hero-meta">
+      <span id="pkgHeroNights"></span><span class="sep"></span>
+      <span id="pkgHeroRoute"></span><span class="sep"></span>
+      <span class="pkg-hero-price" id="pkgHeroPrice"></span>
     </div>
   </div>
 </div>
-<div class="hero-full">
-  <img class="hero-full-img" src="{hero_img}" alt="{title}">
-  <div class="hero-full-overlay"></div>
-  <div class="hero-full-content">
-    <div class="hero-eyebrow">Europe Incoming · FIT Packages</div>
-    <h1 class="hero-h1">{title}</h1>
-    <div class="hero-meta">
-      <span class="hero-nights">{nights} Nights</span>
-      <span class="hero-div"></span>
-      <span class="hero-route">{route}</span>
+
+<div class="pkg-variantbar no-print"><div class="pkg-variantbar-inner">
+  <div class="pkg-variantbar-left">
+    <div class="pkg-variant-label">Travel style</div>
+    <div class="pkg-pills" id="pkgVariantPills"></div>
+  </div>
+  <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
+</div></div>
+
+<div class="pkg-body">
+  <div class="pkg-main">
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgDayHeading"></div>
+      <div id="pkgDays"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgIncludesHeading"></div>
+      <div class="pkg-inc-grid" id="pkgIncludes"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Sample hotels</div>
+      <div class="pkg-hotels-grid" id="pkgHotels"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Package rates</div>
+      <div class="pkg-rate-toggles no-print">
+        <div class="pkg-seg-group" id="pkgCatToggle"></div>
+        <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
+      </div>
+      <table class="pkg-rate-table">
+        <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
+        <tbody id="pkgRatesBody"></tbody>
+      </table>
+      <div class="pkg-rate-note">All rates net, per person, in {currency}. Valid {prices.get("validFrom","")} – {prices.get("validTo","")}.</div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Optional tours &amp; extras</div>
+      <div class="pkg-opt-grid" id="pkgOptionals"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Good to know</div>
+      <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
+    </div>
+    <div class="pkg-section pkg-tc-wrap no-print">
+      <button class="pkg-tc-btn" id="pkgTcBtn"><span>Terms &amp; conditions</span><span id="pkgTcArrow">▼</span></button>
+      <div class="pkg-tc-body" id="pkgTcBody"><ul id="pkgTerms"></ul></div>
+    </div>
+  </div>
+
+  <div class="pkg-sidebar no-print">
+    <div class="pkg-sb-card">
+      <div class="pkg-sb-title">About this tour</div>
+      <div class="pkg-map-box">
+        <div id="pkgMapSmall" style="height:100%;"></div>
+        <button class="pkg-map-enlarge" id="pkgMapEnlarge">⤢ ENLARGE</button>
+      </div>
+      <div class="pkg-fact-row">
+        <div class="pkg-fact-title" id="pkgAboutDuration"></div>
+        <div class="pkg-fact-body" id="pkgAboutRoute"></div>
+      </div>
+      <div id="pkgAboutFacts"></div>
+    </div>
+    <div class="pkg-sb-card pkg-sb-quote">
+      <div class="pkg-sb-title">Ready to quote?</div>
+      <div class="pkg-sb-quote-body">Get in touch with the FIT team for availability and a tailored quotation.</div>
+      <a class="pkg-sb-quote-btn" href="mailto:fitsales@europeincoming.com?subject=Quote request — {title}">Email the FIT team</a>
     </div>
   </div>
 </div>
-<div class="variant-bar">
-  <div class="vtabs">{variant_tabs_html}</div>
-  <button class="dl-btn" onclick="downloadPDF()">↓ Download PDF</button>
+
+<div class="pkg-sb-footer no-print">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
+
+<div class="pkg-map-modal no-print" id="pkgMapModal">
+  <div class="pkg-map-modal-panel">
+    <div class="pkg-map-modal-header">
+      <h3 id="pkgMapModalTitle"></h3>
+      <button class="pkg-map-modal-close" id="pkgMapModalClose">✕</button>
+    </div>
+    <div class="pkg-map-modal-canvas" id="pkgMapModalCanvas"></div>
+  </div>
 </div>
-<div class="body-wrap">
-  <div class="main-col">{variant_content_html}</div>
-  {sidebar_html}
-</div>
-<div class="brochure-footer">
-  <span>Europe Incoming Holdings Ltd · Reg. England & Wales 07053949</span>
-  <span><a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a> · +44 208 994 5001</span>
-</div>
+
 <script>
-function switchVariant(v,btn){{
-  document.querySelectorAll('.vc').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.vtab').forEach(el=>el.classList.remove('active'));
-  document.getElementById('vc-'+v).classList.add('active');
-  btn.classList.add('active');
-}}
-function toggleTC(btn){{
-  var body=btn.nextElementSibling;
-  body.classList.toggle('open');
-  btn.querySelector('span:last-child').textContent=body.classList.contains('open')?'▲':'▼';
-}}
-function downloadPDF(){{
-  var hide=['.hero-header','.variant-bar','.sidebar','.brochure-footer','.dl-btn'];
-  hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display='none'));
-  document.querySelectorAll('.tc-body').forEach(el=>el.classList.add('open'));
-  document.querySelector('.body-wrap').style.display='block';
-  document.querySelector('.main-col').style.padding='16px 0';
-  html2pdf().set({{margin:[8,8,8,8],filename:'{title.replace(" ","_")}.pdf',image:{{type:'jpeg',quality:0.9}},html2canvas:{{scale:2,useCORS:true}},jsPDF:{{unit:'mm',format:'a4',orientation:'portrait'}}}}).from(document.body).save().then(()=>{{
-    hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display=''));
-    document.querySelector('.body-wrap').style.display='';
-    document.querySelector('.main-col').style.padding='';
-  }});
-}}
-var demos={search_demos};
-var si=document.getElementById('searchInput'),sr=document.getElementById('searchResults');
-si.addEventListener('input',function(){{
-  var q=this.value.trim().toLowerCase();
-  if(q.length<2){{sr.style.display='none';return;}}
-  var m=demos.filter(p=>p.title.toLowerCase().includes(q)||p.routing.toLowerCase().includes(q));
-  sr.innerHTML=m.length?m.map(p=>`<div class="sri"><div class="sri-title">${{p.title}}</div><div class="sri-meta">${{p.nights}} · ${{p.routing}}</div></div>`).join(''):'<div style="padding:14px 16px;font-size:13px;color:#888">No packages found</div>';
-  sr.style.display='block';
-}});
-document.addEventListener('click',e=>{{if(!e.target.closest('.hero-search-wrap'))sr.style.display='none';}});
-{map_init_js}
+window.PRODUCT = {json.dumps(product)};
+window.PRICES = {json.dumps(prices)};
 </script>
+<script src="{js_src}"></script>
 </body></html>"""
+
+
+def make_package_card(product, prices, out_filename):
+    style_keys = list(product.get("styles", {}).keys())
+    first_style = style_keys[0] if style_keys else ""
+    style = product.get("styles", {}).get(first_style, {})
+    price = _cheapest_twin(prices, first_style)
+    curr = prices.get("currency", "€")
+    cities = [p.get("label") for p in (product.get("map") or {}).get("points", []) if p.get("nights", 0) > 0]
+    img = get_card_image(cities)
+    title = product.get("title", "").rstrip(".")
+    price_html = f'<div class="card-price">From {_fmt_money(price, curr)} pp</div>' if price else ""
+    return f"""<div class="brochure-card">
+  <div class="card-hero">
+    <img src="{img}" alt="{title}" loading="lazy">
+    <div class="card-hero-overlay"></div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">{title}</div>
+    <div class="card-duration">🕐 {style.get("nights","")}</div>
+    <div class="card-route">📍 {style.get("route","")}</div>
+    {price_html}
+  </div>
+  <div class="card-actions">
+    <a href="{out_filename}" class="btn-view">View Package</a>
+  </div>
+</div>"""
+
+
+def load_json(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+def load_products():
+    products = []
+    if not os.path.isdir(PRODUCTS_DIR):
+        return products
+    for fname in sorted(os.listdir(PRODUCTS_DIR)):
+        if not fname.endswith(".json"): continue
+        product = load_json(os.path.join(PRODUCTS_DIR, fname))
+        products.append(product)
+    return products
 
 
 # ── INDEX BUILDERS ────────────────────────────────────────────────────────────
@@ -1137,14 +909,14 @@ def main():
     coords_cache=load_coords_cache();coords_dirty=False
     existing_pkgs=load_existing_packages(packages_path)
 
-    # ── Fetch mark12 packages ──────────────────────────────────────────────
-    mark12_pkgs = fetch_mark12_packages()
+    # ── Load products/*.json (paired prices/*.json) ──────────────────────────
+    products = load_products()
 
-    # ── PDF loop: city-break only. Multi-country uses mark12 JSONs ──────────
+    # ── PDF loop: city-break only. Multi-country uses products/*.json ────────
     for folder_rel, config in FOLDER_CONFIG.items():
         folder_abs=os.path.join(REPO_ROOT,folder_rel)
         if not os.path.isdir(folder_abs): continue
-        # Skip multi-country folders - handled by mark12 JSON loop below
+        # Skip multi-country folders - handled by the products/*.json loop below
         if folder_rel.startswith("multi-country"):
             continue
         pdfs=sorted([f for f in os.listdir(folder_abs) if f.lower().endswith('.pdf')])
@@ -1177,24 +949,7 @@ def main():
             map_id=f"map_{re.sub(r'[^a-z0-9]','_',pdf.lower()[:18])}_{idx}"
             all_found.append({"filename":pdf,"title":title,"folder":folder_rel,"region":config["region"],"pdf_data":pdf_data})
 
-            # Check if a brochure page exists for this PDF
-            brochure_page = None
-            tt = (pdf_data.get("tour_type") or "").lower().replace(" ","_").replace("-","_")
-            for sid, mpkg in mark12_pkgs.items():
-                mpkg_region = MARK12_REGION_MAP.get(mpkg.get('region',''), '')
-                if mpkg_region == folder_rel:
-                    variants = mpkg.get('variants',{})
-                    # Match variant type to PDF tour type
-                    variant_key = None
-                    if 'self' in tt and 'self_drive' in variants: variant_key = 'self_drive'
-                    elif 'private' in tt and 'private' in variants: variant_key = 'private'
-                    elif 'regular' in tt and 'regular_fit' in variants: variant_key = 'regular_fit'
-                    elif not tt and variants: variant_key = list(variants.keys())[0]
-                    if variant_key:
-                        brochure_page = f"{sid}_brochure.html"
-                        break
-
-            cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id,coords_cache,brochure_page))
+            cards.append(make_brochure_card(pdf,pdf_data,title,desc,map_id,coords_cache,None))
             js=make_map_js(map_id,pdf_data.get("cities",[]),coords_cache)
             if js: maps_js_parts.append(js)
             tt2=pdf_data.get("tour_type","")
@@ -1209,17 +964,13 @@ def main():
             slug=folder_rel.replace("multi-country/","")
             region_stats[slug]={"count":len(pdfs),"tour_types":tour_types_seen}
 
-    # ── Generate brochure pages + region index pages from mark12 ────────────
-    print("\nGenerating brochure pages from mark12...")
+    # ── Generate package pages + region index pages from products/*.json ─────
+    print(f"\nGenerating package pages from {len(products)} products...")
 
-    # Group packages by region folder
     region_packages = {}
-    for sid, mpkg in mark12_pkgs.items():
-        folder_rel = MARK12_REGION_MAP.get(mpkg.get('region',''))
-        if not folder_rel: continue
-        if folder_rel not in region_packages:
-            region_packages[folder_rel] = []
-        region_packages[folder_rel].append((sid, mpkg))
+    for product in products:
+        folder_rel = f'multi-country/{product.get("region","")}'
+        region_packages.setdefault(folder_rel, []).append(product)
 
     for folder_rel, pkgs in region_packages.items():
         folder_abs = os.path.join(REPO_ROOT, folder_rel)
@@ -1233,95 +984,32 @@ def main():
 
         cards = []
         maps_js_parts = []
-        tour_types_seen = []
+        tour_types_seen = [s.get("name","") for p in pkgs for s in p.get("styles",{}).values()]
+        tour_types_seen = sorted(set(tour_types_seen))
 
-        for sid, mpkg in sorted(pkgs, key=lambda x: x[0]):
-            # Ensure coords
-            cities = [h.get('city','') for h in mpkg.get('hotels',[]) if h.get('city')]
+        for product in sorted(pkgs, key=lambda p: p.get("id","")):
+            prices_path = os.path.join(REPO_ROOT, product.get("pricesFile",""))
+            prices = load_json(prices_path)
+
+            cities = [p.get("label") for p in (product.get("map") or {}).get("points", []) if p.get("nights", 0) > 0]
             for city in cities:
                 was_missing = city not in coords_cache
                 get_coords(city, coords_cache)
                 if was_missing and city in coords_cache: coords_dirty = True
 
-            # Generate brochure page
-            page_html = generate_brochure_page(mpkg, coords_cache, depth)
-            brochure_fname = f"{sid}_brochure.html"
+            brochure_fname = f'{product.get("id")}_brochure.html'
+            page_html = render_package_page(product, prices, depth, back_href="./")
             out_path = os.path.join(folder_abs, brochure_fname)
-            with open(out_path,'w',encoding='utf-8') as f:
+            with open(out_path, 'w', encoding='utf-8') as f:
                 f.write(page_html)
             print(f"  ✓ {folder_rel}/{brochure_fname}")
 
-            # Build card for index page
-            variants = mpkg.get('variants',{})
-            title = mpkg.get('title','')
-            nights = mpkg.get('nights','')
-            winter_only = mpkg.get('winter_only', False)
-            season = 'winter' if winter_only else 'all-year'
-            curr_sym = '£' if mpkg.get('currency','EUR')=='GBP' else '€'
+            cards.append(make_package_card(product, prices, brochure_fname))
 
-            # Get lowest twin price from first available variant
-            price = None
-            for vkey in ['regular_fit','private','self_drive']:
-                vdata = variants.get(vkey,{})
-                pricing = vdata.get('pricing',{})
-                for market in ['Standard','Premium']:
-                    for skey in ['winter','summer']:
-                        sp = pricing.get(market,{}).get(skey)
-                        if isinstance(sp, dict):
-                            t = sp.get('3star',{}).get('twin') or sp.get('4star',{}).get('twin')
-                            if t:
-                                price = float(t)
-                                break
-                        elif isinstance(sp, list) and sp:
-                            t = sp[0].get('3star') or sp[0].get('4star')
-                            if t:
-                                price = float(t)
-                                break
-                    if price: break
-                if price: break
-
-            desc = mpkg.get('description','') or _fallback_desc(cities, config.get('region',''), '')
-            route = ' → '.join(cities)
-            img = get_card_image(cities)
-            dur = f"{nights} nights" if nights else ""
-
-            # Tour type pills from variants
-            for vk in variants:
-                vl = {'regular_fit':'Regular','private':'Private','self_drive':'Self Drive'}.get(vk,'')
-                if vl and vl not in tour_types_seen: tour_types_seen.append(vl)
-
-            # Variant tabs for card subtitle
-            vtypes = ' · '.join({'regular_fit':'Regular FIT','private':'Private','self_drive':'Self Drive'}.get(v,'') for v in variants if v in ('regular_fit','private','self_drive'))
-
-            season_cls = 'season-winter' if winter_only else 'season-allyear'
-            season_lbl = '❄️ Winter' if winter_only else '🌍 All Year'
-            price_html = f'<div class="card-price">From {curr_sym}{price:,.0f} pp</div>' if price else ''
-
-            card = f"""<div class="brochure-card">
-  <div class="card-hero">
-    <img src="{img}" alt="{title}" loading="lazy">
-    <div class="card-hero-overlay"></div>
-    <div class="card-season {season_cls}">{season_lbl}</div>
-  </div>
-  <div class="card-body">
-    <div class="card-title">{title}</div>
-    {"<div class='card-duration'>🕐 " + dur + "</div>" if dur else ""}
-    {"<div class='card-route'>📍 " + route + "</div>" if route else ""}
-    {"<div class='card-desc'>" + desc + "</div>" if desc else ""}
-    {price_html}
-  </div>
-  <div class="card-actions">
-    <a href="{brochure_fname}" class="btn-view">View Package</a>
-  </div>
-</div>"""
-            cards.append(card)
-
-            # Map JS for index
-            map_id = f"map_{sid.replace('.','_')}"
+            map_id = f'map_{product.get("id","").replace(".","_")}'
             js = make_map_js(map_id, cities, coords_cache)
             if js: maps_js_parts.append(js)
 
-        # Write region index
         html = build_brochure_index(
             config.get('title',''), breadcrumb,
             "\n".join(cards), "\n".join(maps_js_parts),

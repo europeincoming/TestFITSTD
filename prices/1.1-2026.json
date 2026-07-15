@@ -1,0 +1,27 @@
+{
+  "validFrom": "1 Apr 2026",
+  "validTo": "31 Mar 2027",
+  "currency": "£",
+  "variants": {
+    "private": {
+      "3": {
+        "summer": { "single": 794, "twin": 620, "child": 434 },
+        "winter": { "single": 691, "twin": 540, "child": 378 }
+      },
+      "4": {
+        "summer": { "single": 960, "twin": 750, "child": 525 },
+        "winter": { "single": 832, "twin": 650, "child": 455 }
+      }
+    }
+  },
+  "optionalTours": [
+    { "name": "London Eye standard ticket", "price": 30 },
+    { "name": "Madame Tussauds ticket", "price": 35 },
+    { "name": "Tower of London ticket", "price": 34 },
+    { "name": "London - Stonehenge and Bath Tour, 10 hrs regular coach including all entrance tickets", "price": 116 },
+    { "name": "Manchester - Windermere & the Lake District, 11 hours coach tour", "price": 70 },
+    { "name": "Manchester - Derbyshire & the Peak District, 9 hours coach tour", "price": 65 },
+    { "name": "Edinburgh 1 day hop on hop off pass", "price": 20 },
+    { "name": "Edinburgh - Loch Lomond, Stirling Castle, 10 hrs coach regular", "price": 62 }
+  ]
+}
