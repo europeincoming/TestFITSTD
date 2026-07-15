@@ -1,55 +1,30 @@
 {
-  "Aix en Provence": [
-    43.5298424,
-    5.4474738
+  "Porto-Ota": [
+    42.2667,
+    8.6333
   ],
-  "Akureyri": [
-    65.6826364,
-    -18.0912993
+  "Zagreb": [
+    45.815,
+    15.9819
   ],
-  "Hofn": [
-    64.2532647,
-    -15.2080441
+  "Zadar": [
+    44.1194,
+    15.2314
+  ],
+  "Stavanger": [
+    58.97,
+    5.7331
   ],
   "Invernes s": [
     57.4745541,
     -4.2291087
   ],
-  "Cala Gonone": [
-    40.2820879,
-    9.6343396
+  "Egilsstaðir": [
+    65.2620412,
+    -14.4035258
   ],
-  "Alghero": [
-    40.5587291,
-    8.3153206
-  ],
-  "Olbia": [
-    40.9232659,
-    9.5027442
-  ],
-  "Corte": [
-    42.3052904,
-    9.1511935
-  ],
-  "Vik": [
-    61.0349664,
-    6.5941051
-  ],
-  "Mestre": [
-    45.4943063,
-    12.2418053
-  ],
-  "Rovaniemi | Scandic Pohjanovi": null,
-  "DFDS Ferry": [
-    53.63842,
-    -0.2004227
-  ],
-  "Tallink Silja Ferry": null,
-  "Mestre Venice": [
-    45.4943063,
-    12.2418053
-  ],
-  "Montreaux. Hotel Helvetie | Eden Palace Au Lac": null,
-  "Venice (Mestre)": null,
-  "Aix-en-Provence": null
+  "Nuremberg": [
+    49.453872,
+    11.077298
+  ]
 }

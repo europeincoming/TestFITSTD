@@ -5,346 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Europe Incoming FIT Packages</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f5f5;
-            color: #212121;
-            line-height: 1.6;
-            padding-top: 80px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5; color: #212121; line-height: 1.6; padding-top: 80px;
         }
-        
-        /* Fixed Top Navigation */
         .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            z-index: 1000;
-            padding: 16px 0;
+            position: fixed; top: 0; left: 0; right: 0; background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); z-index: 1000; padding: 16px 0;
         }
-        
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            gap: 32px;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; gap: 32px;
         }
-        
-        .logo {
-            height: 48px;
-            width: auto;
-        }
-        
-        .logo:hover {
-            opacity: 0.8;
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            flex: 1;
-            justify-content: flex-end;
-        }
-        
-        .site-title-group {
-            text-align: right;
-        }
-        
-        .site-title-main {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #212121;
-            line-height: 1.3;
-        }
-        
-        .site-title-sub {
-            font-size: 0.9em;
-            font-weight: 400;
-            color: #757575;
-        }
-        
-        .contact-info {
-            text-align: right;
-            padding-left: 32px;
-            border-left: 1px solid #e0e0e0;
-        }
-        
-        .contact-prompt {
-            font-size: 0.85em;
-            color: #757575;
-            margin-bottom: 4px;
-        }
-        
-        .contact-email {
-            font-size: 0.9em;
-            color: #2196F3;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .contact-email:hover {
-            text-decoration: underline;
-        }
-        
+        .logo { height: 48px; width: auto; }
+        .logo:hover { opacity: 0.8; }
+        .header-right { display: flex; align-items: center; gap: 32px; flex: 1; justify-content: flex-end; }
+        .site-title-group { text-align: right; }
+        .site-title-main { font-size: 1.1em; font-weight: 600; color: #212121; }
+        .site-title-sub { font-size: 0.9em; color: #757575; }
+        .contact-info { text-align: right; padding-left: 32px; border-left: 1px solid #e0e0e0; }
+        .contact-prompt { font-size: 0.85em; color: #757575; margin-bottom: 4px; }
+        .contact-email { font-size: 0.9em; color: #2196F3; text-decoration: none; font-weight: 500; }
+        .contact-email:hover { text-decoration: underline; }
         .search-box {
-            width: 100%;
-            max-width: 350px;
-            padding: 10px 18px;
-            font-size: 0.95em;
-            border: 1px solid #e0e0e0;
-            border-radius: 24px;
-            transition: all 0.2s;
-            background: #fafafa;
+            width: 100%; max-width: 350px; padding: 10px 18px; font-size: 0.95em;
+            border: 1px solid #e0e0e0; border-radius: 24px; background: #fafafa; transition: all 0.2s;
         }
-        
-        .search-box::placeholder {
-            text-align: center;
+        .search-box::placeholder { text-align: center; }
+        .search-box:focus { outline: none; border-color: #2196F3; background: white; box-shadow: 0 2px 8px rgba(33,150,243,0.15); }
+        .page {
+            max-width: 1000px; margin: 0 auto; padding: 48px 24px 40px;
+            min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center;
         }
-        
-        .search-box:focus {
-            outline: none;
-            border-color: #2196F3;
-            background: white;
-            box-shadow: 0 2px 8px rgba(33,150,243,0.15);
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 {
+            font-size: 2.8em; font-weight: 800; color: #1a1a1a;
+            letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px;
         }
-        
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-        
-        .hero {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-        
-        h1 {
-            font-size: 2.75em;
-            font-weight: 600;
-            color: #212121;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #757575;
-            font-weight: 400;
-        }
-        
-        /* Category Cards */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
+        .hero-sub { font-size: 1.0em; color: #9e9e9e; }
+        .categories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .category-card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            background: white; padding: 36px 36px 28px; border-radius: 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            border: 1px solid #f5f5f5;
+            text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            border: 1px solid #ebebeb;
         }
-        
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border-color: #e0e0e0;
-        }
-        
-        .category-card h2 {
-            font-size: 1.6em;
-            color: #212121;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        
-        .category-card p {
-            color: #757575;
-            font-size: 1em;
-            line-height: 1.6;
-        }
-        
-        .arrow {
-            float: right;
-            color: #2196F3;
-            font-size: 1.6em;
-            transition: transform 0.2s;
-        }
-        
-        .category-card:hover .arrow {
-            transform: translateX(4px);
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 32px 0;
-            color: #9e9e9e;
-            font-size: 0.9em;
-            border-top: 1px solid #f0f0f0;
-        }
-        
-        /* Responsive */
+        .category-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.10); border-color: #d0d0d0; }
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+        .category-card h2 { font-size: 1.5em; color: #1a1a1a; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; }
+        .arrow { color: #2196F3; font-size: 1.4em; transition: transform 0.2s; margin-left: 16px; flex-shrink: 0; }
+        .category-card:hover .arrow { transform: translateX(4px); }
+        .category-card p { color: #757575; font-size: 0.92em; line-height: 1.6; margin-bottom: 20px; flex: 1; }
+        .card-footer { display: flex; align-items: center; gap: 10px; padding-top: 16px; border-top: 1px solid #f5f5f5; }
+        .count-tag { font-size: 0.8em; font-weight: 700; color: #1565c0; background: #f0f4ff; padding: 4px 12px; border-radius: 20px; }
+        .count-sub { font-size: 0.8em; color: #9e9e9e; }
+        footer { text-align: center; margin-top: 32px; color: #bdbdbd; font-size: 0.82em; }
+        footer a { color: #9e9e9e; text-decoration: none; }
+        footer a:hover { color: #2196F3; }
         @media (max-width: 768px) {
-            body {
-                padding-top: 180px;
-            }
-            
-            .nav-container {
-                flex-wrap: wrap;
-                gap: 16px;
-            }
-            
-            .header-right {
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                order: 3;
-                gap: 16px;
-            }
-            
-            .site-title-group {
-                text-align: center;
-            }
-            
-            .contact-info {
-                text-align: center;
-                border-left: none;
-                border-top: 1px solid #e0e0e0;
-                padding-left: 0;
-                padding-top: 16px;
-            }
-            
-            .search-box {
-                max-width: 100%;
-            }
-            
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
+            body { padding-top: 170px; }
+            .nav-container { flex-wrap: wrap; gap: 16px; }
+            .header-right { width: 100%; flex-direction: column; align-items: center; order: 3; gap: 16px; }
+            .site-title-group { text-align: center; }
+            .contact-info { text-align: center; border-left: none; border-top: 1px solid #e0e0e0; padding-left: 0; padding-top: 16px; }
+            .search-box { max-width: 100%; }
+            .hero h1 { font-size: 2em; }
+            .categories { grid-template-columns: 1fr; }
+            .page { justify-content: flex-start; padding-top: 32px; }
         }
     </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-04BZKH6574');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04BZKH6574');</script>
 </head>
 <body>
-<!-- Geo-blocking Script - Blocks USA, Canada, Australia, New Zealand -->
+<script>
+(async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
+if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}
+}catch(e){}}
+)();
+</script>
+<nav class="top-nav">
+    <div class="nav-container">
+        <a href="./"><img src="logo.png" alt="Europe Incoming" class="logo"></a>
+        <input type="text" class="search-box" placeholder="Search packages - type city or country" id="searchBox">
+        <div class="header-right">
+            <div class="site-title-group">
+                <div class="site-title-main">Europe Incoming</div>
+                <div class="site-title-sub">FIT Packages</div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-prompt">Can't find what you're looking for? Email us at:</div>
+                <a href="mailto:fitsales@europeincoming.com" class="contact-email">fitsales@europeincoming.com</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="page">
+    <div class="hero">
+        <h1>European Tour Packages</h1>
+        <p class="hero-sub">Ready-to-book FIT packages — city breaks, multi-country tours and self-drive itineraries.</p>
+    </div>
+    <div class="categories" id="categoriesList">
+        <a href="city-break/" class="category-card">
+            <div class="card-top">
+                <h2>City Breaks</h2>
+                <span class="arrow">→</span>
+            </div>
+            <p>Short getaway packages across Europe's most iconic cities — 2 nights, transfers and sightseeing included. Mix and match destinations back-to-back.</p>
+            <div class="card-footer">
+                <span class="count-tag" id="cityBreakCount">—</span>
+                <span class="count-sub">packages</span>
+            </div>
+        </a>
+        <a href="multi-country/" class="category-card">
+            <div class="card-top">
+                <h2>Multi-City & Country Packages</h2>
+                <span class="arrow">→</span>
+            </div>
+            <p>Comprehensive tours spanning multiple cities and countries — available as Private, Regular FIT and Self-Drive across 8 European regions.</p>
+            <div class="card-footer">
+                <span class="count-tag" id="multiCountryCount">—</span>
+                <span class="count-sub" id="multiCountrySub">packages</span>
+            </div>
+        </a>
+    </div>
+    <footer>
+        All packages available as PDF download &nbsp;·&nbsp;
+        <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a>
+    </footer>
+</div>
+<script src="./global-search.js"></script>
 <script>
 (async function() {
     try {
-        const response = await fetch('https://api.country.is/');
-        const data = await response.json();
-        
-        // Block these countries
-        const blockedCountries = ['US', 'CA', 'AU', 'NZ'];
-        
-        if (blockedCountries.includes(data.country)) {
-            document.body.innerHTML = `
-                <div style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100vh;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                    background: #f5f5f5;
-                    color: #212121;
-                    text-align: center;
-                    padding: 20px;
-                ">
-                    <h1 style="font-size: 48px; margin-bottom: 16px;">🌍</h1>
-                    <h2 style="font-size: 32px; font-weight: 600; margin-bottom: 12px;">
-                        Service Not Available
-                    </h2>
-                    <p style="font-size: 18px; color: #757575;">
-                        This site is not available in your region.
-                    </p>
-                </div>
-            `;
-        }
-    } catch (error) {
-        console.log('Geolocation check failed, allowing access');
+        const resp = await fetch('./packages.json?v=' + Date.now());
+        const data = await resp.json();
+        const pkgs = data.packages || [];
+        const cityBreaks = pkgs.filter(p => p.folder === 'city-break' || p.region === 'City Break').length;
+        const multiCountry = pkgs.filter(p => p.folder && p.folder.startsWith('multi-country')).length;
+        const regions = new Set(
+            pkgs.filter(p => p.folder && p.folder.startsWith('multi-country/'))
+                .map(p => p.folder.split('/')[1]).filter(Boolean)
+        ).size;
+        document.getElementById('cityBreakCount').textContent = cityBreaks;
+        document.getElementById('multiCountryCount').textContent = multiCountry;
+        document.getElementById('multiCountrySub').textContent = 'packages across ' + regions + ' regions';
+    } catch(e) {
+        document.getElementById('cityBreakCount').textContent = '—';
+        document.getElementById('multiCountryCount').textContent = '—';
     }
 })();
 </script>
-    <!-- Fixed Top Navigation -->
-    <nav class="top-nav">
-        <div class="nav-container">
-            <a href="./">
-                <img src="logo.png" alt="Europe Incoming" class="logo">
-            </a>
-            <input type="text" class="search-box" placeholder="Search packages - type city or country" id="searchBox">
-            <div class="header-right">
-                <div class="site-title-group">
-                    <div class="site-title-main">Europe Incoming</div>
-                    <div class="site-title-sub">FIT Packages</div>
-                </div>
-<div class="contact-info">
-    <div class="contact-prompt">Can't find what you're looking for? Email us at:</div>
-    <a href="mailto:fitsales@europeincoming.com" class="contact-email">fitsales@europeincoming.com</a>
-</div>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <div class="hero">
-            <h1>Explore European Tour Packages</h1>
-            <p class="subtitle">Curated experiences across Europe</p>
-        </div>
-        
-        <div class="categories" id="categoriesList">
-            <a href="city-break/" class="category-card">
-                <span class="arrow">→</span>
-                <h2>City Breaks</h2>
-                <p>Short city getaway packages featuring Europe's most iconic destinations</p>
-            </a>
-            
-            <a href="multi-country/" class="category-card">
-                <span class="arrow">→</span>
-                <h2>Multi-City & Country Packages</h2>
-                <p>Comprehensive tours spanning multiple European cities</p>
-            </a>
-        </div>
-        
-        <footer>
-            <p>All packages are available for download in PDF format</p>
-        </footer>
-    </div>
-    <script src="./global-search.js"></script>
 </body>
 </html>
