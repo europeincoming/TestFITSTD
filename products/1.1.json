@@ -31,7 +31,7 @@
       "num": 1,
       "title": "Arrive London",
       "overnight": "Overnight: London",
-      "desc": "Arrive into London and transfer privately to your central hotel. The rest of the day is free to explore nearby — Westminster, the South Bank and Victoria are all within easy reach on foot or by a short taxi ride.",
+      "desc": "Arrive into London and transfer privately to your central hotel. The rest of the day is free to explore nearby — Westminster, the South Bank and Victoria are all within easy reach on foot or by a short taxi ride, with St James's Park and Buckingham Palace close by for an evening stroll.",
       "fallbackIncluded": "Day at leisure."
     },
     {
@@ -40,6 +40,7 @@
       "overnight": "Overnight: London",
       "desc": "A guided city tour takes in London's icons: Buckingham Palace, Westminster Abbey, Big Ben and the Houses of Parliament, followed by free time for the London Eye and a Thames river cruise past St Paul's Cathedral and Tower Bridge.",
       "experience": "Ride the London Eye for sweeping views over the Thames and the Palace of Westminster.",
+      "taste": "Afternoon tea at Fortnum & Mason on Piccadilly, the royal grocer trading since 1707, or fish and chips at one of the capital's traditional chippies.",
       "shopping": "Oxford Street and Regent Street, London's flagship shopping mile, are a short ride from the hotel."
     },
     {
@@ -47,7 +48,8 @@
       "title": "Stonehenge & Bath excursion",
       "overnight": "Overnight: London",
       "desc": "A full-day excursion out of the city to Stonehenge, the prehistoric stone circle on Salisbury Plain, followed by the Georgian city of Bath with its Roman Baths and honey-coloured crescents.",
-      "taste": "Sample a traditional Bath bun or afternoon tea in one of Bath's historic tearooms near the Abbey."
+      "taste": "A warm Bath bun at Sally Lunn's, the oldest house in Bath with parts dating to 1482, tucked beside the Abbey.",
+      "shopping": "Milsom Street, Bath's Georgian shopping thoroughfare since the 18th century, for independent boutiques and jewellers."
     },
     {
       "num": 4,
@@ -67,11 +69,11 @@
   "about": [
     {
       "title": "Best season",
-      "body": "April–September for mild weather and long daylight hours; December is festive but cold."
+      "body": "April–September for mild weather and long daylight hours; December is festive but cold, with Oxford Street's Christmas lights and winter markets at the South Bank."
     },
     {
       "title": "Weather",
-      "body": "Mild and changeable year-round, typically 8–22°C — a light rain layer is useful in any season."
+      "body": "Mild and changeable year-round, typically 8–22°C in summer — a light rain layer is useful in any season, London being no stranger to a sudden shower."
     },
     {
       "title": "Currency & docs",
@@ -81,7 +83,7 @@
   "goodToKnow": [
     {
       "title": "Tickets & timing",
-      "body": "Book London Eye and Thames river cruise slots in advance in peak summer months; Stonehenge is quietest earlier in the day."
+      "body": "Book London Eye and Thames river cruise slots in advance in peak summer months; Stonehenge is quietest earlier in the day, and its inner stone circle can only be entered on separate pre-booked Special Access visits."
     },
     {
       "title": "Your vehicle",
@@ -92,7 +94,7 @@
     },
     {
       "title": "What to pack",
-      "body": "Comfortable walking shoes and a waterproof layer; London's pavements and cobbled areas see a lot of walking."
+      "body": "Comfortable walking shoes and a waterproof layer; London's pavements around markets like Borough Market and Bath's sloping Georgian streets both see a lot of walking."
     },
     {
       "title": "Money",

@@ -53,7 +53,7 @@
       "title": "Arrive Rome",
       "overnight": "Overnight: Rome",
       "desc": "Arrive in the Eternal City and transfer to your hotel. Once settled, the rest of the day is free to wander the centro storico — the Trevi Fountain, the Pantheon and the Spanish Steps are all within easy walking distance.",
-      "taste": "An evening in Trastevere for classic Roman cucina povera — cacio e pepe, carbonara and a carafe of house wine."
+      "taste": "An evening in Trastevere for classic Roman cucina povera — cacio e pepe, carbonara and a carafe of house wine, in the cobbled lanes around Piazza Santa Maria."
     },
     {
       "num": 2,
@@ -68,13 +68,14 @@
       "title": "Rome → Naples",
       "overnight": "Overnight: Naples",
       "desc": "Travel south to Naples, a city of striking contrasts — grand Bourbon palaces beside the tangle of the Spanish Quarter, all set against the Bay of Naples and the brooding silhouette of Mount Vesuvius.",
-      "taste": "Naples is the birthplace of pizza — a true Margherita here, cooked in a wood-fired oven, is unmissable."
+      "taste": "Naples is the birthplace of pizza — L'Antica Pizzeria da Michele has served only two varieties, margherita and marinara, from its wood-fired oven since 1870."
     },
     {
       "num": 4,
       "title": "Naples",
       "overnight": "Overnight: Naples",
       "desc": "A free day to explore Naples' UNESCO-listed historic centre along Spaccanapoli, or venture further afield to the ruins of Pompeii, frozen in time by Vesuvius' eruption in 79 AD, or the cliffside towns of the Amalfi Coast.",
+      "taste": "Caffè Gambrinus on Piazza Trieste e Trento, a Neapolitan institution since 1860, for an espresso and a sfogliatella pastry.",
       "fallbackIncluded": "Day at leisure — optional Pompeii or Amalfi Coast excursion available."
     },
     {
@@ -97,21 +98,22 @@
       "title": "Florence → Venice",
       "overnight": "Overnight: Venice (Mestre)",
       "desc": "Travel north across the Apennines and the Po Valley to the Venice area. Your hotel is in Mestre, the mainland gateway to Venice, just minutes by train or vaporetto from the lagoon city itself.",
-      "taste": "Cicchetti and a glass of Prosecco at a Venetian bacaro, the local take on tapas."
+      "taste": "Cicchetti and a glass of Prosecco at a Venetian bacaro — Cantina Do Mori, tucked near the Rialto Market and pouring since 1462, is the oldest of its kind."
     },
     {
       "num": 8,
       "title": "Venice",
       "overnight": "Overnight: Venice (Mestre)",
       "desc": "A day in Venice itself — St Mark's Square and Basilica, the Doge's Palace and the Bridge of Sighs, then a wander over the Rialto Bridge through the winding calli and canals.",
-      "experience": "A private guided walking tour through Venice's historic sestieri, away from the busiest routes."
+      "experience": "A private guided walking tour through Venice's historic sestieri, away from the busiest routes.",
+      "shopping": "The glass-blowing workshops of Murano, where Venice moved its furnaces in 1291 to protect the city from fire — still the source of the city's finest glassware."
     },
     {
       "num": 9,
       "title": "Venice → Milan",
       "overnight": "Overnight: Milan",
       "desc": "Travel west across the Veneto and Lombardy plains to Milan, Italy's dynamic capital of fashion, finance and design.",
-      "taste": "An aperitivo in the Navigli district, Milan's canal-side answer to Venice."
+      "taste": "An aperitivo in the Navigli district, or a Negroni at Camparino in Galleria, the historic bar beside the Duomo that has poured aperitivi since 1867."
     },
     {
       "num": 10,
@@ -119,6 +121,7 @@
       "overnight": "Overnight: Milan",
       "desc": "Explore Milan's Gothic Duomo, one of the largest cathedrals in the world, and the elegant Galleria Vittorio Emanuele II. See Sforza Castle and, with advance booking, Leonardo da Vinci's Last Supper.",
       "shopping": "The Quadrilatero della Moda, Milan's designer fashion district around Via Montenapoleone.",
+      "taste": "Risotto alla milanese, coloured gold with saffron and traditionally served alongside ossobuco, is the city's signature dish.",
       "fallbackIncluded": "Day at leisure — optional Last Supper visit available (advance booking required)."
     },
     {
@@ -199,7 +202,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere; keep some cash for smaller trattorias and markets. A 10% tip is appreciated in restaurants, though not obligatory."
+      "body": "Cards are accepted almost everywhere; keep some cash for smaller trattorias and markets like Rome's Campo de' Fiori. A 10% tip is appreciated in restaurants, though not obligatory."
     },
     {
       "title": "City taxes",

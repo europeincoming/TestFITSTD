@@ -30,7 +30,8 @@
       "num": 1,
       "title": "Arrive Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Arrive in Lucerne, gateway to central Switzerland, set on the shores of Lake Lucerne beneath Mount Pilatus. The rest of the day is free to wander the medieval Old Town, cross the wooden Chapel Bridge (Kapellbrücke) and stroll the lakeside promenade.",
+      "desc": "Arrive in Lucerne, gateway to central Switzerland, set on the shores of Lake Lucerne beneath Mount Pilatus. The rest of the day is free to wander the medieval Old Town, cross the wooden Chapel Bridge (Kapellbrücke, rebuilt after the 1993 fire but standing since the 1300s) and stroll the lakeside promenade.",
+      "taste": "Confiserie Bachmann, a Lucerne institution since 1938, for Luzerner Lebkuchen — the city's spiced honey gingerbread — with a coffee on the Kapellplatz.",
       "shopping": "Lucerne's Old Town arcades are known for Swiss watches and chocolate — Bucherer and local chocolatiers line the Kapellplatz."
     },
     {
@@ -38,19 +39,22 @@
       "title": "Mount Titlis excursion",
       "overnight": "Overnight: Lucerne",
       "desc": "A full day at Mount Titlis, reached by cogwheel railway and the rotating Titlis Rotair cable car up to 3,020 metres, with glacier views and snow year-round. Return via Engelberg with time for a relaxed Lake Lucerne cruise, included with the Swiss Travel Pass.",
-      "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, crosses a ridge just below the summit station."
+      "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, crosses a ridge just below the summit station.",
+      "taste": "A rösti with alpine cheese and speck at one of the mountain restaurants around Trübsee — the valley's standard lunch after a morning on the glacier."
     },
     {
       "num": 3,
       "title": "Lucerne → Interlaken",
       "overnight": "Overnight: Interlaken",
-      "desc": "A scenic train journey through the Bernese Oberland to Interlaken, the resort town wedged between Lake Thun and Lake Brienz in the shadow of the Eiger, Mönch and Jungfrau."
+      "desc": "A scenic train journey through the Bernese Oberland aboard the Luzern–Interlaken Express, which crosses the Brünig Pass, to Interlaken, the resort town wedged between Lake Thun and Lake Brienz in the shadow of the Eiger, Mönch and Jungfrau."
     },
     {
       "num": 4,
       "title": "Interlaken at leisure",
       "overnight": "Overnight: Interlaken",
       "desc": "A free day to enjoy Interlaken and the surrounding Jungfrau region — stroll the Höheweg promenade with its views of the snow-capped Jungfrau, or take an optional excursion into the high mountains.",
+      "experience": "Interlaken is one of the world's best-known paragliding hubs — tandem flights launch from Beatenberg or Schilthorn and land in the Höhematte park in the town centre.",
+      "taste": "Rugenbräu, brewed in nearby Matten since 1885, is the local beer worth ordering in Interlaken's bars and restaurants.",
       "fallbackIncluded": "Day at leisure — optional Jungfraujoch 'Top of Europe' excursion available."
     },
     {
@@ -58,6 +62,7 @@
       "title": "Interlaken → Zurich",
       "overnight": "Overnight: Zurich",
       "desc": "Travel on to Zurich, Switzerland's largest city and financial capital, on the shore of Lake Zurich. The afternoon is free to explore Bahnhofstrasse, the Old Town (Altstadt) and the Grossmünster church.",
+      "taste": "Zürcher Geschnetzeltes — veal in white wine and cream sauce with rösti — is Zurich's signature dish, served at the Kronenhalle, the artists' restaurant on Rämistrasse that's been open since 1924.",
       "shopping": "Bahnhofstrasse is one of the world's most exclusive shopping avenues, lined with flagship boutiques and Swiss watchmakers."
     },
     {
@@ -123,7 +128,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere in Switzerland; a little Swiss Franc cash is useful for small purchases and public facilities."
+      "body": "Cards are accepted almost everywhere in Switzerland, including mountain kiosks on Titlis; a little Swiss Franc cash is still useful for market stalls and public toilets."
     }
   ],
   "map": {
@@ -152,7 +157,7 @@
   "region": "switzerland",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/4.1-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

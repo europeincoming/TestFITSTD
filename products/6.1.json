@@ -58,49 +58,49 @@
       "title": "Arrive Madrid",
       "overnight": "Overnight: Madrid",
       "desc": "Arrive in the Spanish capital and transfer to your hotel. The rest of the day is free to stroll Puerta del Sol and the Gran Vía, or relax before the trip ahead.",
-      "taste": "A first plate of jamón ibérico and a glass of vermouth at a classic Madrid tapas bar is the perfect welcome."
+      "taste": "A first plate of jamón ibérico and a glass of house vermouth at La Casa del Abuelo, pouring the same recipe near Puerta del Sol since 1906, is the classic Madrid welcome."
     },
     {
       "num": 2,
       "title": "Madrid",
       "overnight": "Overnight: Madrid",
       "desc": "A full day discovering Madrid, including the Royal Palace, Europe's largest royal residence still in official use. The Prado Museum and the green expanse of Retiro Park are both within easy reach.",
-      "experience": "An evening flamenco show is a classic way to experience Madrid's after-dark culture."
+      "experience": "Corral de la Morería, the world's longest continuously running flamenco tablao and open since 1956, is the classic way to spend a Madrid evening."
     },
     {
       "num": 3,
       "title": "Madrid → Granada",
       "overnight": "Overnight: Granada",
       "desc": "Travel south by train to Granada, set beneath the snow-capped Sierra Nevada. Spend the afternoon wandering the steep lanes of the Albaicín quarter, with its famous viewpoints over the Alhambra.",
-      "taste": "Granada is one of the few Spanish cities where a free tapa still arrives with every drink you order."
+      "taste": "Granada is one of the few Spanish cities where a free tapa still arrives with every drink — Calle Navas, just off Plaza del Carmen, is the classic street to try it."
     },
     {
       "num": 4,
       "title": "Alhambra & Generalife",
       "overnight": "Overnight: Granada",
       "desc": "A guided visit to the Alhambra, the Moorish fortress-palace overlooking Granada, taking in the intricate Nasrid Palaces and the Generalife's terraced gardens and fountains.",
-      "experience": "A flamenco performance in one of the cave venues of the Sacromonte district is a genuine Granada tradition."
+      "experience": "Zambra María la Canastera, a cave venue in Sacromonte run by the same family since the 1940s, is a genuine Granada flamenco tradition."
     },
     {
       "num": 5,
       "title": "Granada → Seville",
       "overnight": "Overnight: Seville",
       "desc": "Train onward to Seville, capital of Andalusia. On arrival, explore the riverside Triana neighbourhood, traditionally home to the city's flamenco and ceramics artisans.",
-      "shopping": "Triana's ceramics workshops are known across Spain for hand-painted azulejo tiles."
+      "shopping": "Cerámica Santa Ana, trading in Triana since 1870, is the workshop most associated with Seville's hand-painted azulejo tiles."
     },
     {
       "num": 6,
       "title": "Seville",
       "overnight": "Overnight: Seville",
       "desc": "A historic walking tour taking in the Royal Alcázar, a UNESCO-listed Mudéjar palace, alongside the Cathedral of Seville and its Giralda tower, and the monumental Plaza de España.",
-      "taste": "The Santa Cruz quarter's tapas bars, serving salmorejo and fried fish, are among Spain's most celebrated."
+      "taste": "Bar Las Teresas, serving salmorejo and fried fish in Santa Cruz since the 1870s, is among Seville's most celebrated tapas bars."
     },
     {
       "num": 7,
       "title": "Seville → Barcelona",
       "overnight": "Overnight: Barcelona",
       "desc": "A long train journey east across Spain to Barcelona, arriving on the Mediterranean coast in the evening. Settle into your hotel ahead of exploring Catalonia's capital.",
-      "taste": "Barcelona's evening ritual is a plate of pan con tomate and cava at a bar along the Born district."
+      "taste": "El Xampanyet, pouring cava and plates of pan con tomate in the Born since 1934, is Barcelona's classic evening ritual."
     },
     {
       "num": 8,
@@ -217,7 +217,7 @@
   "region": "spain-portugal",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/6.1-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1595787572900-7b5552de22d2?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

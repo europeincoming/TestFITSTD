@@ -60,42 +60,45 @@
       "num": 1,
       "title": "Arrive Venice",
       "overnight": "Overnight: Mestre",
-      "desc": "Arrive at Venice airport and transfer to your hotel in Mestre, on the mainland just across the lagoon from the historic centre. The rest of the day is free — a short train or bus ride brings you into central Venice for an evening stroll around St. Mark's Square.",
-      "taste": "A glass of Veneto Prosecco and cicchetti (small savoury bites) at a bacaro bar near the Rialto Market."
+      "desc": "Arrive at Venice airport and transfer to your hotel in Mestre, on the mainland just across the lagoon from the historic centre — a city of 118 islands linked by some 400 bridges. The rest of the day is free — a short train or bus ride brings you into central Venice for an evening stroll around St. Mark's Square.",
+      "taste": "A glass of Veneto Prosecco and cicchetti (small savoury bites) at one of the bacari bars around the Rialto Market, Venice's centuries-old produce and fish market by the Grand Canal."
     },
     {
       "num": 2,
       "title": "Venice",
       "overnight": "Overnight: Mestre",
       "desc": "A full day discovering Venice on foot: St. Mark's Basilica, the Doge's Palace and the Bridge of Sighs, followed by a wander through the narrow calli and over the Rialto Bridge.",
-      "experience": "A gondola glide along the smaller canals away from the crowds is the classic Venetian experience."
+      "experience": "A gondola glide along the smaller canals away from the crowds is the classic Venetian experience.",
+      "taste": "Coffee at Caffè Florian in St. Mark's Square, open since 1720 and reckoned to be the oldest coffee house in continuous operation in the world."
     },
     {
       "num": 3,
       "title": "Venice → Florence",
       "overnight": "Overnight: Florence",
-      "desc": "Travel south to Florence, cradle of the Renaissance, set on the banks of the Arno river beneath the terracotta dome of the Duomo. Settle into your hotel with the afternoon free to explore the historic centre.",
-      "shopping": "The leather workshops around Santa Croce and the Mercato di San Lorenzo are famous for handmade goods."
+      "desc": "Travel south to Florence, cradle of the Renaissance, set on the banks of the Arno river beneath Brunelleschi's terracotta-tiled Duomo dome, completed in 1436 and still the largest brick dome ever built. Settle into your hotel with the afternoon free to explore the historic centre.",
+      "taste": "Lampredotto — a Florentine tripe sandwich sold from street carts for generations — or fresh pasta at the Mercato Centrale food hall near San Lorenzo.",
+      "shopping": "The leather workshops around Santa Croce and the stalls of the Mercato di San Lorenzo are famous for handmade goods."
     },
     {
       "num": 4,
       "title": "Tuscany: Siena & San Gimignano",
       "overnight": "Overnight: Florence",
-      "desc": "A full day in the Tuscan countryside, visiting Siena's shell-shaped Piazza del Campo and medieval cathedral, then the towered hill town of San Gimignano, with lunch and a wine tasting along the way.",
+      "desc": "A full day in the Tuscan countryside, visiting Siena's shell-shaped Piazza del Campo and medieval cathedral, then San Gimignano — nicknamed the 'Manhattan of Tuscany' for the 14 stone towers still standing from a medieval skyline that once had 72 — with lunch and a wine tasting along the way.",
       "taste": "A tasting of Chianti and Vernaccia di San Gimignano wines paired with local Tuscan cured meats and pecorino cheese."
     },
     {
       "num": 5,
       "title": "Florence → Rome",
       "overnight": "Overnight: Rome",
-      "desc": "Journey on to Rome, the Eternal City. Arrive in time to explore the streets around your hotel, with the Trevi Fountain, the Spanish Steps and the Pantheon all within easy reach.",
-      "experience": "Tossing a coin into the Trevi Fountain is said to guarantee a return visit to Rome."
+      "desc": "Journey on to Rome, the Eternal City. Arrive in time to explore the streets around your hotel, with the Trevi Fountain, the Spanish Steps and the Pantheon — Rome's best-preserved ancient building, standing since AD 128 — all within easy reach.",
+      "experience": "Tossing a coin into the Trevi Fountain is said to guarantee a return visit to Rome.",
+      "taste": "Carciofi alla giudia — Roman-Jewish deep-fried artichokes — in the Jewish Ghetto, a recipe served there since the 16th century."
     },
     {
       "num": 6,
       "title": "Rome: Imperial Rome",
       "overnight": "Overnight: Rome",
-      "desc": "A guided walk through Imperial Rome, taking in the Colosseum, the Roman Forum and Palatine Hill, where emperors once ruled the ancient world.",
+      "desc": "A guided walk through Imperial Rome, taking in the Colosseum — completed in AD 80 to hold up to 50,000 spectators — the Roman Forum and Palatine Hill, where emperors once ruled the ancient world.",
       "taste": "A classic Roman cacio e pepe or carbonara in the trattorias of the Monti or Trastevere neighbourhoods."
     },
     {
@@ -129,7 +132,7 @@
   "about": [
     {
       "title": "Best season",
-      "body": "April–June and September–October offer mild weather and thinner crowds across Venice, Florence and Rome."
+      "body": "April–June and September–October offer mild weather and thinner crowds across Venice, Florence and Rome. Avoid mid-August if possible — many family-run trattorias close around Ferragosto (15 August), Italy's national summer holiday."
     },
     {
       "title": "Weather",
@@ -147,7 +150,7 @@
     },
     {
       "title": "Getting around Venice",
-      "body": "Mestre sits on the mainland, a short train or bus ride from the historic centre — factor this into your time in the city."
+      "body": "Mestre sits on the mainland, a short train or bus ride from the historic centre. Once across the lagoon, Venice itself is entirely on foot or by vaporetto water bus — there are no cars or bicycles in the historic centre."
     },
     {
       "title": "Rail travel",
@@ -169,7 +172,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are widely accepted; a little cash is useful for small cafés and markets. Tipping around 10% in restaurants is appreciated, not obligatory."
+      "body": "Cards are widely accepted; a little cash is useful for small cafés and markets. Restaurant bills usually include a small 'coperto' (cover charge) per person, so tipping beyond rounding up is appreciated, not obligatory."
     }
   ],
   "map": {
@@ -198,7 +201,7 @@
   "region": "italy",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/3.1-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1541370976299-4d24be63b012?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

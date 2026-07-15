@@ -72,7 +72,7 @@
       "title": "Arrive Paris",
       "overnight": "Overnight: Paris",
       "desc": "Arrive into Paris, the City of Light, and transfer to your hotel. Depending on arrival time, take a first stroll along the Champs-Élysées or beside the Seine near Notre-Dame.",
-      "taste": "A classic Parisian bistro dinner with a glass of Bordeaux to mark the start of the trip."
+      "taste": "Steak-frites and a glass of Bordeaux at Le Procope in the Latin Quarter, reputedly the oldest continuously running café in Paris, open since 1686."
     },
     {
       "num": 2,
@@ -80,20 +80,22 @@
       "overnight": "Overnight: Paris",
       "desc": "A full day discovering Paris: climb the Eiffel Tower, wander the Louvre's galleries, and take in Notre-Dame and the Île de la Cité. In the afternoon, a leisurely cruise along the Seine passes many of the city's illuminated landmarks.",
       "experience": "A one-hour Seine river cruise past the Eiffel Tower, Musée d'Orsay and Notre-Dame.",
-      "shopping": "The grand boulevards around the Opéra Garnier, including the Galeries Lafayette department store."
+      "taste": "Mont Blanc pastry and hot chocolate at Angelina on the Rue de Rivoli, a Paris institution since 1903.",
+      "shopping": "The grand boulevards around the Opéra Garnier, including the Galeries Lafayette department store beneath its stained-glass dome."
     },
     {
       "num": 3,
       "title": "Paris → Bayeux",
       "overnight": "Overnight: Bayeux",
       "desc": "Travel west into Normandy to Bayeux, the first town liberated after D-Day. See the 11th-century Bayeux Tapestry, an extraordinary 70-metre embroidered chronicle of the Norman conquest of England, and the twin-spired Bayeux Cathedral.",
-      "taste": "Normandy specialities on arrival — Camembert cheese, cider and Calvados brandy."
+      "taste": "Normandy specialities on arrival — Camembert cheese (named for the nearby village), farmhouse cider and Calvados apple brandy, often served with andouille de Vire."
     },
     {
       "num": 4,
       "title": "Normandy landing beaches",
       "overnight": "Overnight: Bayeux",
       "desc": "A day to explore the D-Day landing beaches nearby: Omaha Beach, the shattered German gun emplacements at Pointe du Hoc, and the Normandy American Cemetery overlooking the Channel at Colleville-sur-Mer.",
+      "experience": "Arromanches-les-Bains, where sections of the artificial Mulberry Harbour towed across the Channel for the invasion still sit in the bay beside the town's D-Day museum.",
       "fallbackIncluded": "Day at leisure — optional D-Day beaches and landing museums tour available."
     },
     {
@@ -101,13 +103,14 @@
       "title": "Bayeux → Tours",
       "overnight": "Overnight: Tours",
       "desc": "Head south into the Loire Valley, France's 'Garden of France', renowned for its Renaissance chateaux and vineyards, arriving in Tours on the banks of the Loire river.",
-      "taste": "A Loire Valley wine tasting along the way — Vouvray or Chinon."
+      "taste": "A Loire Valley wine tasting along the way — a crisp Vouvray white or a Chinon red, both from appellations the route passes directly through."
     },
     {
       "num": 6,
       "title": "Loire Valley chateaux",
       "overnight": "Overnight: Tours",
-      "desc": "A day among the Loire chateaux: the river-spanning Château de Chenonceau, Leonardo da Vinci's final home at Amboise, and the formal Renaissance gardens of Villandry.",
+      "desc": "A day among the Loire chateaux: the river-spanning Château de Chenonceau, Leonardo da Vinci's final home at Amboise (where he is buried in the Chapel of Saint-Hubert), and the formal Renaissance gardens of Villandry.",
+      "taste": "Tarte Tatin, the caramelised upside-down apple tart said to have been created by the Tatin sisters at their hotel in the nearby Sologne, still served across the region.",
       "fallbackIncluded": "Day at leisure — optional Loire Valley chateaux tour available."
     },
     {
@@ -115,6 +118,7 @@
       "title": "Tours → Paris",
       "overnight": "Overnight: Paris",
       "desc": "Return to Paris for a final night, with time to revisit favourite corners of the city or explore neighbourhoods not yet seen, such as Montmartre and the Sacré-Cœur.",
+      "taste": "A last Left Bank coffee at Café de Flore or Les Deux Magots in Saint-Germain-des-Prés, historic haunts of Sartre, de Beauvoir and Hemingway.",
       "shopping": "The Marais district for boutiques, vintage shops and galleries."
     },
     {
@@ -161,7 +165,7 @@
     },
     {
       "title": "Currency & docs",
-      "body": "Euro (€) throughout France; standard EU/Schengen entry rules apply for non-EU visitors."
+      "body": "Euro (€) throughout France, part of the Schengen area; UK visitors need a passport valid for the length of stay but no visa for short trips."
     }
   ],
   "goodToKnow": [
@@ -196,7 +200,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are widely accepted; keep some cash for smaller cafés and rural chateaux ticket offices. Tipping is appreciated but not obligatory."
+      "body": "Cards are widely accepted, including contactless; keep some cash for smaller cafés and rural chateaux ticket offices. Service is included by law in French bills, so a small extra tip for good service is a courtesy, not an obligation."
     }
   ],
   "map": {

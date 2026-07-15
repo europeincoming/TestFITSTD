@@ -82,14 +82,14 @@
       "title": "Arrive Paris",
       "overnight": "Overnight: Paris",
       "desc": "Arrive in the French capital and settle into your hotel. The rest of the day is free to explore — the Eiffel Tower, the Champs-Élysées and the banks of the Seine are all within easy reach of the central hotels.",
-      "taste": "A classic French bistro dinner — steak-frites and a glass of Bordeaux — is the perfect first-night welcome."
+      "taste": "Le Relais de l'Entrecôte, the Paris institution serving only steak-frites in a secret walnut-butter sauce since 1959, is the classic first-night dinner."
     },
     {
       "num": 2,
       "title": "Paris",
       "overnight": "Overnight: Paris",
       "desc": "A full day to discover Paris: the Louvre, Notre-Dame and the Île de la Cité, then Montmartre's cobbled streets and the Sacré-Cœur basilica above the rooftops.",
-      "experience": "A Seine river cruise past Notre-Dame and the Eiffel Tower is a classic way to see the city lit up from the water."
+      "experience": "A Bateaux Mouches cruise past Notre-Dame and the Eiffel Tower, run from the same Pont de l'Alma landing stage since 1949, is the classic way to see the city lit up from the water."
     },
     {
       "num": 3,
@@ -103,6 +103,7 @@
       "title": "Avignon",
       "overnight": "Overnight: Avignon",
       "desc": "Explore Avignon at leisure: the Palais des Papes, the Pont Saint-Bénézet immortalised in the song \"Sur le Pont d'Avignon\", and the lively Place de l'Horloge.",
+      "taste": "Les Halles d'Avignon, the covered market on Place Pie, is the place to try berlingots — the striped boiled sweets made in the city since the 1850s.",
       "fallbackIncluded": "Day at leisure — optional guided tour of the Palais des Papes available."
     },
     {

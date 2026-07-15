@@ -78,7 +78,7 @@
       "title": "Arrive Edinburgh",
       "overnight": "Overnight: Edinburgh",
       "desc": "Arrive in the Scottish capital, dominated by Edinburgh Castle on its volcanic crag. The rest of the day is free to wander the Royal Mile and Princes Street Gardens, an easy walk from the city-centre hotels.",
-      "taste": "A dram of single malt Scotch whisky in one of the Old Town's historic Royal Mile bars is the classic first-night ritual."
+      "taste": "A dram of single malt Scotch whisky at Deacon Brodie's Tavern, a Royal Mile institution licensed since 1806 and named after the city councillor and secret burglar said to have inspired Dr Jekyll and Mr Hyde."
     },
     {
       "num": 2,
@@ -91,7 +91,8 @@
       "num": 3,
       "title": "Edinburgh → Inverness",
       "overnight": "Overnight: Inverness",
-      "desc": "Head north through Perthshire and the Cairngorms towards the Great Glen, skirting the shores of Loch Ness. Time permitting, stop at the ruins of Urquhart Castle, one of the most famously photographed views of the loch."
+      "desc": "Head north through Perthshire and the Cairngorms towards the Great Glen, skirting the shores of Loch Ness. Time permitting, stop at the ruins of Urquhart Castle, one of the most famously photographed views of the loch.",
+      "taste": "The route passes close to Glenturret Distillery near Crieff, licensed since 1763 and generally regarded as Scotland's oldest working distillery, now home to the Famous Grouse Experience."
     },
     {
       "num": 4,
@@ -104,13 +105,15 @@
       "num": 5,
       "title": "Inverness → Fort William",
       "overnight": "Overnight: Fort William",
-      "desc": "Travel south along the Great Glen via the locks of the Caledonian Canal at Fort Augustus, arriving beneath Ben Nevis, the highest peak in the British Isles at 1,345 metres."
+      "desc": "Travel south along the Great Glen via the locks of the Caledonian Canal at Fort Augustus, arriving beneath Ben Nevis, the highest peak in the British Isles at 1,345 metres.",
+      "taste": "Fort William is home to Ben Nevis Distillery, founded at the foot of the mountain in 1825 and one of the oldest licensed distilleries in the Highlands."
     },
     {
       "num": 6,
       "title": "Fort William → Glasgow",
       "overnight": "Overnight: Glasgow",
       "desc": "Continue south through the dramatic glacial valley of Glencoe before following the bonnie banks of Loch Lomond, the largest lake by surface area in Great Britain, on into Glasgow.",
+      "taste": "Glasgow lays a well-known claim to inventing chicken tikka masala in one of its Asian restaurants in the 1970s — still a fixture on menus across the city's curry houses.",
       "shopping": "Glasgow's Buchanan Street and the Style Mile make it the UK's second-largest shopping destination after London's West End."
     },
     {
@@ -188,7 +191,7 @@
     },
     {
       "title": "What to pack",
-      "body": "Layers and a waterproof jacket for any month, plus sturdy shoes for castle grounds and lochside paths."
+      "body": "Layers and a waterproof jacket for any month, plus sturdy shoes for castle grounds and lochside paths. Midge repellent is worth packing for the Highland legs between late May and September, when the biting midge is at its most active."
     },
     {
       "title": "Money",
@@ -227,7 +230,7 @@
   "region": "uk-ireland",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/1.4-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1541849546-216549ae216d?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

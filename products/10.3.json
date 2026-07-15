@@ -32,28 +32,32 @@
       "num": 1,
       "title": "Arrive Tromsø",
       "overnight": "Overnight: Tromso",
-      "desc": "Fly into Tromsø, gateway to the Arctic and one of the best places on Earth to see the Northern Lights, and take your private transfer to a city-centre hotel. Sitting well inside the Arctic Circle, Tromsø's mid-winter polar night brings only a few hours of soft blue twilight — settle in and rest ahead of the Arctic days to come."
+      "desc": "Fly into Tromsø, gateway to the Arctic and one of the best places on Earth to see the Northern Lights, and take your private transfer to a city-centre hotel. Sitting well inside the Arctic Circle, Tromsø's mid-winter polar night brings only a few hours of soft blue twilight — settle in and rest ahead of the Arctic days to come.",
+      "taste": "Ølhallen, Tromsø's oldest pub, has poured beer from the adjoining Mack Brewery — the world's northernmost — since 1928; a good first stop for a Mack Arctic Pilsner."
     },
     {
       "num": 2,
       "title": "Tromsø & Arctic Cathedral",
       "overnight": "Overnight: Tromso",
       "desc": "Explore Tromsø itself: cross the sound to the striking Arctic Cathedral (Ishavskatedralen), its glass-and-concrete facade echoing pack ice, then ride the Fjellheisen cable car up Mount Storsteinen for panoramic views over the city, fjords and surrounding islands.",
-      "taste": "Arctic king crab and Arctic char are Tromsø specialities — sample them at a harbourside restaurant looking out over the sound.",
-      "experience": "An evening Northern Lights Cruise takes you out into the fjords, away from the city's lights, for one of the best chances to see the aurora."
+      "taste": "Arctic king crab and Arctic char are Tromsø specialities — Fiskekompaniet, on the harbour by Stortorget, is a long-standing choice for both.",
+      "experience": "An evening Northern Lights Cruise takes you out into the fjords, away from the city's lights, for one of the best chances to see the aurora.",
+      "shopping": "Storgata, Tromsø's main pedestrian street, runs the length of the old town for Norwegian knitwear, troll figures and Arctic-fox pelts alongside the everyday shops."
     },
     {
       "num": 3,
       "title": "Snowmobile Safari",
       "overnight": "Overnight: Tromso",
-      "desc": "A full-day snowmobile safari through the snow-covered valleys and mountain plateaus surrounding Tromsø, terrain used for generations by Sami reindeer herders — a thrilling way to cover real Arctic wilderness in a single day."
+      "desc": "A full-day snowmobile safari through the snow-covered valleys and mountain plateaus surrounding Tromsø, terrain used for generations by Sami reindeer herders — a thrilling way to cover real Arctic wilderness in a single day.",
+      "taste": "A hot bowl of bidos, the traditional Sami reindeer stew, is the usual warm-up during the safari's midway stop — thick, slow-cooked and built for Arctic cold."
     },
     {
       "num": 4,
       "title": "Whale Watching",
       "overnight": "Overnight: Tromso",
       "desc": "Head out by boat into the fjords around Tromsø on a winter whale watching tour — pods of orca and humpback whales gather here each winter to feed on herring, often within sight of snow-capped mountains.",
-      "experience": "Round off the evening with a Night Reindeer Sledding Tour and dinner, gliding across the snow behind reindeer with a taste of Sami tradition."
+      "experience": "Round off the evening with a Night Reindeer Sledding Tour and dinner, gliding across the snow behind reindeer with a taste of Sami tradition.",
+      "taste": "Dinner typically ends with multekrem — cloudberries folded through whipped cream, a Norwegian classic and a particular treat this far north, where the berries are hand-picked from Arctic marshland each autumn."
     },
     {
       "num": 5,
@@ -98,8 +102,8 @@
       "body": "Snowmobile safaris and whale watching cruises can be rescheduled at short notice for weather and daylight safety — keep the days either side flexible where possible."
     },
     {
-      "title": "Currency",
-      "body": "Norway uses the Krone (NOK), not the Euro — cards are accepted almost everywhere, including on tours, so carrying cash is rarely necessary."
+      "title": "Tipping",
+      "body": "Tipping is not expected in Norway — a service charge is generally built into restaurant prices, so rounding up for good service is plenty rather than the 10–15% common further south."
     },
     {
       "title": "Airport transfers",

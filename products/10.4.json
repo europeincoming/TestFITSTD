@@ -37,19 +37,20 @@
       "title": "Tromsø Island Tour with Arctic Cathedral",
       "overnight": "Overnight: Tromso",
       "desc": "A guided tour of Tromsøya island taking in the Arctic Cathedral (Ishavskatedralen), the Polar Museum on the old harbour front, and views from the Fjellheisen cable car across the city and surrounding peaks.",
-      "taste": "Sample local Arctic specialities such as king crab and reindeer stew in the harbourside restaurants of the old town."
+      "taste": "King crab and reindeer stew are the city's signature dishes — pair either with a Mack beer at Ølhallen, the wood-panelled pub that has served Mack Brewery's beer since 1928, brewed just along the street as the world's northernmost brewery since 1877."
     },
     {
       "num": 3,
       "title": "Snowmobile Safari",
       "overnight": "Overnight: Tromso",
-      "desc": "A full day snowmobile safari of around seven hours through the snow-covered valleys and mountain plateaus surrounding Tromsø, with stops to take in wide Arctic panoramas along the way."
+      "desc": "A full day snowmobile safari of around seven hours through the snow-covered valleys and mountain plateaus surrounding Tromsø, often into the Tamok Valley (Tamokdalen), a broad glacial valley an hour or so inland that's become the region's classic snowmobile terrain.",
+      "experience": "Guides time the return leg for dusk, when clear conditions give a good chance of catching the aurora borealis over the open plateau, away from the city's lights."
     },
     {
       "num": 4,
       "title": "Whale Watching",
       "overnight": "Overnight: Tromso",
-      "desc": "A seven-hour boat tour into the fjords north of Tromsø in search of orcas and humpback whales, which gather each winter to feed on the herring stocks that migrate into these sheltered waters."
+      "desc": "A seven-hour boat tour into the fjords north of Tromsø, typically around Kvaløya and Ringvassøya, in search of orcas and humpback whales, which gather each winter to feed on the herring stocks that migrate into these sheltered waters."
     },
     {
       "num": 5,
@@ -62,13 +63,15 @@
       "num": 6,
       "title": "Arctic Fjord Tour",
       "overnight": "Overnight: Tromso",
-      "desc": "A five-hour tour of the fjords around Tromsø with a light lunch included, taking in dramatic coastal scenery and small fishing villages along the way."
+      "desc": "A five-hour tour of the fjords around Tromsø with a light lunch included, taking in dramatic coastal scenery and small fishing villages along the way.",
+      "taste": "The included lunch often features fresh cod or bacalao, the salted-cod dish that has sustained Arctic Norway's fishing villages for centuries."
     },
     {
       "num": 7,
       "title": "Free Day in Tromsø",
       "overnight": "Overnight: Tromso",
       "desc": "A free day to explore Tromsø at your own pace — browse the shops and cafes of the compact city centre, visit the Polaria Arctic experience centre, or simply rest up after a busy week of excursions.",
+      "taste": "Round off the week with cloudberries (multer) and cream, a prized Arctic dessert, or a plate of reindeer at one of the harbourside restaurants below the Arctic Cathedral.",
       "shopping": "Storgata, Tromsø's main pedestrian street, is lined with Norwegian design, outdoor-gear and souvenir shops.",
       "fallbackIncluded": "Included: choice of Northern Lights Cruise or Night Reindeer Sledding Tour with Dinner (18h00-22h30)."
     },
@@ -108,7 +111,7 @@
     },
     {
       "title": "Northern Lights",
-      "body": "Sightings depend on clear skies and solar activity and cannot be guaranteed on any single night — the included cruise maximises the chances by heading to clearer coastal areas."
+      "body": "Sightings depend on clear skies and solar activity and cannot be guaranteed on any single night — the included cruise maximises the chances by heading to clearer coastal areas such as Sommarøy or Ersfjordbotn."
     },
     {
       "title": "What to pack",
@@ -123,7 +126,7 @@
     },
     {
       "title": "Money",
-      "body": "Norway is one of Europe's more expensive destinations; cards are accepted almost everywhere, so carrying cash is rarely necessary."
+      "body": "Norway is one of Europe's more expensive destinations; cards are accepted almost everywhere, so carrying cash is rarely necessary — even Ølhallen and the market stalls on Storgata take card payment."
     }
   ],
   "map": {

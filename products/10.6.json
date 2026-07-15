@@ -31,7 +31,8 @@
       "num": 1,
       "title": "Arrive Kiruna",
       "overnight": "Overnight: Kiruna",
-      "desc": "Fly into Kiruna, the gateway to Swedish Lapland and one of the world's northernmost airports, 145km inside the Arctic Circle. Transfer to your hotel and settle in — the surrounding boreal forest and open skies make even the first evening a good chance to look up for the aurora.",
+      "desc": "Fly into Kiruna, the gateway to Swedish Lapland and one of the world's northernmost airports, 145km inside the Arctic Circle. Kiruna Church — a red timber building shaped like a giant Sami tent and once voted Sweden's most beautiful building — stands within walking distance of the town-centre hotels. Transfer to your hotel and settle in; the surrounding boreal forest and open skies make even the first evening a good chance to look up for the aurora.",
+      "taste": "A first dinner of renskav (fried reindeer) with lingonberries and mashed potato — the everyday Sami staple on almost every Kiruna menu.",
       "fallbackIncluded": ""
     },
     {
@@ -39,20 +40,24 @@
       "title": "Kiruna – Dog Sledding & Northern Lights",
       "overnight": "Overnight: Kiruna",
       "desc": "Spend 2-3 hours mushing your own team of huskies across snow-covered forests and frozen lakes around Kiruna, a classic Arctic experience. After dark, head out by minibus or snowmobile sleigh away from town lights on a Northern Lights chase.",
-      "experience": "Driving your own dog sled team through the silent, snow-bound forests of Swedish Lapland is one of the region's signature winter experiences."
+      "experience": "Driving your own dog sled team through the silent, snow-bound forests of Swedish Lapland is one of the region's signature winter experiences.",
+      "taste": "A flask of hot lingonberry juice and a cinnamon bun (kanelbulle) at the kennels — the classic Swedish trail-break fika, even at -15°C."
     },
     {
       "num": 3,
       "title": "Kiruna – ICEHOTEL & Jukkasjärvi",
       "overnight": "Overnight: Kiruna",
       "desc": "A 3-hour tour to the village of Jukkasjärvi, 17km from Kiruna, home to the original ICEHOTEL — rebuilt each winter from ice and snow harvested from the Torne River. Wander the ice sculptures, Icebar and Ice Church before returning to Kiruna.",
-      "experience": "The ICEHOTEL is the world's first and largest hotel built from ice, with artist-designed suites that are entirely rebuilt every winter."
+      "experience": "The ICEHOTEL is the world's first and largest hotel built from ice, with artist-designed suites that are entirely rebuilt every winter.",
+      "taste": "The Icebar serves cocktails in glasses carved from river ice — the cloudberry (hjortron) liqueur, made from Lapland's prized Arctic berry, is the one to try.",
+      "shopping": "Sami handicraft, or duodji — carved reindeer-antler pieces and birchwood knives — is sold in Jukkasjärvi's small craft shops beside the ICEHOTEL."
     },
     {
       "num": 4,
       "title": "Kiruna – Snowmobile Safari",
       "overnight": "Overnight: Kiruna",
-      "desc": "A full 6-hour snowmobile safari through the Arctic wilderness around Kiruna, crossing frozen rivers and open taiga forest with an experienced guide — one of the best ways to cover real ground in the Swedish Lapland winter landscape."
+      "desc": "A full 6-hour snowmobile safari through the Arctic wilderness around Kiruna, crossing frozen rivers and open taiga forest with an experienced guide — one of the best ways to cover real ground in the Swedish Lapland winter landscape.",
+      "taste": "Lunch is typically grilled over an open fire inside a lavvu, the traditional Sami tent — reindeer sausage and Arctic char are the usual fare on these wilderness stops."
     },
     {
       "num": 5,
@@ -65,13 +70,14 @@
       "title": "Abisko National Park",
       "overnight": "Overnight: Abisko",
       "desc": "A morning hike in Abisko National Park, following part of the famous Kungsleden (King's Trail) with views over the frozen expanse of Lake Torneträsk. In the evening, ride the chairlift up Mount Nuolja for a 4-hour visit to the Aurora Sky Station, built specifically for aurora watching above the cloud line.",
-      "experience": "The Aurora Sky Station sits above Abisko's tree line on Mount Nuolja, reached by chairlift, and is purpose-built for Northern Lights viewing."
+      "experience": "The Aurora Sky Station sits above Abisko's tree line on Mount Nuolja, reached by chairlift, and is purpose-built for Northern Lights viewing.",
+      "taste": "Warming up afterwards with Arctic char (fjällröding) fresh from Torneträsk's icy waters, a lake-country staple on Abisko menus."
     },
     {
       "num": 7,
       "title": "Abisko at Leisure",
       "overnight": "Overnight: Abisko",
-      "desc": "A free day to enjoy Abisko at your own pace — walk the frozen shoreline of Lake Torneträsk, relax at the hotel, or simply keep watch for another clear aurora night in one of Sweden's darkest-sky locations.",
+      "desc": "A free day to enjoy Abisko at your own pace — walk the frozen shoreline of Lake Torneträsk, relax at the hotel, or simply keep watch for another clear aurora night in one of Sweden's darkest-sky locations. The Abisko Scientific Research Station, in continuous operation since 1903, is a short walk along the lake and one of the world's oldest sub-Arctic research posts.",
       "fallbackIncluded": "Day at leisure — optional ice fishing or additional aurora tour available."
     },
     {
@@ -102,7 +108,7 @@
     },
     {
       "title": "Weather",
-      "body": "Expect Arctic winter conditions with temperatures typically between -20°C and -5°C, heavy snow cover and short daylight hours."
+      "body": "Expect Arctic winter conditions with temperatures typically between -20°C and -5°C, heavy snow cover and short daylight hours — Kiruna sees virtually no daylight at all around the winter solstice."
     },
     {
       "title": "Currency & docs",

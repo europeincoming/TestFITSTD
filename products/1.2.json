@@ -61,14 +61,14 @@
       "title": "Arrive London",
       "overnight": "Overnight: London",
       "desc": "Arrive in the capital and transfer to your hotel. The rest of the day is free to get your bearings — Westminster, the Thames embankment and Covent Garden are all within easy reach of the central hotels.",
-      "taste": "A classic fish and chips supper at a traditional London pub is the perfect first-night welcome."
+      "taste": "A classic fish and chips supper is the perfect first-night welcome — Poppies in Spitalfields has served the dish from the same East End corner since 1952."
     },
     {
       "num": 2,
       "title": "London",
       "overnight": "Overnight: London",
       "desc": "A full day discovering London with the Hop-on Hop-off ticket, taking in Buckingham Palace, the Tower of London and St Paul's Cathedral, then a one-way cruise along the Thames.",
-      "experience": "An evening in London's West End, home to some of the world's longest-running theatre productions."
+      "experience": "An evening in London's West End — The Mousetrap has run continuously at St Martin's Theatre since 1952, the world's longest-running show."
     },
     {
       "num": 3,
@@ -88,6 +88,7 @@
       "title": "Manchester",
       "overnight": "Overnight: Manchester",
       "desc": "A day at leisure to explore Manchester: the Science and Industry Museum, the canalside warehouses of Castlefield, and the city's famous football heritage at Old Trafford.",
+      "taste": "Rusholme's Curry Mile, a stretch of Wilmslow Road lined with South Asian restaurants and sweet shops, reflects Manchester's long-standing curry culture.",
       "fallbackIncluded": "Day at leisure — optional Manchester United stadium tour available."
     },
     {
@@ -102,6 +103,7 @@
       "overnight": "Overnight: Edinburgh",
       "desc": "A full day in Edinburgh: Edinburgh Castle, the Royal Mile with its closes and courtyards, and the view over the city from Arthur's Seat.",
       "shopping": "The Royal Mile and George Street are lined with tartan, tweed and single-malt whisky shops.",
+      "taste": "Haggis, neeps and tatties at Deacon Brodie's Tavern, a Royal Mile institution named after the 18th-century town councillor whose double life as a burglar is said to have inspired Dr Jekyll and Mr Hyde.",
       "fallbackIncluded": "Day at leisure — optional Edinburgh Castle & Royal Mile tour available."
     },
     {
@@ -115,14 +117,15 @@
       "title": "Inverness & Loch Ness",
       "overnight": "Overnight: Inverness",
       "desc": "A day at leisure around Inverness — Inverness Castle, the riverside walks, and the legendary waters of Loch Ness just outside the city.",
-      "taste": "A Speyside single-malt whisky tasting is a fitting way to sample the Highlands' best-known export.",
+      "taste": "A single-malt tasting featuring Speyside names such as Glenfiddich and The Glenlivet, distilled less than an hour from Inverness in the region that produces more whisky than anywhere else in Scotland.",
       "fallbackIncluded": "Day at leisure — optional Loch Ness cruise available."
     },
     {
       "num": 10,
       "title": "Inverness to Glasgow",
       "overnight": "Overnight: Glasgow",
-      "desc": "Journey south via Loch Ness, Glencoe and Loch Lomond to Glasgow, Scotland's largest city, known for its Victorian architecture and Merchant City."
+      "desc": "Journey south via Loch Ness, Glencoe and Loch Lomond to Glasgow, Scotland's largest city, known for its Victorian architecture and Merchant City.",
+      "taste": "The evening is free for dinner in the Merchant City's converted Victorian warehouses, or a taste of Tunnock's Tea Cakes and Irn-Bru, two of Scotland's best-known exports."
     },
     {
       "num": 11,
@@ -166,7 +169,7 @@
   "about": [
     {
       "title": "Best season",
-      "body": "May–September for the longest, mildest days; the Highlands are especially scenic in early autumn."
+      "body": "May–September for the longest, mildest days; the Highlands are especially scenic in early autumn. Edinburgh's Festival Fringe takes over the city each August, so book ahead if travelling then."
     },
     {
       "title": "Weather",
@@ -198,11 +201,11 @@
     },
     {
       "title": "What to pack",
-      "body": "Layers and a waterproof jacket year-round, especially north of Edinburgh. Comfortable, sturdy shoes for cobbled streets and hillside paths."
+      "body": "Layers and a waterproof jacket year-round, especially north of Edinburgh. Comfortable, sturdy shoes for cobbled streets and hillside paths. Midges can be troublesome in the Highlands on still summer evenings — pack repellent."
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere across England and Scotland; a little cash is useful in smaller Highland towns. Tipping around 10% in restaurants is customary."
+      "body": "Cards are accepted almost everywhere across England and Scotland; a little cash is useful in smaller Highland towns. Scottish banknotes are legal but occasionally refused by shops in England, so spend or exchange them before heading south. Tipping around 10% in restaurants is customary."
     }
   ],
   "map": {
@@ -243,7 +246,7 @@
   "region": "uk-ireland",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/1.2-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",

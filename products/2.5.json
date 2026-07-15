@@ -60,7 +60,7 @@
       "title": "Arrive Amsterdam",
       "overnight": "Overnight: Amsterdam",
       "desc": "Arrive into the Dutch capital, a city defined by its concentric 17th-century canal ring and Golden Age merchant houses. After the transfer to your hotel, the rest of the day is free to explore the nearby streets on foot or by bike.",
-      "taste": "A glass of genever and a plate of bitterballen at a classic brown café is the quintessential first-evening Amsterdam experience."
+      "taste": "A glass of jenever and a plate of bitterballen at In 't Aepjen, one of Amsterdam's oldest bars dating to 1519, is the quintessential first-evening ritual."
     },
     {
       "num": 2,
@@ -81,7 +81,8 @@
       "overnight": "Overnight: Paris",
       "desc": "A full day discovering Paris: the grand avenues around the Arc de Triomphe and Champs-Élysées, a cruise along the Seine past Notre-Dame and the Louvre, and a visit to the Eiffel Tower's second floor for sweeping views over the city.",
       "experience": "An evening Seine river cruise past the illuminated monuments is one of Paris's classic experiences.",
-      "shopping": "The Champs-Élysées and the Galeries Lafayette department store are famed Paris shopping destinations."
+      "taste": "Steak-frites and a glass of Bordeaux at a Left Bank bistro, or macarons from Ladurée on the Champs-Élysées, are the classic Parisian way to end the day.",
+      "shopping": "The Champs-Élysées and the Galeries Lafayette department store, with its stained-glass cupola on Boulevard Haussmann, are famed Paris shopping destinations."
     },
     {
       "num": 5,
@@ -101,7 +102,8 @@
       "title": "Lucerne at leisure",
       "overnight": "Overnight: Lucerne",
       "desc": "A free day in Lucerne to explore at your own pace: the wooden Chapel Bridge and its octagonal water tower, the carved Lion Monument mourning the Swiss Guard, and the lakeside promenade lined with Belle Époque hotels.",
-      "fallbackIncluded": "Day at leisure — optional lake cruise or mountain excursion available."
+      "fallbackIncluded": "Day at leisure — optional lake cruise or mountain excursion available.",
+      "taste": "Luzerner Chügelipastete, the city's signature veal-and-mushroom vol-au-vent, and Swiss chocolate from Confiserie Bachmann, Lucerne's own chocolatier since 1852, are worth seeking out."
     },
     {
       "num": 8,
@@ -115,7 +117,8 @@
       "title": "Venice",
       "overnight": "Overnight: Mestre Venice",
       "desc": "A guided walking tour through Venice's historic centre: St Mark's Square and Basilica, the Doge's Palace, and the winding canals and bridges of the sestieri, crossing the Rialto Bridge over the Grand Canal.",
-      "experience": "A gondola ride along the quieter canals is the definitive Venetian experience."
+      "experience": "A gondola ride along the quieter canals is the definitive Venetian experience.",
+      "taste": "Cicchetti and a Select spritz at the bacari around the Rialto Market, or a coffee at Caffè Florian in St Mark's Square, the oldest coffee house in the world, dating to 1720."
     },
     {
       "num": 10,
@@ -129,14 +132,15 @@
       "title": "Florence to Rome",
       "overnight": "Overnight: Rome",
       "desc": "A morning free in Florence near the Uffizi Gallery and the Piazza della Signoria before travelling south through the Tuscan and Umbrian hills to Rome, the Eternal City, in time for an evening stroll near the Trevi Fountain.",
-      "fallbackIncluded": "Day at leisure — self-arranged travel to Rome today."
+      "fallbackIncluded": "Day at leisure — self-arranged travel to Rome today.",
+      "taste": "A scoop of gelato at Vivoli, Florence's oldest gelateria since 1930, or bistecca alla fiorentina at a Mercato Centrale stall, are classic Florentine tastes before heading south."
     },
     {
       "num": 12,
       "title": "Rome",
       "overnight": "Overnight: Rome",
       "desc": "A guided city tour of Rome taking in the Colosseum and the Roman Forum, the Pantheon's ancient dome, and the baroque Trevi Fountain and Spanish Steps, tracing more than two thousand years of history.",
-      "taste": "Classic Roman dishes such as carbonara and cacio e pepe, followed by gelato near the Pantheon, are not to be missed."
+      "taste": "Classic Roman dishes such as carbonara and cacio e pepe, followed by gelato at Giolitti, Rome's historic gelateria dating to 1900 near the Pantheon, are not to be missed."
     },
     {
       "num": 13,
@@ -226,7 +230,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere; keep small Euro and Swiss Franc cash amounts for markets, cafés and Volendam's stalls."
+      "body": "Cards are accepted almost everywhere; keep small Euro and Swiss Franc cash amounts for the Volendam clog and cheese stalls, Lucerne's lakeside kiosks, and Venice's bacari, which often prefer cash for a quick round of cicchetti."
     }
   ],
   "map": {

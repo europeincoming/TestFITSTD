@@ -55,7 +55,8 @@
       "num": 1,
       "title": "Arrive Zurich → Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Arrive into Zurich and transfer south-west to Lucerne, set on the shores of Lake Lucerne beneath Mount Pilatus. Stroll across the wooden Chapel Bridge (Kapellbrücke) with its 17th-century painted gables, and take in the cobbled lanes and painted facades of the medieval Old Town."
+      "desc": "Arrive into Zurich and transfer south-west to Lucerne, set on the shores of Lake Lucerne beneath Mount Pilatus. Stroll across the wooden Chapel Bridge (Kapellbrücke) with its 17th-century painted gables, and take in the cobbled lanes and painted facades of the medieval Old Town.",
+      "experience": "The Lion Monument, a dying lion carved into a sandstone cliff face to honour the Swiss Guards killed in 1792, is what Mark Twain called 'the most mournful and moving piece of rock in the world'."
     },
     {
       "num": 2,
@@ -68,20 +69,23 @@
       "num": 3,
       "title": "Lucerne → Interlaken",
       "overnight": "Overnight: Interlaken",
-      "desc": "Travel through the heart of Switzerland to Interlaken, the resort town wedged between Lake Thun and Lake Brienz beneath the Jungfrau massif. The afternoon is free to wander the flower-lined Höheweg promenade with its open views to the Eiger, Mönch and Jungfrau."
+      "desc": "Travel through the heart of Switzerland to Interlaken, the resort town wedged between Lake Thun and Lake Brienz beneath the Jungfrau massif. The afternoon is free to wander the flower-lined Höheweg promenade with its open views to the Eiger, Mönch and Jungfrau.",
+      "taste": "Meringue, by local tradition invented in nearby Meiringen, is served everywhere in the Bernese Oberland piled high with thick double cream."
     },
     {
       "num": 4,
       "title": "Interlaken at leisure",
       "overnight": "Overnight: Interlaken",
       "desc": "A free day to explore the Bernese Oberland — take an optional excursion up to Jungfraujoch, the 'Top of Europe', or relax beside the turquoise waters of Lake Brienz and the postcard village of Iseltwald.",
+      "experience": "Interlaken's central Höhematte park doubles as the valley's paragliding landing strip — all summer, canopies drift down over the town from launch points at Beatenberg and Schynige Platte.",
       "fallbackIncluded": "Day at leisure — optional Jungfraujoch excursion available."
     },
     {
       "num": 5,
       "title": "Interlaken → Montreux",
       "overnight": "Overnight: Montreux",
-      "desc": "Cross the Bernese Oberland to Montreux on the shores of Lake Geneva, famed for its mild micro-climate, palm-lined promenade and its Jazz Festival heritage. The medieval, moated Château de Chillon sits just along the lakeshore."
+      "desc": "Cross the Bernese Oberland to Montreux on the shores of Lake Geneva, famed for its mild micro-climate, palm-lined promenade and its Jazz Festival heritage. The medieval, moated Château de Chillon sits just along the lakeshore.",
+      "taste": "The steep terraced vineyards of Lavaux, a UNESCO World Heritage landscape along this shore of Lake Geneva, produce Chasselas, the crisp local white poured in nearly every Montreux restaurant."
     },
     {
       "num": 6,
@@ -96,6 +100,7 @@
       "title": "Montreux → Zurich",
       "overnight": "Overnight: Zurich",
       "desc": "Return north to Zurich, Switzerland's largest city, straddling the Limmat river at the edge of Lake Zurich. The Old Town's Grossmünster and Fraumünster churches, and the boutiques of Bahnhofstrasse, are all within easy walking distance of the hotels.",
+      "taste": "Zürcher Geschnetzeltes — veal strips in a creamy mushroom sauce, served with rösti — is the city's signature dish, on the menu at old-world institutions like the Zeughauskeller, a former armoury turned beer hall.",
       "shopping": "Bahnhofstrasse is one of the world's most expensive shopping streets, lined with Swiss watch houses and department stores."
     },
     {
@@ -170,7 +175,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere in Switzerland; a little cash is useful for small cafés and rural stops. Switzerland is one of Europe's more expensive destinations."
+      "body": "Cards are accepted almost everywhere in Switzerland, even for small purchases; a little cash is still useful for rural cafés and market stalls. Switzerland is consistently ranked among the most expensive countries in Europe, so budget accordingly."
     }
   ],
   "map": {

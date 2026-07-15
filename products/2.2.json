@@ -59,7 +59,7 @@
       "title": "Arrive Paris",
       "overnight": "Overnight: Paris",
       "desc": "Arrive in the French capital and transfer to your hotel. The rest of the day is free to stroll along the Champs-Élysées or the Seine — central Paris hotels put Notre-Dame, the Louvre and the Marais all within easy reach.",
-      "taste": "A classic café terrace dinner of steak-frites and a glass of Bordeaux is the perfect first evening in Paris."
+      "taste": "Steak-frites and a glass of Bordeaux at a Left Bank brasserie is the classic first evening in Paris — Le Procope, open since 1686 and said to be the oldest café in the world, is the address for it."
     },
     {
       "num": 2,
@@ -87,6 +87,7 @@
       "title": "Lucerne at Leisure",
       "overnight": "Overnight: Lucerne",
       "desc": "A free day to explore Lucerne at your own pace — the Lion Monument, the Musegg Wall towers, and the old town's frescoed guild houses along the river Reuss.",
+      "shopping": "Bucherer's flagship on Schwanenplatz, the Swiss watch and jewellery house founded in Lucerne in 1888, is the natural stop for a Swiss timepiece.",
       "fallbackIncluded": "Day at leisure — optional Mount Pilatus or Interlaken excursion available."
     },
     {
@@ -94,7 +95,7 @@
       "title": "Lucerne → Innsbruck",
       "overnight": "Overnight: Innsbruck",
       "desc": "Travel through the Swiss and Austrian Alps to Innsbruck, the historic capital of Tyrol, set dramatically beneath the Nordkette range. Visit the Altstadt and the famous Golden Roof (Goldenes Dachl).",
-      "taste": "Warm up with a plate of Tyrolean Knödel (dumplings) or a slice of apple strudel in the old town."
+      "taste": "Tyrolean Knödel and apple strudel at the Goldener Adler, a guesthouse on the Altstadt's main square that has been serving guests since 1390."
     },
     {
       "num": 7,
@@ -102,6 +103,7 @@
       "overnight": "Overnight: Innsbruck",
       "desc": "Explore Innsbruck's imperial architecture, including the Hofburg and Hofkirche, or take the Nordkette funicular for panoramic mountain views straight from the city centre.",
       "experience": "Swarovski Crystal Worlds in nearby Wattens is one of Austria's most visited attractions, a museum of crystal art and installations built around a giant crystal-faced giant.",
+      "shopping": "Maria-Theresien-Straße, running south from the Altstadt with the Nordkette as a backdrop, is Innsbruck's principal shopping street.",
       "fallbackIncluded": "Day at leisure — optional Swarovski Crystal Worlds visit available."
     },
     {
@@ -109,7 +111,7 @@
       "title": "Innsbruck → Vienna",
       "overnight": "Overnight: Vienna",
       "desc": "Travel across Austria to Vienna, the former seat of the Habsburg Empire. Arrive in a city of grand boulevards, imperial palaces and coffee houses along the Ringstrasse.",
-      "taste": "A slice of Sachertorte with a Wiener Melange coffee is the essential first taste of Vienna."
+      "taste": "A slice of Sachertorte with a Wiener Melange is the essential first taste of Vienna — Café Sacher, beside the State Opera, has served the original recipe since 1876."
     },
     {
       "num": 9,
@@ -191,7 +193,7 @@
     },
     {
       "title": "Money",
-      "body": "Cards are accepted almost everywhere; a little Swiss Franc cash is useful in Lucerne. Tipping around 10% in restaurants is customary, not obligatory."
+      "body": "Cards are accepted almost everywhere; a little Swiss Franc cash is useful in Lucerne, since Switzerland sits outside the Eurozone despite its neighbours. Tipping around 10% in restaurants is customary, not obligatory."
     }
   ],
   "map": {
@@ -226,7 +228,7 @@
   "region": "western-central-europe",
   "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
   "pricesFile": "prices/2.2-2026.json",
-  "heroImage": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1600&q=80",
   "terms": [
     "All rates are net and per person for the package.",
     "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
