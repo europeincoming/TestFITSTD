@@ -5,24 +5,125 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1860, "twin": 1450, "child": 1015 },
-        "winter": { "single": 1640, "twin": 1280, "child": 900 }
+        "summer": {
+          "single": 1860,
+          "twin": 1450,
+          "child": 1015
+        },
+        "winter": {
+          "single": 1640,
+          "twin": 1280,
+          "child": 900
+        }
       },
       "4": {
-        "summer": { "single": 2230, "twin": 1740, "child": 1220 },
-        "winter": { "single": 1960, "twin": 1530, "child": 1070 }
+        "summer": {
+          "single": 2230,
+          "twin": 1740,
+          "child": 1220
+        },
+        "winter": {
+          "single": 1960,
+          "twin": 1530,
+          "child": 1070
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 2560, "twin": 2000, "child": 1400 },
-        "winter": { "single": 2250, "twin": 1760, "child": 1230 }
-      },
-      "4": {
-        "summer": { "single": 3070, "twin": 2400, "child": 1680 },
-        "winter": { "single": 2700, "twin": 2110, "child": 1480 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2524,
+            "4star": 2602
+          },
+          {
+            "pax": 10,
+            "3star": 2308,
+            "4star": 2386
+          },
+          {
+            "pax": 12,
+            "3star": 2164,
+            "4star": 2243
+          },
+          {
+            "pax": 14,
+            "3star": 2061,
+            "4star": 2140
+          },
+          {
+            "pax": 16,
+            "3star": 1984,
+            "4star": 2063
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2638,
+            "4star": 2721
+          },
+          {
+            "pax": 10,
+            "3star": 2413,
+            "4star": 2495
+          },
+          {
+            "pax": 12,
+            "3star": 2262,
+            "4star": 2344
+          },
+          {
+            "pax": 14,
+            "3star": 2155,
+            "4star": 2237
+          },
+          {
+            "pax": 16,
+            "3star": 2074,
+            "4star": 2156
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Madam Tussauds ticket",
+      "price": 35
+    },
+    {
+      "name": "Tower of London ticket",
+      "price": 34
+    },
+    {
+      "name": "Edinburgh Castle ticket",
+      "price": 22
+    },
+    {
+      "name": "London Eye standard ticket",
+      "price": 30
+    },
+    {
+      "name": "entrance tickets",
+      "price": 116
+    },
+    {
+      "name": "Manchester - Windermere & the Lake District, 11 hours coach tour",
+      "price": 70
+    },
+    {
+      "name": "Manchester - Derbyshire & the Peak District, 9 hours coach tour",
+      "price": 65
+    },
+    {
+      "name": "Edinburgh 1 day hop on hop off pass",
+      "price": 20
+    },
+    {
+      "name": "Edinburgh - Loch Lomond, Stirling Castle, 10 hrs coach regular",
+      "price": 62
+    }
+  ]
 }

@@ -5,34 +5,131 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1220, "twin": 950, "child": 670 },
-        "winter": { "single": 1060, "twin": 830, "child": 580 }
+        "summer": {
+          "single": 1220,
+          "twin": 950,
+          "child": 670
+        },
+        "winter": {
+          "single": 1060,
+          "twin": 830,
+          "child": 580
+        }
       },
       "4": {
-        "summer": { "single": 1460, "twin": 1140, "child": 800 },
-        "winter": { "single": 1270, "twin": 990, "child": 700 }
+        "summer": {
+          "single": 1460,
+          "twin": 1140,
+          "child": 800
+        },
+        "winter": {
+          "single": 1270,
+          "twin": 990,
+          "child": 700
+        }
       }
     },
     "selfdrive": {
       "3": {
-        "summer": { "single": 1340, "twin": 1050, "child": 730 },
-        "winter": { "single": 1170, "twin": 910, "child": 635 }
+        "summer": {
+          "single": 1340,
+          "twin": 1050,
+          "child": 730
+        },
+        "winter": {
+          "single": 1170,
+          "twin": 910,
+          "child": 635
+        }
       },
       "4": {
-        "summer": { "single": 1610, "twin": 1260, "child": 880 },
-        "winter": { "single": 1400, "twin": 1100, "child": 765 }
+        "summer": {
+          "single": 1610,
+          "twin": 1260,
+          "child": 880
+        },
+        "winter": {
+          "single": 1400,
+          "twin": 1100,
+          "child": 765
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 2240, "twin": 1750, "child": 1225 },
-        "winter": { "single": 1950, "twin": 1520, "child": 1070 }
-      },
-      "4": {
-        "summer": { "single": 2690, "twin": 2100, "child": 1470 },
-        "winter": { "single": 2340, "twin": 1830, "child": 1280 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1351,
+            "4star": 1420
+          },
+          {
+            "pax": 10,
+            "3star": 1234,
+            "4star": 1304
+          },
+          {
+            "pax": 12,
+            "3star": 1156,
+            "4star": 1226
+          },
+          {
+            "pax": 14,
+            "3star": 1100,
+            "4star": 1170
+          },
+          {
+            "pax": 16,
+            "3star": 1058,
+            "4star": 1128
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1412,
+            "4star": 1485
+          },
+          {
+            "pax": 10,
+            "3star": 1290,
+            "4star": 1363
+          },
+          {
+            "pax": 12,
+            "3star": 1208,
+            "4star": 1281
+          },
+          {
+            "pax": 14,
+            "3star": 1150,
+            "4star": 1223
+          },
+          {
+            "pax": 16,
+            "3star": 1106,
+            "4star": 1179
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Edinburgh castle admission ticket",
+      "price": 22
+    },
+    {
+      "name": "Ben Nevis 1 day gondola ticket",
+      "price": 28
+    },
+    {
+      "name": "Edinburgh 1 day hop on hop off pass",
+      "price": 20
+    },
+    {
+      "name": "Loch Lomond, Stirling Castle, 10 hrs coach tour",
+      "price": 62
+    }
+  ]
 }

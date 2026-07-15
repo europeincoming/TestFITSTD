@@ -34,12 +34,24 @@
     var curr = PRICES.currency || "€";
     return curr + Number(v).toLocaleString("en-GB");
   }
+  function row(tagClass, label, text) {
+    return '<div class="pkg-pill-row"><span class="pkg-tag ' + tagClass + '">' + label + '</span>' +
+      '<span class="pkg-tag-text">' + esc(text) + '</span></div>';
+  }
 
   // ── cheapest twin rate within a style, across every hotel category + season ──
   function cheapestTwin(styleId) {
     var variant = (PRICES.variants || {})[styleId];
     if (!variant) return null;
     var best = null;
+    if (variant.paxTiers) {
+      Object.keys(variant.paxTiers).forEach(function (season) {
+        (variant.paxTiers[season] || []).forEach(function (tier) {
+          if (tier["3star"] != null && (best === null || tier["3star"] < best)) best = tier["3star"];
+        });
+      });
+      return best;
+    }
     Object.keys(variant).forEach(function (cat) {
       Object.keys(variant[cat] || {}).forEach(function (season) {
         var row = variant[cat][season];
@@ -92,17 +104,17 @@
       var el = document.createElement("div");
       el.className = "pkg-day";
       var included = transport[String(day.num)] || day.fallbackIncluded || "Day at leisure.";
-      var pills = '<span class="pkg-tag pkg-tag-inc">INCLUDED</span> <span class="pkg-tag-text">' + esc(included) + "</span>";
-      if (day.taste) pills += '<div class="pkg-pill-row"><span class="pkg-tag pkg-tag-taste">LOCAL TASTE</span> <span class="pkg-tag-text">' + esc(day.taste) + "</span></div>";
-      if (day.experience) pills += '<div class="pkg-pill-row"><span class="pkg-tag pkg-tag-exp">LOCAL EXPERIENCE</span> <span class="pkg-tag-text">' + esc(day.experience) + "</span></div>";
-      if (day.shopping) pills += '<div class="pkg-pill-row"><span class="pkg-tag pkg-tag-shop">SHOPPING</span> <span class="pkg-tag-text">' + esc(day.shopping) + "</span></div>";
+      var rows = row("pkg-tag-inc", "INCLUDED", included);
+      if (day.taste) rows += row("pkg-tag-taste", "LOCAL TASTE", day.taste);
+      if (day.experience) rows += row("pkg-tag-exp", "LOCAL EXPERIENCE", day.experience);
+      if (day.shopping) rows += row("pkg-tag-shop", "SHOPPING", day.shopping);
       el.innerHTML =
-        '<div class="pkg-day-num">' + day.num + '</div>' +
+        '<div class="pkg-day-num-col"><div class="pkg-day-num-lbl">Day</div><div class="pkg-day-num">' + day.num + '</div></div>' +
         '<div class="pkg-day-body">' +
           '<div class="pkg-day-title">' + esc(day.title) + '</div>' +
           '<div class="pkg-day-overnight">' + esc(day.overnight || "") + '</div>' +
           '<div class="pkg-day-desc">' + esc(day.desc || "") + '</div>' +
-          '<div class="pkg-pill-row">' + pills + '</div>' +
+          rows +
         '</div>';
       wrap.appendChild(el);
     });
@@ -162,10 +174,30 @@
     });
   }
 
+  function renderPaxTable(tiers) {
+    var body = (tiers || []).map(function (t) {
+      return "<tr><td>" + t.pax + "</td><td>" + fmtMoney(t["3star"]) + "</td><td>" + fmtMoney(t["4star"]) + "</td></tr>";
+    }).join("");
+    return '<table class="pkg-pax-table"><thead><tr><th>Min Pax</th><th>3★ per adult</th><th>4★ per adult</th></tr></thead><tbody>' + body + '</tbody></table>';
+  }
+
   function renderRates() {
+    var variant = (PRICES.variants || {})[state.style] || {};
+    var isPax = !!variant.paxTiers;
+    $("pkgRateToggles").style.display = isPax ? "none" : "";
+    $("pkgPaxRates").style.display = isPax ? "" : "none";
+    $("pkgRateTable").style.display = isPax ? "none" : "";
+
+    if (isPax) {
+      $("pkgPaxRates").innerHTML =
+        '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Nov–Mar</div>' + renderPaxTable(variant.paxTiers.winter) + '</div>' +
+        '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Apr–Oct</div>' + renderPaxTable(variant.paxTiers.summer) + '</div>';
+      return;
+    }
+
     renderRateToggles();
-    var row = ((PRICES.variants || {})[state.style] || {})[state.cat] || {};
-    var rates = row[state.season] || {};
+    var catRow = variant[state.cat] || {};
+    var rates = catRow[state.season] || {};
     var tbody = $("pkgRatesBody");
     tbody.innerHTML =
       "<tr><td>Single</td><td>" + fmtMoney(rates.single) + "</td></tr>" +

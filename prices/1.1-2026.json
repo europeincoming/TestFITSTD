@@ -4,24 +4,72 @@
   "currency": "£",
   "variants": {
     "private": {
-      "3": {
-        "summer": { "single": 794, "twin": 620, "child": 434 },
-        "winter": { "single": 691, "twin": 540, "child": 378 }
-      },
-      "4": {
-        "summer": { "single": 960, "twin": 750, "child": 525 },
-        "winter": { "single": 832, "twin": 650, "child": 455 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 517,
+            "4star": 572
+          },
+          {
+            "pax": 10,
+            "3star": 468,
+            "4star": 523
+          },
+          {
+            "pax": 12,
+            "3star": 435,
+            "4star": 490
+          },
+          {
+            "pax": 14,
+            "3star": 412,
+            "4star": 467
+          },
+          {
+            "pax": 16,
+            "3star": 394,
+            "4star": 449
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 541,
+            "4star": 598
+          },
+          {
+            "pax": 10,
+            "3star": 489,
+            "4star": 547
+          },
+          {
+            "pax": 12,
+            "3star": 455,
+            "4star": 513
+          },
+          {
+            "pax": 14,
+            "3star": 431,
+            "4star": 488
+          },
+          {
+            "pax": 16,
+            "3star": 412,
+            "4star": 470
+          }
+        ]
       }
     }
   },
   "optionalTours": [
-    { "name": "London Eye standard ticket", "price": 30 },
-    { "name": "Madame Tussauds ticket", "price": 35 },
-    { "name": "Tower of London ticket", "price": 34 },
-    { "name": "London - Stonehenge and Bath Tour, 10 hrs regular coach including all entrance tickets", "price": 116 },
-    { "name": "Manchester - Windermere & the Lake District, 11 hours coach tour", "price": 70 },
-    { "name": "Manchester - Derbyshire & the Peak District, 9 hours coach tour", "price": 65 },
-    { "name": "Edinburgh 1 day hop on hop off pass", "price": 20 },
-    { "name": "Edinburgh - Loch Lomond, Stirling Castle, 10 hrs coach regular", "price": 62 }
+    {
+      "name": "Madam Tussauds admission ticket",
+      "price": 35
+    },
+    {
+      "name": "Tower of London admission ticket",
+      "price": 34
+    }
   ]
 }

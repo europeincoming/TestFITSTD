@@ -58,56 +58,76 @@
       }
     },
     "private": {
-      "3": {
-        "summer": {
-          "single": 1890,
-          "twin": 1495,
-          "child": 980
-        },
-        "winter": {
-          "single": 1710,
-          "twin": 1350,
-          "child": 885
-        }
-      },
-      "4": {
-        "summer": {
-          "single": 2135,
-          "twin": 1690,
-          "child": 1085
-        },
-        "winter": {
-          "single": 1935,
-          "twin": 1525,
-          "child": 975
-        }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1244,
+            "4star": 1327
+          },
+          {
+            "pax": 10,
+            "3star": 1172,
+            "4star": 1254
+          },
+          {
+            "pax": 12,
+            "3star": 1123,
+            "4star": 1205
+          },
+          {
+            "pax": 14,
+            "3star": 1088,
+            "4star": 1171
+          },
+          {
+            "pax": 16,
+            "3star": 1062,
+            "4star": 1145
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1301,
+            "4star": 1387
+          },
+          {
+            "pax": 10,
+            "3star": 1225,
+            "4star": 1311
+          },
+          {
+            "pax": 12,
+            "3star": 1174,
+            "4star": 1260
+          },
+          {
+            "pax": 14,
+            "3star": 1138,
+            "4star": 1224
+          },
+          {
+            "pax": 16,
+            "3star": 1110,
+            "4star": 1197
+          }
+        ]
       }
     }
   },
   "optionalTours": [
     {
-      "name": "Guinness Storehouse skip-the-line entry",
-      "price": 32
+      "name": "Guinness Storehouse, standard ticket with a pint, 90 mins",
+      "price": 25
     },
     {
-      "name": "Ring of Kerry full-day tour from Limerick",
-      "price": 68
+      "name": "Ring of Kerry Tour from Limerick, 11 hrs regular coach",
+      "price": 72
     },
     {
-      "name": "Bunratty Castle & Folk Park entry",
-      "price": 24
-    },
-    {
-      "name": "Traditional Irish evening with dinner, Dublin",
-      "price": 75
-    },
-    {
-      "name": "Kilkenny Castle guided visit",
-      "price": 18
-    },
-    {
-      "name": "Aran Islands day trip from Doolin",
-      "price": 55
+      "name": "Dingle Tour from Limerick, 11 hrs regular coach",
+      "price": 65
     }
   ]
 }

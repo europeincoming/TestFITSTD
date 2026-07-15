@@ -533,17 +533,19 @@ a{color:inherit;}
 /* Day by day */
 .pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
 .pkg-day:first-child{border-top:1px solid var(--faint-line);}
+.pkg-day-num-col{text-align:center;}
+.pkg-day-num-lbl{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
 .pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
 .pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
 .pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
 .pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
-.pkg-pill-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;}
-.pkg-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+.pkg-pill-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-top:6px;}
+.pkg-tag{flex:0 0 auto;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
 .pkg-tag-inc{background:var(--green-bg);color:var(--green);}
 .pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
 .pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
 .pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
-.pkg-tag-text{font-size:13px;color:var(--body);}
+.pkg-tag-text{flex:1 1 220px;min-width:0;font-size:13px;color:var(--body);}
 
 /* Includes */
 .pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
@@ -567,7 +569,14 @@ a{color:inherit;}
 .pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
 .pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
 .pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
+.pkg-pax-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:10px;}
+.pkg-pax-season-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.pkg-pax-table{width:100%;border-collapse:collapse;}
+.pkg-pax-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 12px;}
+.pkg-pax-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--line);}
+.pkg-pax-table td:not(:first-child){text-align:right;font-weight:700;color:var(--navy);}
 .pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
+@media(max-width:960px){.pkg-pax-grid{grid-template-columns:1fr;}}
 
 /* Optional tours */
 .pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
@@ -636,6 +645,13 @@ a{color:inherit;}
 def _cheapest_twin(prices, style_id):
     variant = (prices.get("variants") or {}).get(style_id) or {}
     best = None
+    if "paxTiers" in variant:
+        for tiers in variant["paxTiers"].values():
+            for tier in tiers or []:
+                val = tier.get("3star")
+                if val is not None and (best is None or val < best):
+                    best = val
+        return best
     for cat_rates in variant.values():
         for row in (cat_rates or {}).values():
             twin = row.get("twin")
@@ -717,14 +733,15 @@ def render_package_page(product, prices, depth, back_href):
     </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Package rates</div>
-      <div class="pkg-rate-toggles no-print">
+      <div class="pkg-rate-toggles no-print" id="pkgRateToggles">
         <div class="pkg-seg-group" id="pkgCatToggle"></div>
         <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
       </div>
-      <table class="pkg-rate-table">
+      <table class="pkg-rate-table" id="pkgRateTable">
         <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
         <tbody id="pkgRatesBody"></tbody>
       </table>
+      <div class="pkg-pax-grid" id="pkgPaxRates"></div>
       <div class="pkg-rate-note">All rates net, per person, in {currency}. Valid {prices.get("validFrom","")} – {prices.get("validTo","")}.</div>
     </div>
     <div class="pkg-section">

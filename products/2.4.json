@@ -61,14 +61,14 @@
       "num": 1,
       "title": "Arrive Amsterdam",
       "overnight": "Overnight: Amsterdam",
-      "desc": "Arrive into the Dutch capital, a city built around a ring of 17th-century canals now protected as a UNESCO World Heritage Site. The rest of the day is free to wander the Jordaan district or the gabled houses along the Herengracht.",
+      "desc": "Welcome to the Dutch capital! Your arrival is met with a seamless private transfer to your hotel. Amsterdam, fondly known as the \"Venice of the North,\" charms visitors with its iconic network of canals. Immerse yourself in the city's cultural tapestry by exploring the historic Canal Ring, a UNESCO World Heritage site. Uncover the Netherlands' history and innovation, all within the captivating embrace of Amsterdam. Overnight in Amsterdam.",
       "taste": "A wedge of aged Gouda and a jenever at Café 't Smalle, a Jordaan brown café that has been pouring drinks on the Egelantiersgracht since 1780."
     },
     {
       "num": 2,
       "title": "Windmills & Volendam",
       "overnight": "Overnight: Amsterdam",
-      "desc": "A full day beyond the city: the working windmills of Zaanse Schans, a cheese-making demonstration, and the picturesque former fishing village of Volendam with its wooden houses and harbour front.",
+      "desc": "Embark on a 5.5-hour coach tour exploring the Dutch countryside from Amsterdam. Admire the iconic windmills of Zaanse Schans and taste authentic Dutch cheese at the Volendam Cheese Factory. Witness the crafting of wooden shoes with an antique steam engine. Overnight in Amsterdam.",
       "experience": "Traditional clog-making demonstration at Zaanse Schans, a craft still practised on site.",
       "taste": "Smoked eel sold straight from the barrel at Volendam's harbourside stalls, a local speciality of the old Zuiderzee fishing fleet."
     },
@@ -76,14 +76,14 @@
       "num": 3,
       "title": "Amsterdam to Paris",
       "overnight": "Overnight: Paris",
-      "desc": "Travel south by train into France, arriving in the City of Light in time to settle in before an evening stroll along the Seine or through the Marais.",
+      "desc": "Depart Amsterdam by train for Paris, the City of Lights. Paris is renowned for its artistic heritage, captivating landmarks like the Eiffel Tower, and the historical charm of Montmartre. Wander along the Seine River or explore the vibrant streets of Le Marais for an evening of enchantment. Overnight in Paris.",
       "taste": "Steak-frites and a carafe of house red at a Marais bistro, the classic first-night dinner for arrivals in Paris."
     },
     {
       "num": 4,
       "title": "Paris City Tour",
       "overnight": "Overnight: Paris",
-      "desc": "A guided tour taking in Notre-Dame, the Champs-Élysées and the Arc de Triomphe, a cruise along the Seine, and an ascent of the Eiffel Tower to its second floor for sweeping views over the rooftops of Paris.",
+      "desc": "Embark on a captivating 4-hour coach tour of Paris, immersing yourself in its timeless beauty. Cruise along the Seine River for an hour, admiring iconic landmarks from a unique perspective. Ascend to the Eiffel Tower's second floor, embracing panoramic views of the city's splendour. Overnight in Paris.",
       "taste": "Macarons at Ladurée, the Paris confectioner trading on the Champs-Élysées since 1862, or an onion soup gratinée for dinner.",
       "shopping": "Galeries Lafayette on Boulevard Haussmann, its 1912 stained-glass dome presiding over one of the world's most famous department stores."
     },
@@ -91,13 +91,13 @@
       "num": 5,
       "title": "Paris to Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "A scenic rail journey across France and into Switzerland, arriving in Lucerne on the shore of Lake Lucerne beneath the snow-capped peaks of Mount Pilatus, with the medieval Chapel Bridge at the heart of the old town."
+      "desc": "Check out and board the train to Basel or Zurich, commencing your Swiss adventure. Upon arrival in Switzerland, utilize the Swiss Travel Pass for your onward journey to Lucerne. The Pass covers seamless travel across the Swiss Travel System, enjoying unlimited travel on trains, boats, trams, and buses. Overnight in Lucerne."
     },
     {
       "num": 6,
       "title": "Mount Titlis excursion",
       "overnight": "Overnight: Lucerne",
-      "desc": "Ride the world's first revolving cable car up to the glacier at Mount Titlis, over 3,000 metres above sea level, before returning to Lucerne for an included cruise on Lake Lucerne.",
+      "desc": "Utilize your Swiss Travel Pass to explore Mount Titlis, a breathtaking alpine experience. Revel in the stunning vistas, engage in snow activities, and relish the revolving Titlis Rotair gondola. Later, you can take a cruise on Lake Lucerne, enjoying the serene waters and picturesque surroundings. Overnight in Lucerne.",
       "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, spanning a ridge just below the summit.",
       "taste": "Cheese fondue in a lakeside Stübli back in Lucerne after the descent from the glacier."
     },
@@ -105,7 +105,7 @@
       "num": 7,
       "title": "Lucerne at leisure",
       "overnight": "Overnight: Lucerne",
-      "desc": "A free day to explore Lucerne's compact old town at your own pace: the Lion Monument carved into a sandstone cliff, the frescoed Chapel Bridge, and the lakeside promenades.",
+      "desc": "Enjoy the freedom to explore Switzerland at your leisure using the Swiss Travel Pass. Delve into the scenic wonders of Grindelwald and Interlaken, known for their stunning landscapes. Optionally, consider a visit to Grindelwald First for panoramic views and thrilling activities. Overnight in Lucerne.",
       "taste": "Kirschtorte and pralines at Confiserie Bachmann, Lucerne's own confectioner and bakery since 1938.",
       "fallbackIncluded": "Day at leisure — optional excursions available."
     },
@@ -113,14 +113,14 @@
       "num": 8,
       "title": "Lucerne to Zurich",
       "overnight": "Overnight: Zurich",
-      "desc": "Travel on to Zurich, Switzerland's largest city, with time to explore the cobbled Altstadt, the twin towers of the Grossmünster, and the boutiques along Bahnhofstrasse before dinner beside Lake Zurich.",
+      "desc": "Travel from Lucerne to Zurich using your Swiss Travel Pass, exploring the vibrant city of Zurich upon arrival. Zurich, a financial hub, blends modernity with history, offering a plethora of cultural attractions. Optionally, venture further to Schaffhausen by train to witness the majestic Rhine Falls, Europe's largest waterfall. Overnight Zurich.",
       "taste": "Luxemburgerli macarons and hot chocolate at Confiserie Sprüngli on Paradeplatz, trading since 1836."
     },
     {
       "num": 9,
       "title": "Depart Zurich",
       "overnight": "Departure day",
-      "desc": "Free time until your transfer to Zurich airport, depending on flight time."
+      "desc": "Your unforgettable Paris-Swiss tour concludes today. Make your way to Zurich Airport for your return journey home, carrying beautiful memories of Parisian elegance and the mesmerizing Swiss landscapes."
     }
   ],
   "hotels": [
