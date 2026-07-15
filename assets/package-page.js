@@ -235,7 +235,7 @@
   function markerIcon(size, nights) {
     return L.divIcon({
       className: "pkg-badge-icon",
-      html: '<div class="pkg-badge" style="width:' + size + 'px;height:' + size + 'px;line-height:' + size + 'px;font-size:' + (size > 20 ? 12 : 10) + 'px;">' + nights + "N</div>",
+      html: '<div class="pkg-badge" style="width:' + size + 'px;height:' + size + 'px;line-height:' + size + 'px;font-size:' + (size > 20 ? 11 : 9) + 'px;">' + nights + "N</div>",
       iconSize: [size, size],
       iconAnchor: [size / 2, size / 2]
     });
@@ -288,7 +288,8 @@
     $("pkgMapModalTitle").textContent = "ROUTE MAP — " + (PRODUCT.title || "").toUpperCase();
     setTimeout(function () {
       largeMap = buildMap("pkgMapModalCanvas", true);
-    }, 10);
+      if (largeMap) largeMap.invalidateSize();
+    }, 50);
     document.addEventListener("keydown", onMapEsc);
   }
 
@@ -328,8 +329,11 @@
 
     $("pkgDownloadBtn").addEventListener("click", downloadPDF);
     $("pkgTcBtn").addEventListener("click", toggleTC);
-    $("pkgMapEnlarge").addEventListener("click", openMapModal);
-    $("pkgMapModalClose").addEventListener("click", closeMapModal);
+    $("pkgMapBox").addEventListener("click", openMapModal);
+    $("pkgMapModalClose").addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeMapModal();
+    });
     $("pkgMapModal").addEventListener("click", function (e) {
       if (e.target === $("pkgMapModal")) closeMapModal();
     });

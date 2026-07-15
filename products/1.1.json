@@ -31,14 +31,14 @@
       "num": 1,
       "title": "Arrive London",
       "overnight": "Overnight: London",
-      "desc": "Arrive into London and transfer privately to your central hotel. The rest of the day is free to explore nearby — Westminster, the South Bank and Victoria are all within easy reach on foot or by a short taxi ride, with St James's Park and Buckingham Palace close by for an evening stroll.",
+      "desc": "Welcome to London, a city with a rich history and vibrant culture. You'll be transferred to your hotel upon arrival. Spend the rest of the day exploring the city. If you're into shopping, Oxford Street and Harrods are must-visit spots. Overnight in London.",
       "fallbackIncluded": "Day at leisure."
     },
     {
       "num": 2,
       "title": "London city tour",
       "overnight": "Overnight: London",
-      "desc": "A guided city tour takes in London's icons: Buckingham Palace, Westminster Abbey, Big Ben and the Houses of Parliament, followed by free time for the London Eye and a Thames river cruise past St Paul's Cathedral and Tower Bridge.",
+      "desc": "Embark on a captivating 3-hour guided city tour, discovering London's iconic landmarks. Glide above the city with standard London Eye tickets and unwind on a serene Thames River cruise. Immerse yourself in the vibrant tapestry of London's culture. Overnight in London.",
       "experience": "Ride the London Eye for sweeping views over the Thames and the Palace of Westminster.",
       "taste": "Afternoon tea at Fortnum & Mason on Piccadilly, the royal grocer trading since 1707, or fish and chips at one of the capital's traditional chippies.",
       "shopping": "Oxford Street and Regent Street, London's flagship shopping mile, are a short ride from the hotel."
@@ -47,7 +47,7 @@
       "num": 3,
       "title": "Stonehenge & Bath excursion",
       "overnight": "Overnight: London",
-      "desc": "A full-day excursion out of the city to Stonehenge, the prehistoric stone circle on Salisbury Plain, followed by the Georgian city of Bath with its Roman Baths and honey-coloured crescents.",
+      "desc": "Journey to the ancient mysteries of Stonehenge and the timeless allure of Bath. Explore these historic sites with included entrance tickets, tracing their fascinating narratives through time. Return to London for another night of exploration and enchantment. Overnight in London.",
       "taste": "A warm Bath bun at Sally Lunn's, the oldest house in Bath with parts dating to 1482, tucked beside the Abbey.",
       "shopping": "Milsom Street, Bath's Georgian shopping thoroughfare since the 18th century, for independent boutiques and jewellers."
     },
@@ -55,7 +55,7 @@
       "num": 4,
       "title": "Depart London",
       "overnight": "Departure day",
-      "desc": "Free time until your private transfer to London airport, depending on flight time."
+      "desc": "Post breakfast, proceed to check out and proceed to the airport by private transfer."
     }
   ],
   "hotels": [

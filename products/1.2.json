@@ -60,34 +60,34 @@
       "num": 1,
       "title": "Arrive London",
       "overnight": "Overnight: London",
-      "desc": "Arrive in the capital and transfer to your hotel. The rest of the day is free to get your bearings — Westminster, the Thames embankment and Covent Garden are all within easy reach of the central hotels.",
+      "desc": "Welcome to London, a city with a rich history and vibrant culture. You'll be transferred to your hotel upon arrival. Spend the rest of the day exploring the city. If you're into shopping, Oxford Street and Harrods are must-visit spots. Overnight in London.",
       "taste": "A classic fish and chips supper is the perfect first-night welcome — Poppies in Spitalfields has served the dish from the same East End corner since 1952."
     },
     {
       "num": 2,
       "title": "London",
       "overnight": "Overnight: London",
-      "desc": "A full day discovering London with the Hop-on Hop-off ticket, taking in Buckingham Palace, the Tower of London and St Paul's Cathedral, then a one-way cruise along the Thames.",
+      "desc": "Explore London with a Hop on Hop off 1 day pass. The pass allows you to visit the city’s most famous landmarks at your own pace. You can visit the Tower of London, the British Museum, the London Eye, and many other attractions. The pass also includes a one-way Thames River cruise, which is a great way to see the city from a different perspective. Overnight in London.",
       "experience": "An evening in London's West End — The Mousetrap has run continuously at St Martin's Theatre since 1952, the world's longest-running show."
     },
     {
       "num": 3,
       "title": "Stonehenge & Bath excursion",
       "overnight": "Overnight: London",
-      "desc": "A day trip out of the city to Stonehenge, the prehistoric stone circle on Salisbury Plain, followed by the elegant Georgian city of Bath and its Roman-era baths.",
+      "desc": "Today, you have the option to explore London at your own pace or take an optional tour to see Stonehenge and Bath. Overnight in London.",
       "taste": "Sally Lunn's in Bath serves its famous buns from a house dating to 1482, a short walk from the Roman Baths."
     },
     {
       "num": 4,
       "title": "London to Manchester",
       "overnight": "Overnight: Manchester",
-      "desc": "Travel north to Manchester, a city shaped by the Industrial Revolution and reborn through music, football and a thriving arts scene around the Northern Quarter."
+      "desc": "Check out and journey by train to Manchester, a city steeped in industrial history and renowned for its vibrant cultural scene. Explore this dynamic cityscape alive with music, art, and world-famous football clubs. Overnight in Manchester."
     },
     {
       "num": 5,
       "title": "Manchester",
       "overnight": "Overnight: Manchester",
-      "desc": "A day at leisure to explore Manchester: the Science and Industry Museum, the canalside warehouses of Castlefield, and the city's famous football heritage at Old Trafford.",
+      "desc": "Revel in a day of freedom in Manchester. Uncover the city's vibrant culture or opt for day trips to the picturesque Lake or Peak Districts, embracing the stunning natural landscapes. Overnight in Manchester.",
       "taste": "Rusholme's Curry Mile, a stretch of Wilmslow Road lined with South Asian restaurants and sweet shops, reflects Manchester's long-standing curry culture.",
       "fallbackIncluded": "Day at leisure — optional Manchester United stadium tour available."
     },
@@ -95,13 +95,13 @@
       "num": 6,
       "title": "Manchester to Edinburgh",
       "overnight": "Overnight: Edinburgh",
-      "desc": "Cross the border into Scotland and arrive in Edinburgh, its skyline dominated by the castle perched high on its volcanic rock above the Old Town."
+      "desc": "Travel comfortably by train from Manchester to Edinburgh, immersing yourself in Scotland's capital known for its captivating history, striking architecture, and cultural festivals. Overnight in Edinburgh."
     },
     {
       "num": 7,
       "title": "Edinburgh",
       "overnight": "Overnight: Edinburgh",
-      "desc": "A full day in Edinburgh: Edinburgh Castle, the Royal Mile with its closes and courtyards, and the view over the city from Arthur's Seat.",
+      "desc": "Enjoy a day at your pace in Edinburgh. Discover the city's historic sites, wander along the Royal Mile, or visit the majestic Edinburgh Castle. Opt for a Hop-On Hop-Off tour or venture on a day trip to the enchanting Highlands to witness Scotland's breathtaking landscapes. Overnight in Edinburgh.",
       "shopping": "The Royal Mile and George Street are lined with tartan, tweed and single-malt whisky shops.",
       "taste": "Haggis, neeps and tatties at Deacon Brodie's Tavern, a Royal Mile institution named after the 18th-century town councillor whose double life as a burglar is said to have inspired Dr Jekyll and Mr Hyde.",
       "fallbackIncluded": "Day at leisure — optional Edinburgh Castle & Royal Mile tour available."
@@ -110,13 +110,13 @@
       "num": 8,
       "title": "Edinburgh to Inverness",
       "overnight": "Overnight: Inverness",
-      "desc": "Head north through the Cairngorms to Inverness, the gateway to the Scottish Highlands on the banks of the River Ness."
+      "desc": "Board the train from Edinburgh to Inverness, a journey that offers scenic views of Scotland's landscapes. Arrive in Inverness, the gateway to the Highlands, where history and natural beauty converge. Enjoy a tranquil evening in this charming Scottish city. Overnight in Inverness."
     },
     {
       "num": 9,
       "title": "Inverness & Loch Ness",
       "overnight": "Overnight: Inverness",
-      "desc": "A day at leisure around Inverness — Inverness Castle, the riverside walks, and the legendary waters of Loch Ness just outside the city.",
+      "desc": "Embark on a captivating 12-hour coach tour to the picturesque Isle of Skye and the iconic Eilean Donan Castle. Traverse through Scotland's stunning landscapes, capturing the essence of its beauty and history. Return to Inverness for a serene evening. Overnight in Inverness.",
       "taste": "A single-malt tasting featuring Speyside names such as Glenfiddich and The Glenlivet, distilled less than an hour from Inverness in the region that produces more whisky than anywhere else in Scotland.",
       "fallbackIncluded": "Day at leisure — optional Loch Ness cruise available."
     },
@@ -124,14 +124,14 @@
       "num": 10,
       "title": "Inverness to Glasgow",
       "overnight": "Overnight: Glasgow",
-      "desc": "Journey south via Loch Ness, Glencoe and Loch Lomond to Glasgow, Scotland's largest city, known for its Victorian architecture and Merchant City.",
+      "desc": "Depart Inverness by train, traversing Scotland's landscapes towards the vibrant city of Glasgow. Embrace the cultural diversity and architectural wonders of this dynamic city upon arrival. Relax and prepare to explore Glasgow's charm. Overnight in Glasgow.",
       "taste": "The evening is free for dinner in the Merchant City's converted Victorian warehouses, or a taste of Tunnock's Tea Cakes and Irn-Bru, two of Scotland's best-known exports."
     },
     {
       "num": 11,
       "title": "Depart Glasgow",
       "overnight": "Departure day",
-      "desc": "Free time until your private transfer to Glasgow airport, depending on flight time."
+      "desc": "Bid farewell to Glasgow as you're privately transferred from your hotel to Glasgow airport. Conclude your remarkable journey through Scotland, departing with cherished memories of its rich history and breathtaking landscapes."
     }
   ],
   "hotels": [
