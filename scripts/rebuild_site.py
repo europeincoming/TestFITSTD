@@ -588,8 +588,9 @@ a{color:inherit;}
 /* Sidebar */
 .pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
 .pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
-.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);}
-.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;}
+.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);cursor:zoom-in;}
+.pkg-map-box #pkgMapSmall{pointer-events:none;}
+.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:zoom-in;border:none;font-family:'Montserrat',sans-serif;pointer-events:none;}
 .pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
 .pkg-fact-row:last-child{border-bottom:none;}
 .pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
@@ -743,7 +744,7 @@ def render_package_page(product, prices, depth, back_href):
   <div class="pkg-sidebar no-print">
     <div class="pkg-sb-card">
       <div class="pkg-sb-title">About this tour</div>
-      <div class="pkg-map-box">
+      <div class="pkg-map-box" id="pkgMapBox">
         <div id="pkgMapSmall" style="height:100%;"></div>
         <button class="pkg-map-enlarge" id="pkgMapEnlarge">⤢ ENLARGE</button>
       </div>
