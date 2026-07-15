@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ireland Discovery. | Europe Incoming FIT Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1733;--gold:#F2B91D;--gold-hover:#E0A810;--gold-dark:#B8870A;
+--ink:#1A1D2E;--body:#4B5563;--muted:#6B7280;--faint:#9AA1AE;--line:#E5E7EC;
+--faint-line:#F2F4F7;--offwhite:#FAFAF8;--green:#1F8A5B;--green-bg:#EEF5F0;
+--taste-bg:#FEF7DC;--exp-bg:#EEF1F8;--shop-bg:#F2F4F7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;padding-top:64px;}
+a{color:inherit;}
+.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+
+/* Top bar */
+.pkg-topbar{position:fixed;top:0;left:0;right:0;height:64px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
+.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.pkg-topbar-left{display:flex;align-items:center;gap:20px;}
+.pkg-logo{height:38px;width:auto;display:block;}
+.pkg-back-link{font-size:13px;font-weight:600;color:var(--body);text-decoration:none;transition:color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-back-link:hover{color:var(--navy);}
+.pkg-topbar-right{display:flex;align-items:center;gap:20px;}
+.pkg-trade{font-size:12px;color:var(--muted);}
+.pkg-trade a{color:var(--navy);font-weight:600;text-decoration:none;}
+.pkg-dl-btn{background:var(--gold);color:var(--navy);border:none;padding:11px 20px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1);white-space:nowrap;}
+.pkg-dl-btn:hover{background:var(--gold-hover);}
+
+/* Hero */
+.pkg-hero{position:relative;height:420px;background:var(--navy);overflow:hidden;}
+.pkg-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.65;}
+.pkg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,.75),rgba(3,7,20,.05) 65%);}
+.pkg-hero-content{position:absolute;left:0;right:0;bottom:0;max-width:1200px;margin:0 auto;padding:0 48px 32px;}
+.pkg-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.pkg-hero-title{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-bottom:12px;}
+.pkg-hero-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.85);}
+.pkg-hero-meta .sep{width:1px;height:12px;background:rgba(255,255,255,.3);}
+.pkg-hero-price{color:var(--gold);font-weight:700;}
+
+/* Variant bar */
+.pkg-variantbar{position:sticky;top:64px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.pkg-variant-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.pkg-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pkg-pill{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 18px;border-radius:999px;border:1px solid #CBD0DA;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1),border-color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pkg-variant-blurb{font-size:13px;color:var(--muted);text-align:right;}
+
+/* Body columns */
+.pkg-body{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:48px;align-items:flex-start;}
+.pkg-main{flex:1;min-width:0;padding:36px 0;}
+.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:132px;padding:36px 0;}
+
+.pkg-section{margin-bottom:40px;}
+.pkg-section-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;margin-bottom:18px;border-bottom:1px solid var(--line);}
+
+/* Day by day */
+.pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-day:first-child{border-top:1px solid var(--faint-line);}
+.pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
+.pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
+.pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+.pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
+.pkg-pill-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;}
+.pkg-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+.pkg-tag-inc{background:var(--green-bg);color:var(--green);}
+.pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
+.pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
+.pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
+.pkg-tag-text{font-size:13px;color:var(--body);}
+
+/* Includes */
+.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-inc-item{font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
+.pkg-check{color:var(--green);font-weight:700;}
+
+/* Hotels */
+.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.pkg-hotel-card{background:#fff;padding:18px;}
+.pkg-hotel-city{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.pkg-hotel-nights{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.pkg-hotel-cat{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--navy);margin-top:6px;}
+.pkg-hotel-name{font-size:13px;color:var(--body);}
+
+/* Rates */
+.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.pkg-seg-group{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.pkg-seg{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border:none;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-seg.active{background:var(--navy);color:#fff;}
+.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
+.pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
+.pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
+.pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
+.pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
+
+/* Optional tours */
+.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-opt-item{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-opt-price{font-weight:700;color:var(--ink);white-space:nowrap;}
+
+/* Good to know */
+.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+.pkg-gtk-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+.pkg-gtk-body{font-size:13px;color:var(--body);line-height:1.6;}
+
+/* T&C accordion */
+.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--faint-line);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;}
+.pkg-tc-body{display:none;padding:16px 4px 4px;}
+.pkg-tc-body.open{display:block;}
+.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:6px 0;list-style:disc;margin-left:18px;}
+
+/* Sidebar */
+.pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
+.pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);}
+.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;}
+.pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
+.pkg-fact-row:last-child{border-bottom:none;}
+.pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
+.pkg-fact-body{font-size:12px;color:var(--muted);margin-top:2px;}
+.pkg-sb-quote{background:var(--navy);}
+.pkg-sb-quote .pkg-sb-title{color:var(--gold);}
+.pkg-sb-quote-body{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6;}
+.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:6px;text-decoration:none;transition:background .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-sb-quote-btn:hover{background:var(--gold-hover);}
+.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 0;text-align:center;}
+
+/* Map markers */
+.pkg-badge-icon{background:transparent;border:none;}
+.pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.leaflet-tooltip.pkg-map-tip::before{display:none!important;}
+
+/* Map modal */
+.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.65);z-index:1000;align-items:center;justify-content:center;}
+.pkg-map-modal.open{display:flex;}
+.pkg-map-modal-panel{background:#fff;border-radius:10px;box-shadow:0 24px 64px rgba(11,23,51,.35);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
+.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.pkg-map-modal-header h3{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink);}
+.pkg-map-modal-close{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;}
+.pkg-map-modal-canvas{flex:1;}
+
+@media(max-width:960px){
+  .pkg-body{flex-direction:column;}
+  .pkg-sidebar{width:100%;position:static;}
+  .pkg-hero-title{font-size:38px;}
+  .pkg-inc-grid,.pkg-opt-grid,.pkg-gtk-grid,.pkg-hotels-grid{grid-template-columns:1fr;}
+}
+
+@media print{
+  .no-print{display:none!important;}
+  body{padding-top:0;}
+  .pkg-body{display:block;padding:0;max-width:none;}
+  .pkg-main{padding:16px 0;}
+  .pkg-hero{height:auto;}
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04BZKH6574');</script>
+</head>
+<body>
+<script>
+(async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
+if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
+)();</script>
+<div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
+  <div class="pkg-topbar-left">
+    <a href="../../"><img class="pkg-logo" src="../../logo.png" alt="Europe Incoming"></a>
+    <a class="pkg-back-link" href="./">← All packages</a>
+  </div>
+  <div class="pkg-topbar-right">
+    <div class="pkg-trade">Trade enquiries / <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a></div>
+    <button class="pkg-dl-btn" id="pkgDownloadBtn">↓ DOWNLOAD PDF</button>
+  </div>
+</div></div>
+
+<div class="pkg-hero">
+  <div class="pkg-hero-img" id="pkgHeroImg"></div>
+  <div class="pkg-hero-overlay"></div>
+  <div class="pkg-hero-content">
+    <div class="pkg-eyebrow" id="pkgEyebrow"></div>
+    <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
+    <div class="pkg-hero-meta">
+      <span id="pkgHeroNights"></span><span class="sep"></span>
+      <span id="pkgHeroRoute"></span><span class="sep"></span>
+      <span class="pkg-hero-price" id="pkgHeroPrice"></span>
+    </div>
+  </div>
+</div>
+
+<div class="pkg-variantbar no-print"><div class="pkg-variantbar-inner">
+  <div class="pkg-variantbar-left">
+    <div class="pkg-variant-label">Travel style</div>
+    <div class="pkg-pills" id="pkgVariantPills"></div>
+  </div>
+  <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
+</div></div>
+
+<div class="pkg-body">
+  <div class="pkg-main">
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgDayHeading"></div>
+      <div id="pkgDays"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgIncludesHeading"></div>
+      <div class="pkg-inc-grid" id="pkgIncludes"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Sample hotels</div>
+      <div class="pkg-hotels-grid" id="pkgHotels"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Package rates</div>
+      <div class="pkg-rate-toggles no-print">
+        <div class="pkg-seg-group" id="pkgCatToggle"></div>
+        <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
+      </div>
+      <table class="pkg-rate-table">
+        <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
+        <tbody id="pkgRatesBody"></tbody>
+      </table>
+      <div class="pkg-rate-note">All rates net, per person, in €. Valid 1 Apr 2026 – 31 Mar 2027.</div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Optional tours &amp; extras</div>
+      <div class="pkg-opt-grid" id="pkgOptionals"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Good to know</div>
+      <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
+    </div>
+    <div class="pkg-section pkg-tc-wrap no-print">
+      <button class="pkg-tc-btn" id="pkgTcBtn"><span>Terms &amp; conditions</span><span id="pkgTcArrow">▼</span></button>
+      <div class="pkg-tc-body" id="pkgTcBody"><ul id="pkgTerms"></ul></div>
+    </div>
+  </div>
+
+  <div class="pkg-sidebar no-print">
+    <div class="pkg-sb-card">
+      <div class="pkg-sb-title">About this tour</div>
+      <div class="pkg-map-box">
+        <div id="pkgMapSmall" style="height:100%;"></div>
+        <button class="pkg-map-enlarge" id="pkgMapEnlarge">⤢ ENLARGE</button>
+      </div>
+      <div class="pkg-fact-row">
+        <div class="pkg-fact-title" id="pkgAboutDuration"></div>
+        <div class="pkg-fact-body" id="pkgAboutRoute"></div>
+      </div>
+      <div id="pkgAboutFacts"></div>
+    </div>
+    <div class="pkg-sb-card pkg-sb-quote">
+      <div class="pkg-sb-title">Ready to quote?</div>
+      <div class="pkg-sb-quote-body">Get in touch with the FIT team for availability and a tailored quotation.</div>
+      <a class="pkg-sb-quote-btn" href="mailto:fitsales@europeincoming.com?subject=Quote request — Ireland Discovery.">Email the FIT team</a>
+    </div>
+  </div>
+</div>
+
+<div class="pkg-sb-footer no-print">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
+
+<div class="pkg-map-modal no-print" id="pkgMapModal">
+  <div class="pkg-map-modal-panel">
+    <div class="pkg-map-modal-header">
+      <h3 id="pkgMapModalTitle"></h3>
+      <button class="pkg-map-modal-close" id="pkgMapModalClose">✕</button>
+    </div>
+    <div class="pkg-map-modal-canvas" id="pkgMapModalCanvas"></div>
+  </div>
+</div>
+
+<script>
+window.PRODUCT = {"id": "ireland-discovery", "title": "Ireland Discovery.", "eyebrow": "Europe Incoming \u00b7 FIT Packages \u00b7 2026\u201327", "heroImage": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1600&q=80", "pricesFile": "prices/ireland-discovery-2026.json", "map": {"points": [{"lat": 53.3498, "lng": -6.2603, "label": "Dublin", "nights": 3}, {"lat": 52.9715, "lng": -9.4262, "label": "Cliffs of Moher", "nights": 0}, {"lat": 52.6638, "lng": -8.6267, "label": "Limerick", "nights": 3}, {"lat": 52.0599, "lng": -9.5044, "label": "Killarney", "nights": 0}, {"lat": 52.6541, "lng": -7.2448, "label": "Kilkenny", "nights": 0}], "closeLoop": true}, "styles": {"trains": {"name": "Trains & Taxi Transfers", "blurb": "Scheduled rail between cities, private taxi transfers at each end.", "nights": "6 nights \u00b7 7 days", "route": "Dublin (2N) \u2192 Limerick (3N) \u2192 Dublin (1N)", "aboutNights": "6 nights across 3 stays", "transport": {"1": "Dublin airport to Dublin hotel private transfer.", "3": "Dublin to Limerick direct train, II Class (approx. 2h 15m).", "6": "Limerick to Dublin train via Kilkenny connection, II Class.", "7": "Dublin hotel to Dublin airport private transfer."}, "inclusions": ["Dublin airport\u2013hotel private transfers on arrival and departure", "Dublin to Limerick train ticket, II Class", "Limerick to Dublin train ticket, II Class", "Dublin Hop-On Hop-Off 1-day ticket", "Cliffs of Moher tour from Limerick, 7 hrs regular coach", "6 nights accommodation with daily breakfast"]}, "selfdrive": {"name": "Self Drive", "blurb": "Rental car from arrival to departure \u2014 explore at your own pace.", "nights": "6 nights \u00b7 7 days", "route": "Dublin (2N) \u2192 Limerick (3N) \u2192 Dublin Airport (1N)", "aboutNights": "6 nights across 3 stays", "transport": {"1": "Pick up rental car at Dublin airport \u2014 SUV class, Nissan Qashqai or similar.", "3": "Drive Dublin \u2192 Cliffs of Moher \u2192 Limerick at your own pace (self-guided route notes provided).", "6": "Drive Limerick \u2192 Kilkenny \u2192 Dublin. Suggested stops en route.", "7": "Return rental car at Dublin airport before departure."}, "inclusions": ["Rental car for 7 days, SUV class Nissan Qashqai or similar", "Fully comprehensive insurance & unlimited mileage", "Self-guided route notes with recommended stops", "Dublin Hop-On Hop-Off 1-day ticket", "Cliffs of Moher admission tickets", "6 nights accommodation with daily breakfast"]}, "private": {"name": "Private Exclusive Coach", "blurb": "Private minivan or coach with driver \u2014 ideal for families and small groups.", "nights": "6 nights \u00b7 7 days", "route": "Dublin (2N) \u2192 Limerick (3N) \u2192 Dublin (1N)", "aboutNights": "6 nights across 3 stays", "transport": {"1": "Dublin airport to Dublin hotel private transfer. Private vehicle on disposal Day 3\u20136.", "2": "Dublin panoramic tour, 3 hrs with private vehicle.", "3": "Private transfer Dublin \u2192 Cliffs of Moher \u2192 Limerick with photo stops.", "6": "Private transfer Limerick \u2192 Kilkenny \u2192 Dublin with guided stop.", "7": "Dublin hotel to Dublin airport private transfer."}, "inclusions": ["Private minivan on disposal from Day 3 till Day 6", "Dublin airport\u2013hotel private transfers on arrival and departure", "Dublin panoramic tour, 3 hrs", "Private Dublin \u2013 Cliffs of Moher \u2013 Limerick transfer", "Private Limerick \u2013 Kilkenny \u2013 Dublin transfer", "6 nights accommodation with daily breakfast"]}}, "days": [{"num": 1, "title": "Arrive Dublin", "overnight": "Overnight: Dublin", "desc": "Arrive in the Irish capital and settle in. The rest of the day is free \u2014 Temple Bar, Grafton Street and the Georgian squares are all an easy walk from the city-centre hotels.", "taste": "A first pint of stout and a bowl of Irish stew at a Victorian pub \u2014 try The Long Hall, pouring since 1766."}, {"num": 2, "title": "Dublin", "overnight": "Overnight: Dublin", "desc": "Full day exploring Dublin with the Hop-On Hop-Off ticket: Trinity College and the Book of Kells, Dublin Castle, Kilmainham Gaol and the Guinness Storehouse.", "experience": "Dublin's historic pub crawl through the Temple Bar and around St. Stephen's Green \u2014 literary pubs once frequented by Joyce and Behan.", "fallbackIncluded": "Dublin Hop-On Hop-Off 1-day ticket."}, {"num": 3, "title": "Dublin \u2192 Cliffs of Moher \u2192 Limerick", "overnight": "Overnight: Limerick", "desc": "Cross the island to the west coast. The Cliffs of Moher rise 214 m above the Atlantic \u2014 allow two hours at the visitor centre and cliff-edge paths before continuing to Limerick.", "taste": "Seafood chowder and brown soda bread in Doolin village, the traditional lunch stop before the cliffs."}, {"num": 4, "title": "Killarney day trip", "overnight": "Overnight: Limerick", "desc": "A day among the lakes and mountains of Killarney National Park \u2014 Muckross House, Torc Waterfall and Ladies View.", "experience": "A jaunting-car ride through the national park with a local jarvey \u2014 Killarney's signature since the 1800s.", "fallbackIncluded": "Day at leisure \u2014 optional Ring of Kerry tour available."}, {"num": 5, "title": "Limerick & the Shannon", "overnight": "Overnight: Limerick", "desc": "At leisure in Limerick: King John's Castle, the Milk Market (Fri\u2013Sun) and the riverside Three Bridges walk. Bunratty Castle & Folk Park is 15 minutes away as an optional add-on.", "taste": "The Milk Market for farmhouse cheeses and blaas \u2014 soft white rolls unique to this region."}, {"num": 6, "title": "Limerick \u2192 Kilkenny \u2192 Dublin", "overnight": "Overnight: Dublin", "desc": "Return east with a stop in medieval Kilkenny \u2014 castle, Black Abbey and the Medieval Mile \u2014 before the final night in Dublin.", "shopping": "Kilkenny Design Centre in the castle stables \u2014 Irish craft, knitwear and pottery from over 200 makers."}, {"num": 7, "title": "Depart Dublin", "overnight": "Departure day", "desc": "Free time until your transfer to Dublin airport, depending on flight time."}], "hotels": [{"city": "Dublin", "nights": "2 Nights", "h3": "Hampton by Hilton Dublin City Centre", "h4": "Riu Plaza The Gresham Dublin"}, {"city": "Limerick", "nights": "3 Nights", "h3": "Maldron Hotel Limerick", "h4": "Limerick City Hotel"}, {"city": "Dublin", "nights": "1 Night", "h3": "Hampton by Hilton Dublin City Centre", "h4": "Riu Plaza The Gresham Dublin"}], "about": [{"title": "Best season", "body": "May\u2013September for long days; shoulder months quieter & better value"}, {"title": "Weather", "body": "Mild & changeable, 12\u201320\u00b0C in summer. Pack a rain layer year-round"}, {"title": "Currency & docs", "body": "Euro (\u20ac). Republic of Ireland \u2014 separate from UK visa area"}], "goodToKnow": [{"title": "Tickets & timing", "body": "Book Kilmainham Gaol and the Book of Kells ahead in summer \u2014 both sell out days in advance. Cliffs of Moher are quietest before 11:00."}, {"title": "Driving", "body": "Ireland drives on the left. West-coast roads are narrow \u2014 allow more time than the map suggests. Parking discs needed in Limerick city centre.", "styles": ["selfdrive"]}, {"title": "Rail travel", "body": "Seat reservations are included on inter-city trains. Dublin Heuston is the station for Limerick \u2014 20 minutes by taxi from the city-centre hotels.", "styles": ["trains"]}, {"title": "Your vehicle", "body": "Driver working hours are limited to 10 hrs per day by law \u2014 day-trip timings are planned around this. Luggage space fits one large case per guest.", "styles": ["private"]}, {"title": "What to pack", "body": "Layers and a waterproof in any month. Comfortable shoes for cobbles and cliff paths. No formal dress codes apply on this programme."}, {"title": "Money", "body": "Cards accepted almost everywhere; a little cash is useful for markets and rural pubs. Tipping 10% in restaurants is customary, not obligatory."}], "terms": ["All rates are net and per person for the package.", "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.", "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.", "Rates are not applicable during trade fair periods, major European public holidays, and other major events.", "City taxes are not included in the price.", "If certain attractions are closed during specific periods, alternative options will be arranged.", "All bookings must be confirmed at least 60 working days prior to arrival.", "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.", "Vouchers will be issued after receipt of full payment."], "region": "uk-ireland"};
+window.PRICES = {"year": "2026-27", "currency": "\u20ac", "validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "note": "Only this file changes each year. All rates net, per person.", "variants": {"trains": {"3": {"summer": {"single": 1245, "twin": 985, "child": 690}, "winter": {"single": 1120, "twin": 875, "child": 615}}, "4": {"summer": {"single": 1490, "twin": 1180, "child": 795}, "winter": {"single": 1340, "twin": 1055, "child": 710}}}, "selfdrive": {"3": {"summer": {"single": 1385, "twin": 1050, "child": 720}, "winter": {"single": 1240, "twin": 930, "child": 640}}, "4": {"summer": {"single": 1630, "twin": 1245, "child": 825}, "winter": {"single": 1465, "twin": 1110, "child": 735}}}, "private": {"3": {"summer": {"single": 1890, "twin": 1495, "child": 980}, "winter": {"single": 1710, "twin": 1350, "child": 885}}, "4": {"summer": {"single": 2135, "twin": 1690, "child": 1085}, "winter": {"single": 1935, "twin": 1525, "child": 975}}}}, "optionalTours": [{"name": "Guinness Storehouse skip-the-line entry", "price": 32}, {"name": "Ring of Kerry full-day tour from Limerick", "price": 68}, {"name": "Bunratty Castle & Folk Park entry", "price": 24}, {"name": "Traditional Irish evening with dinner, Dublin", "price": 75}, {"name": "Kilkenny Castle guided visit", "price": 18}, {"name": "Aran Islands day trip from Doolin", "price": 55}]};
+</script>
+<script src="../../assets/package-page.js"></script>
+</body></html>

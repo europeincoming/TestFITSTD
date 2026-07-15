@@ -79,16 +79,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <h1>Italy</h1>
 <div class="brochures" id="brochuresList"><div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1541370976299-4d24be63b012?w=600&q=75" alt="2 Venice - 2 Florence - 2 Rome" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1541370976299-4d24be63b012?w=600&q=75" alt="Venice, Florence & Rome" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Venice - 2 Florence - 2 Rome</div>
-    <div class='card-duration'>🕐 6 nights</div>
-    <div class='card-route'>📍 Mestre → Florence → Rome</div>
-    <div class='card-desc'>Mestre, Florence and 1 more unmissable stops.</div>
-    <div class="card-price">From €1,277 pp</div>
+    <div class="card-title">Venice, Florence & Rome</div>
+    <div class="card-duration">🕐 6 nights · 7 days</div>
+    <div class="card-route">📍 Mestre (2N) → Florence (2N) → Rome (2N)</div>
+    <div class="card-price">From €955 pp</div>
   </div>
   <div class="card-actions">
     <a href="3.1_brochure.html" class="btn-view">View Package</a>
@@ -96,16 +94,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </div>
 <div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75" alt="2 Rome - 2 Naples - 2 Florence - 2 Venice - 2 Milan" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75" alt="Rome, Naples, Florence, Venice & Milan" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Rome - 2 Naples - 2 Florence - 2 Venice - 2 Milan</div>
-    <div class='card-duration'>🕐 10 nights</div>
-    <div class='card-route'>📍 Rome → Naples → Florence → Mestre → Milan</div>
-    <div class='card-desc'>Rome, Naples and 3 more unmissable stops.</div>
-    
+    <div class="card-title">Rome, Naples, Florence, Venice & Milan</div>
+    <div class="card-duration">🕐 10 nights · 11 days</div>
+    <div class="card-route">📍 Rome (2N) → Naples (2N) → Florence (2N) → Venice (2N) → Milan (2N)</div>
+    <div class="card-price">From €1,630 pp</div>
   </div>
   <div class="card-actions">
     <a href="3.2_brochure.html" class="btn-view">View Package</a>
@@ -127,7 +123,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
      .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){var pts=[[41.9028, 12.4964, "Rome"], [40.8518, 14.2681, "Naples"], [43.7696, 11.2558, "Florence"], [45.4943063, 12.2418053, "Mestre"], [45.4654, 9.1859, "Milan"]];if(!pts.length)return;
+(function(){var pts=[[41.9028, 12.4964, "Rome"], [40.8518, 14.2681, "Naples"], [43.7696, 11.2558, "Florence"], [45.4408, 12.3155, "Venice"], [45.4654, 9.1859, "Milan"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_3_2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});

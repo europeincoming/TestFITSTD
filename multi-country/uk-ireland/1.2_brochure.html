@@ -2,126 +2,163 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow | Europe Incoming FIT Packages</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<title>London, Manchester, Edinburgh, Inverness & Glasgow. | Europe Incoming FIT Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;font-size:15px;line-height:1.65;padding-top:0;}
-.hero-header{position:sticky;top:0;z-index:200;height:68px;overflow:hidden;}
-.hero-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;}
-.hero-header-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.82),rgba(0,0,0,0.35));}
-.hero-header-inner{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;}
-.hero-back{color:rgba(255,255,255,0.75);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:color 0.2s;}
-.hero-back:hover{color:#fff;}
-.hero-title-wrap{display:flex;flex-direction:column;align-items:center;}
-.hero-title-main{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;white-space:nowrap;}
-.hero-title-sub{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-top:2px;text-align:center;}
-.hero-search-wrap{position:relative;flex:0 0 260px;}
-.hero-search{width:100%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:7px 14px 7px 32px;border-radius:4px;font-family:'Inter',sans-serif;font-size:12px;outline:none;}
-.hero-search::placeholder{color:rgba(255,255,255,0.45);}
-.search-icon-hero{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.5);font-size:13px;pointer-events:none;}
-.search-results{display:none;position:absolute;top:calc(100%+6px);right:0;background:#fff;border:1px solid #e8e8e8;border-radius:4px;width:340px;max-height:300px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:300;}
-.sri{padding:11px 16px;border-bottom:1px solid #f0f0f0;cursor:pointer;}
-.sri:last-child{border-bottom:none;}
-.sri:hover{background:#f9f9f9;}
-.sri-title{font-size:13px;font-weight:500;color:#1a1a1a;}
-.sri-meta{font-size:11px;color:#888;margin-top:2px;}
-.variant-bar{position:sticky;top:68px;z-index:190;background:#fff;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
-.vtabs{display:flex;}
-.vtab{padding:14px 20px;font-size:13px;font-weight:500;color:#888;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.2s,border-color 0.2s;letter-spacing:0.2px;}
-.vtab.active{color:#1a3a5c;border-bottom-color:#1a3a5c;}
-.vtab:hover:not(.active){color:#1a1a1a;}
-.dl-btn{background:#1a3a5c;color:#fff;border:none;padding:9px 18px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:opacity 0.2s;}
-.dl-btn:hover{opacity:0.85;}
-.hero-full{height:380px;position:relative;overflow:hidden;background:#1a3a5c;}
-.hero-full-img{width:100%;height:100%;object-fit:cover;opacity:0.6;display:block;}
-.hero-full-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.15) 70%);}
-.hero-full-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 48px;}
-.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
-.hero-h1{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#fff;line-height:1.0;margin-bottom:8px;}
-.hero-meta{display:flex;align-items:center;gap:14px;}
-.hero-nights{font-size:13px;color:rgba(255,255,255,0.7);font-weight:300;}
-.hero-route{font-size:12px;color:rgba(255,255,255,0.45);}
-.hero-div{width:1px;height:12px;background:rgba(255,255,255,0.25);}
-.body-wrap{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;padding:0 48px;}
-.main-col{flex:1;min-width:0;padding:36px 48px 36px 0;}
-.sidebar{width:300px;flex-shrink:0;padding:36px 0;position:sticky;top:116px;max-height:calc(100vh - 116px);overflow-y:auto;}
-.vc{display:none;}
-.vc.active{display:block;}
-.section-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e8e8e8;}
-.map-wrap{margin-bottom:32px;}
-#map-r,#map-p,#map-s{height:200px;border-radius:3px;border:1px solid #e8e8e8;}
-.day-card{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:24px 0;border-bottom:1px solid #e8e8e8;}
-.day-card:first-of-type{border-top:1px solid #e8e8e8;}
-.day-num-col{text-align:center;padding-top:2px;}
-.day-num-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#888;}
-.day-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:#1a3a5c;line-height:1;}
-.day-body{}
-.day-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:3px;}
-.day-overnight{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#9a7230;margin-bottom:8px;}
-.day-photo{width:100%;height:150px;object-fit:cover;border-radius:3px;margin-bottom:10px;display:block;}
-.day-desc{font-size:13.5px;line-height:1.8;color:#555;margin-bottom:10px;}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
-.tag{font-size:11px;padding:3px 10px;border-radius:2px;font-weight:500;}
-.tag-inc{background:#edf4ed;color:#2a6a2a;}
-.tag-opt{background:#fdf5e0;color:#7a5800;}
-.inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:32px;}
-.inc-item{font-size:13px;color:#555;padding:8px 0 8px 16px;border-bottom:1px solid #e8e8e8;position:relative;}
-.inc-item::before{content:'✓';position:absolute;left:0;color:#2a6a2a;font-size:11px;font-weight:700;}
-.hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.hotel-card{background:#fff;padding:18px;}
-.hc-city{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#888;margin-bottom:3px;}
-.hc-nights{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px;}
-.hc-cat{font-size:10px;font-weight:700;letter-spacing:1px;color:#1a3a5c;margin-bottom:2px;}
-.hc-name{font-size:12px;color:#555;margin-bottom:7px;line-height:1.4;}
-.price-note{font-size:12px;color:#888;font-style:italic;margin-bottom:12px;}
-.price-table{width:100%;border-collapse:collapse;margin-bottom:32px;}
-.price-table th{background:#1a3a5c;color:#fff;padding:10px 14px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-align:left;}
-.price-table td{padding:11px 14px;font-size:13px;border-bottom:1px solid #e8e8e8;}
-.price-table .ssep td{background:#f7f7f5;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#888;padding:6px 14px;border-bottom:1px solid #e8e8e8;}
-.price-table .twin{font-weight:700;color:#1a3a5c;}
-.stag{display:inline-block;background:#1a3a5c;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px;margin-right:8px;}
-.priv-grids{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.priv-block{background:#fff;padding:18px;}
-.priv-season{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:12px;}
-.priv-table{width:100%;border-collapse:collapse;}
-.priv-table th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a1a;padding:5px 8px;border-bottom:1px solid #e8e8e8;text-align:left;}
-.priv-table td{padding:7px 8px;font-size:12.5px;border-bottom:1px solid #e8e8e8;color:#555;}
-.priv-table td:last-child{font-weight:700;color:#1a3a5c;}
-.priv-table tr:last-child td{border-bottom:none;}
-.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:32px;}
-.opt-item{background:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.opt-name{font-size:12.5px;color:#555;}
-.opt-price{font-size:14px;font-weight:700;color:#1a1a1a;white-space:nowrap;}
-.opt-pp{font-size:11px;font-weight:400;color:#888;}
-.highlights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;margin-bottom:36px;}
-.highlight-block{background:#fff;padding:24px;}
-.hb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;}
-.hb-items{list-style:none;}
-.hb-items li{padding:7px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#555;line-height:1.5;}
-.hb-items li:last-child{border-bottom:none;}
-.hb-items li strong{color:#1a1a1a;font-weight:500;}
-.sb-section{margin-bottom:28px;}
-.sb-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9a7230;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e8;}
-.sb-photo{width:100%;height:110px;object-fit:cover;border-radius:3px;margin-bottom:12px;display:block;}
-.sb-item{padding:9px 0;border-bottom:1px solid #f0f0f0;}
-.sb-item:last-child{border-bottom:none;}
-.sb-item-title{font-size:12.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;}
-.sb-item-desc{font-size:12px;color:#666;line-height:1.55;}
-.tc-wrap{margin-bottom:36px;}
-.tc-btn{width:100%;background:#f7f7f5;border:1px solid #e8e8e8;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;color:#1a1a1a;border-radius:3px;text-align:left;}
-.tc-body{display:none;border:1px solid #e8e8e8;border-top:none;padding:18px;border-radius:0 0 3px 3px;}
-.tc-body.open{display:block;}
-.tc-body li{font-size:12px;color:#666;padding:6px 0 6px 14px;border-bottom:1px solid #f0f0f0;list-style:none;position:relative;line-height:1.5;}
-.tc-body li::before{content:'·';position:absolute;left:4px;}
-.tc-body li:last-child{border-bottom:none;}
-.brochure-footer{background:#1a1a1a;color:#666;padding:18px 48px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center;}
-.brochure-footer a{color:#888;text-decoration:none;}
-.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
-.leaflet-tooltip.city-tip::before{display:none!important;}
-@media print{.hero-header,.variant-bar,.sidebar,.dl-btn,.brochure-footer{display:none!important;}.body-wrap{display:block;padding:0;}.main-col{padding:16px 0;}}
+:root{--navy:#0B1733;--gold:#F2B91D;--gold-hover:#E0A810;--gold-dark:#B8870A;
+--ink:#1A1D2E;--body:#4B5563;--muted:#6B7280;--faint:#9AA1AE;--line:#E5E7EC;
+--faint-line:#F2F4F7;--offwhite:#FAFAF8;--green:#1F8A5B;--green-bg:#EEF5F0;
+--taste-bg:#FEF7DC;--exp-bg:#EEF1F8;--shop-bg:#F2F4F7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;padding-top:64px;}
+a{color:inherit;}
+.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+
+/* Top bar */
+.pkg-topbar{position:fixed;top:0;left:0;right:0;height:64px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
+.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.pkg-topbar-left{display:flex;align-items:center;gap:20px;}
+.pkg-logo{height:38px;width:auto;display:block;}
+.pkg-back-link{font-size:13px;font-weight:600;color:var(--body);text-decoration:none;transition:color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-back-link:hover{color:var(--navy);}
+.pkg-topbar-right{display:flex;align-items:center;gap:20px;}
+.pkg-trade{font-size:12px;color:var(--muted);}
+.pkg-trade a{color:var(--navy);font-weight:600;text-decoration:none;}
+.pkg-dl-btn{background:var(--gold);color:var(--navy);border:none;padding:11px 20px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1);white-space:nowrap;}
+.pkg-dl-btn:hover{background:var(--gold-hover);}
+
+/* Hero */
+.pkg-hero{position:relative;height:420px;background:var(--navy);overflow:hidden;}
+.pkg-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.65;}
+.pkg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,.75),rgba(3,7,20,.05) 65%);}
+.pkg-hero-content{position:absolute;left:0;right:0;bottom:0;max-width:1200px;margin:0 auto;padding:0 48px 32px;}
+.pkg-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.pkg-hero-title{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-bottom:12px;}
+.pkg-hero-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.85);}
+.pkg-hero-meta .sep{width:1px;height:12px;background:rgba(255,255,255,.3);}
+.pkg-hero-price{color:var(--gold);font-weight:700;}
+
+/* Variant bar */
+.pkg-variantbar{position:sticky;top:64px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.pkg-variant-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.pkg-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pkg-pill{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 18px;border-radius:999px;border:1px solid #CBD0DA;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1),border-color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pkg-variant-blurb{font-size:13px;color:var(--muted);text-align:right;}
+
+/* Body columns */
+.pkg-body{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:48px;align-items:flex-start;}
+.pkg-main{flex:1;min-width:0;padding:36px 0;}
+.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:132px;padding:36px 0;}
+
+.pkg-section{margin-bottom:40px;}
+.pkg-section-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;margin-bottom:18px;border-bottom:1px solid var(--line);}
+
+/* Day by day */
+.pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-day:first-child{border-top:1px solid var(--faint-line);}
+.pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
+.pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
+.pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+.pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
+.pkg-pill-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;}
+.pkg-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+.pkg-tag-inc{background:var(--green-bg);color:var(--green);}
+.pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
+.pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
+.pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
+.pkg-tag-text{font-size:13px;color:var(--body);}
+
+/* Includes */
+.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-inc-item{font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
+.pkg-check{color:var(--green);font-weight:700;}
+
+/* Hotels */
+.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.pkg-hotel-card{background:#fff;padding:18px;}
+.pkg-hotel-city{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.pkg-hotel-nights{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.pkg-hotel-cat{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--navy);margin-top:6px;}
+.pkg-hotel-name{font-size:13px;color:var(--body);}
+
+/* Rates */
+.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.pkg-seg-group{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.pkg-seg{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border:none;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-seg.active{background:var(--navy);color:#fff;}
+.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
+.pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
+.pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
+.pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
+.pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
+
+/* Optional tours */
+.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.pkg-opt-item{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--faint-line);}
+.pkg-opt-price{font-weight:700;color:var(--ink);white-space:nowrap;}
+
+/* Good to know */
+.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+.pkg-gtk-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+.pkg-gtk-body{font-size:13px;color:var(--body);line-height:1.6;}
+
+/* T&C accordion */
+.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--faint-line);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;}
+.pkg-tc-body{display:none;padding:16px 4px 4px;}
+.pkg-tc-body.open{display:block;}
+.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:6px 0;list-style:disc;margin-left:18px;}
+
+/* Sidebar */
+.pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
+.pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);}
+.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;}
+.pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
+.pkg-fact-row:last-child{border-bottom:none;}
+.pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
+.pkg-fact-body{font-size:12px;color:var(--muted);margin-top:2px;}
+.pkg-sb-quote{background:var(--navy);}
+.pkg-sb-quote .pkg-sb-title{color:var(--gold);}
+.pkg-sb-quote-body{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6;}
+.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:6px;text-decoration:none;transition:background .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-sb-quote-btn:hover{background:var(--gold-hover);}
+.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 0;text-align:center;}
+
+/* Map markers */
+.pkg-badge-icon{background:transparent;border:none;}
+.pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.leaflet-tooltip.pkg-map-tip::before{display:none!important;}
+
+/* Map modal */
+.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.65);z-index:1000;align-items:center;justify-content:center;}
+.pkg-map-modal.open{display:flex;}
+.pkg-map-modal-panel{background:#fff;border-radius:10px;box-shadow:0 24px 64px rgba(11,23,51,.35);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
+.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
+.pkg-map-modal-header h3{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink);}
+.pkg-map-modal-close{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;}
+.pkg-map-modal-canvas{flex:1;}
+
+@media(max-width:960px){
+  .pkg-body{flex-direction:column;}
+  .pkg-sidebar{width:100%;position:static;}
+  .pkg-hero-title{font-size:38px;}
+  .pkg-inc-grid,.pkg-opt-grid,.pkg-gtk-grid,.pkg-hotels-grid{grid-template-columns:1fr;}
+}
+
+@media print{
+  .no-print{display:none!important;}
+  body{padding-top:0;}
+  .pkg-body{display:block;padding:0;max-width:none;}
+  .pkg-main{padding:16px 0;}
+  .pkg-hero{height:auto;}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04BZKH6574');</script>
 </head>
 <body>
@@ -129,239 +166,115 @@ body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;font-size:15px
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script>
-<div class="hero-header">
-  <img class="hero-header-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75" alt="3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow">
-  <div class="hero-header-overlay"></div>
-  <div class="hero-header-inner">
-    <a class="hero-back" href="../../">← All Packages</a>
-    <div class="hero-title-wrap">
-      <div class="hero-title-main">3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow</div>
-      <div class="hero-title-sub">10 NIGHTS · LONDON → MANCHESTER → EDINBURGH → INVERNESS → GLASGOW</div>
-    </div>
-    <div class="hero-search-wrap">
-      <span class="search-icon-hero">⌕</span>
-      <input class="hero-search" id="searchInput" type="text" placeholder="Search packages…" autocomplete="off">
-      <div class="search-results" id="searchResults"></div>
-    </div>
+<div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
+  <div class="pkg-topbar-left">
+    <a href="../../"><img class="pkg-logo" src="../../logo.png" alt="Europe Incoming"></a>
+    <a class="pkg-back-link" href="./">← All packages</a>
   </div>
-</div>
-<div class="hero-full">
-  <img class="hero-full-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75" alt="3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow">
-  <div class="hero-full-overlay"></div>
-  <div class="hero-full-content">
-    <div class="hero-eyebrow">Europe Incoming · FIT Packages</div>
-    <h1 class="hero-h1">3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow</h1>
-    <div class="hero-meta">
-      <span class="hero-nights">10 Nights</span>
-      <span class="hero-div"></span>
-      <span class="hero-route">London → Manchester → Edinburgh → Inverness → Glasgow</span>
+  <div class="pkg-topbar-right">
+    <div class="pkg-trade">Trade enquiries / <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a></div>
+    <button class="pkg-dl-btn" id="pkgDownloadBtn">↓ DOWNLOAD PDF</button>
+  </div>
+</div></div>
+
+<div class="pkg-hero">
+  <div class="pkg-hero-img" id="pkgHeroImg"></div>
+  <div class="pkg-hero-overlay"></div>
+  <div class="pkg-hero-content">
+    <div class="pkg-eyebrow" id="pkgEyebrow"></div>
+    <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
+    <div class="pkg-hero-meta">
+      <span id="pkgHeroNights"></span><span class="sep"></span>
+      <span id="pkgHeroRoute"></span><span class="sep"></span>
+      <span class="pkg-hero-price" id="pkgHeroPrice"></span>
     </div>
   </div>
 </div>
-<div class="variant-bar">
-  <div class="vtabs"><button class="vtab active" onclick="switchVariant('regular_fit',this)">Regular FIT</button><button class="vtab " onclick="switchVariant('private',this)">Private Tour</button></div>
-  <button class="dl-btn" onclick="downloadPDF()">↓ Download PDF</button>
-</div>
-<div class="body-wrap">
-  <div class="main-col"><div class="vc active" id="vc-regular_fit"><div class="map-wrap"><div class="section-label">Route Map</div><div id="map-r"></div></div><div class="section-label" style="margin-top:8px">Day by Day</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">1</div></div>
-  <div class="day-body">
-    <div class="day-title">London</div>
-    <div class="day-overnight">Overnight: London</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75" alt="London" loading="lazy">
-    <div class="day-desc">London airport to London hotel private transfer</div>
-    <div class="tags"><span class="tag tag-inc">✓ London airport to London hotel private transfer</span></div>
+
+<div class="pkg-variantbar no-print"><div class="pkg-variantbar-inner">
+  <div class="pkg-variantbar-left">
+    <div class="pkg-variant-label">Travel style</div>
+    <div class="pkg-pills" id="pkgVariantPills"></div>
   </div>
-</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">2</div></div>
-  <div class="day-body">
-    <div class="day-title">Manchester</div>
-    <div class="day-overnight">Overnight: Manchester</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=75" alt="Manchester" loading="lazy">
-    <div class="day-desc">London Hop on Hop off 1 day pass with one way Thames river cruise</div>
-    <div class="tags"><span class="tag tag-inc">✓ London Hop on Hop off 1 day pass with one way Thames river cruise</span></div>
-  </div>
-</div><div class="section-label" style="margin-top:32px">Package Includes</div><div class="inc-grid" style="margin-bottom:32px"><div class="inc-item">London airport to London hotel private transfer</div><div class="inc-item">London Hop on Hop off 1 day pass with one way Thames river cruise</div></div><div class="section-label">Sample Hotels</div><div class="hotels-grid"><div class="hotel-card">
-  <div class="hc-city">London</div>
-  <div class="hc-nights">3 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Hotel Montana</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Hotel Riu Plaza London Victoria</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Manchester</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Hilton Garden Inn Manchester Emirates Old Trafford</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Crowne Plaza Manchester City Centre</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Edinburgh</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Holiday Inn Express Edinburgh City Centre</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Apex City of Edinburgh Hotel</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Inverness</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Royal Highland Hotel</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Blackfriars Inverness</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Glasgow</div>
-  <div class="hc-nights">1 Night</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Holiday Inn Express Glasgow City Centre Riverside</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Novotel Glasgow Centre</div>
-</div></div><div class="section-label">Package Rates — Per Person</div><p class="price-note">All rates in £. Twin/double occupancy unless stated.</p><table class="price-table"><thead><tr><th>Hotel</th><th>Single</th><th>Twin / Double</th><th>Child</th></tr></thead><tbody></tbody></table><div class="tc-wrap">
-  <button class="tc-btn" onclick="toggleTC(this)"><span>Terms & Conditions</span><span>▼</span></button>
-  <div class="tc-body"><ul>
-<li>All rates are net and per person for the package.</li>
-<li>Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.</li>
-<li>All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.</li>
-<li>Rates are not applicable during trade fair periods, major European public holidays, and other major events.</li>
-<li>City taxes are not included in the price.</li>
-<li>If certain attractions are closed during specific periods, alternative options will be arranged.</li>
-<li>All bookings must be confirmed at least 60 working days prior to arrival.</li>
-<li>100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.</li>
-<li>Vouchers will be issued after receipt of full payment.</li>
-</ul></div>
-</div></div><div class="vc " id="vc-private"><div class="map-wrap"><div class="section-label">Route Map</div><div id="map-p"></div></div><div class="section-label" style="margin-top:8px">Day by Day</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">1</div></div>
-  <div class="day-body">
-    <div class="day-title">London</div>
-    <div class="day-overnight">Overnight: London</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75" alt="London" loading="lazy">
-    <div class="day-desc">Private vehicle cost. London eye standard tickets + Thames cruise one way</div>
-    <div class="tags"><span class="tag tag-inc">✓ Private vehicle cost</span><span class="tag tag-inc">✓ London eye standard tickets + Thames cruise one way</span></div>
-  </div>
-</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">1</div></div>
-  <div class="day-body">
-    <div class="day-title">Manchester</div>
-    <div class="day-overnight">Overnight: Manchester</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=75" alt="Manchester" loading="lazy">
-    <div class="day-desc">London airport to London hotel private transfer</div>
-    <div class="tags"><span class="tag tag-inc">✓ London airport to London hotel private transfer</span></div>
-  </div>
-</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">2</div></div>
-  <div class="day-body">
-    <div class="day-title">Edinburgh</div>
-    <div class="day-overnight">Overnight: Edinburgh</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Edinburgh" loading="lazy">
-    <div class="day-desc">London city tour, 3 hrs with guide</div>
-    <div class="tags"><span class="tag tag-inc">✓ London city tour, 3 hrs with guide</span></div>
-  </div>
-</div><div class="day-card">
-  <div class="day-num-col"><div class="day-num-lbl">Day</div><div class="day-num">3</div></div>
-  <div class="day-body">
-    <div class="day-title">Inverness</div>
-    <div class="day-overnight">Overnight: Inverness</div>
-    <img class="day-photo" src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=75" alt="Inverness" loading="lazy">
-    <div class="day-desc">Stonehenge & Bath excursion, with entrances</div>
-    <div class="tags"><span class="tag tag-inc">✓ Stonehenge & Bath excursion, with entrances</span></div>
-  </div>
-</div><div class="section-label" style="margin-top:32px">Package Includes</div><div class="inc-grid" style="margin-bottom:32px"><div class="inc-item">Private vehicle cost</div><div class="inc-item">London airport to London hotel private transfer</div><div class="inc-item">London city tour, 3 hrs with guide</div><div class="inc-item">London eye standard tickets + Thames cruise one way</div><div class="inc-item">Stonehenge & Bath excursion, with entrances</div></div><div class="section-label">Sample Hotels</div><div class="hotels-grid"><div class="hotel-card">
-  <div class="hc-city">London</div>
-  <div class="hc-nights">3 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Hotel Montana</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Hotel Riu Plaza London Victoria</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Manchester</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Hilton Garden Inn Manchester Emirates Old Trafford</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Crowne Plaza Manchester City Centre</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Edinburgh</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Holiday Inn Express Edinburgh City Centre</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Apex City of Edinburgh Hotel</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Inverness</div>
-  <div class="hc-nights">2 Nights</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Royal Highland Hotel</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Blackfriars Inverness</div>
-</div><div class="hotel-card">
-  <div class="hc-city">Glasgow</div>
-  <div class="hc-nights">1 Night</div>
-  <div class="hc-cat">3 Star</div><div class="hc-name">- Holiday Inn Express Glasgow City Centre Riverside</div>
-  <div class="hc-cat">4 Star</div><div class="hc-name">Novotel Glasgow Centre</div>
-</div></div><div class="section-label">Package Rates — Per Person</div><div class="tc-wrap">
-  <button class="tc-btn" onclick="toggleTC(this)"><span>Terms & Conditions</span><span>▼</span></button>
-  <div class="tc-body"><ul>
-<li>All rates are net and per person for the package.</li>
-<li>Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.</li>
-<li>All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.</li>
-<li>Rates are not applicable during trade fair periods, major European public holidays, and other major events.</li>
-<li>City taxes are not included in the price.</li>
-<li>If certain attractions are closed during specific periods, alternative options will be arranged.</li>
-<li>All bookings must be confirmed at least 60 working days prior to arrival.</li>
-<li>100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.</li>
-<li>Vouchers will be issued after receipt of full payment.</li>
-</ul></div>
-</div></div></div>
-  <div class="sidebar">
-  <div class="sb-section">
-    <div class="sb-label">About This Tour</div>
-    <img class="sb-photo" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75" alt="3 London - 2 Manchester- 2 Edinburgh - 2 Inverness - 1 Glasgow">
-    <div class="sb-item">
-      <div class="sb-item-title">10 nights across 5 destinations</div>
-      <div class="sb-item-desc">Route: London → Manchester → Edinburgh → Inverness → Glasgow</div>
+  <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
+</div></div>
+
+<div class="pkg-body">
+  <div class="pkg-main">
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgDayHeading"></div>
+      <div id="pkgDays"></div>
     </div>
-    <div class="sb-item"><div class="sb-item-title">London</div></div><div class="sb-item"><div class="sb-item-title">Manchester</div></div><div class="sb-item"><div class="sb-item-title">Edinburgh</div></div><div class="sb-item"><div class="sb-item-title">Inverness</div></div><div class="sb-item"><div class="sb-item-title">Glasgow</div></div>
+    <div class="pkg-section">
+      <div class="pkg-section-label" id="pkgIncludesHeading"></div>
+      <div class="pkg-inc-grid" id="pkgIncludes"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Sample hotels</div>
+      <div class="pkg-hotels-grid" id="pkgHotels"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Package rates</div>
+      <div class="pkg-rate-toggles no-print">
+        <div class="pkg-seg-group" id="pkgCatToggle"></div>
+        <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
+      </div>
+      <table class="pkg-rate-table">
+        <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
+        <tbody id="pkgRatesBody"></tbody>
+      </table>
+      <div class="pkg-rate-note">All rates net, per person, in £. Valid 1 Apr 2026 – 31 Mar 2027.</div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Optional tours &amp; extras</div>
+      <div class="pkg-opt-grid" id="pkgOptionals"></div>
+    </div>
+    <div class="pkg-section">
+      <div class="pkg-section-label">Good to know</div>
+      <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
+    </div>
+    <div class="pkg-section pkg-tc-wrap no-print">
+      <button class="pkg-tc-btn" id="pkgTcBtn"><span>Terms &amp; conditions</span><span id="pkgTcArrow">▼</span></button>
+      <div class="pkg-tc-body" id="pkgTcBody"><ul id="pkgTerms"></ul></div>
+    </div>
+  </div>
+
+  <div class="pkg-sidebar no-print">
+    <div class="pkg-sb-card">
+      <div class="pkg-sb-title">About this tour</div>
+      <div class="pkg-map-box">
+        <div id="pkgMapSmall" style="height:100%;"></div>
+        <button class="pkg-map-enlarge" id="pkgMapEnlarge">⤢ ENLARGE</button>
+      </div>
+      <div class="pkg-fact-row">
+        <div class="pkg-fact-title" id="pkgAboutDuration"></div>
+        <div class="pkg-fact-body" id="pkgAboutRoute"></div>
+      </div>
+      <div id="pkgAboutFacts"></div>
+    </div>
+    <div class="pkg-sb-card pkg-sb-quote">
+      <div class="pkg-sb-title">Ready to quote?</div>
+      <div class="pkg-sb-quote-body">Get in touch with the FIT team for availability and a tailored quotation.</div>
+      <a class="pkg-sb-quote-btn" href="mailto:fitsales@europeincoming.com?subject=Quote request — London, Manchester, Edinburgh, Inverness & Glasgow.">Email the FIT team</a>
+    </div>
   </div>
 </div>
+
+<div class="pkg-sb-footer no-print">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
+
+<div class="pkg-map-modal no-print" id="pkgMapModal">
+  <div class="pkg-map-modal-panel">
+    <div class="pkg-map-modal-header">
+      <h3 id="pkgMapModalTitle"></h3>
+      <button class="pkg-map-modal-close" id="pkgMapModalClose">✕</button>
+    </div>
+    <div class="pkg-map-modal-canvas" id="pkgMapModalCanvas"></div>
+  </div>
 </div>
-<div class="brochure-footer">
-  <span>Europe Incoming Holdings Ltd · Reg. England & Wales 07053949</span>
-  <span><a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a> · +44 208 994 5001</span>
-</div>
+
 <script>
-function switchVariant(v,btn){
-  document.querySelectorAll('.vc').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.vtab').forEach(el=>el.classList.remove('active'));
-  document.getElementById('vc-'+v).classList.add('active');
-  btn.classList.add('active');
-}
-function toggleTC(btn){
-  var body=btn.nextElementSibling;
-  body.classList.toggle('open');
-  btn.querySelector('span:last-child').textContent=body.classList.contains('open')?'▲':'▼';
-}
-function downloadPDF(){
-  var hide=['.hero-header','.variant-bar','.sidebar','.brochure-footer','.dl-btn'];
-  hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display='none'));
-  document.querySelectorAll('.tc-body').forEach(el=>el.classList.add('open'));
-  document.querySelector('.body-wrap').style.display='block';
-  document.querySelector('.main-col').style.padding='16px 0';
-  html2pdf().set({margin:[8,8,8,8],filename:'3_London_-_2_Manchester-_2_Edinburgh_-_2_Inverness_-_1_Glasgow.pdf',image:{type:'jpeg',quality:0.9},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(document.body).save().then(()=>{
-    hide.forEach(s=>document.querySelectorAll(s).forEach(el=>el.style.display=''));
-    document.querySelector('.body-wrap').style.display='';
-    document.querySelector('.main-col').style.padding='';
-  });
-}
-var demos=[{"title": "Paris & Switzerland", "nights": "7N/8D", "routing": "Paris \u2192 Lucerne \u2192 Zurich"}, {"title": "UK Grand Tour", "nights": "10N/11D", "routing": "London \u2192 Manchester \u2192 Edinburgh"}, {"title": "Paris Switzerland Italy", "nights": "10N/11D", "routing": "Paris \u2192 Lucerne \u2192 Venice \u2192 Rome"}, {"title": "Ireland Discovery", "nights": "6N/7D", "routing": "Dublin \u2192 Limerick \u2192 Dublin"}, {"title": "Spain Explorer", "nights": "8N/9D", "routing": "Madrid \u2192 Granada \u2192 Seville \u2192 Barcelona"}, {"title": "Swiss Lakes & Alps", "nights": "5N/6D", "routing": "Lucerne \u2192 Interlaken \u2192 Zurich"}, {"title": "Nordic Capitals", "nights": "6N/7D", "routing": "Copenhagen \u2192 Oslo \u2192 Stockholm \u2192 Helsinki"}, {"title": "Scottish Highlands", "nights": "6N/7D", "routing": "Edinburgh \u2192 Inverness \u2192 Glasgow"}];
-var si=document.getElementById('searchInput'),sr=document.getElementById('searchResults');
-si.addEventListener('input',function(){
-  var q=this.value.trim().toLowerCase();
-  if(q.length<2){sr.style.display='none';return;}
-  var m=demos.filter(p=>p.title.toLowerCase().includes(q)||p.routing.toLowerCase().includes(q));
-  sr.innerHTML=m.length?m.map(p=>`<div class="sri"><div class="sri-title">${p.title}</div><div class="sri-meta">${p.nights} · ${p.routing}</div></div>`).join(''):'<div style="padding:14px 16px;font-size:13px;color:#888">No packages found</div>';
-  sr.style.display='block';
-});
-document.addEventListener('click',e=>{if(!e.target.closest('.hero-search-wrap'))sr.style.display='none';});
-
-function initMap(id, pts) {
-  if(!pts.length) return;
-  var lats=pts.map(p=>p[0][0]),lngs=pts.map(p=>p[0][1]),pad=0.5;
-  var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
-  var map=L.map(id,{zoomControl:false,scrollWheelZoom:false,dragging:false,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
-  map.fitBounds(bounds,{padding:[14,14]});
-  if(pts.length>1)L.polyline(pts.map(p=>p[0]),{color:'#1a3a5c',weight:2,dashArray:'5,4'}).addTo(map);
-  pts.forEach((p,i)=>{
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
-    L.circleMarker(p[0],{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}).addTo(map)
-     .bindTooltip(p[1],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
-  });
-}
-window.addEventListener('load',function(){ initMap("map-r",[[[51.5074, -0.1278], "London"], [[53.4808, -2.2426], "Manchester"], [[55.9533, -3.1883], "Edinburgh"], [[57.4778, -4.2247], "Inverness"], [[55.8642, -4.2518], "Glasgow"]]);
-initMap("map-p",[[[51.5074, -0.1278], "London"], [[53.4808, -2.2426], "Manchester"], [[55.9533, -3.1883], "Edinburgh"], [[57.4778, -4.2247], "Inverness"], [[55.8642, -4.2518], "Glasgow"]]);
- });
-
+window.PRODUCT = {"id": "1.2", "title": "London, Manchester, Edinburgh, Inverness & Glasgow.", "styles": {"trains": {"name": "Trains & Taxi Transfers", "blurb": "Scheduled inter-city trains linking each stop, with private transfers on arrival and departure.", "nights": "10 nights \u00b7 11 days", "route": "London (3N) \u2192 Manchester (2N) \u2192 Edinburgh (2N) \u2192 Inverness (2N) \u2192 Glasgow (1N)", "aboutNights": "10 nights across 5 stays", "transport": {"1": "London airport to London hotel private transfer.", "2": "London Hop-on Hop-off 1-day pass with one-way Thames river cruise.", "4": "London to Manchester train, standard class (approx. 2h 10m).", "6": "Manchester to Edinburgh train, standard class (approx. 3h 30m).", "8": "Edinburgh to Inverness train, standard class (approx. 3h 30m) through the Cairngorms.", "10": "Inverness to Glasgow train, standard class (approx. 3h 15m).", "11": "Glasgow hotel to Glasgow airport private transfer."}, "inclusions": ["London airport\u2013hotel private transfer on arrival", "London Hop-on Hop-off 1-day ticket with one-way Thames river cruise", "London to Manchester train ticket, standard class", "Manchester to Edinburgh train ticket, standard class", "Edinburgh to Inverness train ticket, standard class", "Inverness to Glasgow train ticket, standard class", "Glasgow hotel\u2013airport private transfer on departure", "10 nights accommodation with daily breakfast"]}, "private": {"name": "Private Exclusive Coach", "blurb": "A private vehicle and driver on disposal for the whole itinerary, with guided touring in London and the Highlands.", "nights": "10 nights \u00b7 11 days", "route": "London (3N) \u2192 Manchester (2N) \u2192 Edinburgh (2N) \u2192 Inverness (2N) \u2192 Glasgow (1N)", "aboutNights": "10 nights across 5 stays", "transport": {"1": "London airport to London hotel private transfer. Private vehicle on disposal for the full itinerary.", "2": "London city tour, 3 hrs with guide, plus London Eye standard tickets and a one-way Thames river cruise.", "3": "Stonehenge & Bath excursion, with entrances, by private vehicle.", "4": "Private transfer London \u2192 Manchester.", "6": "Private transfer Manchester \u2192 Edinburgh.", "8": "Private transfer Edinburgh \u2192 Inverness, through the Cairngorms.", "10": "Private transfer Inverness \u2192 Glasgow, via Loch Ness and Loch Lomond.", "11": "Glasgow hotel to Glasgow airport private transfer."}, "inclusions": ["Private vehicle on disposal for the full itinerary", "London airport\u2013hotel private transfers on arrival and departure", "London city tour, 3 hrs with guide", "London Eye standard tickets and one-way Thames river cruise", "Stonehenge & Bath excursion with entrances", "Private transfers between London, Manchester, Edinburgh, Inverness and Glasgow", "10 nights accommodation with daily breakfast"]}}, "days": [{"num": 1, "title": "Arrive London", "overnight": "Overnight: London", "desc": "Arrive in the capital and transfer to your hotel. The rest of the day is free to get your bearings \u2014 Westminster, the Thames embankment and Covent Garden are all within easy reach of the central hotels.", "taste": "A classic fish and chips supper at a traditional London pub is the perfect first-night welcome."}, {"num": 2, "title": "London", "overnight": "Overnight: London", "desc": "A full day discovering London with the Hop-on Hop-off ticket, taking in Buckingham Palace, the Tower of London and St Paul's Cathedral, then a one-way cruise along the Thames.", "experience": "An evening in London's West End, home to some of the world's longest-running theatre productions."}, {"num": 3, "title": "Stonehenge & Bath excursion", "overnight": "Overnight: London", "desc": "A day trip out of the city to Stonehenge, the prehistoric stone circle on Salisbury Plain, followed by the elegant Georgian city of Bath and its Roman-era baths.", "taste": "Sally Lunn's in Bath serves its famous buns from a house dating to 1482, a short walk from the Roman Baths."}, {"num": 4, "title": "London to Manchester", "overnight": "Overnight: Manchester", "desc": "Travel north to Manchester, a city shaped by the Industrial Revolution and reborn through music, football and a thriving arts scene around the Northern Quarter."}, {"num": 5, "title": "Manchester", "overnight": "Overnight: Manchester", "desc": "A day at leisure to explore Manchester: the Science and Industry Museum, the canalside warehouses of Castlefield, and the city's famous football heritage at Old Trafford.", "fallbackIncluded": "Day at leisure \u2014 optional Manchester United stadium tour available."}, {"num": 6, "title": "Manchester to Edinburgh", "overnight": "Overnight: Edinburgh", "desc": "Cross the border into Scotland and arrive in Edinburgh, its skyline dominated by the castle perched high on its volcanic rock above the Old Town."}, {"num": 7, "title": "Edinburgh", "overnight": "Overnight: Edinburgh", "desc": "A full day in Edinburgh: Edinburgh Castle, the Royal Mile with its closes and courtyards, and the view over the city from Arthur's Seat.", "shopping": "The Royal Mile and George Street are lined with tartan, tweed and single-malt whisky shops.", "fallbackIncluded": "Day at leisure \u2014 optional Edinburgh Castle & Royal Mile tour available."}, {"num": 8, "title": "Edinburgh to Inverness", "overnight": "Overnight: Inverness", "desc": "Head north through the Cairngorms to Inverness, the gateway to the Scottish Highlands on the banks of the River Ness."}, {"num": 9, "title": "Inverness & Loch Ness", "overnight": "Overnight: Inverness", "desc": "A day at leisure around Inverness \u2014 Inverness Castle, the riverside walks, and the legendary waters of Loch Ness just outside the city.", "taste": "A Speyside single-malt whisky tasting is a fitting way to sample the Highlands' best-known export.", "fallbackIncluded": "Day at leisure \u2014 optional Loch Ness cruise available."}, {"num": 10, "title": "Inverness to Glasgow", "overnight": "Overnight: Glasgow", "desc": "Journey south via Loch Ness, Glencoe and Loch Lomond to Glasgow, Scotland's largest city, known for its Victorian architecture and Merchant City."}, {"num": 11, "title": "Depart Glasgow", "overnight": "Departure day", "desc": "Free time until your private transfer to Glasgow airport, depending on flight time."}], "hotels": [{"city": "London", "nights": "3 Nights", "h3": "Hotel Montana", "h4": "Hotel Riu Plaza London Victoria"}, {"city": "Manchester", "nights": "2 Nights", "h3": "Hilton Garden Inn Manchester Emirates Old Trafford", "h4": "Crowne Plaza Manchester City Centre"}, {"city": "Edinburgh", "nights": "2 Nights", "h3": "Holiday Inn Express Edinburgh City Centre", "h4": "Apex City of Edinburgh Hotel"}, {"city": "Inverness", "nights": "2 Nights", "h3": "Royal Highland Hotel", "h4": "Blackfriars Inverness"}, {"city": "Glasgow", "nights": "1 Night", "h3": "Holiday Inn Express Glasgow City Centre Riverside", "h4": "Novotel Glasgow Centre"}], "about": [{"title": "Best season", "body": "May\u2013September for the longest, mildest days; the Highlands are especially scenic in early autumn."}, {"title": "Weather", "body": "Temperate and changeable throughout, typically 12\u201320\u00b0C in summer, cooler and wetter further north in Scotland."}, {"title": "Currency & docs", "body": "Pound sterling (\u00a3) throughout; the United Kingdom is outside the Schengen area, so standard UK entry requirements apply for the whole itinerary."}], "goodToKnow": [{"title": "Tickets & timing", "body": "Book Edinburgh Castle and the Tower of London ahead in summer \u2014 both sell out days in advance. Arrive at Stonehenge early to avoid coach-tour crowds."}, {"title": "Rail travel", "body": "Seat reservations are included on the inter-city services. Allow extra connection time at Manchester Piccadilly and Edinburgh Waverley.", "styles": ["trains"]}, {"title": "Your vehicle", "body": "Driver working hours are limited by law, so long driving days (such as Inverness to Glasgow) include a scheduled rest stop. Luggage space fits one large case per guest.", "styles": ["private"]}, {"title": "What to pack", "body": "Layers and a waterproof jacket year-round, especially north of Edinburgh. Comfortable, sturdy shoes for cobbled streets and hillside paths."}, {"title": "Money", "body": "Cards are accepted almost everywhere across England and Scotland; a little cash is useful in smaller Highland towns. Tipping around 10% in restaurants is customary."}], "map": {"points": [{"lat": 51.5074, "lng": -0.1278, "label": "London", "nights": 3}, {"lat": 53.4808, "lng": -2.2426, "label": "Manchester", "nights": 2}, {"lat": 55.9533, "lng": -3.1883, "label": "Edinburgh", "nights": 2}, {"lat": 57.4778, "lng": -4.2247, "label": "Inverness", "nights": 2}, {"lat": 55.8642, "lng": -4.2518, "label": "Glasgow", "nights": 1}], "closeLoop": false}, "region": "uk-ireland", "eyebrow": "Europe Incoming \u00b7 FIT Packages \u00b7 2026\u201327", "pricesFile": "prices/1.2-2026.json", "heroImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80", "terms": ["All rates are net and per person for the package.", "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.", "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.", "Rates are not applicable during trade fair periods, major European public holidays, and other major events.", "City taxes are not included in the price.", "If certain attractions are closed during specific periods, alternative options will be arranged.", "All bookings must be confirmed at least 60 working days prior to arrival.", "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.", "Vouchers will be issued after receipt of full payment."]};
+window.PRICES = {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u00a3", "variants": {"trains": {"3": {"summer": {"single": 1860, "twin": 1450, "child": 1015}, "winter": {"single": 1640, "twin": 1280, "child": 900}}, "4": {"summer": {"single": 2230, "twin": 1740, "child": 1220}, "winter": {"single": 1960, "twin": 1530, "child": 1070}}}, "private": {"3": {"summer": {"single": 2560, "twin": 2000, "child": 1400}, "winter": {"single": 2250, "twin": 1760, "child": 1230}}, "4": {"summer": {"single": 3070, "twin": 2400, "child": 1680}, "winter": {"single": 2700, "twin": 2110, "child": 1480}}}}, "optionalTours": []};
 </script>
+<script src="../../assets/package-page.js"></script>
 </body></html>

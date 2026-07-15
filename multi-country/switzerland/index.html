@@ -79,16 +79,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <h1>Switzerland</h1>
 <div class="brochures" id="brochuresList"><div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="2 Lucerne - 2 Interlaken - 1 Zurich" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="Lucerne, Interlaken & Zurich" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Lucerne - 2 Interlaken - 1 Zurich</div>
-    <div class='card-duration'>🕐 5 nights</div>
-    <div class='card-route'>📍 Lucerne → interlaken → Zurich</div>
-    <div class='card-desc'>Lucerne, interlaken and 1 more unmissable stops.</div>
-    
+    <div class="card-title">Lucerne, Interlaken & Zurich</div>
+    <div class="card-duration">🕐 5 nights · 6 days</div>
+    <div class="card-route">📍 Lucerne (2N) → Interlaken (2N) → Zurich (1N)</div>
+    <div class="card-price">From €780 pp</div>
   </div>
   <div class="card-actions">
     <a href="4.1_brochure.html" class="btn-view">View Package</a>
@@ -96,16 +94,14 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 </div>
 <div class="brochure-card">
   <div class="card-hero">
-    <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="2 Lucerne - 2 Interlaken - 2 Montreux - 1 Zurich" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&q=75" alt="Lucerne, Interlaken, Montreux & Zurich" loading="lazy">
     <div class="card-hero-overlay"></div>
-    <div class="card-season season-allyear">🌍 All Year</div>
   </div>
   <div class="card-body">
-    <div class="card-title">2 Lucerne - 2 Interlaken - 2 Montreux - 1 Zurich</div>
-    
-    <div class='card-route'>📍 Lucerne → Interlaken → Montreaux. Hotel Helvetie | Eden Palace Au Lac → Zurich</div>
-    <div class='card-desc'>Lucerne, Interlaken and 2 more unmissable stops.</div>
-    <div class="card-price">From €1,731 pp</div>
+    <div class="card-title">Lucerne, Interlaken, Montreux & Zurich</div>
+    <div class="card-duration">🕐 7 nights · 8 days</div>
+    <div class="card-route">📍 Lucerne (2N) → Interlaken (2N) → Montreux (2N) → Zurich (1N)</div>
+    <div class="card-price">From €748 pp</div>
   </div>
   <div class="card-actions">
     <a href="4.2_brochure.html" class="btn-view">View Package</a>
@@ -114,7 +110,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <footer><p>Browse packages below and click View Package for full details.</p></footer>
 </div>
 <script src="../../global-search.js"></script>
-<script>window.addEventListener('load',function(){(function(){var pts=[[47.0502, 8.3093, "Lucerne"], [46.6863, 7.8632, "interlaken"], [47.3769, 8.5417, "Zurich"]];if(!pts.length)return;
+<script>window.addEventListener('load',function(){(function(){var pts=[[47.0502, 8.3093, "Lucerne"], [46.6863, 7.8632, "Interlaken"], [47.3769, 8.5417, "Zurich"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_4_1',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
@@ -127,7 +123,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
      .bindTooltip(p[2],{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]});
   });
 })();
-(function(){var pts=[[47.0502, 8.3093, "Lucerne"], [46.6863, 7.8632, "Interlaken"], [47.3769, 8.5417, "Zurich"]];if(!pts.length)return;
+(function(){var pts=[[47.0502, 8.3093, "Lucerne"], [46.6863, 7.8632, "Interlaken"], [46.4312, 6.9107, "Montreux"], [47.3769, 8.5417, "Zurich"]];if(!pts.length)return;
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_4_2',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});

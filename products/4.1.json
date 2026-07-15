@@ -1,0 +1,167 @@
+{
+  "id": "4.1",
+  "title": "Lucerne, Interlaken & Zurich.",
+  "styles": {
+    "trains": {
+      "name": "Trains & Taxi Transfers",
+      "blurb": "Scenic Swiss rail travel linking Lucerne, Interlaken and Zurich, with the Swiss Travel Pass covering transfers and a Mount Titlis excursion.",
+      "nights": "5 nights · 6 days",
+      "route": "Lucerne (2N) → Interlaken (2N) → Zurich (1N)",
+      "aboutNights": "5 nights across 3 stays",
+      "transport": {
+        "1": "Arrival transfer by train from Zurich Airport to Lucerne.",
+        "2": "Full-day excursion to Mount Titlis by cogwheel railway and rotating cable car, plus a Lake Lucerne cruise — both included with the 4-day Swiss Travel Pass.",
+        "3": "Lucerne to Interlaken by train, II Class, using the Swiss Travel Pass.",
+        "5": "Interlaken to Zurich by train, II Class, using the Swiss Travel Pass.",
+        "6": "Departure transfer from Zurich hotel to Zurich Airport."
+      },
+      "inclusions": [
+        "Swiss Travel Pass, 4 consecutive days, II Class",
+        "Mount Titlis excursion with cogwheel railway and cable car",
+        "Lake Lucerne cruise, free with the Swiss Travel Pass",
+        "Lucerne to Interlaken train transfer, II Class",
+        "Interlaken to Zurich train transfer, II Class",
+        "5 nights accommodation with daily breakfast"
+      ]
+    }
+  },
+  "days": [
+    {
+      "num": 1,
+      "title": "Arrive Lucerne",
+      "overnight": "Overnight: Lucerne",
+      "desc": "Arrive in Lucerne, gateway to central Switzerland, set on the shores of Lake Lucerne beneath Mount Pilatus. The rest of the day is free to wander the medieval Old Town, cross the wooden Chapel Bridge (Kapellbrücke) and stroll the lakeside promenade.",
+      "shopping": "Lucerne's Old Town arcades are known for Swiss watches and chocolate — Bucherer and local chocolatiers line the Kapellplatz."
+    },
+    {
+      "num": 2,
+      "title": "Mount Titlis excursion",
+      "overnight": "Overnight: Lucerne",
+      "desc": "A full day at Mount Titlis, reached by cogwheel railway and the rotating Titlis Rotair cable car up to 3,020 metres, with glacier views and snow year-round. Return via Engelberg with time for a relaxed Lake Lucerne cruise, included with the Swiss Travel Pass.",
+      "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, crosses a ridge just below the summit station."
+    },
+    {
+      "num": 3,
+      "title": "Lucerne → Interlaken",
+      "overnight": "Overnight: Interlaken",
+      "desc": "A scenic train journey through the Bernese Oberland to Interlaken, the resort town wedged between Lake Thun and Lake Brienz in the shadow of the Eiger, Mönch and Jungfrau."
+    },
+    {
+      "num": 4,
+      "title": "Interlaken at leisure",
+      "overnight": "Overnight: Interlaken",
+      "desc": "A free day to enjoy Interlaken and the surrounding Jungfrau region — stroll the Höheweg promenade with its views of the snow-capped Jungfrau, or take an optional excursion into the high mountains.",
+      "fallbackIncluded": "Day at leisure — optional Jungfraujoch 'Top of Europe' excursion available."
+    },
+    {
+      "num": 5,
+      "title": "Interlaken → Zurich",
+      "overnight": "Overnight: Zurich",
+      "desc": "Travel on to Zurich, Switzerland's largest city and financial capital, on the shore of Lake Zurich. The afternoon is free to explore Bahnhofstrasse, the Old Town (Altstadt) and the Grossmünster church.",
+      "shopping": "Bahnhofstrasse is one of the world's most exclusive shopping avenues, lined with flagship boutiques and Swiss watchmakers."
+    },
+    {
+      "num": 6,
+      "title": "Depart Zurich",
+      "overnight": "Departure day",
+      "desc": "Free time until your transfer to Zurich Airport, depending on flight time."
+    }
+  ],
+  "hotels": [
+    {
+      "city": "Lucerne",
+      "nights": "2 Nights",
+      "h3": "Boutique Hotel Karl",
+      "h4": "Altstadt Hotel Krone Apartments Luzern"
+    },
+    {
+      "city": "Interlaken",
+      "nights": "2 Nights",
+      "h3": "Hotel Lötschberg",
+      "h4": "Stella Hotel Interlaken"
+    },
+    {
+      "city": "Zurich",
+      "nights": "1 Night",
+      "h3": "Montana Hotel",
+      "h4": "Züri by Fassbind"
+    }
+  ],
+  "about": [
+    {
+      "title": "Best season",
+      "body": "April–October for the best weather and full alpine access; December–March suits winter and ski travellers."
+    },
+    {
+      "title": "Weather",
+      "body": "Alpine climate with warm summers (15–25°C) and cold, snowy winters, especially at altitude on Mount Titlis."
+    },
+    {
+      "title": "Currency & docs",
+      "body": "Switzerland's local currency is the Swiss Franc (CHF), though this package is priced in Euro; it is not an EU member but is part of the Schengen Area, so no separate visa is needed for Schengen visitors."
+    }
+  ],
+  "goodToKnow": [
+    {
+      "title": "Tickets & timing",
+      "body": "Mount Titlis cable cars are busiest at midday in summer — an early start helps avoid queues at Engelberg."
+    },
+    {
+      "title": "Rail travel",
+      "body": "Swiss trains run frequently and punctually; the included Swiss Travel Pass covers all rail travel and the Lake Lucerne cruise on this itinerary.",
+      "styles": [
+        "trains"
+      ]
+    },
+    {
+      "title": "What to pack",
+      "body": "Bring warm layers and sturdy shoes for the mountain excursion, plus sunglasses for glare on the Titlis glacier."
+    },
+    {
+      "title": "Altitude",
+      "body": "Mount Titlis summit sits above 3,000 metres — dress warmly and move at an easy pace if you're not used to altitude."
+    },
+    {
+      "title": "Money",
+      "body": "Cards are accepted almost everywhere in Switzerland; a little Swiss Franc cash is useful for small purchases and public facilities."
+    }
+  ],
+  "map": {
+    "points": [
+      {
+        "lat": 47.0502,
+        "lng": 8.3093,
+        "label": "Lucerne",
+        "nights": 2
+      },
+      {
+        "lat": 46.6863,
+        "lng": 7.8632,
+        "label": "Interlaken",
+        "nights": 2
+      },
+      {
+        "lat": 47.3769,
+        "lng": 8.5417,
+        "label": "Zurich",
+        "nights": 1
+      }
+    ],
+    "closeLoop": false
+  },
+  "region": "switzerland",
+  "eyebrow": "Europe Incoming · FIT Packages · 2026–27",
+  "pricesFile": "prices/4.1-2026.json",
+  "heroImage": "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=1600&q=80",
+  "terms": [
+    "All rates are net and per person for the package.",
+    "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.",
+    "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.",
+    "Rates are not applicable during trade fair periods, major European public holidays, and other major events.",
+    "City taxes are not included in the price.",
+    "If certain attractions are closed during specific periods, alternative options will be arranged.",
+    "All bookings must be confirmed at least 60 working days prior to arrival.",
+    "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.",
+    "Vouchers will be issued after receipt of full payment."
+  ]
+}
