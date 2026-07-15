@@ -77,42 +77,42 @@
       "num": 1,
       "title": "Arrive Edinburgh",
       "overnight": "Overnight: Edinburgh",
-      "desc": "Arrive in the Scottish capital, dominated by Edinburgh Castle on its volcanic crag. The rest of the day is free to wander the Royal Mile and Princes Street Gardens, an easy walk from the city-centre hotels.",
+      "desc": "Welcome to the historic capital of Scotland, renowned for its rich history, stunning architecture, and vibrant cultural scene. Begin your journey with a private transfer from Edinburgh airport to your hotel. Prepare to immerse yourself in the city's charm and heritage. Overnight in Edinburgh.",
       "taste": "A dram of single malt Scotch whisky at Deacon Brodie's Tavern, a Royal Mile institution licensed since 1806 and named after the city councillor and secret burglar said to have inspired Dr Jekyll and Mr Hyde."
     },
     {
       "num": 2,
       "title": "Edinburgh",
       "overnight": "Overnight: Edinburgh",
-      "desc": "A full day to explore Edinburgh: the Castle esplanade and Crown Jewels, the Royal Mile down to the Palace of Holyroodhouse, and the climb up Arthur's Seat for views over the whole city.",
+      "desc": "Enjoy a leisurely day in Edinburgh, exploring its historic sites, wandering along the Royal Mile, or visiting the majestic Edinburgh Castle. Delight in the city's cultural offerings at your own pace. Overnight in Edinburgh.",
       "experience": "Descend into the Real Mary King's Close, the hidden 17th-century Old Town streets sealed beneath the modern city."
     },
     {
       "num": 3,
       "title": "Edinburgh → Inverness",
       "overnight": "Overnight: Inverness",
-      "desc": "Head north through Perthshire and the Cairngorms towards the Great Glen, skirting the shores of Loch Ness. Time permitting, stop at the ruins of Urquhart Castle, one of the most famously photographed views of the loch.",
+      "desc": "Travel by train to Inverness, the gateway to the Scottish Highlands. Explore this charming city, nestled by the River Ness, known for its historic sites like Inverness Castle and the Caledonian Canal. Prepare for Highland adventures. Overnight in Inverness.",
       "taste": "The route passes close to Glenturret Distillery near Crieff, licensed since 1763 and generally regarded as Scotland's oldest working distillery, now home to the Famous Grouse Experience."
     },
     {
       "num": 4,
       "title": "Skye Excursion",
       "overnight": "Overnight: Inverness",
-      "desc": "A day trip west to the Isle of Skye, passing the postcard-famous Eilean Donan Castle on its islet before crossing to Skye's Cuillin mountains and the harbour town of Portree.",
+      "desc": "Embark on a full-day coach tour from Inverness, exploring the mesmerizing Isle of Skye and the iconic Eilean Donan Castle. Immerse yourself in Scotland's stunning landscapes and historic landmarks. Return for a tranquil evening in Inverness. Overnight in Inverness.",
       "taste": "Skye is home to the Talisker distillery, the island's only whisky maker, founded in 1830 on the shores of Loch Harport."
     },
     {
       "num": 5,
       "title": "Inverness → Fort William",
       "overnight": "Overnight: Fort William",
-      "desc": "Travel south along the Great Glen via the locks of the Caledonian Canal at Fort Augustus, arriving beneath Ben Nevis, the highest peak in the British Isles at 1,345 metres.",
+      "desc": "Travel by bus to Fort William, a scenic town nestled at the foot of Ben Nevis, the UK's highest peak. Fort William is a gateway to outdoor adventures, offering stunning landscapes and access to hiking trails. Prepare for mountainous marvels. Overnight in Fort William.",
       "taste": "Fort William is home to Ben Nevis Distillery, founded at the foot of the mountain in 1825 and one of the oldest licensed distilleries in the Highlands."
     },
     {
       "num": 6,
       "title": "Fort William → Glasgow",
       "overnight": "Overnight: Glasgow",
-      "desc": "Continue south through the dramatic glacial valley of Glencoe before following the bonnie banks of Loch Lomond, the largest lake by surface area in Great Britain, on into Glasgow.",
+      "desc": "Board the train to Glasgow, Scotland's largest city renowned for its vibrant arts scene, rich architectural heritage, and bustling city life. Embrace cultural diversity and explore the city's museums, galleries, and lively atmosphere. Overnight in Glasgow.",
       "taste": "Glasgow lays a well-known claim to inventing chicken tikka masala in one of its Asian restaurants in the 1970s — still a fixture on menus across the city's curry houses.",
       "shopping": "Glasgow's Buchanan Street and the Style Mile make it the UK's second-largest shopping destination after London's West End."
     },
@@ -120,7 +120,7 @@
       "num": 7,
       "title": "Depart Glasgow",
       "overnight": "Departure day",
-      "desc": "Free time until your transfer to Glasgow airport, depending on flight time — the Kelvingrove Art Gallery and Glasgow Cathedral are both within easy reach of the city-centre hotels."
+      "desc": "Conclude your Scottish adventure with a private transfer from your Glasgow hotel to Glasgow airport. Depart with cherished memories of Scotland's captivating landscapes and vibrant cities."
     }
   ],
   "hotels": [
