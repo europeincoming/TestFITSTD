@@ -5,14 +5,47 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1140, "twin": 890, "child": 620 },
-        "winter": { "single": 1000, "twin": 780, "child": 550 }
+        "summer": {
+          "single": 1140,
+          "twin": 890,
+          "child": 620
+        },
+        "winter": {
+          "single": 1000,
+          "twin": 780,
+          "child": 550
+        }
       },
       "4": {
-        "summer": { "single": 1370, "twin": 1070, "child": 750 },
-        "winter": { "single": 1200, "twin": 940, "child": 660 }
+        "summer": {
+          "single": 1370,
+          "twin": 1070,
+          "child": 750
+        },
+        "winter": {
+          "single": 1200,
+          "twin": 940,
+          "child": 660
+        }
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Grindelwald First (with any two activities)",
+      "price": 75
+    },
+    {
+      "name": "Jungfraujoch with Swiss Pass",
+      "price": 163
+    },
+    {
+      "name": "Rhine Falls, 30 mins boat ride",
+      "price": 22
+    },
+    {
+      "name": "Lindt chocolate museum ticket",
+      "price": 20
+    }
+  ]
 }

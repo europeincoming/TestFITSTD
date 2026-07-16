@@ -30,7 +30,7 @@
       "num": 1,
       "title": "Arrive Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Arrive in Lucerne, gateway to central Switzerland, set on the shores of Lake Lucerne beneath Mount Pilatus. The rest of the day is free to wander the medieval Old Town, cross the wooden Chapel Bridge (Kapellbrücke, rebuilt after the 1993 fire but standing since the 1300s) and stroll the lakeside promenade.",
+      "desc": "Upon arrival in Switzerland, utilize the Swiss Travel Pass for your onward journey to Lucerne. The Pass covers seamless travel across the Swiss Travel System, enjoying unlimited travel on trains, boats, trams, and buses. Overnight in Lucerne.",
       "taste": "Confiserie Bachmann, a Lucerne institution since 1938, for Luzerner Lebkuchen — the city's spiced honey gingerbread — with a coffee on the Kapellplatz.",
       "shopping": "Lucerne's Old Town arcades are known for Swiss watches and chocolate — Bucherer and local chocolatiers line the Kapellplatz."
     },
@@ -38,7 +38,7 @@
       "num": 2,
       "title": "Mount Titlis excursion",
       "overnight": "Overnight: Lucerne",
-      "desc": "A full day at Mount Titlis, reached by cogwheel railway and the rotating Titlis Rotair cable car up to 3,020 metres, with glacier views and snow year-round. Return via Engelberg with time for a relaxed Lake Lucerne cruise, included with the Swiss Travel Pass.",
+      "desc": "Utilize your Swiss Travel Pass to explore Mount Titlis, a breathtaking alpine experience. Revel in the stunning vistas, engage in snow activities, and relish the revolving Titlis Rotair gondola. Later, you can take a cruise on Lake Lucerne, enjoying the serene waters and picturesque surroundings. Overnight in Lucerne.",
       "experience": "The Titlis Cliff Walk, Europe's highest suspension bridge, crosses a ridge just below the summit station.",
       "taste": "A rösti with alpine cheese and speck at one of the mountain restaurants around Trübsee — the valley's standard lunch after a morning on the glacier."
     },
@@ -46,13 +46,13 @@
       "num": 3,
       "title": "Lucerne → Interlaken",
       "overnight": "Overnight: Interlaken",
-      "desc": "A scenic train journey through the Bernese Oberland aboard the Luzern–Interlaken Express, which crosses the Brünig Pass, to Interlaken, the resort town wedged between Lake Thun and Lake Brienz in the shadow of the Eiger, Mönch and Jungfrau."
+      "desc": "Embark on a scenic train journey from Lucerne to Interlaken, reveling in the breathtaking vistas along the way. As you arrive, experience the allure of Interlaken, nestled between Lake Thun and Lake Brienz, offering a gateway to the Bernese Oberland's splendour. Overnight in Interlaken."
     },
     {
       "num": 4,
       "title": "Interlaken at leisure",
       "overnight": "Overnight: Interlaken",
-      "desc": "A free day to enjoy Interlaken and the surrounding Jungfrau region — stroll the Höheweg promenade with its views of the snow-capped Jungfrau, or take an optional excursion into the high mountains.",
+      "desc": "Enjoy the freedom to explore Switzerland at your leisure using the Swiss Travel Pass. Delve into the scenic wonders of Grindelwald and Interlaken, known for their stunning landscapes. Optionally, consider a visit to Grindelwald First for panoramic views and thrilling activities. Overnight in Interlaken.",
       "experience": "Interlaken is one of the world's best-known paragliding hubs — tandem flights launch from Beatenberg or Schilthorn and land in the Höhematte park in the town centre.",
       "taste": "Rugenbräu, brewed in nearby Matten since 1885, is the local beer worth ordering in Interlaken's bars and restaurants.",
       "fallbackIncluded": "Day at leisure — optional Jungfraujoch 'Top of Europe' excursion available."
@@ -61,7 +61,7 @@
       "num": 5,
       "title": "Interlaken → Zurich",
       "overnight": "Overnight: Zurich",
-      "desc": "Travel on to Zurich, Switzerland's largest city and financial capital, on the shore of Lake Zurich. The afternoon is free to explore Bahnhofstrasse, the Old Town (Altstadt) and the Grossmünster church.",
+      "desc": "Travel from Interlaken to Zurich using your Swiss Travel Pass, exploring the vibrant city of Zurich upon arrival. Zurich, a financial hub, blends modernity with history, offering a plethora of cultural attractions. Optionally, venture further to Schaffhausen by train to witness the majestic Rhine Falls, Europe's largest waterfall. Overnight Zurich.",
       "taste": "Zürcher Geschnetzeltes — veal in white wine and cream sauce with rösti — is Zurich's signature dish, served at the Kronenhalle, the artists' restaurant on Rämistrasse that's been open since 1924.",
       "shopping": "Bahnhofstrasse is one of the world's most exclusive shopping avenues, lined with flagship boutiques and Swiss watchmakers."
     },
@@ -69,7 +69,7 @@
       "num": 6,
       "title": "Depart Zurich",
       "overnight": "Departure day",
-      "desc": "Free time until your transfer to Zurich Airport, depending on flight time."
+      "desc": "Make your way to Zurich Airport from the city center. As your memorable Swiss adventure concludes, cherish the scenic journey and bid adieu to the beautiful landscapes and hospitable culture of Switzerland."
     }
   ],
   "hotels": [

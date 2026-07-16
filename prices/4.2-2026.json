@@ -5,24 +5,117 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1088, "twin": 850, "child": 595 },
-        "winter": { "single": 957, "twin": 748, "child": 524 }
+        "summer": {
+          "single": 1088,
+          "twin": 850,
+          "child": 595
+        },
+        "winter": {
+          "single": 957,
+          "twin": 748,
+          "child": 524
+        }
       },
       "4": {
-        "summer": { "single": 1306, "twin": 1020, "child": 714 },
-        "winter": { "single": 1149, "twin": 898, "child": 629 }
+        "summer": {
+          "single": 1306,
+          "twin": 1020,
+          "child": 714
+        },
+        "winter": {
+          "single": 1149,
+          "twin": 898,
+          "child": 629
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 1856, "twin": 1450, "child": 1015 },
-        "winter": { "single": 1633, "twin": 1276, "child": 893 }
-      },
-      "4": {
-        "summer": { "single": 2227, "twin": 1740, "child": 1218 },
-        "winter": { "single": 1960, "twin": 1531, "child": 1072 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1731,
+            "4star": 1860
+          },
+          {
+            "pax": 10,
+            "3star": 1533,
+            "4star": 1662
+          },
+          {
+            "pax": 12,
+            "3star": 1401,
+            "4star": 1530
+          },
+          {
+            "pax": 14,
+            "3star": 1307,
+            "4star": 1435
+          },
+          {
+            "pax": 16,
+            "3star": 1236,
+            "4star": 1365
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1810,
+            "4star": 1944
+          },
+          {
+            "pax": 10,
+            "3star": 1603,
+            "4star": 1737
+          },
+          {
+            "pax": 12,
+            "3star": 1465,
+            "4star": 1599
+          },
+          {
+            "pax": 14,
+            "3star": 1367,
+            "4star": 1501
+          },
+          {
+            "pax": 16,
+            "3star": 1293,
+            "4star": 1427
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Grindelwald First (with any two activities) with Pass",
+      "price": 75
+    },
+    {
+      "name": "Jungfraujoch with Swiss Pass",
+      "price": 163
+    },
+    {
+      "name": "Glacier 3000, with swiss pass",
+      "price": 43
+    },
+    {
+      "name": "Broc chocolate museum ticket",
+      "price": 18
+    },
+    {
+      "name": "Grindelwald First (any 2 activities)",
+      "price": 104
+    },
+    {
+      "name": "Jungfraujoch return ticket (Ex-Lauterbrunnen)",
+      "price": 250
+    },
+    {
+      "name": "Glacier 3000",
+      "price": 85
+    }
+  ]
 }
