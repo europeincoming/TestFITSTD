@@ -32,14 +32,14 @@
       "num": 1,
       "title": "Arrive Tromsø",
       "overnight": "Overnight: Tromso",
-      "desc": "Fly into Tromsø, gateway to the Arctic and one of the best places on Earth to see the Northern Lights, and take your private transfer to a city-centre hotel. Sitting well inside the Arctic Circle, Tromsø's mid-winter polar night brings only a few hours of soft blue twilight — settle in and rest ahead of the Arctic days to come.",
+      "desc": "Arrive in the Arctic capital and transfer privately to your hotel. In the evening, set sail on a serene cruise from Tromsø, gliding into the silent night in search of the Northern Lights. Witness the shimmering Aurora from spacious decks or the cosy lounge of a sustainable sightseeing boat. Overnight in Tromsø.",
       "taste": "Ølhallen, Tromsø's oldest pub, has poured beer from the adjoining Mack Brewery — the world's northernmost — since 1928; a good first stop for a Mack Arctic Pilsner."
     },
     {
       "num": 2,
       "title": "Tromsø & Arctic Cathedral",
       "overnight": "Overnight: Tromso",
-      "desc": "Explore Tromsø itself: cross the sound to the striking Arctic Cathedral (Ishavskatedralen), its glass-and-concrete facade echoing pack ice, then ride the Fjellheisen cable car up Mount Storsteinen for panoramic views over the city, fjords and surrounding islands.",
+      "desc": "Enjoy a scenic and informative city tour of Tromsø. Travel across to Kvaløya for panoramic views of the city and a chance to spot Arctic wildlife. Stop at Telegrafbukta beach and drive through the city centre, learning about its rich history. Cross the Tromsø Bridge to view the striking Arctic Cathedral (exterior only) and ascend by cable car for breathtaking views of the surrounding islands. Tour ends in the city centre. In the evening, travel to a Sami reindeer camp where you’ll walk among a herd of 300 reindeer, followed by a peaceful sledding ride. Gather inside a warm candlelit hut for a traditional three-course Sami dinner, storytelling, and a joik performance. If skies are clear, step outside and watch the Northern Lights dance above. Overnight in Tromsø.",
       "taste": "Arctic king crab and Arctic char are Tromsø specialities — Fiskekompaniet, on the harbour by Stortorget, is a long-standing choice for both.",
       "experience": "An evening Northern Lights Cruise takes you out into the fjords, away from the city's lights, for one of the best chances to see the aurora.",
       "shopping": "Storgata, Tromsø's main pedestrian street, runs the length of the old town for Norwegian knitwear, troll figures and Arctic-fox pelts alongside the everyday shops."
@@ -48,14 +48,14 @@
       "num": 3,
       "title": "Snowmobile Safari",
       "overnight": "Overnight: Tromso",
-      "desc": "A full-day snowmobile safari through the snow-covered valleys and mountain plateaus surrounding Tromsø, terrain used for generations by Sami reindeer herders — a thrilling way to cover real Arctic wilderness in a single day.",
+      "desc": "Embark on a thrilling snowmobile safari through the Lyngen Alps. Paired in twos, you’ll ride across snowy trails with photo stops and scenic views. End your Arctic adventure with a hearty fish soup before heading back. Overnight in Tromsø.",
       "taste": "A hot bowl of bidos, the traditional Sami reindeer stew, is the usual warm-up during the safari's midway stop — thick, slow-cooked and built for Arctic cold."
     },
     {
       "num": 4,
       "title": "Whale Watching",
       "overnight": "Overnight: Tromso",
-      "desc": "Head out by boat into the fjords around Tromsø on a winter whale watching tour — pods of orca and humpback whales gather here each winter to feed on herring, often within sight of snow-capped mountains.",
+      "desc": "Take the reins on a dogsledding tour through the Arctic wilderness. Learn to mush and switch roles with your partner midway. This active yet heart-warming experience ends with a steaming bowl of soup back at the kennel. Overnight in Tromsø.",
       "experience": "Round off the evening with a Night Reindeer Sledding Tour and dinner, gliding across the snow behind reindeer with a taste of Sami tradition.",
       "taste": "Dinner typically ends with multekrem — cloudberries folded through whipped cream, a Norwegian classic and a particular treat this far north, where the berries are hand-picked from Arctic marshland each autumn."
     },
@@ -63,7 +63,7 @@
       "num": 5,
       "title": "Depart Tromsø",
       "overnight": "Departure day",
-      "desc": "Free time before your private transfer back to Tromsø Airport for departure, taking with you the memories of an Arctic winter."
+      "desc": "Enjoy a private transfer to Tromsø Airport. Bid farewell to Norway’s winter wonderland, taking with you memories of the Northern Lights, snowy landscapes, and Arctic encounters."
     }
   ],
   "hotels": [

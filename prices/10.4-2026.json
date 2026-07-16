@@ -5,12 +5,28 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 2985, "twin": 2350, "child": 1645 },
-        "winter": { "single": 2670, "twin": 2100, "child": 1470 }
+        "summer": {
+          "single": 2985,
+          "twin": 2350,
+          "child": 1645
+        },
+        "winter": {
+          "single": 2670,
+          "twin": 2100,
+          "child": 1470
+        }
       },
       "4": {
-        "summer": { "single": 3580, "twin": 2820, "child": 1974 },
-        "winter": { "single": 3200, "twin": 2520, "child": 1764 }
+        "summer": {
+          "single": 3580,
+          "twin": 2820,
+          "child": 1974
+        },
+        "winter": {
+          "single": 3200,
+          "twin": 2520,
+          "child": 1764
+        }
       }
     }
   },
