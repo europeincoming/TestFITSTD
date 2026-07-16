@@ -151,7 +151,15 @@
   }
 
   // ─────────────────────────────── RATES ───────────────────────────
-  function renderRateToggles() {
+  function availableSeasons(variant) {
+    var seasons = {};
+    ["3", "4"].forEach(function (cat) {
+      Object.keys(variant[cat] || {}).forEach(function (s) { seasons[s] = true; });
+    });
+    return Object.keys(seasons);
+  }
+
+  function renderRateToggles(seasons) {
     var catWrap = $("pkgCatToggle");
     catWrap.innerHTML = "";
     ["3", "4"].forEach(function (cat) {
@@ -164,14 +172,18 @@
     });
     var seasonWrap = $("pkgSeasonToggle");
     seasonWrap.innerHTML = "";
-    ["summer", "winter"].forEach(function (season) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "pkg-seg" + (state.season === season ? " active" : "");
-      btn.textContent = SEASON_LABEL[season];
-      btn.addEventListener("click", function () { state.season = season; renderRates(); });
-      seasonWrap.appendChild(btn);
-    });
+    seasonWrap.style.display = seasons.length > 1 ? "" : "none";
+    if (seasons.length > 1) {
+      ["summer", "winter"].forEach(function (season) {
+        if (seasons.indexOf(season) === -1) return;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "pkg-seg" + (state.season === season ? " active" : "");
+        btn.textContent = SEASON_LABEL[season];
+        btn.addEventListener("click", function () { state.season = season; renderRates(); });
+        seasonWrap.appendChild(btn);
+      });
+    }
   }
 
   function renderPaxTable(tiers) {
@@ -189,13 +201,19 @@
     $("pkgRateTable").style.display = isPax ? "none" : "";
 
     if (isPax) {
-      $("pkgPaxRates").innerHTML =
-        '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Nov–Mar</div>' + renderPaxTable(variant.paxTiers.winter) + '</div>' +
-        '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Apr–Oct</div>' + renderPaxTable(variant.paxTiers.summer) + '</div>';
+      var cols = '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Nov–Mar</div>' + renderPaxTable(variant.paxTiers.winter) + '</div>';
+      if (variant.paxTiers.summer) {
+        cols += '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Apr–Oct</div>' + renderPaxTable(variant.paxTiers.summer) + '</div>';
+      }
+      $("pkgPaxRates").style.gridTemplateColumns = variant.paxTiers.summer ? "" : "1fr";
+      $("pkgPaxRates").innerHTML = cols;
       return;
     }
+    $("pkgPaxRates").style.gridTemplateColumns = "";
 
-    renderRateToggles();
+    var seasons = availableSeasons(variant);
+    if (seasons.indexOf(state.season) === -1) state.season = seasons.indexOf("winter") !== -1 ? "winter" : seasons[0];
+    renderRateToggles(seasons);
     var catRow = variant[state.cat] || {};
     var rates = catRow[state.season] || {};
     var tbody = $("pkgRatesBody");

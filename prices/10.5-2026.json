@@ -5,11 +5,6 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": {
-          "single": 1335,
-          "twin": 1050,
-          "child": 735
-        },
         "winter": {
           "single": 1210,
           "twin": 950,
@@ -17,11 +12,6 @@
         }
       },
       "4": {
-        "summer": {
-          "single": 1590,
-          "twin": 1250,
-          "child": 875
-        },
         "winter": {
           "single": 1465,
           "twin": 1150,
