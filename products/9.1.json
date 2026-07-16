@@ -33,7 +33,7 @@
       "num": 1,
       "title": "Arrive Copenhagen",
       "overnight": "Overnight: Copenhagen",
-      "desc": "Arrive in the Danish capital and settle in. Denmark's oldest royal city rewards a first wander along the colourful harbour at Nyhavn and the pedestrian shopping street of Strøget.",
+      "desc": "Welcome to Copenhagen, the enchanting Danish capital where historic charm meets modern vibrancy. As you arrive at the airport, make your own way to the hotel. Discover the city known for its picturesque canals, historic landmarks, and contemporary design. Get ready for a delightful Nordic adventure. Overnight in Copenhagen.",
       "taste": "Try classic smørrebrød — open rye sandwiches piled with herring or roast pork — at one of the covered stalls in Torvehallerne market.",
       "experience": "Tivoli Gardens, one of the world's oldest amusement parks (opened 1843), is a short walk from the city-centre hotels and magical after dark."
     },
@@ -41,14 +41,14 @@
       "num": 2,
       "title": "Copenhagen → Ferry to Oslo",
       "overnight": "Overnight: DFDS Ferry to Oslo",
-      "desc": "A full day exploring Copenhagen with the Hop-On Hop-Off bus — the Little Mermaid statue, Amalienborg Palace and the canal-side Christiansborg Palace are all on the route. In the evening, board the DFDS ferry for the overnight crossing to Oslo through the Kattegat and Oslofjord.",
+      "desc": "Embark on a day of exploration with the 24h BUS Hop On-Hop Off Classic Copenhagen tour, discovering the city's iconic sights at your own pace. Later, check out and make your own way to the port for an overnight ferry to Oslo. Experience the blend of culture and relaxation as you sail towards the Norwegian capital. Overnight on the ferry to Oslo.",
       "taste": "Stop for a wienerbrød (Danish pastry) at a bakery near Nyhavn before boarding — the Danes claim to have perfected the flaky, laminated dough that took their name abroad."
     },
     {
       "num": 3,
       "title": "Oslo",
       "overnight": "Overnight: Oslo",
-      "desc": "Wake up sailing into the Oslofjord, one of Europe's most scenic ferry approaches. Spend the day on the Hop-On Hop-Off bus taking in Akershus Fortress, the striking Oslo Opera House and the harbourside Aker Brygge district.",
+      "desc": "Welcome to Oslo! After making your own way to the hotel, immerse yourself in the vibrant atmosphere of the city. Explore Oslo's highlights with the 24h BUS Hop On-Hop Off, allowing you to discover its cultural and historical gems at your leisure. Enjoy the blend of modernity and tradition that defines the Norwegian capital. Overnight in Oslo.",
       "taste": "Try brunost, Norway's caramel-coloured brown cheese, on a waffle at one of the harbourside cafés in Aker Brygge — a breakfast staple in Norwegian households since the 1800s.",
       "experience": "Vigeland Sculpture Park in Frogner Park is the world's largest sculpture park created by a single artist — over 200 bronze and granite works by Gustav Vigeland."
     },
@@ -56,21 +56,21 @@
       "num": 4,
       "title": "Oslo → Stockholm by train",
       "overnight": "Overnight: Stockholm",
-      "desc": "A scenic II Class train journey across the forests and lakes of the Norway–Sweden border brings you into Stockholm by early evening. Free time to explore the cobbled lanes of Gamla Stan, the medieval old town.",
+      "desc": "Welcome to the Swedish capital! After bidding adieu to Oslo, hop on a train for a scenic journey to Stockholm. As you arrive, soak in the allure of this historic and modern city. Explore its rich cultural heritage and discover why it's hailed as the Swedish capital. Overnight in Stockholm.",
       "taste": "Pause for a Swedish fika — coffee and a cinnamon bun (kanelbulle) — a daily ritual across the city's cafés."
     },
     {
       "num": 5,
       "title": "Stockholm → Ferry to Helsinki",
       "overnight": "Overnight: Tallink Silja Ferry to Helsinki",
-      "desc": "A guided 2.5-hour boat tour weaves through Stockholm's archipelago of forested islands before you board the Tallink Silja ferry for the overnight sailing to Helsinki, threading past the same islands at sunset.",
+      "desc": "Embark on a captivating journey through the Stockholm Archipelago on a guided tour, unveiling the scenic beauty of these islands. As the day unfolds, explore the charming archipelago town of Vaxholm. Later, make your way to the port for an overnight ferry to Helsinki.",
       "shopping": "Browse Drottninggatan and the NK department store for Scandinavian design before the ferry departs."
     },
     {
       "num": 6,
       "title": "Helsinki",
       "overnight": "Overnight: Helsinki",
-      "desc": "Arrive into Helsinki harbour through the archipelago. Sightseeing takes in Senate Square, the neoclassical Helsinki Cathedral and the bustling Market Square, with a Panorama tour in winter or a Hop-On Hop-Off bus and canal cruise in the summer months.",
+      "desc": "In summer, hop aboard the Hop On-Hop Off Bus + Beautiful Canal Cruise, gliding through Helsinki's scenic shores. Visit landmarks like Suomenlinna Maritime Fortress and Olympic Stadium. In winter, delve into Helsinki's history with the Panorama Sightseeing bus tour, showcasing iconic sites and local life in districts like Kallio and Hakaniemi. Overnight in Helsinki.",
       "taste": "Try lohikeitto, a creamy salmon and leek soup, or fresh Baltic herring from the stalls at Kauppatori (Market Square), trading on the harbourfront since 1889.",
       "experience": "Suomenlinna, the UNESCO-listed sea fortress spread across six islands, is a short public ferry ride from Market Square."
     },
@@ -78,7 +78,7 @@
       "num": 7,
       "title": "Depart Helsinki",
       "overnight": "Departure day",
-      "desc": "Free time until your private transfer to Helsinki airport, depending on flight time."
+      "desc": "Bid farewell to the captivating Nordic journey. Check out from your Helsinki hotel and make your way to the airport, concluding your Scandinavian Capitals adventure."
     }
   ],
   "hotels": [

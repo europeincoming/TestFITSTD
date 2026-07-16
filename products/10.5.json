@@ -31,21 +31,21 @@
       "num": 1,
       "title": "Arrive Kiruna",
       "overnight": "Overnight: Kiruna",
-      "desc": "Fly into Kiruna, Sweden's northernmost town and gateway to Swedish Lapland, some 145 km above the Arctic Circle. A private transfer takes you to your hotel; the rest of the day is free to acclimatise to the polar winter, take in the timber-built Kiruna Church — one of Sweden's largest wooden buildings, now being relocated as the whole town shifts to make way for the LKAB iron-ore mine — and, if skies are clear, watch for the aurora borealis after dark.",
+      "desc": "Welcome to Swedish Lapland! Arrive at Kiruna Airport and enjoy a comfortable transfer to your hotel. Settle in and take your first breath of the crisp Arctic air as you prepare for the snowy adventures ahead. Overnight in Kiruna.",
       "experience": "Kiruna sits in the heart of Sápmi, home to the indigenous Sami people and their reindeer-herding traditions."
     },
     {
       "num": 2,
       "title": "Dog Sledding in the Wilderness",
       "overnight": "Overnight: Kiruna",
-      "desc": "Head out by dog sled across snow-covered forest and frozen lakes for two to three hours, mushing your own team behind an experienced guide. In the evening, an optional Northern Lights chase by minibus or snowmobile sleigh heads away from town lights in search of clear, dark skies.",
+      "desc": "Begin your day with a serene dog sled ride through the snowy wilderness near Jukkasjärvi. Seated on reindeer skins, glide behind a team of huskies along frozen trails, guided by an experienced musher. After the ride, enjoy Swedish fika by the fire in a traditional tipi. In the evening, gear up for an exhilarating snowmobile ride in pursuit of the Northern Lights. After a safety briefing at the Laxforsen base, set off in pairs across remote Arctic terrain far from city lights. Stop to warm up by an open fire with sandwiches and hot drinks as you scan the skies for a glimpse of the aurora. A thrilling night under Lapland’s stars. Overnight in Kiruna.",
       "taste": "Warm up afterwards with reindeer stew (renskav) and cloudberries at Camp Ripan's restaurant, known locally for a Sami-inspired kitchen built on local game, Arctic char and forest berries."
     },
     {
       "num": 3,
       "title": "ICEHOTEL & Jukkasjärvi",
       "overnight": "Overnight: Kiruna",
-      "desc": "Visit Jukkasjärvi, 20 km from Kiruna, home of the original ICEHOTEL, rebuilt every winter from blocks of ice cut from the Torne River since 1989. Wander its ice bar, ice church and hand-carved suites before returning to Kiruna.",
+      "desc": "This morning, journey to the iconic ICEHOTEL and the historic village of Jukkasjärvi. Explore the stunning ice art exhibition at your own pace, then visit Sweden’s northernmost church, dating back to 1607. Meet reindeer at the Nutti Sami Siida and learn about Sami culture and Kiruna’s past from your local guide. A perfect mix of art, heritage, and Arctic tradition. Overnight in Kiruna.",
       "experience": "See resident artists sculpting that season's ice suites, a new design unveiled each winter.",
       "shopping": "Jukkasjärvi's craft shop sells Sami duodji — hand-carved reindeer-horn knives, woven bands and silverwork made by Sápmi artisans."
     },
@@ -53,14 +53,14 @@
       "num": 4,
       "title": "Snowmobile Safari",
       "overnight": "Overnight: Kiruna",
-      "desc": "A full six-hour snowmobile safari through the wilderness around Kiruna, crossing frozen lakes and snow-laden pine forest with stops for hot drinks along the way. Thermal suits, helmets and guiding are all part of the experience.",
+      "desc": "Set out on a 6-hour snowmobile safari through the forests and mountains surrounding Kiruna. With your Sami guide, travel along scenic trails near the Kalix River in search of moose, reindeer, grouse, and other Arctic wildlife. Spot animal tracks in the snow and hear stories of traditional reindeer herding and life in the Sámi north. Enjoy a warming lunch of local Sami dishes before returning to town as the polar twilight settles in. Overnight in Kiruna.",
       "taste": "A trailside stop for coffee and cinnamon buns, or fika, the Swedish tradition of a warming coffee break."
     },
     {
       "num": 5,
       "title": "Depart Kiruna",
       "overnight": "Departure day",
-      "desc": "Free time until your private transfer to Kiruna Airport, depending on flight time. Many guests combine this stay with nights in Stockholm before or after the Lapland programme."
+      "desc": "After breakfast, check out and transfer to Kiruna Airport. Your Arctic journey through Swedish Lapland comes to an end—taking with you the silence of snowy forests, stories of Sami life, and the glow of the Northern Lights."
     }
   ],
   "hotels": [
