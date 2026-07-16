@@ -4,17 +4,152 @@
   "currency": "€",
   "variants": {
     "trains": {
-      "3": { "summer": { "single": 1350, "twin": 1050, "child": 750 }, "winter": { "single": 1200, "twin": 930, "child": 660 } },
-      "4": { "summer": { "single": 1650, "twin": 1260, "child": 900 }, "winter": { "single": 1450, "twin": 1120, "child": 800 } }
+      "3": {
+        "summer": {
+          "single": 1350,
+          "twin": 1050,
+          "child": 750
+        },
+        "winter": {
+          "single": 1200,
+          "twin": 930,
+          "child": 660
+        }
+      },
+      "4": {
+        "summer": {
+          "single": 1650,
+          "twin": 1260,
+          "child": 900
+        },
+        "winter": {
+          "single": 1450,
+          "twin": 1120,
+          "child": 800
+        }
+      }
     },
     "private": {
-      "3": { "summer": { "single": 2100, "twin": 1650, "child": 1150 }, "winter": { "single": 1850, "twin": 1450, "child": 1000 } },
-      "4": { "summer": { "single": 2450, "twin": 1950, "child": 1350 }, "winter": { "single": 2150, "twin": 1700, "child": 1200 } }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1820,
+            "4star": 2064
+          },
+          {
+            "pax": 10,
+            "3star": 1571,
+            "4star": 1815
+          },
+          {
+            "pax": 12,
+            "3star": 1405,
+            "4star": 1649
+          },
+          {
+            "pax": 14,
+            "3star": 1286,
+            "4star": 1531
+          },
+          {
+            "pax": 16,
+            "3star": 1197,
+            "4star": 1442
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1902,
+            "4star": 2158
+          },
+          {
+            "pax": 10,
+            "3star": 1642,
+            "4star": 1898
+          },
+          {
+            "pax": 12,
+            "3star": 1469,
+            "4star": 1724
+          },
+          {
+            "pax": 14,
+            "3star": 1345,
+            "4star": 1600
+          },
+          {
+            "pax": 16,
+            "3star": 1252,
+            "4star": 1507
+          }
+        ]
+      }
     },
     "selfdrive": {
-      "3": { "summer": { "single": 1450, "twin": 1150, "child": 800 }, "winter": { "single": 1300, "twin": 1020, "child": 720 } },
-      "4": { "summer": { "single": 1750, "twin": 1380, "child": 950 }, "winter": { "single": 1550, "twin": 1220, "child": 850 } }
+      "3": {
+        "summer": {
+          "single": 1450,
+          "twin": 1150,
+          "child": 800
+        },
+        "winter": {
+          "single": 1300,
+          "twin": 1020,
+          "child": 720
+        }
+      },
+      "4": {
+        "summer": {
+          "single": 1750,
+          "twin": 1380,
+          "child": 950
+        },
+        "winter": {
+          "single": 1550,
+          "twin": 1220,
+          "child": 850
+        }
+      }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 165
+    },
+    {
+      "name": "Louvre Museum (Audioguide € 6 pp)",
+      "price": 22
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 180
+    },
+    {
+      "name": "D-Day U.S Sector & Omaha Beach half-day tour, 4 hrs",
+      "price": 95
+    },
+    {
+      "name": "Mont Saint Michel Village & Abbey tour, 8 hrs",
+      "price": 170
+    },
+    {
+      "name": "Loire Valley Wine Tour To Vouvray - Afternoon, 4 hrs",
+      "price": 95
+    },
+    {
+      "name": "Chenonceau & Chambord Castles tour, 8 hrs",
+      "price": 170
+    },
+    {
+      "name": "Visit a Loire vineyard with tasting",
+      "price": 35
+    },
+    {
+      "name": "Tickets to Royal fortress of Chinon",
+      "price": 15
+    }
+  ]
 }
