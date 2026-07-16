@@ -5,27 +5,117 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1380, "twin": 1085, "child": 760 },
-        "winter": { "single": 1215, "twin": 955, "child": 670 }
+        "summer": {
+          "single": 1380,
+          "twin": 1085,
+          "child": 760
+        },
+        "winter": {
+          "single": 1215,
+          "twin": 955,
+          "child": 670
+        }
       },
       "4": {
-        "summer": { "single": 1785, "twin": 1405, "child": 985 },
-        "winter": { "single": 1570, "twin": 1235, "child": 865 }
+        "summer": {
+          "single": 1785,
+          "twin": 1405,
+          "child": 985
+        },
+        "winter": {
+          "single": 1570,
+          "twin": 1235,
+          "child": 865
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 2070, "twin": 1630, "child": 1140 },
-        "winter": { "single": 1820, "twin": 1435, "child": 1005 }
-      },
-      "4": {
-        "summer": { "single": 2680, "twin": 2110, "child": 1480 },
-        "winter": { "single": 2360, "twin": 1860, "child": 1300 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1277,
+            "4star": 1453
+          },
+          {
+            "pax": 10,
+            "3star": 1099,
+            "4star": 1275
+          },
+          {
+            "pax": 12,
+            "3star": 981,
+            "4star": 1157
+          },
+          {
+            "pax": 14,
+            "3star": 896,
+            "4star": 1072
+          },
+          {
+            "pax": 16,
+            "3star": 833,
+            "4star": 1009
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1335,
+            "4star": 1519
+          },
+          {
+            "pax": 10,
+            "3star": 1149,
+            "4star": 1333
+          },
+          {
+            "pax": 12,
+            "3star": 1025,
+            "4star": 1209
+          },
+          {
+            "pax": 14,
+            "3star": 937,
+            "4star": 1121
+          },
+          {
+            "pax": 16,
+            "3star": 870,
+            "4star": 1054
+          }
+        ]
       }
     }
   },
   "optionalTours": [
-    { "name": "Rome - Colosseum admission ticket", "price": 35 },
-    { "name": "Rome - Vatican Museum admission ticket", "price": 45 }
+    {
+      "name": "Venice - Gondola ride, 30 mins shared",
+      "price": 38
+    },
+    {
+      "name": "Florence - Half day tour to Pisa, 5.5 hrs regular coach",
+      "price": 65
+    },
+    {
+      "name": "Florence - Food tour, small group walking, 3.5 hrs",
+      "price": 85
+    },
+    {
+      "name": "Rome - Small group walking tour of Vatican Museums, 2.5 hrs",
+      "price": 72
+    },
+    {
+      "name": "Rome - Food tour, small group walking, 3.5 hrs",
+      "price": 85
+    },
+    {
+      "name": "Rome - Colosseum admission ticket",
+      "price": 35
+    },
+    {
+      "name": "Rome - Vatican Museum admission ticket",
+      "price": 45
+    }
   ]
 }
