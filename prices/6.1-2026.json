@@ -5,24 +5,117 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 2600, "twin": 2050, "child": 1450 },
-        "winter": { "single": 2300, "twin": 1800, "child": 1250 }
+        "summer": {
+          "single": 2600,
+          "twin": 2050,
+          "child": 1450
+        },
+        "winter": {
+          "single": 2300,
+          "twin": 1800,
+          "child": 1250
+        }
       },
       "4": {
-        "summer": { "single": 3120, "twin": 2460, "child": 1750 },
-        "winter": { "single": 2750, "twin": 2160, "child": 1500 }
+        "summer": {
+          "single": 3120,
+          "twin": 2460,
+          "child": 1750
+        },
+        "winter": {
+          "single": 2750,
+          "twin": 2160,
+          "child": 1500
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 4200, "twin": 3300, "child": 2300 },
-        "winter": { "single": 3700, "twin": 2900, "child": 2000 }
-      },
-      "4": {
-        "summer": { "single": 5000, "twin": 3950, "child": 2750 },
-        "winter": { "single": 4400, "twin": 3450, "child": 2400 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2707,
+            "4star": 2839
+          },
+          {
+            "pax": 10,
+            "3star": 2376,
+            "4star": 2508
+          },
+          {
+            "pax": 12,
+            "3star": 2155,
+            "4star": 2287
+          },
+          {
+            "pax": 14,
+            "3star": 1997,
+            "4star": 2129
+          },
+          {
+            "pax": 16,
+            "3star": 1879,
+            "4star": 2011
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2830,
+            "4star": 2968
+          },
+          {
+            "pax": 10,
+            "3star": 2484,
+            "4star": 2622
+          },
+          {
+            "pax": 12,
+            "3star": 2253,
+            "4star": 2391
+          },
+          {
+            "pax": 14,
+            "3star": 2088,
+            "4star": 2226
+          },
+          {
+            "pax": 16,
+            "3star": 1964,
+            "4star": 2102
+          }
+        ]
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Toledo Afternoon Tour from Madrid, 5 hrs",
+      "price": 65
+    },
+    {
+      "name": "Seville Flamenco Show Ticket without dinner",
+      "price": 50
+    },
+    {
+      "name": "Sagrada Familia guided walking tour,  1.15 hr",
+      "price": 75
+    },
+    {
+      "name": "Barcelona Highlights AM tour with Montjuïc cable car, 5 hr",
+      "price": 65
+    },
+    {
+      "name": "Half day Montserrat with Cogwheel Train , 5.5 hr",
+      "price": 72
+    },
+    {
+      "name": "Barcelona Food tour, AM walking, 3.5 hrs",
+      "price": 98
+    },
+    {
+      "name": "Sagrada Familia ticket",
+      "price": 52
+    }
+  ]
 }
