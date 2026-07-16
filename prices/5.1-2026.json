@@ -5,34 +5,159 @@
   "variants": {
     "trains": {
       "3": {
-        "summer": { "single": 1150, "twin": 900, "child": 630 },
-        "winter": { "single": 1000, "twin": 780, "child": 545 }
+        "summer": {
+          "single": 1150,
+          "twin": 900,
+          "child": 630
+        },
+        "winter": {
+          "single": 1000,
+          "twin": 780,
+          "child": 545
+        }
       },
       "4": {
-        "summer": { "single": 1400, "twin": 1100, "child": 770 },
-        "winter": { "single": 1230, "twin": 960, "child": 672 }
+        "summer": {
+          "single": 1400,
+          "twin": 1100,
+          "child": 770
+        },
+        "winter": {
+          "single": 1230,
+          "twin": 960,
+          "child": 672
+        }
       }
     },
     "private": {
-      "3": {
-        "summer": { "single": 3700, "twin": 2900, "child": 2030 },
-        "winter": { "single": 3225, "twin": 2520, "child": 1765 }
-      },
-      "4": {
-        "summer": { "single": 3970, "twin": 3100, "child": 2170 },
-        "winter": { "single": 3450, "twin": 2700, "child": 1890 }
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2033,
+            "4star": 2236
+          },
+          {
+            "pax": 10,
+            "3star": 1791,
+            "4star": 1994
+          },
+          {
+            "pax": 12,
+            "3star": 1629,
+            "4star": 1832
+          },
+          {
+            "pax": 14,
+            "3star": 1514,
+            "4star": 1717
+          },
+          {
+            "pax": 16,
+            "3star": 1428,
+            "4star": 1631
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2125,
+            "4star": 2337
+          },
+          {
+            "pax": 10,
+            "3star": 1872,
+            "4star": 2084
+          },
+          {
+            "pax": 12,
+            "3star": 1704,
+            "4star": 1916
+          },
+          {
+            "pax": 14,
+            "3star": 1583,
+            "4star": 1795
+          },
+          {
+            "pax": 16,
+            "3star": 1493,
+            "4star": 1705
+          }
+        ]
       }
     },
     "selfdrive": {
       "3": {
-        "summer": { "single": 1470, "twin": 1150, "child": 805 },
-        "winter": { "single": 1280, "twin": 1000, "child": 700 }
+        "summer": {
+          "single": 1470,
+          "twin": 1150,
+          "child": 805
+        },
+        "winter": {
+          "single": 1280,
+          "twin": 1000,
+          "child": 700
+        }
       },
       "4": {
-        "summer": { "single": 1730, "twin": 1350, "child": 945 },
-        "winter": { "single": 1500, "twin": 1175, "child": 823 }
+        "summer": {
+          "single": 1730,
+          "twin": 1350,
+          "child": 945
+        },
+        "winter": {
+          "single": 1500,
+          "twin": 1175,
+          "child": 823
+        }
       }
     }
   },
-  "optionalTours": []
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 185
+    },
+    {
+      "name": "Louvre Museum (Audioguide € 5 pp)",
+      "price": 25
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 149
+    },
+    {
+      "name": "Half day Saint Remy -Les Baux de Provence with Pont du Gard, group 5 hrs",
+      "price": 85
+    },
+    {
+      "name": "Half day Châteauneuf-du-Pape wineries, AM/PM group, 4 hrs",
+      "price": 90
+    },
+    {
+      "name": "Wine tour to Côtes de Provence Sainte-Victoire vineyards, group 3.5 hrs",
+      "price": 95
+    },
+    {
+      "name": "Cassis & Calanques tour, group 4 hrs",
+      "price": 75
+    },
+    {
+      "name": "Moulin Rouge with drinks 9 pm",
+      "price": 185
+    },
+    {
+      "name": "Wine tasting at a local vineyard in Châteauneuf-du-Pape",
+      "price": 30
+    },
+    {
+      "name": "Wine tasting at a local vineyard in Luberon",
+      "price": 30
+    },
+    {
+      "name": "Boat tour from Marseilles, 4 hrs Côte Bleue Marine Park",
+      "price": 75
+    }
+  ]
 }
