@@ -55,28 +55,28 @@
       "num": 1,
       "title": "Arrive Zurich → Lucerne",
       "overnight": "Overnight: Lucerne",
-      "desc": "Arrive into Zurich and transfer south-west to Lucerne, set on the shores of Lake Lucerne beneath Mount Pilatus. Stroll across the wooden Chapel Bridge (Kapellbrücke) with its 17th-century painted gables, and take in the cobbled lanes and painted facades of the medieval Old Town.",
+      "desc": "Upon arrival in Switzerland, utilize the Swiss Travel Pass for your onward journey to Lucerne. The Pass covers seamless travel across the Swiss Travel System, enjoying unlimited travel on trains, boats, trams, and buses. Overnight in Lucerne.",
       "experience": "The Lion Monument, a dying lion carved into a sandstone cliff face to honour the Swiss Guards killed in 1792, is what Mark Twain called 'the most mournful and moving piece of rock in the world'."
     },
     {
       "num": 2,
       "title": "Lucerne & Mount Titlis",
       "overnight": "Overnight: Lucerne",
-      "desc": "A full day in the high Alps: ride the world's first revolving Rotair cable car up to Mount Titlis at 3,020m, where a glacier cave and the Cliff Walk suspension bridge await above the snowline. Return to Lucerne for a scenic cruise on Lake Lucerne, framed by the surrounding peaks.",
+      "desc": "Utilize your Swiss Travel Pass to explore Mount Titlis, a breathtaking alpine experience. Revel in the stunning vistas, engage in snow activities, and relish the revolving Titlis Rotair gondola. Later, you can take a cruise on Lake Lucerne, enjoying the serene waters and picturesque surroundings. Overnight in Lucerne.",
       "experience": "The glacier cave carved into Titlis's permanent ice field, one of the most accessible in the Alps."
     },
     {
       "num": 3,
       "title": "Lucerne → Interlaken",
       "overnight": "Overnight: Interlaken",
-      "desc": "Travel through the heart of Switzerland to Interlaken, the resort town wedged between Lake Thun and Lake Brienz beneath the Jungfrau massif. The afternoon is free to wander the flower-lined Höheweg promenade with its open views to the Eiger, Mönch and Jungfrau.",
+      "desc": "Embark on a scenic train journey from Lucerne to Interlaken, reveling in the breathtaking vistas along the way. As you arrive, experience the allure of Interlaken, nestled between Lake Thun and Lake Brienz, offering a gateway to the Bernese Oberland's splendour. Overnight in Interlaken.",
       "taste": "Meringue, by local tradition invented in nearby Meiringen, is served everywhere in the Bernese Oberland piled high with thick double cream."
     },
     {
       "num": 4,
       "title": "Interlaken at leisure",
       "overnight": "Overnight: Interlaken",
-      "desc": "A free day to explore the Bernese Oberland — take an optional excursion up to Jungfraujoch, the 'Top of Europe', or relax beside the turquoise waters of Lake Brienz and the postcard village of Iseltwald.",
+      "desc": "Enjoy the freedom to explore Switzerland at your leisure using the Swiss Travel Pass. Delve into the scenic wonders of Grindelwald and Interlaken, known for their stunning landscapes. Optionally, consider a visit to Grindelwald First for panoramic views and thrilling activities. Overnight in Interlaken.",
       "experience": "Interlaken's central Höhematte park doubles as the valley's paragliding landing strip — all summer, canopies drift down over the town from launch points at Beatenberg and Schynige Platte.",
       "fallbackIncluded": "Day at leisure — optional Jungfraujoch excursion available."
     },
@@ -84,14 +84,14 @@
       "num": 5,
       "title": "Interlaken → Montreux",
       "overnight": "Overnight: Montreux",
-      "desc": "Cross the Bernese Oberland to Montreux on the shores of Lake Geneva, famed for its mild micro-climate, palm-lined promenade and its Jazz Festival heritage. The medieval, moated Château de Chillon sits just along the lakeshore.",
+      "desc": "Board a mesmerizing train journey from Interlaken to Montreux via the Swiss Pass, traversing Switzerland's picturesque landscapes. Upon arrival in Montreux, indulge in the charm of this lakeside town famed for its jazz festival and stunning lakeside promenade. Overnight in Montreux.",
       "taste": "The steep terraced vineyards of Lavaux, a UNESCO World Heritage landscape along this shore of Lake Geneva, produce Chasselas, the crisp local white poured in nearly every Montreux restaurant."
     },
     {
       "num": 6,
       "title": "Montreux & Château de Chillon",
       "overnight": "Overnight: Montreux",
-      "desc": "Spend the day around Lake Geneva: walk the lakeside promenade past the Freddie Mercury statue, and visit the Château de Chillon, one of Europe's most-visited castles. Travellers on the private itinerary continue into the Gruyère region to visit the Broc chocolate factory.",
+      "desc": "Enjoy a day of exploration in the Montreux region at your pace using the Swiss Pass. You can visit the historical Chillon Castle nestled on Lake Geneva's shores, offering a glimpse into medieval life. Alternatively, soak in the beauty of Lake Geneva's serene landscapes. Optionally, visit the chocolate museum in Broc to delight your taste buds. Overnight in Montreux.",
       "taste": "Gruyère is Switzerland's heartland of chocolate and cheese-making — the Cailler factory at Broc, founded in 1819, is the country's oldest chocolatier.",
       "experience": "Château de Chillon, immortalised by Lord Byron's poem 'The Prisoner of Chillon'."
     },
@@ -99,7 +99,7 @@
       "num": 7,
       "title": "Montreux → Zurich",
       "overnight": "Overnight: Zurich",
-      "desc": "Return north to Zurich, Switzerland's largest city, straddling the Limmat river at the edge of Lake Zurich. The Old Town's Grossmünster and Fraumünster churches, and the boutiques of Bahnhofstrasse, are all within easy walking distance of the hotels.",
+      "desc": "As your journey draws to a close, take the scenic train ride from Montreux to Zurich using the Swiss Pass. Embrace your final evening in Zurich by exploring the vibrant shopping districts like Bahnhofstrasse, renowned for its luxury boutiques and world- class shopping. Relish your last night in Switzerland with a delightful shopping experience. Overnight in Zurich.",
       "taste": "Zürcher Geschnetzeltes — veal strips in a creamy mushroom sauce, served with rösti — is the city's signature dish, on the menu at old-world institutions like the Zeughauskeller, a former armoury turned beer hall.",
       "shopping": "Bahnhofstrasse is one of the world's most expensive shopping streets, lined with Swiss watch houses and department stores."
     },
@@ -107,7 +107,7 @@
       "num": 8,
       "title": "Depart Zurich",
       "overnight": "Departure day",
-      "desc": "Free time until your transfer to Zurich Airport for the onward flight, depending on flight schedule."
+      "desc": "Make your way to Zurich Airport from the city center using the convenient public transport covered by the Swiss Pass. As your memorable Swiss adventure concludes, cherish the scenic journey and bid adieu to the beautiful landscapes and hospitable culture of Switzerland."
     }
   ],
   "hotels": [
