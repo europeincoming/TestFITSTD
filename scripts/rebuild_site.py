@@ -137,7 +137,7 @@ GF_FONTS = """<link href="https://fonts.googleapis.com/css2?family=Inter:wght@30
 # ── SHARED NAV CSS ────────────────────────────────────────────────────────────
 BASE_CSS = """
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#212121;line-height:1.6;padding-top:72px;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#FFFFFF;color:#1A1D2E;line-height:1.6;padding-top:72px;}
 .top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:12px 0;}
 .nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;}
 .logo{height:44px;width:auto;}
@@ -145,19 +145,20 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-
 .search-wrap{flex:1;max-width:420px;position:relative;}
 .search-box{width:100%;padding:9px 18px;font-size:0.92em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;font-family:'Inter',sans-serif;}
 .search-box::placeholder{color:#aaa;}
-.search-box:focus{outline:none;border-color:#1a3a5c;background:white;box-shadow:0 2px 8px rgba(26,58,92,0.12);}
+.search-box:focus{outline:none;border-color:#0B1733;background:white;box-shadow:0 2px 8px rgba(11,23,51,0.12);}
 .header-right{display:flex;align-items:center;gap:24px;margin-left:auto;}
 .site-title-main{font-size:1.0em;font-weight:600;color:#212121;}
 .site-title-sub{font-size:0.82em;color:#757575;}
 .contact-info{text-align:right;padding-left:24px;border-left:1px solid #e0e0e0;}
 .contact-prompt{font-size:0.78em;color:#757575;margin-bottom:2px;}
-.contact-email{font-size:0.85em;color:#1a3a5c;text-decoration:none;font-weight:500;}
+.contact-email{font-size:0.85em;color:#0B1733;text-decoration:none;font-weight:500;}
 .contact-email:hover{text-decoration:underline;}
-.breadcrumb{max-width:1200px;margin:0 auto;padding:20px 24px 0;font-size:0.88em;color:#757575;}
-.breadcrumb a{color:#1a3a5c;text-decoration:none;}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:20px 48px 0;font-size:0.88em;color:#9AA1AE;}
+.breadcrumb a{color:#0B1733;text-decoration:none;}
 .breadcrumb a:hover{text-decoration:underline;}
-.container{max-width:1200px;margin:0 auto;padding:28px 24px 48px;}
-h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1a1a2e;margin-bottom:28px;}
+.container{max-width:1200px;margin:0 auto;padding:28px 48px 48px;}
+h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1A1D2E;margin-bottom:6px;}
+.page-subhead{font-size:14px;color:#6B7280;margin:0 0 28px;}
 footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:0.88em;border-top:1px solid #e8e8e8;}
 @media(max-width:768px){body{padding-top:140px;}.nav-container{flex-wrap:wrap;gap:12px;}.header-right{width:100%;justify-content:center;}.search-wrap{max-width:100%;}.contact-info{border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:12px;text-align:center;}}
 """
@@ -167,7 +168,7 @@ CARD_CSS = """
 .brochures{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
 .brochure-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07);border:1px solid #ebebeb;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;text-decoration:none;color:inherit;}
 .brochure-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);border-color:#d0d0d0;}
-.card-hero{position:relative;height:170px;overflow:hidden;background:#1a3a5c;}
+.card-hero{position:relative;height:170px;overflow:hidden;background:#0B1733;}
 .card-hero img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.3s;}
 .brochure-card:hover .card-hero img{opacity:0.85;}
 .card-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.0) 60%);}
@@ -177,32 +178,49 @@ CARD_CSS = """
 .season-allyear{background:rgba(46,125,50,0.85);color:#fff;}
 .card-tour-type{position:absolute;top:12px;left:12px;font-size:0.68em;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(26,58,92,0.85);color:#fff;}
 .card-body{padding:18px 20px 16px;flex:1;display:flex;flex-direction:column;gap:6px;}
-.card-title{font-family:'Playfair Display',serif;font-size:1.08em;font-weight:700;color:#1a1a2e;line-height:1.3;}
+.card-title{font-family:'Playfair Display',serif;font-size:1.08em;font-weight:700;color:#1A1D2E;line-height:1.3;}
 .card-duration{font-size:0.78em;color:#888;font-weight:500;letter-spacing:0.3px;}
 .card-route{font-size:0.80em;color:#555;margin-top:2px;}
 .card-desc{font-size:0.80em;color:#666;font-style:italic;line-height:1.5;margin-top:4px;}
-.card-price{font-size:0.92em;font-weight:700;color:#1a3a5c;margin-top:auto;padding-top:8px;}
+.card-price{font-size:0.92em;font-weight:700;color:#0B1733;margin-top:auto;padding-top:8px;}
 .card-actions{display:flex;gap:8px;padding:0 20px 16px;margin-top:4px;}
-.btn-view{flex:1;background:#1a3a5c;color:#fff;border:none;padding:9px 0;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-align:center;text-decoration:none;transition:background 0.2s;}
+.btn-view{flex:1;background:#0B1733;color:#fff;border:none;padding:9px 0;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-align:center;text-decoration:none;transition:background 0.2s;}
 .btn-view:hover{background:#0d2238;}
-.btn-pdf{background:transparent;color:#1a3a5c;border:1.5px solid #1a3a5c;padding:9px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+.btn-pdf{background:transparent;color:#0B1733;border:1.5px solid #0B1733;padding:9px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
 .btn-pdf:hover{background:#f0f4f8;}
 .card-valid{font-size:0.73em;padding:0 20px 14px;color:#888;}
 .card-valid.expired{color:#e65100;}
-.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
+.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;color:#0B1733;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
 .leaflet-tooltip.city-tip::before{display:none!important;}
 @media(max-width:900px){.brochures{grid-template-columns:1fr;}}
+"""
+
+# ── DESTINATIONS INDEX CARD (products/* listing — Playfair Display + Inter, navy-only) ──
+DEST_CARD_CSS = """
+.dest-card{display:flex;align-items:stretch;text-decoration:none;color:inherit;border-radius:10px;overflow:hidden;background:#FFFFFF;border:1px solid #EBEBEB;box-shadow:0 1px 4px rgba(11,23,51,0.07);transition:all 300ms cubic-bezier(0.4,0,0.2,1);}
+.dest-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(11,23,51,0.12);border-color:#D0D0D0;}
+.dest-card-body{flex:1;min-width:0;padding:20px 22px;display:flex;flex-direction:column;gap:8px;}
+.dest-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1A1D2E;line-height:1.3;}
+.dest-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.dest-pill{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#4B5563;background:#F4F5F7;border-radius:20px;padding:4px 10px;white-space:nowrap;flex-shrink:0;}
+.dest-validity{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#0B1733;background:#EEF1F7;border-radius:20px;padding:4px 10px;width:fit-content;white-space:nowrap;flex-shrink:0;}
+.dest-blurb{font-size:12.5px;color:#666;font-style:italic;line-height:1.5;margin:2px 0 0;}
+.dest-route{font-size:12px;color:#5B6B85;}
+.dest-price{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#0B1733;margin-top:auto;padding-top:8px;}
+.dest-map-col{width:220px;flex-shrink:0;position:relative;background:#EEF1F7;border-left:1px solid #EBEBEB;}
+.dest-map{position:absolute;inset:0;}
+@media(max-width:900px){.dest-card{flex-direction:column;}.dest-map-col{width:100%;height:160px;}}
 """
 
 REGION_CSS = """
 .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
 .category-card{background:white;padding:28px 32px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:block;border:1px solid #f5f5f5;}
 .category-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12);border-color:#e0e0e0;}
-.category-card h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1a1a2e;margin-bottom:8px;}
+.category-card h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1A1D2E;margin-bottom:8px;}
 .category-meta{font-size:0.82em;color:#757575;margin-bottom:6px;}
 .category-types{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
-.type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#eef2f8;color:#1a3a5c;}
-.arrow{float:right;color:#1a3a5c;font-size:1.4em;transition:transform 0.2s;}
+.type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#eef2f8;color:#0B1733;}
+.arrow{float:right;color:#0B1733;font-size:1.4em;transition:transform 0.2s;}
 .category-card:hover .arrow{transform:translateX(4px);}
 @media(max-width:768px){.categories{grid-template-columns:1fr;}}
 """
@@ -408,11 +426,41 @@ def make_map_js(map_id, cities, coords_cache):
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}});
   L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:13}}).addTo(map);
   map.fitBounds(bounds,{{padding:[10,10]}});
-  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{{color:'#1a3a5c',weight:2,dashArray:'5,4',opacity:0.8}}).addTo(map);
+  if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{{color:'#0B1733',weight:2,dashArray:'5,4',opacity:0.8}}).addTo(map);
   pts.forEach((p,i)=>{{
-    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1a3a5c');
+    var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#0B1733');
     L.circleMarker([p[0],p[1]],{{radius:5,fillColor:color,color:'white',weight:2,fillOpacity:1}}).addTo(map)
      .bindTooltip(p[2],{{permanent:true,direction:'top',className:'city-tip',offset:[0,-5]}});
+  }});
+}})();"""
+
+
+def make_quiet_map_js(map_id, points, close_loop):
+    """Quiet map skin for the destinations-index card: plain navy dot for overnight
+    stops (no night-count badge), grey dot for excursion stops, plain name tooltip.
+    Shared visual language with the Package Page's sidebar map."""
+    if not points: return ""
+    pts_json = json.dumps(points)
+    close_js = "true" if close_loop else "false"
+    return f"""(function(){{
+  var pts={pts_json};
+  if(!pts.length) return;
+  var lats=pts.map(function(p){{return p.lat;}}), lngs=pts.map(function(p){{return p.lng;}}), pad=0.35;
+  var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,attributionControl:false}});
+  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:13}}).addTo(map);
+  map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]],{{padding:[10,10]}});
+  var route=pts.map(function(p){{return [p.lat,p.lng];}});
+  if({close_js}) route.push(route[0]);
+  L.polyline(route,{{color:'#0B1733',weight:2,dashArray:'5,4'}}).addTo(map);
+  pts.forEach(function(p){{
+    if(p.nights>0){{
+      L.marker([p.lat,p.lng],{{icon:L.divIcon({{className:'',iconSize:[14,14],iconAnchor:[7,7],
+        html:'<div style="width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box"></div>'}})}}).addTo(map)
+       .bindTooltip(p.label,{{permanent:true,direction:'top',className:'city-tip',offset:[0,-8]}});
+    }} else {{
+      L.circleMarker([p.lat,p.lng],{{radius:3.5,fillColor:'#9AA1AE',color:'white',weight:1.5,fillOpacity:1}}).addTo(map)
+       .bindTooltip(p.label,{{permanent:true,direction:'top',className:'city-tip',offset:[0,-4]}});
+    }}
   }});
 }})();"""
 
@@ -614,6 +662,8 @@ a{color:inherit;}
 /* Map markers */
 .pkg-badge-icon{background:transparent;border:none;}
 .pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.pkg-quiet-icon{background:transparent;border:none;}
+.pkg-quiet-dot{width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box;}
 .leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
 .leaflet-tooltip.pkg-map-tip::before{display:none!important;}
 
@@ -642,26 +692,75 @@ a{color:inherit;}
 }
 """
 
-def _cheapest_twin(prices, style_id):
-    variant = (prices.get("variants") or {}).get(style_id) or {}
-    best = None
-    if "paxTiers" in variant:
-        for tiers in variant["paxTiers"].values():
-            for tier in tiers or []:
-                val = tier.get("3star")
-                if val is not None and (best is None or val < best):
-                    best = val
-        return best
-    for cat_rates in variant.values():
-        for row in (cat_rates or {}).values():
-            twin = row.get("twin")
-            if twin is not None and (best is None or twin < best):
-                best = twin
-    return best
-
 def _fmt_money(val, curr):
     if val is None: return "—"
     return f"{curr}{val:,.0f}"
+
+def _cheapest_overall(prices):
+    """Cheapest twin (or, for a Min-Pax-only style, cheapest 3-star) rate across
+    every travel style in the product -- used for the index card's "From" price."""
+    best = None
+    best_is_twin = True
+    for variant in (prices.get("variants") or {}).values():
+        if "paxTiers" in variant:
+            for tiers in variant["paxTiers"].values():
+                for tier in tiers or []:
+                    val = tier.get("3star")
+                    if val is not None and (best is None or val < best):
+                        best, best_is_twin = val, False
+        else:
+            for cat_rates in variant.values():
+                for row in (cat_rates or {}).values():
+                    twin = row.get("twin")
+                    if twin is not None and (best is None or twin < best):
+                        best, best_is_twin = twin, True
+    return best, best_is_twin
+
+def _seasons_present(prices):
+    seasons = set()
+    for variant in (prices.get("variants") or {}).values():
+        if "paxTiers" in variant:
+            seasons.update(variant["paxTiers"].keys())
+        else:
+            for cat_rates in variant.values():
+                seasons.update((cat_rates or {}).keys())
+    return seasons
+
+def _season_label(prices):
+    seasons = _seasons_present(prices)
+    if seasons == {"summer"}: return "Summer"
+    if seasons == {"winter"}: return "Winter"
+    return "All Year Round"
+
+def _format_validity(prices):
+    valid_to = (prices.get("validTo") or "").strip()
+    parts = valid_to.split()
+    if len(parts) >= 2:
+        return f"Valid till {parts[-2]} {parts[-1]}"
+    return f"Valid till {valid_to}" if valid_to else ""
+
+def _humanize_join(words):
+    words = [w for w in words if w]
+    if not words: return ""
+    if len(words) == 1: return words[0]
+    if len(words) == 2: return f"{words[0]} and {words[1]}"
+    return ", ".join(words[:-1]) + " and " + words[-1]
+
+STYLE_PHRASE = {"trains": "train", "selfdrive": "self-drive", "private": "private coach"}
+
+def _style_phrase(style_keys):
+    phrases = [STYLE_PHRASE.get(k, k) for k in style_keys]
+    if not phrases: return ""
+    if len(phrases) == 1: return phrases[0]
+    return ", ".join(phrases[:-1]) + " or " + phrases[-1]
+
+def _build_blurb(product):
+    stops = [p.get("label") for p in (product.get("map") or {}).get("points", [])][:3]
+    stops_txt = _humanize_join(stops)
+    style_txt = _style_phrase(list(product.get("styles", {}).keys()))
+    if stops_txt and style_txt:
+        return f"{stops_txt} — by {style_txt}."
+    return stops_txt or product.get("title", "")
 
 def render_package_page(product, prices, depth, back_href):
     """Render one static package page. depth = folder depth for relative asset paths."""
@@ -800,30 +899,44 @@ window.PRICES = {json.dumps(prices)};
 
 
 def make_package_card(product, prices, out_filename):
+    """Destinations Index card: one per product (no per-travel-style fan-out).
+    Playfair Display + Inter, navy-only -- see design_handoff_destinations_index."""
     style_keys = list(product.get("styles", {}).keys())
     first_style = style_keys[0] if style_keys else ""
     style = product.get("styles", {}).get(first_style, {})
-    price = _cheapest_twin(prices, first_style)
+    price, is_twin = _cheapest_overall(prices)
     curr = prices.get("currency", "€")
-    cities = [p.get("label") for p in (product.get("map") or {}).get("points", []) if p.get("nights", 0) > 0]
-    img = get_card_image(cities)
     title = product.get("title", "").rstrip(".")
-    price_html = f'<div class="card-price">From {_fmt_money(price, curr)} pp</div>' if price else ""
-    return f"""<div class="brochure-card">
-  <div class="card-hero">
-    <img src="{img}" alt="{title}" loading="lazy">
-    <div class="card-hero-overlay"></div>
-  </div>
-  <div class="card-body">
-    <div class="card-title">{title}</div>
-    <div class="card-duration">🕐 {style.get("nights","")}</div>
-    <div class="card-route">📍 {style.get("route","")}</div>
+    points = (product.get("map") or {}).get("points", [])
+    route_line = " · ".join(p.get("label", "") for p in points if p.get("label"))
+    nights_label = (style.get("nights", "") or "").replace(" · ", " / ")
+    season = _season_label(prices)
+    validity = _format_validity(prices)
+    blurb = _build_blurb(product)
+    price_note = "pp (twin)" if is_twin else "pp"
+
+    price_html = f'<div class="dest-price">From {_fmt_money(price, curr)} {price_note}</div>' if price is not None else ""
+    validity_html = f'<span class="dest-validity">✓ {validity}</span>' if validity else ""
+    nights_pill = f'<span class="dest-pill">{nights_label}</span>' if nights_label else ""
+    blurb_html = f'<p class="dest-blurb">{blurb}</p>' if blurb else ""
+    route_html = f'<div class="dest-route">{route_line}</div>' if route_line else ""
+    map_id = f'map_{product.get("id","").replace(".","_")}'
+    map_html = f'<div id="{map_id}" class="dest-map"></div>' if points else ""
+
+    return f"""<a href="{out_filename}" class="dest-card">
+  <div class="dest-card-body">
+    <div class="dest-title">{title}</div>
+    <div class="dest-pills">
+      {nights_pill}
+      <span class="dest-pill">{season}</span>
+    </div>
+    {validity_html}
+    {blurb_html}
+    {route_html}
     {price_html}
   </div>
-  <div class="card-actions">
-    <a href="{out_filename}" class="btn-view">View Package</a>
-  </div>
-</div>"""
+  <div class="dest-map-col">{map_html}</div>
+</a>"""
 
 
 def load_json(path):
@@ -842,23 +955,26 @@ def load_products():
 
 
 # ── INDEX BUILDERS ────────────────────────────────────────────────────────────
-def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_href, search_js):
+def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_href, search_js, subhead=""):
     nav = NAV_TPL.format(lh=logo_href, ls=logo_src)
+    h1_title = title if title.endswith(".") else title + "."
+    subhead_html = f'<p class="page-subhead">{subhead}</p>' if subhead else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{title} | Europe Incoming</title>
-{GF_FONTS}<style>{BASE_CSS}{CARD_CSS}</style>
+{GF_FONTS}<style>{BASE_CSS}{CARD_CSS}{DEST_CARD_CSS}</style>
 {LEAFLET_HEAD}{GA}
 </head>
 <body>
 {GEO_BLOCK}{nav}
 <div class="breadcrumb">{breadcrumb}</div>
 <div class="container">
-<h1>{title}</h1>
+<h1>{h1_title}</h1>
+{subhead_html}
 <div class="brochures" id="brochuresList">{cards_html}</div>
-<footer><p>Browse packages below and click View Package for full details.</p></footer>
+<footer><p>Browse packages below for full details.</p></footer>
 </div>
 <script src="{search_js}"></script>
 <script>window.addEventListener('load',function(){{{maps_js}}});</script>
@@ -1009,12 +1125,6 @@ def main():
             prices_path = os.path.join(REPO_ROOT, product.get("pricesFile",""))
             prices = load_json(prices_path)
 
-            cities = [p.get("label") for p in (product.get("map") or {}).get("points", []) if p.get("nights", 0) > 0]
-            for city in cities:
-                was_missing = city not in coords_cache
-                get_coords(city, coords_cache)
-                if was_missing and city in coords_cache: coords_dirty = True
-
             brochure_fname = f'{product.get("id")}_brochure.html'
             page_html = render_package_page(product, prices, depth, back_href="./")
             out_path = os.path.join(folder_abs, brochure_fname)
@@ -1024,14 +1134,17 @@ def main():
 
             cards.append(make_package_card(product, prices, brochure_fname))
 
+            product_map = product.get("map") or {}
             map_id = f'map_{product.get("id","").replace(".","_")}'
-            js = make_map_js(map_id, cities, coords_cache)
+            js = make_quiet_map_js(map_id, product_map.get("points", []), product_map.get("closeLoop", False))
             if js: maps_js_parts.append(js)
 
+        region_name = config.get('region', config.get('title', ''))
+        subhead = f"FIT packages across {region_name} — self drive, rail and private coach."
         html = build_brochure_index(
             config.get('title',''), breadcrumb,
             "\n".join(cards), "\n".join(maps_js_parts),
-            logo_src, logo_href, search_js
+            logo_src, logo_href, search_js, subhead=subhead
         )
         with open(os.path.join(folder_abs,"index.html"),'w',encoding='utf-8') as f:
             f.write(html)

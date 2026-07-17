@@ -291,6 +291,16 @@
     });
   }
 
+  // Quiet skin (no night-count badge, no gold ring) shared with the destinations-index card map.
+  function quietMarkerIcon() {
+    return L.divIcon({
+      className: "pkg-quiet-icon",
+      html: '<div class="pkg-quiet-dot"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
   function buildMap(containerId, interactive) {
     var points = (PRODUCT.map || {}).points || [];
     if (!points.length || typeof L === "undefined") return null;
@@ -320,11 +330,18 @@
 
     points.forEach(function (p) {
       if (p.nights > 0) {
-        L.marker([p.lat, p.lng], { icon: markerIcon(interactive ? 22 : 18, p.nights) })
-          .addTo(map)
-          .bindTooltip(p.label + " · " + p.nights + "N", { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -10] });
+        if (interactive) {
+          L.marker([p.lat, p.lng], { icon: markerIcon(22, p.nights) })
+            .addTo(map)
+            .bindTooltip(p.label + " · " + p.nights + "N", { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -10] });
+        } else {
+          // Small sidebar map uses the same quiet skin as the destinations-index card map.
+          L.marker([p.lat, p.lng], { icon: quietMarkerIcon() })
+            .addTo(map)
+            .bindTooltip(p.label, { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -8] });
+        }
       } else {
-        L.circleMarker([p.lat, p.lng], { radius: interactive ? 5 : 4, color: "#9AA1AE", fillColor: "#9AA1AE", fillOpacity: 1, weight: 1 })
+        L.circleMarker([p.lat, p.lng], { radius: interactive ? 5 : 3.5, color: "#9AA1AE", fillColor: "#9AA1AE", fillOpacity: 1, weight: 1 })
           .addTo(map)
           .bindTooltip(p.label, { direction: "top", className: "pkg-map-tip", offset: [0, -6] });
       }
