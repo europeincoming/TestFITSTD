@@ -715,7 +715,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_3_days_glasgow_202_14',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfOHY0OHk0dXMiLCJqdGkiOiIzZThiNWQ5YyJ9.ilJQZ726py6JylFbTHcLkR2JGULqA6Hc_f62KvUqSso',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
   if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#0B1733',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
   pts.forEach((p,i)=>{
@@ -728,7 +728,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('map_3_days_inverness_2_18',{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:13}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfOHY0OHk0dXMiLCJqdGkiOiIzZThiNWQ5YyJ9.ilJQZ726py6JylFbTHcLkR2JGULqA6Hc_f62KvUqSso',{maxZoom:13}).addTo(map);
   map.fitBounds(bounds,{padding:[10,10]});
   if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{color:'#0B1733',weight:2,dashArray:'5,4',opacity:0.8}).addTo(map);
   pts.forEach((p,i)=>{
