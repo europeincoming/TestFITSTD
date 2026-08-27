@@ -48,7 +48,7 @@ a{color:inherit;}
 .pkg-hero-price-unit{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
 
 /* Variant / year bar */
-.pkg-variantbar{background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar{position:sticky;top:56px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
 .pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .pkg-variant-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
@@ -96,6 +96,8 @@ a{color:inherit;}
 
 /* Rates */
 .pkg-rate-toggles{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.pkg-seg-group-labeled{display:flex;align-items:center;gap:10px;}
+.pkg-seg-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
 .pkg-seg-group{display:inline-flex;gap:4px;}
 .pkg-seg{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
 .pkg-seg.active{background:var(--navy);color:#fff;border-color:var(--navy);}
@@ -191,7 +193,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 )();</script>
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
-    <a href="../../"><img class="pkg-logo" src="../../logo.png" alt="Europe Incoming"></a>
+    <a href="../../"><img class="pkg-logo" src="../../logo-europe-incoming.png" alt="Europe Incoming"></a>
     <a class="pkg-back-link" href="./"><span class="pkg-back-circle">←</span> All packages</a>
   </div>
   <div class="pkg-topbar-right">
@@ -230,12 +232,6 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
     <div class="pkg-pills" id="pkgVariantPills"></div>
   </div>
   <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
-</div>
-<div class="pkg-variantbar-inner">
-  <div class="pkg-variantbar-left">
-    <div class="pkg-variant-label">Rate year</div>
-    <div class="pkg-pills" id="pkgYearPills"></div>
-  </div>
 </div></div>
 
 <div class="pkg-body">
@@ -257,6 +253,12 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
     <div class="pkg-section">
       <div class="pkg-section-label">Package rates</div>
       <div class="pkg-section-sub" id="pkgRateSub"></div>
+      <div class="pkg-rate-toggles no-print">
+        <div class="pkg-seg-group-labeled">
+          <div class="pkg-seg-label">Rate year</div>
+          <div class="pkg-seg-group" id="pkgYearToggle"></div>
+        </div>
+      </div>
       <div class="pkg-rate-toggles no-print" id="pkgRateToggles">
         <div class="pkg-seg-group" id="pkgCatToggle"></div>
         <div class="pkg-seg-group" id="pkgSeasonToggle"></div>

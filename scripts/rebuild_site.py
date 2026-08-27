@@ -247,10 +247,11 @@ a{color:inherit;}
 """
 
 REGION_CSS = """
+.container h1{font-family:'Segoe UI','Open Sans',sans-serif;font-weight:300;}
 .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
 .category-card{background:white;padding:28px 32px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:block;border:1px solid #f5f5f5;}
 .category-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12);border-color:#e0e0e0;}
-.category-card h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1A1D2E;margin-bottom:8px;}
+.category-card h2{font-family:'Segoe UI','Open Sans',sans-serif;font-weight:300;font-size:1.5em;color:#1A1D2E;margin-bottom:8px;}
 .category-meta{font-size:0.82em;color:#757575;margin-bottom:6px;}
 .category-types{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
 .type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#eef2f8;color:#0B1733;}
@@ -619,7 +620,7 @@ a{color:inherit;}
 .pkg-hero-price-unit{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
 
 /* Variant / year bar */
-.pkg-variantbar{background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar{position:sticky;top:56px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
 .pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .pkg-variant-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
@@ -667,6 +668,8 @@ a{color:inherit;}
 
 /* Rates */
 .pkg-rate-toggles{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.pkg-seg-group-labeled{display:flex;align-items:center;gap:10px;}
+.pkg-seg-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
 .pkg-seg-group{display:inline-flex;gap:4px;}
 .pkg-seg{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
 .pkg-seg.active{background:var(--navy);color:#fff;border-color:var(--navy);}
@@ -827,7 +830,7 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
     prices_by_year holds every available rate-year's prices dict, keyed by the
     RATE_YEARS label (e.g. "2025-26"); default_year is which one is preselected."""
     root_rel = "../" * depth
-    logo_src = root_rel + "logo.png"
+    logo_src = root_rel + "logo-europe-incoming.png"
     js_src   = root_rel + "assets/package-page.js"
     title    = product.get("title", "")
     style_keys = list(product.get("styles", {}).keys())
@@ -885,12 +888,6 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
     <div class="pkg-pills" id="pkgVariantPills"></div>
   </div>
   <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
-</div>
-<div class="pkg-variantbar-inner">
-  <div class="pkg-variantbar-left">
-    <div class="pkg-variant-label">Rate year</div>
-    <div class="pkg-pills" id="pkgYearPills"></div>
-  </div>
 </div></div>
 
 <div class="pkg-body">
@@ -912,6 +909,12 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
     <div class="pkg-section">
       <div class="pkg-section-label">Package rates</div>
       <div class="pkg-section-sub" id="pkgRateSub"></div>
+      <div class="pkg-rate-toggles no-print">
+        <div class="pkg-seg-group-labeled">
+          <div class="pkg-seg-label">Rate year</div>
+          <div class="pkg-seg-group" id="pkgYearToggle"></div>
+        </div>
+      </div>
       <div class="pkg-rate-toggles no-print" id="pkgRateToggles">
         <div class="pkg-seg-group" id="pkgCatToggle"></div>
         <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
@@ -1121,14 +1124,15 @@ window.addEventListener('load',function(){{{maps_js}}});
 </body></html>"""
 
 def build_multicountry_index(region_cards_html, logo_href, search_js):
-    nav = NAV_TPL.format(lh=logo_href, ls=logo_href+"logo.png")
+    nav = NAV_TPL.format(lh=logo_href, ls=logo_href+"logo-europe-incoming.png")
     breadcrumb = f'<a href="{logo_href}">Home</a> › Multi-City & Country Packages'
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Multi-City & Country Packages | Europe Incoming</title>
-{GF_FONTS}<style>{BASE_CSS}{REGION_CSS}</style>{GA}
+{GF_FONTS}<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>{BASE_CSS}{REGION_CSS}</style>{GA}
 </head>
 <body>
 {GEO_BLOCK}{nav}
@@ -1197,7 +1201,7 @@ def main():
         if not pdfs: continue
         print(f"\n{folder_rel} — {len(pdfs)} PDFs")
         depth=config["depth"]
-        logo_src="../"*depth+"logo.png"
+        logo_src="../"*depth+"logo-europe-incoming.png"
         logo_href="../"*depth
         search_js="../"*depth+"global-search.js"
         breadcrumb=(f'<a href="../">Home</a> › {config["breadcrumb"]}' if depth==1
@@ -1251,7 +1255,7 @@ def main():
         os.makedirs(folder_abs, exist_ok=True)
         config = FOLDER_CONFIG.get(folder_rel, {})
         depth = config.get('depth', 2)
-        logo_src = "../"*depth + "logo.png"
+        logo_src = "../"*depth + "logo-europe-incoming.png"
         logo_href = "../"*depth
 
         cards = []

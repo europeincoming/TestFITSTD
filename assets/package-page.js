@@ -97,16 +97,18 @@
     $("pkgVariantBlurb").textContent = (PRODUCT.styles[state.style] || {}).blurb || "";
   }
 
-  // ───────────────────────────── RATE YEAR BAR ────────────────────
+  // ───────────────────────────── RATE YEAR TOGGLE ──────────────────
+  // Lives next to the rates table (not the top travel-style bar) since it
+  // only affects which price data is shown.
   function renderYearBar() {
-    var bar = $("pkgYearPills");
+    var bar = $("pkgYearToggle");
     if (!bar) return;
     bar.innerHTML = "";
-    bar.parentElement.parentElement.style.display = yearKeys.length > 1 ? "" : "none";
+    bar.parentElement.style.display = yearKeys.length > 1 ? "" : "none";
     yearKeys.forEach(function (year) {
       var btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "pkg-pill" + (year === state.year ? " active" : "");
+      btn.className = "pkg-seg" + (year === state.year ? " active" : "");
       btn.textContent = year;
       btn.addEventListener("click", function () {
         if (state.year === year) return;
