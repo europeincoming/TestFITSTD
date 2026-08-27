@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Multi-City & Country Packages | Europe Incoming</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"><style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#FFFFFF;color:#1A1D2E;line-height:1.6;padding-top:72px;}
 .top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:12px 0;}
@@ -30,10 +31,11 @@ h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1
 footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:0.88em;border-top:1px solid #e8e8e8;}
 @media(max-width:768px){body{padding-top:140px;}.nav-container{flex-wrap:wrap;gap:12px;}.header-right{width:100%;justify-content:center;}.search-wrap{max-width:100%;}.contact-info{border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:12px;text-align:center;}}
 
+.container h1{font-family:'Segoe UI','Open Sans',sans-serif;font-weight:300;}
 .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
 .category-card{background:white;padding:28px 32px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:inherit;display:block;border:1px solid #f5f5f5;}
 .category-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12);border-color:#e0e0e0;}
-.category-card h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1A1D2E;margin-bottom:8px;}
+.category-card h2{font-family:'Segoe UI','Open Sans',sans-serif;font-weight:300;font-size:1.5em;color:#1A1D2E;margin-bottom:8px;}
 .category-meta{font-size:0.82em;color:#757575;margin-bottom:6px;}
 .category-types{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
 .type-tag{font-size:0.72em;font-weight:600;padding:2px 9px;border-radius:12px;background:#eef2f8;color:#0B1733;}
@@ -48,7 +50,7 @@ footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script><nav class="top-nav"><div class="nav-container">
-<a href="../"><img src="../logo.png" alt="Europe Incoming" class="logo"></a>
+<a href="../"><img src="../logo-europe-incoming.png" alt="Europe Incoming" class="logo"></a>
 <div class="search-wrap"><input type="text" class="search-box" placeholder="Search packages — city, country, landmark" id="searchBox"></div>
 <div class="header-right">
   <div><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
