@@ -204,6 +204,10 @@ body{font-family:'Segoe UI','Open Sans',sans-serif;color:var(--ink);font-size:15
 a{color:inherit;}
 .metro-header{display:flex;align-items:center;gap:28px;padding:26px 40px 0;}
 .metro-logo{height:32px;width:auto;display:block;}
+.metro-back-link{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-decoration:none;}
+.metro-back-circle{width:26px;height:26px;border:2px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:400;}
+.metro-back-link:hover{color:var(--gold);}
+.metro-back-link:hover .metro-back-circle{border-color:var(--gold);}
 .metro-search-wrap{flex:1;max-width:360px;}
 .metro-search{width:100%;padding:9px 14px;font-size:13px;font-family:'Segoe UI','Open Sans',sans-serif;border:2px solid var(--control-border);border-radius:0;background:#fff;box-sizing:border-box;outline:none;color:var(--ink);}
 .metro-search::placeholder{color:var(--muted);}
@@ -1068,8 +1072,9 @@ def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_
 # names the product line the same way design_handoff_metro's mockup does.
 METRO_EYEBROW = "Multi-country · FIT"
 
-def build_metro_destinations_index(title, intro, cards_html, maps_js, logo_src, logo_href, card_count):
-    """Destinations Index page shell, per design_handoff_metro/Destinations Index - Metro Design Mockup.dc.html."""
+def build_metro_destinations_index(title, intro, cards_html, maps_js, logo_src, logo_href, hub_href, card_count):
+    """Destinations Index page shell, per design_handoff_metro/Destinations Index - Metro Design Mockup.dc.html.
+    hub_href points back to the multi-country region-picker hub (one level up)."""
     h1_title = title if not title.endswith(".") else title[:-1]
     empty_style = "display:none" if card_count else ""
     grid_style = "" if card_count else "display:none"
@@ -1086,6 +1091,7 @@ def build_metro_destinations_index(title, intro, cards_html, maps_js, logo_src, 
 {GEO_BLOCK}
 <div class="metro-header">
   <a href="{logo_href}"><img class="metro-logo" src="{logo_src}" alt="Europe Incoming"></a>
+  <a class="metro-back-link" href="{hub_href}"><span class="metro-back-circle">←</span> All regions</a>
   <div class="metro-search-wrap"><input type="text" class="metro-search" id="metroSearch" placeholder="search packages"></div>
   <a class="metro-trade" href="mailto:fitsales@europeincoming.com">Trade enquiries</a>
 </div>
@@ -1257,6 +1263,7 @@ def main():
         depth = config.get('depth', 2)
         logo_src = "../"*depth + "logo-europe-incoming.png"
         logo_href = "../"*depth
+        hub_href = "../"*(depth-1) if depth > 1 else "./"
 
         cards = []
         maps_js_parts = []
@@ -1291,7 +1298,7 @@ def main():
         html = build_metro_destinations_index(
             config.get('title',''), intro,
             "\n".join(cards), "\n".join(maps_js_parts),
-            logo_src, logo_href, len(cards)
+            logo_src, logo_href, hub_href, len(cards)
         )
         with open(os.path.join(folder_abs,"index.html"),'w',encoding='utf-8') as f:
             f.write(html)
