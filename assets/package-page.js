@@ -5,7 +5,10 @@
   "use strict";
 
   var PRODUCT = window.PRODUCT || {};
-  var PRICES = window.PRICES || {};
+  var PRICES_BY_YEAR = window.PRICES_BY_YEAR || {};
+  var yearKeys = Object.keys(PRICES_BY_YEAR);
+  var defaultYear = PRICES_BY_YEAR[window.DEFAULT_RATE_YEAR] ? window.DEFAULT_RATE_YEAR : yearKeys[0];
+  var PRICES = PRICES_BY_YEAR[defaultYear] || {};
 
   var SEASON_LABEL = { summer: "Apr–Oct", winter: "Nov–Mar" };
   var CAT_LABEL = { "3": "3★", "4": "4★" };
@@ -14,6 +17,7 @@
 
   var state = {
     style: styleKeys[0],
+    year: defaultYear,
     cat: "3",
     season: "summer",
     tcOpen: false,
@@ -70,7 +74,7 @@
     $("pkgHeroNights").textContent = style.nights || "";
     $("pkgHeroRoute").textContent = style.route || "";
     var from = cheapestTwin(state.style);
-    $("pkgHeroPrice").textContent = from != null ? "From " + fmtMoney(from) + " pp" : "";
+    $("pkgHeroPrice").textContent = from != null ? fmtMoney(from) : "…";
   }
 
   // ─────────────────────────── VARIANT BAR ────────────────────────
@@ -93,11 +97,32 @@
     $("pkgVariantBlurb").textContent = (PRODUCT.styles[state.style] || {}).blurb || "";
   }
 
+  // ───────────────────────────── RATE YEAR BAR ────────────────────
+  function renderYearBar() {
+    var bar = $("pkgYearPills");
+    if (!bar) return;
+    bar.innerHTML = "";
+    bar.parentElement.parentElement.style.display = yearKeys.length > 1 ? "" : "none";
+    yearKeys.forEach(function (year) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pkg-pill" + (year === state.year ? " active" : "");
+      btn.textContent = year;
+      btn.addEventListener("click", function () {
+        if (state.year === year) return;
+        state.year = year;
+        PRICES = PRICES_BY_YEAR[state.year] || {};
+        renderAll();
+      });
+      bar.appendChild(btn);
+    });
+  }
+
   // ─────────────────────────── DAY BY DAY ─────────────────────────
   function renderDays() {
     var style = PRODUCT.styles[state.style] || {};
     var transport = style.transport || {};
-    $("pkgDayHeading").textContent = "Day by day — " + (style.name || "");
+    $("pkgDaySub").textContent = style.name || "";
     var wrap = $("pkgDays");
     wrap.innerHTML = "";
     (PRODUCT.days || []).forEach(function (day) {
@@ -123,7 +148,7 @@
   // ─────────────────────────── INCLUSIONS ─────────────────────────
   function renderIncludes() {
     var style = PRODUCT.styles[state.style] || {};
-    $("pkgIncludesHeading").textContent = "Package includes — " + (style.name || "");
+    $("pkgIncludesSub").textContent = style.name || "";
     var wrap = $("pkgIncludes");
     wrap.innerHTML = "";
     (style.inclusions || []).forEach(function (item) {
@@ -194,11 +219,16 @@
   }
 
   function renderRates() {
+    var styleName = (PRODUCT.styles[state.style] || {}).name || "";
+    $("pkgRateSub").textContent = "Per person · " + styleName + " · Valid " +
+      (PRICES.validFrom || "") + " – " + (PRICES.validTo || "");
     var variant = (PRICES.variants || {})[state.style] || {};
     var isPax = !!variant.paxTiers;
     $("pkgRateToggles").style.display = isPax ? "none" : "";
     $("pkgPaxRates").style.display = isPax ? "" : "none";
     $("pkgRateTable").style.display = isPax ? "none" : "";
+    $("pkgRateNote").textContent = "All rates net, per person, in " + (PRICES.currency || "€") +
+      ". Valid " + (PRICES.validFrom || "") + " – " + (PRICES.validTo || "") + ".";
 
     if (isPax) {
       var cols = '<div class="pkg-pax-col"><div class="pkg-pax-season-label">Nov–Mar</div>' + renderPaxTable(variant.paxTiers.winter) + '</div>';
@@ -214,6 +244,7 @@
     var seasons = availableSeasons(variant);
     if (seasons.indexOf(state.season) === -1) state.season = seasons.indexOf("winter") !== -1 ? "winter" : seasons[0];
     renderRateToggles(seasons);
+    $("pkgRateColHeading").textContent = "Rate — " + CAT_LABEL[state.cat] + " · " + SEASON_LABEL[state.season];
     var catRow = variant[state.cat] || {};
     var rates = catRow[state.season] || {};
     var tbody = $("pkgRatesBody");
@@ -230,7 +261,7 @@
     (PRICES.optionalTours || []).forEach(function (o) {
       var el = document.createElement("div");
       el.className = "pkg-opt-item";
-      el.innerHTML = '<span class="pkg-opt-name">' + esc(o.name) + '</span><span class="pkg-opt-price">' + fmtMoney(o.price) + ' pp</span>';
+      el.innerHTML = '<span class="pkg-opt-name">' + esc(o.name) + '</span><span class="pkg-opt-price">' + fmtMoney(o.price) + ' <span class="pkg-opt-pp">pp</span></span>';
       wrap.appendChild(el);
     });
   }
@@ -282,6 +313,8 @@
   }
 
   // ───────────────────────────── MAPS (Leaflet) ─────────────────────
+  // Square gold badges with the night count, navy squares for pass-through stops -
+  // same skin at every size, per design_handoff_metro's route-map spec.
   function markerIcon(size, nights) {
     return L.divIcon({
       className: "pkg-badge-icon",
@@ -291,13 +324,12 @@
     });
   }
 
-  // Quiet skin (no night-count badge, no gold ring) shared with the destinations-index card map.
-  function quietMarkerIcon() {
+  function passThroughIcon(size) {
     return L.divIcon({
       className: "pkg-quiet-icon",
-      html: '<div class="pkg-quiet-dot"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7]
+      html: '<div class="pkg-quiet-dot" style="width:' + size + 'px;height:' + size + 'px;"></div>',
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2]
     });
   }
 
@@ -328,22 +360,17 @@
       L.polyline(latlngs, { color: "#0B1733", weight: 2, dashArray: "5,4", opacity: 0.85 }).addTo(map);
     }
 
+    var badgeSize = interactive ? 20 : 16;
+    var passSize = interactive ? 8 : 6;
     points.forEach(function (p) {
       if (p.nights > 0) {
-        if (interactive) {
-          L.marker([p.lat, p.lng], { icon: markerIcon(22, p.nights) })
-            .addTo(map)
-            .bindTooltip(p.label + " · " + p.nights + "N", { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -10] });
-        } else {
-          // Small sidebar map uses the same quiet skin as the destinations-index card map.
-          L.marker([p.lat, p.lng], { icon: quietMarkerIcon() })
-            .addTo(map)
-            .bindTooltip(p.label, { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -8] });
-        }
-      } else {
-        L.circleMarker([p.lat, p.lng], { radius: interactive ? 5 : 3.5, color: "#9AA1AE", fillColor: "#9AA1AE", fillOpacity: 1, weight: 1 })
+        L.marker([p.lat, p.lng], { icon: markerIcon(badgeSize, p.nights) })
           .addTo(map)
-          .bindTooltip(p.label, { direction: "top", className: "pkg-map-tip", offset: [0, -6] });
+          .bindTooltip(p.label + " · " + p.nights + "N", { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -badgeSize / 2] });
+      } else {
+        L.marker([p.lat, p.lng], { icon: passThroughIcon(passSize) })
+          .addTo(map)
+          .bindTooltip(p.label, { permanent: true, direction: "top", className: "pkg-map-tip", offset: [0, -passSize / 2] });
       }
     });
     return map;
@@ -380,6 +407,7 @@
   function renderAll() {
     renderHero();
     renderVariantBar();
+    renderYearBar();
     renderDays();
     renderIncludes();
     renderHotels();

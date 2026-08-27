@@ -1,0 +1,113 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 2392,
+          "twin": 1726,
+          "child": 737
+        },
+        "summer": {
+          "single": 2500,
+          "twin": 1804,
+          "child": 770
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2677,
+          "twin": 1868,
+          "child": 792
+        },
+        "summer": {
+          "single": 2799,
+          "twin": 1953,
+          "child": 828
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2077,
+            "4star": 2220
+          },
+          {
+            "pax": 10,
+            "3star": 1831,
+            "4star": 1974
+          },
+          {
+            "pax": 12,
+            "3star": 1667,
+            "4star": 1809
+          },
+          {
+            "pax": 14,
+            "3star": 1549,
+            "4star": 1692
+          },
+          {
+            "pax": 16,
+            "3star": 1461,
+            "4star": 1604
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2172,
+            "4star": 2321
+          },
+          {
+            "pax": 10,
+            "3star": 1914,
+            "4star": 2063
+          },
+          {
+            "pax": 12,
+            "3star": 1742,
+            "4star": 1892
+          },
+          {
+            "pax": 14,
+            "3star": 1620,
+            "4star": 1769
+          },
+          {
+            "pax": 16,
+            "3star": 1528,
+            "4star": 1677
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 191
+    },
+    {
+      "name": "Louvre Museum (Audioguide €5 pp)",
+      "price": 26
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 153
+    },
+    {
+      "name": "Grindelwald First (with any two activities)",
+      "price": 77
+    },
+    {
+      "name": "Nordkette Tops of Innsbruck cable car return ticket",
+      "price": 57
+    }
+  ]
+}

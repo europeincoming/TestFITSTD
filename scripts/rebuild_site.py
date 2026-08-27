@@ -195,21 +195,55 @@ CARD_CSS = """
 @media(max-width:900px){.brochures{grid-template-columns:1fr;}}
 """
 
-# ── DESTINATIONS INDEX CARD (products/* listing — Playfair Display + Inter, navy-only) ──
-DEST_CARD_CSS = """
-.dest-card{display:flex;align-items:stretch;text-decoration:none;color:inherit;border-radius:10px;overflow:hidden;background:#FFFFFF;border:1px solid #EBEBEB;box-shadow:0 1px 4px rgba(11,23,51,0.07);transition:all 300ms cubic-bezier(0.4,0,0.2,1);}
-.dest-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(11,23,51,0.12);border-color:#D0D0D0;}
-.dest-card-body{flex:1;min-width:0;padding:20px 22px;display:flex;flex-direction:column;gap:8px;}
-.dest-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1A1D2E;line-height:1.3;}
-.dest-pills{display:flex;gap:6px;flex-wrap:wrap;}
-.dest-pill{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#4B5563;background:#F4F5F7;border-radius:20px;padding:4px 10px;white-space:nowrap;flex-shrink:0;}
-.dest-validity{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#0B1733;background:#EEF1F7;border-radius:20px;padding:4px 10px;width:fit-content;white-space:nowrap;flex-shrink:0;}
-.dest-blurb{font-size:12.5px;color:#666;font-style:italic;line-height:1.5;margin:2px 0 0;}
-.dest-route{font-size:12px;color:#5B6B85;}
-.dest-price{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#0B1733;margin-top:auto;padding-top:8px;}
-.dest-map-col{width:220px;flex-shrink:0;position:relative;background:#EEF1F7;border-left:1px solid #EBEBEB;}
-.dest-map{position:absolute;inset:0;}
-@media(max-width:900px){.dest-card{flex-direction:column;}.dest-map-col{width:100%;height:160px;}}
+# ── METRO DESTINATIONS INDEX (products/* listing — design_handoff_metro/) ──
+# Flat, zero-radius, no shadows; navy/gold tiles alternating every 3rd card.
+METRO_INDEX_CSS = """
+:root{--navy:#0B1733;--navy-tile:#132347;--gold:#F2B91D;--ink:#1A1D2E;--muted:#6B7080;--control-border:#D8DAE1;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI','Open Sans',sans-serif;color:var(--ink);font-size:15px;line-height:1.5;background:#fff;padding-top:0;}
+a{color:inherit;}
+.metro-header{display:flex;align-items:center;gap:28px;padding:26px 40px 0;}
+.metro-logo{height:32px;width:auto;display:block;}
+.metro-search-wrap{flex:1;max-width:360px;}
+.metro-search{width:100%;padding:9px 14px;font-size:13px;font-family:'Segoe UI','Open Sans',sans-serif;border:2px solid var(--control-border);border-radius:0;background:#fff;box-sizing:border-box;outline:none;color:var(--ink);}
+.metro-search::placeholder{color:var(--muted);}
+.metro-trade{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;white-space:nowrap;}
+.metro-trade:hover{color:var(--gold);}
+.metro-title-row{padding:36px 40px 22px;display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;}
+.metro-title-row h1{font-weight:300;font-size:64px;letter-spacing:-0.02em;line-height:1;color:var(--navy);margin:0;}
+.metro-eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-bottom:12px;}
+.metro-intro{padding:0 40px 30px;max-width:640px;font-weight:300;font-size:19px;color:var(--muted);}
+.metro-grid-wrap{padding:0 40px 80px;}
+.metro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;}
+.metro-empty{padding:80px 0;color:var(--muted);font-weight:300;font-size:22px;}
+.metro-tile{display:flex;align-items:stretch;text-decoration:none;color:inherit;min-height:240px;transition:opacity 180ms linear;}
+.metro-tile:hover{opacity:.86;}
+.metro-tile.navy{background:var(--navy-tile);}
+.metro-tile.gold{background:var(--gold);}
+.metro-tile-body{flex:1;min-width:0;padding:22px 24px;display:flex;flex-direction:column;gap:8px;}
+.metro-tile-meta,.metro-tile-route,.metro-tile-from,.metro-tile-note,.metro-tile-validity{font-size:11px;font-weight:700;}
+.metro-tile-meta,.metro-tile-route{letter-spacing:.14em;text-transform:uppercase;}
+.metro-tile-route{letter-spacing:.06em;}
+.metro-tile-from,.metro-tile-validity{letter-spacing:.12em;text-transform:uppercase;}
+.metro-tile-validity{font-size:10px;}
+.metro-tile-note{font-weight:400;}
+.metro-tile.navy .metro-tile-meta,.metro-tile.navy .metro-tile-route,.metro-tile.navy .metro-tile-from,.metro-tile.navy .metro-tile-note,.metro-tile.navy .metro-tile-validity{color:var(--gold);}
+.metro-tile.gold .metro-tile-meta,.metro-tile.gold .metro-tile-route,.metro-tile.gold .metro-tile-from,.metro-tile.gold .metro-tile-note,.metro-tile.gold .metro-tile-validity{color:rgba(11,23,51,.65);}
+.metro-tile-title{font-weight:300;font-size:30px;line-height:1.1;}
+.metro-tile.navy .metro-tile-title{color:#fff;}
+.metro-tile.gold .metro-tile-title{color:var(--navy);}
+.metro-tile-blurb{font-size:13px;line-height:1.55;margin:0;}
+.metro-tile.navy .metro-tile-blurb{color:rgba(255,255,255,.72);}
+.metro-tile.gold .metro-tile-blurb{color:rgba(11,23,51,.8);}
+.metro-tile-price-row{margin-top:auto;padding-top:10px;display:flex;align-items:baseline;gap:8px;}
+.metro-tile-amount{font-weight:300;font-size:34px;line-height:1;}
+.metro-tile.navy .metro-tile-amount{color:#fff;}
+.metro-tile.gold .metro-tile-amount{color:var(--navy);}
+.metro-tile-map-col{width:190px;flex-shrink:0;position:relative;background:#F5F5F3;}
+.metro-tile-map{position:absolute;inset:0;}
+.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Segoe UI','Open Sans',sans-serif;font-size:9px;font-weight:600;color:var(--navy);white-space:nowrap;padding:0;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.leaflet-tooltip.city-tip::before{display:none!important;}
+@media(max-width:900px){.metro-grid{grid-template-columns:1fr;}.metro-header{flex-wrap:wrap;}.metro-search-wrap{order:3;max-width:100%;}}
 """
 
 REGION_CSS = """
@@ -435,10 +469,9 @@ def make_map_js(map_id, cities, coords_cache):
 }})();"""
 
 
-def make_quiet_map_js(map_id, points, close_loop):
-    """Quiet map skin for the destinations-index card: plain navy dot for overnight
-    stops (no night-count badge), grey dot for excursion stops, plain name tooltip.
-    Shared visual language with the Package Page's sidebar map."""
+def make_metro_map_js(map_id, points, close_loop):
+    """Metro destinations-index card mini-map: square markers, not pins - gold
+    10x10 for overnight stops, muted 6x6 for pass-through. design_handoff_metro/README.md."""
     if not points: return ""
     pts_json = json.dumps(points)
     close_js = "true" if close_loop else "false"
@@ -451,14 +484,15 @@ def make_quiet_map_js(map_id, points, close_loop):
   map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]],{{padding:[10,10]}});
   var route=pts.map(function(p){{return [p.lat,p.lng];}});
   if({close_js}) route.push(route[0]);
-  L.polyline(route,{{color:'#0B1733',weight:2,dashArray:'5,4'}}).addTo(map);
+  L.polyline(route,{{color:'#0B1733',weight:1.5,dashArray:'4,4'}}).addTo(map);
   pts.forEach(function(p){{
     if(p.nights>0){{
-      L.marker([p.lat,p.lng],{{icon:L.divIcon({{className:'',iconSize:[14,14],iconAnchor:[7,7],
-        html:'<div style="width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box"></div>'}})}}).addTo(map)
-       .bindTooltip(p.label,{{permanent:true,direction:'top',className:'city-tip',offset:[0,-8]}});
+      L.marker([p.lat,p.lng],{{icon:L.divIcon({{className:'',iconSize:[10,10],iconAnchor:[5,5],
+        html:'<div style="width:10px;height:10px;background:#F2B91D;box-sizing:border-box"></div>'}})}}).addTo(map)
+       .bindTooltip(p.label,{{permanent:true,direction:'top',className:'city-tip',offset:[0,-6]}});
     }} else {{
-      L.circleMarker([p.lat,p.lng],{{radius:3.5,fillColor:'#9AA1AE',color:'white',weight:1.5,fillOpacity:1}}).addTo(map)
+      L.marker([p.lat,p.lng],{{icon:L.divIcon({{className:'',iconSize:[6,6],iconAnchor:[3,3],
+        html:'<div style="width:6px;height:6px;background:#6B7080"></div>'}})}}).addTo(map)
        .bindTooltip(p.label,{{permanent:true,direction:'top',className:'city-tip',offset:[0,-4]}});
     }}
   }});
@@ -526,154 +560,181 @@ def make_region_card(slug, display_name, pkg_count, tour_types):
 PRODUCTS_DIR = os.path.join(REPO_ROOT, "products")
 PRICES_DIR   = os.path.join(REPO_ROOT, "prices")
 
+# Rate year labels shown in the package-page switcher, mapped to the
+# "<id>-<suffix>.json" filename suffix under prices/. Add an entry here
+# (oldest first) whenever a new season's prices file is imported.
+RATE_YEARS = [("2025-26", "2026"), ("2026-27", "2027")]
+
+def load_year_prices(product):
+    """id -> {year label: prices dict} for every RATE_YEARS file that exists."""
+    pid = product.get("id", "")
+    by_year = {}
+    for label, suffix in RATE_YEARS:
+        path = os.path.join(PRICES_DIR, f"{pid}-{suffix}.json")
+        if os.path.exists(path):
+            by_year[label] = load_json(path)
+    return by_year
+
 PACKAGE_PAGE_CSS = """
-:root{--navy:#0B1733;--gold:#F2B91D;--gold-hover:#E0A810;--gold-dark:#B8870A;
---ink:#1A1D2E;--body:#4B5563;--muted:#6B7280;--faint:#9AA1AE;--line:#E5E7EC;
---faint-line:#F2F4F7;--offwhite:#FAFAF8;--green:#1F8A5B;--green-bg:#EEF5F0;
---taste-bg:#FEF7DC;--exp-bg:#EEF1F8;--shop-bg:#F2F4F7;}
+/* Metro design language (design_handoff_metro/) - flat, zero-radius, no shadows,
+   weight-contrast type. Brand tokens shared with the rest of the site. */
+:root{--navy:#0B1733;--navy-tile:#132347;--gold:#F2B91D;--gold-hover:#E5AC12;
+--ink:#1A1D2E;--body:#3A3D4D;--muted:#6B7080;--line:#E5E7EC;--line-light:#EFF0F3;
+--control-border:#D8DAE1;--surface:#F5F5F3;--surface-hover:#EDEDEA;
+--taste-bg:#F2B91D;--exp-bg:#EDEDEA;--shop-bg:#F5F5F3;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;padding-top:64px;}
+body{font-family:'Segoe UI','Open Sans',sans-serif;color:var(--ink);background:#fff;line-height:1.55;padding-top:56px;}
 a{color:inherit;}
-.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
 
 /* Top bar */
-.pkg-topbar{position:fixed;top:0;left:0;right:0;height:64px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
-.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.pkg-topbar{position:fixed;top:0;left:0;right:0;height:56px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
+.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .pkg-topbar-left{display:flex;align-items:center;gap:20px;}
-.pkg-logo{height:38px;width:auto;display:block;}
-.pkg-back-link{font-size:13px;font-weight:600;color:var(--body);text-decoration:none;transition:color .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-back-link:hover{color:var(--navy);}
-.pkg-topbar-right{display:flex;align-items:center;gap:20px;}
-.pkg-trade{font-size:12px;color:var(--muted);}
-.pkg-trade a{color:var(--navy);font-weight:600;text-decoration:none;}
-.pkg-dl-btn{background:var(--gold);color:var(--navy);border:none;padding:11px 20px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1);white-space:nowrap;}
-.pkg-dl-btn:hover{background:var(--gold-hover);}
+.pkg-logo{height:24px;width:auto;display:block;}
+.pkg-back-link{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-decoration:none;}
+.pkg-back-link .pkg-back-circle{width:26px;height:26px;border:2px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:400;}
+.pkg-back-link:hover{color:var(--gold);}
+.pkg-back-link:hover .pkg-back-circle{border-color:var(--gold);}
+.pkg-topbar-right{display:flex;align-items:center;gap:16px;}
+.pkg-trade{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.pkg-trade a{color:var(--navy);text-decoration:none;}
+.pkg-trade a:hover{color:var(--gold);}
+.pkg-dl-btn{background:var(--navy);color:#fff;border:none;border-radius:0;padding:10px 18px;font-family:'Segoe UI','Open Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;}
+.pkg-dl-btn:hover{background:var(--gold);color:var(--navy);}
 
-/* Hero */
-.pkg-hero{position:relative;height:420px;background:var(--navy);overflow:hidden;}
-.pkg-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.65;}
-.pkg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,.75),rgba(3,7,20,.05) 65%);}
-.pkg-hero-content{position:absolute;left:0;right:0;bottom:0;max-width:1200px;margin:0 auto;padding:0 48px 32px;}
-.pkg-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.pkg-hero-title{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-bottom:12px;}
-.pkg-hero-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.85);}
-.pkg-hero-meta .sep{width:1px;height:12px;background:rgba(255,255,255,.3);}
-.pkg-hero-price{color:var(--gold);font-weight:700;}
+/* Title + hero */
+.pkg-title-row{padding:26px 40px 0;display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;}
+.pkg-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-bottom:10px;}
+.pkg-hero-title{font-weight:300;font-size:56px;letter-spacing:-0.02em;line-height:1;margin:0;color:var(--navy);}
+.pkg-hero{padding:14px 40px 0;display:flex;gap:0;flex-wrap:wrap;}
+.pkg-hero-img{flex:1;min-width:320px;min-height:380px;background:var(--navy) center/cover no-repeat;position:relative;overflow:hidden;}
+.pkg-hero-facts{width:280px;flex-shrink:0;background:var(--navy);color:#fff;padding:24px 26px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;}
+.pkg-hero-fact-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.pkg-hero-fact-value{font-weight:300;font-size:24px;line-height:1.1;}
+.pkg-hero-fact-value.small{font-size:13px;font-weight:400;color:rgba(255,255,255,.78);line-height:1.5;}
+.pkg-hero-price-block{margin-top:auto;background:var(--gold);color:var(--navy);padding:14px 16px;}
+.pkg-hero-price-block .pkg-hero-fact-label{color:var(--navy);margin-bottom:2px;}
+.pkg-hero-price{font-weight:300;font-size:34px;line-height:1;}
+.pkg-hero-price-unit{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
 
-/* Variant bar */
-.pkg-variantbar{position:sticky;top:64px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
-.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+/* Variant / year bar */
+.pkg-variantbar{background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.pkg-variant-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-.pkg-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.pkg-pill{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 18px;border-radius:999px;border:1px solid #CBD0DA;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1),border-color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-variant-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.pkg-pills{display:flex;gap:4px;flex-wrap:wrap;}
+.pkg-pill{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
 .pkg-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .pkg-variant-blurb{font-size:13px;color:var(--muted);text-align:right;}
 
 /* Body columns */
-.pkg-body{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:48px;align-items:flex-start;}
-.pkg-main{flex:1;min-width:0;padding:36px 0;}
-.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:132px;padding:36px 0;}
+.pkg-body{max-width:1200px;margin:0 auto;padding:32px 40px 0;display:flex;gap:40px;align-items:flex-start;box-sizing:border-box;}
+.pkg-main{flex:1;min-width:0;}
+.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:76px;}
 
-.pkg-section{margin-bottom:40px;}
-.pkg-section-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;margin-bottom:18px;border-bottom:1px solid var(--line);}
+.pkg-section-label{font-weight:300;font-size:34px;color:var(--navy);margin:0 0 4px;}
+.pkg-section-sub{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.pkg-section{margin-bottom:36px;}
 
 /* Day by day */
-.pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
-.pkg-day:first-child{border-top:1px solid var(--faint-line);}
-.pkg-day-num-col{text-align:center;}
-.pkg-day-num-lbl{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
-.pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
-.pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
-.pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
-.pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
+.pkg-day{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);}
+.pkg-day-num-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.pkg-day-num{font-weight:300;font-size:40px;line-height:1;color:var(--gold);}
+.pkg-day-title{font-weight:600;font-size:19px;color:var(--navy);margin-bottom:2px;}
+.pkg-day-overnight{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.pkg-day-desc{font-size:14px;line-height:1.7;color:var(--body);margin-bottom:12px;}
 .pkg-pill-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-top:6px;}
-.pkg-tag{flex:0 0 auto;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
-.pkg-tag-inc{background:var(--green-bg);color:var(--green);}
-.pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
+.pkg-tag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;white-space:nowrap;}
+.pkg-tag-inc{background:var(--navy);color:#fff;}
+.pkg-tag-taste{background:var(--taste-bg);color:var(--navy);}
 .pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
-.pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
+.pkg-tag-shop{background:var(--shop-bg);color:var(--muted);}
 .pkg-tag-text{flex:1 1 220px;min-width:0;font-size:13px;color:var(--body);}
 
 /* Includes */
-.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
-.pkg-inc-item{font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
-.pkg-check{color:var(--green);font-weight:700;}
+.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
+.pkg-inc-item{font-size:13.5px;color:var(--body);padding:9px 0 9px 22px;border-bottom:1px solid var(--line-light);position:relative;}
+.pkg-check{position:absolute;left:0;color:var(--gold);font-weight:700;font-size:12px;}
 
 /* Hotels */
-.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
-.pkg-hotel-card{background:#fff;padding:18px;}
-.pkg-hotel-city{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
-.pkg-hotel-nights{font-size:12px;color:var(--muted);margin-bottom:10px;}
-.pkg-hotel-cat{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--navy);margin-top:6px;}
-.pkg-hotel-name{font-size:13px;color:var(--body);}
+.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.pkg-hotel-card{background:var(--surface);padding:18px 20px;}
+.pkg-hotel-city{font-weight:300;font-size:22px;color:var(--navy);line-height:1.1;}
+.pkg-hotel-nights{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.pkg-hotel-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--gold);}
+.pkg-hotel-name{font-size:12.5px;color:var(--body);margin-bottom:8px;line-height:1.4;}
 
 /* Rates */
-.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
-.pkg-seg-group{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
-.pkg-seg{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border:none;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-seg.active{background:var(--navy);color:#fff;}
-.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
-.pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
-.pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
-.pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
-.pkg-pax-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:10px;}
-.pkg-pax-season-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.pkg-seg-group{display:inline-flex;gap:4px;}
+.pkg-seg{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
+.pkg-seg.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.pkg-rate-table th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:12px 16px;}
+.pkg-rate-table td{padding:12px 16px;font-size:13.5px;border-bottom:1px solid var(--line-light);color:var(--ink);}
+.pkg-rate-table td:last-child{text-align:right;font-weight:300;font-size:22px;color:var(--navy);}
+.pkg-pax-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:8px;}
+.pkg-pax-season-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
 .pkg-pax-table{width:100%;border-collapse:collapse;}
-.pkg-pax-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 12px;}
-.pkg-pax-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--line);}
-.pkg-pax-table td:not(:first-child){text-align:right;font-weight:700;color:var(--navy);}
-.pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
+.pkg-pax-table th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 12px;}
+.pkg-pax-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--line-light);}
+.pkg-pax-table td:not(:first-child){text-align:right;font-weight:600;color:var(--navy);}
+.pkg-rate-note{font-size:12px;color:var(--muted);}
 @media(max-width:960px){.pkg-pax-grid{grid-template-columns:1fr;}}
 
 /* Optional tours */
-.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
-.pkg-opt-item{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--faint-line);}
-.pkg-opt-price{font-weight:700;color:var(--ink);white-space:nowrap;}
+.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pkg-opt-item{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;padding:14px 18px;background:var(--surface);}
+.pkg-opt-name{color:var(--body);}
+.pkg-opt-price{font-weight:300;font-size:22px;color:var(--navy);white-space:nowrap;}
+.pkg-opt-price .pkg-opt-pp{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 
 /* Good to know */
-.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
-.pkg-gtk-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
-.pkg-gtk-body{font-size:13px;color:var(--body);line-height:1.6;}
+.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pkg-gtk-card{background:var(--navy);color:#fff;padding:18px 20px;}
+.pkg-gtk-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.pkg-gtk-body{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;}
 
 /* T&C accordion */
-.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--faint-line);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;}
-.pkg-tc-body{display:none;padding:16px 4px 4px;}
+.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:none;border-radius:0;padding:14px 18px;font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);cursor:pointer;}
+.pkg-tc-btn:hover{background:var(--surface-hover);}
+.pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
-.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:6px 0;list-style:disc;margin-left:18px;}
+.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
+.pkg-tc-body li::before{content:'\\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
-.pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
-.pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
-.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);cursor:zoom-in;}
-.pkg-map-box #pkgMapSmall{pointer-events:none;}
-.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:zoom-in;border:none;font-family:'Montserrat',sans-serif;pointer-events:none;}
-.pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
-.pkg-fact-row:last-child{border-bottom:none;}
-.pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
+.pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
+.pkg-sb-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.pkg-map-box{position:relative;height:180px;overflow:hidden;margin-bottom:14px;background:var(--surface);cursor:zoom-in;}
+.pkg-map-box #pkgMapSmall{pointer-events:none;height:100%;}
+.pkg-map-enlarge{position:absolute;right:0;bottom:0;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:0;cursor:zoom-in;border:none;font-family:'Segoe UI','Open Sans',sans-serif;pointer-events:none;}
+.pkg-fact-row{padding:9px 0;border-top:1px solid var(--line);}
+.pkg-fact-title{font-size:13px;font-weight:600;color:var(--navy);}
 .pkg-fact-body{font-size:12px;color:var(--muted);margin-top:2px;}
-.pkg-sb-quote{background:var(--navy);}
-.pkg-sb-quote .pkg-sb-title{color:var(--gold);}
-.pkg-sb-quote-body{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6;}
-.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:6px;text-decoration:none;transition:background .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-sb-quote-btn:hover{background:var(--gold-hover);}
-.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 0;text-align:center;}
+.pkg-sb-quote{background:var(--gold);color:var(--navy);}
+.pkg-sb-quote .pkg-sb-title{color:var(--navy);}
+.pkg-sb-quote-body{font-size:13px;color:rgba(11,23,51,.85);margin-bottom:14px;line-height:1.6;}
+.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:12px 0;border-radius:0;text-decoration:none;}
+.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 40px;text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.pkg-sb-footer a{color:var(--gold);text-decoration:none;}
 
 /* Map markers */
 .pkg-badge-icon{background:transparent;border:none;}
-.pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.pkg-badge{background:var(--gold);color:var(--navy);text-align:center;font-weight:700;box-sizing:border-box;}
 .pkg-quiet-icon{background:transparent;border:none;}
-.pkg-quiet-dot{width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box;}
-.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.pkg-quiet-dot{background:var(--navy);box-sizing:border-box;}
+.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Segoe UI','Open Sans',sans-serif;font-size:9px;font-weight:600;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
 .leaflet-tooltip.pkg-map-tip::before{display:none!important;}
 
 /* Map modal */
-.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.65);z-index:1000;align-items:center;justify-content:center;}
+.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.85);z-index:1000;align-items:center;justify-content:center;padding:40px;}
 .pkg-map-modal.open{display:flex;}
-.pkg-map-modal-panel{background:#fff;border-radius:10px;box-shadow:0 24px 64px rgba(11,23,51,.35);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
-.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
-.pkg-map-modal-header h3{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink);}
-.pkg-map-modal-close{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;}
+.pkg-map-modal-panel{background:#fff;border-radius:0;width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
+.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--navy);}
+.pkg-map-modal-header h3{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
+.pkg-map-modal-close{background:none;border:none;font-size:16px;color:var(--gold);cursor:pointer;line-height:1;padding:6px;}
 .pkg-map-modal-canvas{flex:1;}
 
 @media(max-width:960px){
@@ -687,7 +748,6 @@ a{color:inherit;}
   .no-print{display:none!important;}
   body{padding-top:0;}
   .pkg-body{display:block;padding:0;max-width:none;}
-  .pkg-main{padding:16px 0;}
   .pkg-hero{height:auto;}
 }
 """
@@ -762,22 +822,23 @@ def _build_blurb(product):
         return f"{stops_txt} — by {style_txt}."
     return stops_txt or product.get("title", "")
 
-def render_package_page(product, prices, depth, back_href):
-    """Render one static package page. depth = folder depth for relative asset paths."""
+def render_package_page(product, prices_by_year, default_year, depth, back_href):
+    """Render one static package page. depth = folder depth for relative asset paths.
+    prices_by_year holds every available rate-year's prices dict, keyed by the
+    RATE_YEARS label (e.g. "2025-26"); default_year is which one is preselected."""
     root_rel = "../" * depth
     logo_src = root_rel + "logo.png"
     js_src   = root_rel + "assets/package-page.js"
     title    = product.get("title", "")
     style_keys = list(product.get("styles", {}).keys())
     first_style = style_keys[0] if style_keys else ""
-    currency = prices.get("currency", "€")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{title} | Europe Incoming FIT Packages</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>{PACKAGE_PAGE_CSS}</style>
 {LEAFLET_HEAD}{GA}
 </head>
@@ -786,24 +847,34 @@ def render_package_page(product, prices, depth, back_href):
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="{root_rel}"><img class="pkg-logo" src="{logo_src}" alt="Europe Incoming"></a>
-    <a class="pkg-back-link" href="{back_href}">← All packages</a>
+    <a class="pkg-back-link" href="{back_href}"><span class="pkg-back-circle">←</span> All packages</a>
   </div>
   <div class="pkg-topbar-right">
-    <div class="pkg-trade">Trade enquiries / <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a></div>
-    <button class="pkg-dl-btn" id="pkgDownloadBtn">↓ DOWNLOAD PDF</button>
+    <div class="pkg-trade"><a href="mailto:fitsales@europeincoming.com">Trade enquiries</a></div>
+    <button class="pkg-dl-btn" id="pkgDownloadBtn">Download PDF</button>
   </div>
 </div></div>
 
+<div class="pkg-title-row">
+  <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
+  <div class="pkg-eyebrow" id="pkgEyebrow"></div>
+</div>
+
 <div class="pkg-hero">
   <div class="pkg-hero-img" id="pkgHeroImg"></div>
-  <div class="pkg-hero-overlay"></div>
-  <div class="pkg-hero-content">
-    <div class="pkg-eyebrow" id="pkgEyebrow"></div>
-    <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
-    <div class="pkg-hero-meta">
-      <span id="pkgHeroNights"></span><span class="sep"></span>
-      <span id="pkgHeroRoute"></span><span class="sep"></span>
-      <span class="pkg-hero-price" id="pkgHeroPrice"></span>
+  <div class="pkg-hero-facts">
+    <div>
+      <div class="pkg-hero-fact-label">Duration</div>
+      <div class="pkg-hero-fact-value" id="pkgHeroNights"></div>
+    </div>
+    <div>
+      <div class="pkg-hero-fact-label">Route</div>
+      <div class="pkg-hero-fact-value small" id="pkgHeroRoute"></div>
+    </div>
+    <div class="pkg-hero-price-block">
+      <div class="pkg-hero-fact-label">From</div>
+      <div class="pkg-hero-price" id="pkgHeroPrice"></div>
+      <div class="pkg-hero-price-unit">per person</div>
     </div>
   </div>
 </div>
@@ -814,41 +885,50 @@ def render_package_page(product, prices, depth, back_href):
     <div class="pkg-pills" id="pkgVariantPills"></div>
   </div>
   <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
+</div>
+<div class="pkg-variantbar-inner">
+  <div class="pkg-variantbar-left">
+    <div class="pkg-variant-label">Rate year</div>
+    <div class="pkg-pills" id="pkgYearPills"></div>
+  </div>
 </div></div>
 
 <div class="pkg-body">
   <div class="pkg-main">
     <div class="pkg-section">
-      <div class="pkg-section-label" id="pkgDayHeading"></div>
+      <div class="pkg-section-label">Day by day</div>
+      <div class="pkg-section-sub" id="pkgDaySub"></div>
       <div id="pkgDays"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label" id="pkgIncludesHeading"></div>
+      <div class="pkg-section-label">Package includes</div>
+      <div class="pkg-section-sub" id="pkgIncludesSub"></div>
       <div class="pkg-inc-grid" id="pkgIncludes"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Sample hotels</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Sample hotels</div>
       <div class="pkg-hotels-grid" id="pkgHotels"></div>
     </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Package rates</div>
+      <div class="pkg-section-sub" id="pkgRateSub"></div>
       <div class="pkg-rate-toggles no-print" id="pkgRateToggles">
         <div class="pkg-seg-group" id="pkgCatToggle"></div>
         <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
       </div>
       <table class="pkg-rate-table" id="pkgRateTable">
-        <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
+        <thead><tr><th>Occupancy</th><th style="text-align:right" id="pkgRateColHeading"></th></tr></thead>
         <tbody id="pkgRatesBody"></tbody>
       </table>
       <div class="pkg-pax-grid" id="pkgPaxRates"></div>
-      <div class="pkg-rate-note">All rates net, per person, in {currency}. Valid {prices.get("validFrom","")} – {prices.get("validTo","")}.</div>
+      <div class="pkg-rate-note" id="pkgRateNote"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Optional tours &amp; extras</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Optional tours &amp; extras</div>
       <div class="pkg-opt-grid" id="pkgOptionals"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Good to know</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Good to know</div>
       <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
     </div>
     <div class="pkg-section pkg-tc-wrap no-print">
@@ -892,15 +972,16 @@ def render_package_page(product, prices, depth, back_href):
 
 <script>
 window.PRODUCT = {json.dumps(product)};
-window.PRICES = {json.dumps(prices)};
+window.PRICES_BY_YEAR = {json.dumps(prices_by_year)};
+window.DEFAULT_RATE_YEAR = {json.dumps(default_year)};
 </script>
 <script src="{js_src}"></script>
 </body></html>"""
 
 
-def make_package_card(product, prices, out_filename):
-    """Destinations Index card: one per product (no per-travel-style fan-out).
-    Playfair Display + Inter, navy-only -- see design_handoff_destinations_index."""
+def make_metro_package_card(product, prices, out_filename, index):
+    """Destinations Index tile per design_handoff_metro/README.md: alternating
+    navy/gold background every 3rd card (index % 3 == 1), square mini-map."""
     style_keys = list(product.get("styles", {}).keys())
     first_style = style_keys[0] if style_keys else ""
     style = product.get("styles", {}).get(first_style, {})
@@ -909,33 +990,33 @@ def make_package_card(product, prices, out_filename):
     title = product.get("title", "").rstrip(".")
     points = (product.get("map") or {}).get("points", [])
     route_line = " · ".join(p.get("label", "") for p in points if p.get("label"))
-    nights_label = (style.get("nights", "") or "").replace(" · ", " / ")
+    nights_label = style.get("nights", "") or ""
     season = _season_label(prices)
     validity = _format_validity(prices)
     blurb = _build_blurb(product)
     price_note = "pp (twin)" if is_twin else "pp"
+    variant = "gold" if index % 3 == 1 else "navy"
 
-    price_html = f'<div class="dest-price">From {_fmt_money(price, curr)} {price_note}</div>' if price is not None else ""
-    validity_html = f'<span class="dest-validity">✓ {validity}</span>' if validity else ""
-    nights_pill = f'<span class="dest-pill">{nights_label}</span>' if nights_label else ""
-    blurb_html = f'<p class="dest-blurb">{blurb}</p>' if blurb else ""
-    route_html = f'<div class="dest-route">{route_line}</div>' if route_line else ""
+    price_html = (f'<div class="metro-tile-price-row"><span class="metro-tile-from">From</span>'
+                  f'<span class="metro-tile-amount">{_fmt_money(price, curr)}</span>'
+                  f'<span class="metro-tile-note">{price_note}</span></div>') if price is not None else ""
+    validity_html = f'<div class="metro-tile-validity">{validity}</div>' if validity else ""
+    meta_line = " · ".join(x for x in (nights_label, season) if x)
+    blurb_html = f'<p class="metro-tile-blurb">{blurb}</p>' if blurb else ""
+    route_html = f'<div class="metro-tile-route">{route_line}</div>' if route_line else ""
     map_id = f'map_{product.get("id","").replace(".","_")}'
-    map_html = f'<div id="{map_id}" class="dest-map"></div>' if points else ""
+    map_html = f'<div id="{map_id}" class="metro-tile-map"></div>' if points else ""
 
-    return f"""<a href="{out_filename}" class="dest-card">
-  <div class="dest-card-body">
-    <div class="dest-title">{title}</div>
-    <div class="dest-pills">
-      {nights_pill}
-      <span class="dest-pill">{season}</span>
-    </div>
-    {validity_html}
+    return f"""<a href="{out_filename}" class="metro-tile {variant}">
+  <div class="metro-tile-body">
+    <div class="metro-tile-meta">{meta_line}</div>
+    <div class="metro-tile-title">{title}</div>
     {blurb_html}
     {route_html}
     {price_html}
+    {validity_html}
   </div>
-  <div class="dest-map-col">{map_html}</div>
+  <div class="metro-tile-map-col">{map_html}</div>
 </a>"""
 
 
@@ -964,7 +1045,7 @@ def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{title} | Europe Incoming</title>
-{GF_FONTS}<style>{BASE_CSS}{CARD_CSS}{DEST_CARD_CSS}</style>
+{GF_FONTS}<style>{BASE_CSS}{CARD_CSS}</style>
 {LEAFLET_HEAD}{GA}
 </head>
 <body>
@@ -978,6 +1059,65 @@ def build_brochure_index(title, breadcrumb, cards_html, maps_js, logo_src, logo_
 </div>
 <script src="{search_js}"></script>
 <script>window.addEventListener('load',function(){{{maps_js}}});</script>
+</body></html>"""
+
+# eyebrow is deliberately the same on every region page - "Multi-country · FIT"
+# names the product line the same way design_handoff_metro's mockup does.
+METRO_EYEBROW = "Multi-country · FIT"
+
+def build_metro_destinations_index(title, intro, cards_html, maps_js, logo_src, logo_href, card_count):
+    """Destinations Index page shell, per design_handoff_metro/Destinations Index - Metro Design Mockup.dc.html."""
+    h1_title = title if not title.endswith(".") else title[:-1]
+    empty_style = "display:none" if card_count else ""
+    grid_style = "" if card_count else "display:none"
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{title} | Europe Incoming FIT Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>{METRO_INDEX_CSS}</style>
+{LEAFLET_HEAD}{GA}
+</head>
+<body>
+{GEO_BLOCK}
+<div class="metro-header">
+  <a href="{logo_href}"><img class="metro-logo" src="{logo_src}" alt="Europe Incoming"></a>
+  <div class="metro-search-wrap"><input type="text" class="metro-search" id="metroSearch" placeholder="search packages"></div>
+  <a class="metro-trade" href="mailto:fitsales@europeincoming.com">Trade enquiries</a>
+</div>
+
+<div class="metro-title-row">
+  <h1>{h1_title}</h1>
+  <div class="metro-eyebrow">{METRO_EYEBROW}</div>
+</div>
+<div class="metro-intro">{intro}</div>
+
+<div class="metro-grid-wrap">
+  <div class="metro-grid" id="metroGrid" style="{grid_style}">{cards_html}</div>
+  <div class="metro-empty" id="metroEmpty" style="{empty_style}">No packages match this search yet.</div>
+</div>
+
+<script>
+(function(){{
+  var input = document.getElementById('metroSearch');
+  var grid = document.getElementById('metroGrid');
+  var empty = document.getElementById('metroEmpty');
+  var tiles = Array.prototype.slice.call(grid.querySelectorAll('.metro-tile'));
+  input.addEventListener('input', function(){{
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    tiles.forEach(function(t){{
+      var match = !q || t.textContent.toLowerCase().indexOf(q) !== -1;
+      t.style.display = match ? '' : 'none';
+      if (match) shown++;
+    }});
+    grid.style.display = shown ? '' : 'none';
+    empty.style.display = shown ? 'none' : '';
+  }});
+}})();
+window.addEventListener('load',function(){{{maps_js}}});
+</script>
 </body></html>"""
 
 def build_multicountry_index(region_cards_html, logo_href, search_js):
@@ -1113,38 +1253,41 @@ def main():
         depth = config.get('depth', 2)
         logo_src = "../"*depth + "logo.png"
         logo_href = "../"*depth
-        search_js = "../"*depth + "global-search.js"
-        breadcrumb = (f'<a href="../../">Home</a> › <a href="../">Multi-Country</a> › {config.get("breadcrumb","")}')
 
         cards = []
         maps_js_parts = []
         tour_types_seen = [s.get("name","") for p in pkgs for s in p.get("styles",{}).values()]
         tour_types_seen = sorted(set(tour_types_seen))
+        sorted_pkgs = sorted(pkgs, key=lambda p: p.get("id",""))
 
-        for product in sorted(pkgs, key=lambda p: p.get("id","")):
-            prices_path = os.path.join(REPO_ROOT, product.get("pricesFile",""))
-            prices = load_json(prices_path)
+        for index, product in enumerate(sorted_pkgs):
+            prices_by_year = load_year_prices(product)
+            if not prices_by_year:
+                # fallback for any product not yet covered by RATE_YEARS naming
+                prices_by_year = {"2025-26": load_json(os.path.join(REPO_ROOT, product.get("pricesFile","")))}
+            default_year = RATE_YEARS[0][0] if RATE_YEARS[0][0] in prices_by_year else next(iter(prices_by_year))
+            prices = prices_by_year[default_year]
 
             brochure_fname = f'{product.get("id")}_brochure.html'
-            page_html = render_package_page(product, prices, depth, back_href="./")
+            page_html = render_package_page(product, prices_by_year, default_year, depth, back_href="./")
             out_path = os.path.join(folder_abs, brochure_fname)
             with open(out_path, 'w', encoding='utf-8') as f:
                 f.write(page_html)
             print(f"  ✓ {folder_rel}/{brochure_fname}")
 
-            cards.append(make_package_card(product, prices, brochure_fname))
+            cards.append(make_metro_package_card(product, prices, brochure_fname, index))
 
             product_map = product.get("map") or {}
             map_id = f'map_{product.get("id","").replace(".","_")}'
-            js = make_quiet_map_js(map_id, product_map.get("points", []), product_map.get("closeLoop", False))
+            js = make_metro_map_js(map_id, product_map.get("points", []), product_map.get("closeLoop", False))
             if js: maps_js_parts.append(js)
 
         region_name = config.get('region', config.get('title', ''))
-        subhead = f"FIT packages across {region_name} — self drive, rail and private coach."
-        html = build_brochure_index(
-            config.get('title',''), breadcrumb,
+        intro = f"FIT packages across {region_name} — self drive, rail and private coach."
+        html = build_metro_destinations_index(
+            config.get('title',''), intro,
             "\n".join(cards), "\n".join(maps_js_parts),
-            logo_src, logo_href, search_js, subhead=subhead
+            logo_src, logo_href, len(cards)
         )
         with open(os.path.join(folder_abs,"index.html"),'w',encoding='utf-8') as f:
             f.write(html)

@@ -1,0 +1,101 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1906,
+          "twin": 1326,
+          "child": 562
+        },
+        "summer": {
+          "single": 1993,
+          "twin": 1386,
+          "child": 587
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2495,
+          "twin": 1620,
+          "child": 677
+        },
+        "summer": {
+          "single": 2609,
+          "twin": 1694,
+          "child": 707
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2266,
+            "4star": 2561
+          },
+          {
+            "pax": 10,
+            "3star": 1929,
+            "4star": 2224
+          },
+          {
+            "pax": 12,
+            "3star": 1704,
+            "4star": 1999
+          },
+          {
+            "pax": 14,
+            "3star": 1544,
+            "4star": 1838
+          },
+          {
+            "pax": 16,
+            "3star": 1423,
+            "4star": 1718
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2369,
+            "4star": 2677
+          },
+          {
+            "pax": 10,
+            "3star": 2017,
+            "4star": 2325
+          },
+          {
+            "pax": 12,
+            "3star": 1782,
+            "4star": 2090
+          },
+          {
+            "pax": 14,
+            "3star": 1614,
+            "4star": 1922
+          },
+          {
+            "pax": 16,
+            "3star": 1488,
+            "4star": 1796
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Gondola ride, shared 30 mins",
+      "price": 39
+    },
+    {
+      "name": "Ferrari Museum ticket",
+      "price": 36
+    }
+  ]
+}

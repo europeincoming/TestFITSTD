@@ -1,0 +1,109 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1745,
+          "twin": 1098,
+          "child": 455
+        },
+        "summer": {
+          "single": 1824,
+          "twin": 1148,
+          "child": 476
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2009,
+          "twin": 1230,
+          "child": 507
+        },
+        "summer": {
+          "single": 2100,
+          "twin": 1286,
+          "child": 530
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1783,
+            "4star": 1915
+          },
+          {
+            "pax": 10,
+            "3star": 1579,
+            "4star": 1711
+          },
+          {
+            "pax": 12,
+            "3star": 1443,
+            "4star": 1575
+          },
+          {
+            "pax": 14,
+            "3star": 1346,
+            "4star": 1478
+          },
+          {
+            "pax": 16,
+            "3star": 1273,
+            "4star": 1405
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1864,
+            "4star": 2002
+          },
+          {
+            "pax": 10,
+            "3star": 1651,
+            "4star": 1789
+          },
+          {
+            "pax": 12,
+            "3star": 1509,
+            "4star": 1647
+          },
+          {
+            "pax": 14,
+            "3star": 1408,
+            "4star": 1546
+          },
+          {
+            "pax": 16,
+            "3star": 1331,
+            "4star": 1469
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Grindelwald First (with any two activities) with Swiss Pass",
+      "price": 77
+    },
+    {
+      "name": "Jungfraujoch with Swiss Pass",
+      "price": 168
+    },
+    {
+      "name": "Glacier 3000, with swiss pass",
+      "price": 44
+    },
+    {
+      "name": "Broc chocolate museum ticket",
+      "price": 19
+    }
+  ]
+}

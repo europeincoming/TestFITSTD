@@ -1,0 +1,127 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "£",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1252,
+          "twin": 791,
+          "child": 328
+        },
+        "summer": {
+          "single": 1309,
+          "twin": 827,
+          "child": 343
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1396,
+          "twin": 863,
+          "child": 357
+        },
+        "summer": {
+          "single": 1459,
+          "twin": 903,
+          "child": 373
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1391,
+            "4star": 1463
+          },
+          {
+            "pax": 10,
+            "3star": 1271,
+            "4star": 1343
+          },
+          {
+            "pax": 12,
+            "3star": 1190,
+            "4star": 1262
+          },
+          {
+            "pax": 14,
+            "3star": 1133,
+            "4star": 1205
+          },
+          {
+            "pax": 16,
+            "3star": 1090,
+            "4star": 1162
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1454,
+            "4star": 1529
+          },
+          {
+            "pax": 10,
+            "3star": 1328,
+            "4star": 1404
+          },
+          {
+            "pax": 12,
+            "3star": 1245,
+            "4star": 1320
+          },
+          {
+            "pax": 14,
+            "3star": 1185,
+            "4star": 1260
+          },
+          {
+            "pax": 16,
+            "3star": 1140,
+            "4star": 1215
+          }
+        ]
+      }
+    },
+    "selfdrive": {
+      "3": {
+        "winter": {
+          "single": 1250,
+          "twin": 789,
+          "child": 327
+        },
+        "summer": {
+          "single": 1307,
+          "twin": 825,
+          "child": 342
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1394,
+          "twin": 861,
+          "child": 356
+        },
+        "summer": {
+          "single": 1457,
+          "twin": 900,
+          "child": 372
+        }
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Edinburgh Castle tickets",
+      "price": 23
+    },
+    {
+      "name": "Fort William - Ben Nevis 1 day gondola ticket",
+      "price": 29
+    }
+  ]
+}

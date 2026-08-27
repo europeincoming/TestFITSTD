@@ -1,0 +1,125 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 3686,
+          "twin": 2502,
+          "child": 1055
+        },
+        "summer": {
+          "single": 3853,
+          "twin": 2615,
+          "child": 1103
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 4479,
+          "twin": 2898,
+          "child": 1209
+        },
+        "summer": {
+          "single": 4682,
+          "twin": 3030,
+          "child": 1264
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 3213,
+            "4star": 3609
+          },
+          {
+            "pax": 10,
+            "3star": 2835,
+            "4star": 3231
+          },
+          {
+            "pax": 12,
+            "3star": 2583,
+            "4star": 2979
+          },
+          {
+            "pax": 14,
+            "3star": 2403,
+            "4star": 2799
+          },
+          {
+            "pax": 16,
+            "3star": 2268,
+            "4star": 2664
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 3359,
+            "4star": 3774
+          },
+          {
+            "pax": 10,
+            "3star": 2964,
+            "4star": 3378
+          },
+          {
+            "pax": 12,
+            "3star": 2700,
+            "4star": 3115
+          },
+          {
+            "pax": 14,
+            "3star": 2512,
+            "4star": 2926
+          },
+          {
+            "pax": 16,
+            "3star": 2371,
+            "4star": 2785
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 170
+    },
+    {
+      "name": "Louvre Museum (Audioguide €5 pp)",
+      "price": 18
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 153
+    },
+    {
+      "name": "Grindelwald First (with any two activities)",
+      "price": 77
+    },
+    {
+      "name": "Gondola ride, shared 30 mins",
+      "price": 39
+    },
+    {
+      "name": "Half day coach tour to Pisa, 5.5 hrs",
+      "price": 61
+    },
+    {
+      "name": "Half day coach tour to Chianti vineyards & wine tastings, 5.5 hrs",
+      "price": 57
+    },
+    {
+      "name": "Vatican museums walking tour, small group 3 hrs",
+      "price": 70
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 2240,
+          "twin": 1458,
+          "child": 609
+        },
+        "summer": {
+          "single": 2342,
+          "twin": 1524,
+          "child": 637
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2693,
+          "twin": 1685,
+          "child": 698
+        },
+        "summer": {
+          "single": 2816,
+          "twin": 1761,
+          "child": 729
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2306,
+            "4star": 2532
+          },
+          {
+            "pax": 10,
+            "3star": 2022,
+            "4star": 2249
+          },
+          {
+            "pax": 12,
+            "3star": 1834,
+            "4star": 2060
+          },
+          {
+            "pax": 14,
+            "3star": 1699,
+            "4star": 1925
+          },
+          {
+            "pax": 16,
+            "3star": 1598,
+            "4star": 1824
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2410,
+            "4star": 2647
+          },
+          {
+            "pax": 10,
+            "3star": 2114,
+            "4star": 2351
+          },
+          {
+            "pax": 12,
+            "3star": 1917,
+            "4star": 2154
+          },
+          {
+            "pax": 14,
+            "3star": 1776,
+            "4star": 2013
+          },
+          {
+            "pax": 16,
+            "3star": 1670,
+            "4star": 1907
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Lucerne - Jungfraujoch with swiss pass",
+      "price": 139
+    },
+    {
+      "name": "Venice - Gondola ride, 30 mins shared",
+      "price": 40
+    },
+    {
+      "name": "Florence - Full day trip to Tuscany, Siena-San Gimignano with lunch & wine tasting, 11.5 hrs regular coach",
+      "price": 98
+    },
+    {
+      "name": "Florence - Half day tour to Pisa, 5.5 hrs regular coach",
+      "price": 67
+    },
+    {
+      "name": "Rome - Small group walking tour of Imperial Rome with Colosseum, 2.5 hrs",
+      "price": 77
+    },
+    {
+      "name": "Rome - Small group walking tour of Vatican Museums, 2.5 hrs",
+      "price": 82
+    }
+  ]
+}
