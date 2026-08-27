@@ -3,155 +3,167 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Kiruna Winter Adventure. | Europe Incoming FIT Packages</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0B1733;--gold:#F2B91D;--gold-hover:#E0A810;--gold-dark:#B8870A;
---ink:#1A1D2E;--body:#4B5563;--muted:#6B7280;--faint:#9AA1AE;--line:#E5E7EC;
---faint-line:#F2F4F7;--offwhite:#FAFAF8;--green:#1F8A5B;--green-bg:#EEF5F0;
---taste-bg:#FEF7DC;--exp-bg:#EEF1F8;--shop-bg:#F2F4F7;}
+/* Metro design language (design_handoff_metro/) - flat, zero-radius, no shadows,
+   weight-contrast type. Brand tokens shared with the rest of the site. */
+:root{--navy:#0B1733;--navy-tile:#132347;--gold:#F2B91D;--gold-hover:#E5AC12;
+--ink:#1A1D2E;--body:#3A3D4D;--muted:#6B7080;--line:#E5E7EC;--line-light:#EFF0F3;
+--control-border:#D8DAE1;--surface:#F5F5F3;--surface-hover:#EDEDEA;
+--taste-bg:#F2B91D;--exp-bg:#EDEDEA;--shop-bg:#F5F5F3;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;padding-top:64px;}
+body{font-family:'Segoe UI','Open Sans',sans-serif;color:var(--ink);background:#fff;line-height:1.55;padding-top:56px;}
 a{color:inherit;}
-.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+.pkg-wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
 
 /* Top bar */
-.pkg-topbar{position:fixed;top:0;left:0;right:0;height:64px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
-.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.pkg-topbar{position:fixed;top:0;left:0;right:0;height:56px;background:#fff;border-bottom:1px solid var(--line);z-index:300;}
+.pkg-topbar-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .pkg-topbar-left{display:flex;align-items:center;gap:20px;}
-.pkg-logo{height:38px;width:auto;display:block;}
-.pkg-back-link{font-size:13px;font-weight:600;color:var(--body);text-decoration:none;transition:color .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-back-link:hover{color:var(--navy);}
-.pkg-topbar-right{display:flex;align-items:center;gap:20px;}
-.pkg-trade{font-size:12px;color:var(--muted);}
-.pkg-trade a{color:var(--navy);font-weight:600;text-decoration:none;}
-.pkg-dl-btn{background:var(--gold);color:var(--navy);border:none;padding:11px 20px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1);white-space:nowrap;}
-.pkg-dl-btn:hover{background:var(--gold-hover);}
+.pkg-logo{height:24px;width:auto;display:block;}
+.pkg-back-link{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-decoration:none;}
+.pkg-back-link .pkg-back-circle{width:26px;height:26px;border:2px solid var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:400;}
+.pkg-back-link:hover{color:var(--gold);}
+.pkg-back-link:hover .pkg-back-circle{border-color:var(--gold);}
+.pkg-topbar-right{display:flex;align-items:center;gap:16px;}
+.pkg-trade{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.pkg-trade a{color:var(--navy);text-decoration:none;}
+.pkg-trade a:hover{color:var(--gold);}
+.pkg-dl-btn{background:var(--navy);color:#fff;border:none;border-radius:0;padding:10px 18px;font-family:'Segoe UI','Open Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;}
+.pkg-dl-btn:hover{background:var(--gold);color:var(--navy);}
 
-/* Hero */
-.pkg-hero{position:relative;height:420px;background:var(--navy);overflow:hidden;}
-.pkg-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.65;}
-.pkg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,20,.75),rgba(3,7,20,.05) 65%);}
-.pkg-hero-content{position:absolute;left:0;right:0;bottom:0;max-width:1200px;margin:0 auto;padding:0 48px 32px;}
-.pkg-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.pkg-hero-title{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;color:#fff;line-height:1.05;margin-bottom:12px;}
-.pkg-hero-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.85);}
-.pkg-hero-meta .sep{width:1px;height:12px;background:rgba(255,255,255,.3);}
-.pkg-hero-price{color:var(--gold);font-weight:700;}
+/* Title + hero */
+.pkg-title-row{padding:26px 40px 0;display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;}
+.pkg-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-bottom:10px;}
+.pkg-hero-title{font-weight:300;font-size:56px;letter-spacing:-0.02em;line-height:1;margin:0;color:var(--navy);}
+.pkg-hero{padding:14px 40px 0;display:flex;gap:0;flex-wrap:wrap;}
+.pkg-hero-img{flex:1;min-width:320px;min-height:380px;background:var(--navy) center/cover no-repeat;position:relative;overflow:hidden;}
+.pkg-hero-facts{width:280px;flex-shrink:0;background:var(--navy);color:#fff;padding:24px 26px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;}
+.pkg-hero-fact-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.pkg-hero-fact-value{font-weight:300;font-size:24px;line-height:1.1;}
+.pkg-hero-fact-value.small{font-size:13px;font-weight:400;color:rgba(255,255,255,.78);line-height:1.5;}
+.pkg-hero-price-block{margin-top:auto;background:var(--gold);color:var(--navy);padding:14px 16px;}
+.pkg-hero-price-block .pkg-hero-fact-label{color:var(--navy);margin-bottom:2px;}
+.pkg-hero-price{font-weight:300;font-size:34px;line-height:1;}
+.pkg-hero-price-unit{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
 
-/* Variant bar */
-.pkg-variantbar{position:sticky;top:64px;z-index:290;background:#fff;border-bottom:1px solid var(--line);}
-.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+/* Variant / year bar */
+.pkg-variantbar{background:#fff;border-bottom:1px solid var(--line);}
+.pkg-variantbar-inner{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .pkg-variantbar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.pkg-variant-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-.pkg-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.pkg-pill{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 18px;border-radius:999px;border:1px solid #CBD0DA;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1),border-color .22s cubic-bezier(.22,.61,.36,1);}
+.pkg-variant-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.pkg-pills{display:flex;gap:4px;flex-wrap:wrap;}
+.pkg-pill{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
 .pkg-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .pkg-variant-blurb{font-size:13px;color:var(--muted);text-align:right;}
 
 /* Body columns */
-.pkg-body{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:48px;align-items:flex-start;}
-.pkg-main{flex:1;min-width:0;padding:36px 0;}
-.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:132px;padding:36px 0;}
+.pkg-body{max-width:1200px;margin:0 auto;padding:32px 40px 0;display:flex;gap:40px;align-items:flex-start;box-sizing:border-box;}
+.pkg-main{flex:1;min-width:0;}
+.pkg-sidebar{width:300px;flex-shrink:0;position:sticky;top:76px;}
 
-.pkg-section{margin-bottom:40px;}
-.pkg-section-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;margin-bottom:18px;border-bottom:1px solid var(--line);}
+.pkg-section-label{font-weight:300;font-size:34px;color:var(--navy);margin:0 0 4px;}
+.pkg-section-sub{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.pkg-section{margin-bottom:36px;}
 
 /* Day by day */
-.pkg-day{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--faint-line);}
-.pkg-day:first-child{border-top:1px solid var(--faint-line);}
-.pkg-day-num-col{text-align:center;}
-.pkg-day-num-lbl{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
-.pkg-day-num{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:var(--navy);line-height:1;}
-.pkg-day-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
-.pkg-day-overnight{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
-.pkg-day-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:10px;}
+.pkg-day{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);}
+.pkg-day-num-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.pkg-day-num{font-weight:300;font-size:40px;line-height:1;color:var(--gold);}
+.pkg-day-title{font-weight:600;font-size:19px;color:var(--navy);margin-bottom:2px;}
+.pkg-day-overnight{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.pkg-day-desc{font-size:14px;line-height:1.7;color:var(--body);margin-bottom:12px;}
 .pkg-pill-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-top:6px;}
-.pkg-tag{flex:0 0 auto;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:4px;white-space:nowrap;}
-.pkg-tag-inc{background:var(--green-bg);color:var(--green);}
-.pkg-tag-taste{background:var(--taste-bg);color:var(--gold-dark);}
+.pkg-tag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;white-space:nowrap;}
+.pkg-tag-inc{background:var(--navy);color:#fff;}
+.pkg-tag-taste{background:var(--taste-bg);color:var(--navy);}
 .pkg-tag-exp{background:var(--exp-bg);color:var(--navy);}
-.pkg-tag-shop{background:var(--shop-bg);color:var(--body);}
+.pkg-tag-shop{background:var(--shop-bg);color:var(--muted);}
 .pkg-tag-text{flex:1 1 220px;min-width:0;font-size:13px;color:var(--body);}
 
 /* Includes */
-.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
-.pkg-inc-item{font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
-.pkg-check{color:var(--green);font-weight:700;}
+.pkg-inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
+.pkg-inc-item{font-size:13.5px;color:var(--body);padding:9px 0 9px 22px;border-bottom:1px solid var(--line-light);position:relative;}
+.pkg-check{position:absolute;left:0;color:var(--gold);font-weight:700;font-size:12px;}
 
 /* Hotels */
-.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
-.pkg-hotel-card{background:#fff;padding:18px;}
-.pkg-hotel-city{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
-.pkg-hotel-nights{font-size:12px;color:var(--muted);margin-bottom:10px;}
-.pkg-hotel-cat{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--navy);margin-top:6px;}
-.pkg-hotel-name{font-size:13px;color:var(--body);}
+.pkg-hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.pkg-hotel-card{background:var(--surface);padding:18px 20px;}
+.pkg-hotel-city{font-weight:300;font-size:22px;color:var(--navy);line-height:1.1;}
+.pkg-hotel-nights{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.pkg-hotel-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--gold);}
+.pkg-hotel-name{font-size:12.5px;color:var(--body);margin-bottom:8px;line-height:1.4;}
 
 /* Rates */
-.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
-.pkg-seg-group{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
-.pkg-seg{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border:none;background:#fff;color:var(--body);cursor:pointer;transition:background .22s cubic-bezier(.22,.61,.36,1),color .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-seg.active{background:var(--navy);color:#fff;}
-.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
-.pkg-rate-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 16px;}
-.pkg-rate-table td{padding:11px 16px;font-size:13.5px;border-bottom:1px solid var(--line);}
-.pkg-rate-table td:last-child{text-align:right;font-weight:700;color:var(--navy);}
-.pkg-pax-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:10px;}
-.pkg-pax-season-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.pkg-rate-toggles{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.pkg-seg-group{display:inline-flex;gap:4px;}
+.pkg-seg{font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:0;border:2px solid var(--control-border);background:transparent;color:var(--navy);cursor:pointer;}
+.pkg-seg.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pkg-rate-table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.pkg-rate-table th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:12px 16px;}
+.pkg-rate-table td{padding:12px 16px;font-size:13.5px;border-bottom:1px solid var(--line-light);color:var(--ink);}
+.pkg-rate-table td:last-child{text-align:right;font-weight:300;font-size:22px;color:var(--navy);}
+.pkg-pax-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:8px;}
+.pkg-pax-season-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
 .pkg-pax-table{width:100%;border-collapse:collapse;}
-.pkg-pax-table th{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 12px;}
-.pkg-pax-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--line);}
-.pkg-pax-table td:not(:first-child){text-align:right;font-weight:700;color:var(--navy);}
-.pkg-rate-note{font-size:12px;color:var(--muted);font-style:italic;}
+.pkg-pax-table th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 12px;}
+.pkg-pax-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--line-light);}
+.pkg-pax-table td:not(:first-child){text-align:right;font-weight:600;color:var(--navy);}
+.pkg-rate-note{font-size:12px;color:var(--muted);}
 @media(max-width:960px){.pkg-pax-grid{grid-template-columns:1fr;}}
 
 /* Optional tours */
-.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
-.pkg-opt-item{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--faint-line);}
-.pkg-opt-price{font-weight:700;color:var(--ink);white-space:nowrap;}
+.pkg-opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pkg-opt-item{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;padding:14px 18px;background:var(--surface);}
+.pkg-opt-name{color:var(--body);}
+.pkg-opt-price{font-weight:300;font-size:22px;color:var(--navy);white-space:nowrap;}
+.pkg-opt-price .pkg-opt-pp{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 
 /* Good to know */
-.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
-.pkg-gtk-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
-.pkg-gtk-body{font-size:13px;color:var(--body);line-height:1.6;}
+.pkg-gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pkg-gtk-card{background:var(--navy);color:#fff;padding:18px 20px;}
+.pkg-gtk-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.pkg-gtk-body{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;}
 
 /* T&C accordion */
-.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--faint-line);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;}
-.pkg-tc-body{display:none;padding:16px 4px 4px;}
+.pkg-tc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:none;border-radius:0;padding:14px 18px;font-family:'Segoe UI','Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);cursor:pointer;}
+.pkg-tc-btn:hover{background:var(--surface-hover);}
+.pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
-.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:6px 0;list-style:disc;margin-left:18px;}
+.pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
+.pkg-tc-body li::before{content:'\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
-.pkg-sb-card{background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px;}
-.pkg-sb-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
-.pkg-map-box{position:relative;height:180px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:var(--faint-line);cursor:zoom-in;}
-.pkg-map-box #pkgMapSmall{pointer-events:none;}
-.pkg-map-enlarge{position:absolute;right:8px;bottom:8px;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:4px;cursor:zoom-in;border:none;font-family:'Montserrat',sans-serif;pointer-events:none;}
-.pkg-fact-row{padding:9px 0;border-bottom:1px solid var(--line);}
-.pkg-fact-row:last-child{border-bottom:none;}
-.pkg-fact-title{font-size:13px;font-weight:600;color:var(--ink);}
+.pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
+.pkg-sb-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.pkg-map-box{position:relative;height:180px;overflow:hidden;margin-bottom:14px;background:var(--surface);cursor:zoom-in;}
+.pkg-map-box #pkgMapSmall{pointer-events:none;height:100%;}
+.pkg-map-enlarge{position:absolute;right:0;bottom:0;z-index:10;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:0;cursor:zoom-in;border:none;font-family:'Segoe UI','Open Sans',sans-serif;pointer-events:none;}
+.pkg-fact-row{padding:9px 0;border-top:1px solid var(--line);}
+.pkg-fact-title{font-size:13px;font-weight:600;color:var(--navy);}
 .pkg-fact-body{font-size:12px;color:var(--muted);margin-top:2px;}
-.pkg-sb-quote{background:var(--navy);}
-.pkg-sb-quote .pkg-sb-title{color:var(--gold);}
-.pkg-sb-quote-body{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6;}
-.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:6px;text-decoration:none;transition:background .22s cubic-bezier(.22,.61,.36,1);}
-.pkg-sb-quote-btn:hover{background:var(--gold-hover);}
-.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 0;text-align:center;}
+.pkg-sb-quote{background:var(--gold);color:var(--navy);}
+.pkg-sb-quote .pkg-sb-title{color:var(--navy);}
+.pkg-sb-quote-body{font-size:13px;color:rgba(11,23,51,.85);margin-bottom:14px;line-height:1.6;}
+.pkg-sb-quote-btn{display:block;text-align:center;width:100%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:12px 0;border-radius:0;text-decoration:none;}
+.pkg-sb-footer{background:var(--navy);color:rgba(255,255,255,.55);font-size:12px;padding:20px 40px;text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.pkg-sb-footer a{color:var(--gold);text-decoration:none;}
 
 /* Map markers */
 .pkg-badge-icon{background:transparent;border:none;}
-.pkg-badge{background:var(--navy);color:#fff;border-radius:50%;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;box-shadow:0 0 0 2px var(--gold);}
+.pkg-badge{background:var(--gold);color:var(--navy);text-align:center;font-weight:700;box-sizing:border-box;}
 .pkg-quiet-icon{background:transparent;border:none;}
-.pkg-quiet-dot{width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box;}
-.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
+.pkg-quiet-dot{background:var(--navy);box-sizing:border-box;}
+.leaflet-tooltip.pkg-map-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Segoe UI','Open Sans',sans-serif;font-size:9px;font-weight:600;color:var(--navy);white-space:nowrap;padding:0!important;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
 .leaflet-tooltip.pkg-map-tip::before{display:none!important;}
 
 /* Map modal */
-.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.65);z-index:1000;align-items:center;justify-content:center;}
+.pkg-map-modal{display:none;position:fixed;inset:0;background:rgba(11,23,51,.85);z-index:1000;align-items:center;justify-content:center;padding:40px;}
 .pkg-map-modal.open{display:flex;}
-.pkg-map-modal-panel{background:#fff;border-radius:10px;box-shadow:0 24px 64px rgba(11,23,51,.35);width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
-.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);}
-.pkg-map-modal-header h3{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink);}
-.pkg-map-modal-close{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;}
+.pkg-map-modal-panel{background:#fff;border-radius:0;width:min(960px,100%);height:min(640px,100%);display:flex;flex-direction:column;overflow:hidden;}
+.pkg-map-modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--navy);}
+.pkg-map-modal-header h3{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
+.pkg-map-modal-close{background:none;border:none;font-size:16px;color:var(--gold);cursor:pointer;line-height:1;padding:6px;}
 .pkg-map-modal-canvas{flex:1;}
 
 @media(max-width:960px){
@@ -165,7 +177,6 @@ a{color:inherit;}
   .no-print{display:none!important;}
   body{padding-top:0;}
   .pkg-body{display:block;padding:0;max-width:none;}
-  .pkg-main{padding:16px 0;}
   .pkg-hero{height:auto;}
 }
 </style>
@@ -181,24 +192,34 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="../../"><img class="pkg-logo" src="../../logo.png" alt="Europe Incoming"></a>
-    <a class="pkg-back-link" href="./">← All packages</a>
+    <a class="pkg-back-link" href="./"><span class="pkg-back-circle">←</span> All packages</a>
   </div>
   <div class="pkg-topbar-right">
-    <div class="pkg-trade">Trade enquiries / <a href="mailto:fitsales@europeincoming.com">fitsales@europeincoming.com</a></div>
-    <button class="pkg-dl-btn" id="pkgDownloadBtn">↓ DOWNLOAD PDF</button>
+    <div class="pkg-trade"><a href="mailto:fitsales@europeincoming.com">Trade enquiries</a></div>
+    <button class="pkg-dl-btn" id="pkgDownloadBtn">Download PDF</button>
   </div>
 </div></div>
 
+<div class="pkg-title-row">
+  <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
+  <div class="pkg-eyebrow" id="pkgEyebrow"></div>
+</div>
+
 <div class="pkg-hero">
   <div class="pkg-hero-img" id="pkgHeroImg"></div>
-  <div class="pkg-hero-overlay"></div>
-  <div class="pkg-hero-content">
-    <div class="pkg-eyebrow" id="pkgEyebrow"></div>
-    <h1 class="pkg-hero-title" id="pkgHeroTitle"></h1>
-    <div class="pkg-hero-meta">
-      <span id="pkgHeroNights"></span><span class="sep"></span>
-      <span id="pkgHeroRoute"></span><span class="sep"></span>
-      <span class="pkg-hero-price" id="pkgHeroPrice"></span>
+  <div class="pkg-hero-facts">
+    <div>
+      <div class="pkg-hero-fact-label">Duration</div>
+      <div class="pkg-hero-fact-value" id="pkgHeroNights"></div>
+    </div>
+    <div>
+      <div class="pkg-hero-fact-label">Route</div>
+      <div class="pkg-hero-fact-value small" id="pkgHeroRoute"></div>
+    </div>
+    <div class="pkg-hero-price-block">
+      <div class="pkg-hero-fact-label">From</div>
+      <div class="pkg-hero-price" id="pkgHeroPrice"></div>
+      <div class="pkg-hero-price-unit">per person</div>
     </div>
   </div>
 </div>
@@ -209,41 +230,50 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
     <div class="pkg-pills" id="pkgVariantPills"></div>
   </div>
   <div class="pkg-variant-blurb" id="pkgVariantBlurb"></div>
+</div>
+<div class="pkg-variantbar-inner">
+  <div class="pkg-variantbar-left">
+    <div class="pkg-variant-label">Rate year</div>
+    <div class="pkg-pills" id="pkgYearPills"></div>
+  </div>
 </div></div>
 
 <div class="pkg-body">
   <div class="pkg-main">
     <div class="pkg-section">
-      <div class="pkg-section-label" id="pkgDayHeading"></div>
+      <div class="pkg-section-label">Day by day</div>
+      <div class="pkg-section-sub" id="pkgDaySub"></div>
       <div id="pkgDays"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label" id="pkgIncludesHeading"></div>
+      <div class="pkg-section-label">Package includes</div>
+      <div class="pkg-section-sub" id="pkgIncludesSub"></div>
       <div class="pkg-inc-grid" id="pkgIncludes"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Sample hotels</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Sample hotels</div>
       <div class="pkg-hotels-grid" id="pkgHotels"></div>
     </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Package rates</div>
+      <div class="pkg-section-sub" id="pkgRateSub"></div>
       <div class="pkg-rate-toggles no-print" id="pkgRateToggles">
         <div class="pkg-seg-group" id="pkgCatToggle"></div>
         <div class="pkg-seg-group" id="pkgSeasonToggle"></div>
       </div>
       <table class="pkg-rate-table" id="pkgRateTable">
-        <thead><tr><th>Category</th><th style="text-align:right">Rate per person</th></tr></thead>
+        <thead><tr><th>Occupancy</th><th style="text-align:right" id="pkgRateColHeading"></th></tr></thead>
         <tbody id="pkgRatesBody"></tbody>
       </table>
       <div class="pkg-pax-grid" id="pkgPaxRates"></div>
-      <div class="pkg-rate-note">All rates net, per person, in €. Valid 1 Apr 2026 – 31 Mar 2027.</div>
+      <div class="pkg-rate-note" id="pkgRateNote"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Optional tours &amp; extras</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Optional tours &amp; extras</div>
       <div class="pkg-opt-grid" id="pkgOptionals"></div>
     </div>
     <div class="pkg-section">
-      <div class="pkg-section-label">Good to know</div>
+      <div class="pkg-section-label" style="margin-bottom:14px">Good to know</div>
       <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
     </div>
     <div class="pkg-section pkg-tc-wrap no-print">
@@ -287,7 +317,8 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <script>
 window.PRODUCT = {"id": "10.5", "title": "Kiruna Winter Adventure.", "styles": {"trains": {"name": "Trains & Taxi Transfers", "blurb": "Private transfers bookend a four-night Arctic base in Kiruna, packed with winter excursions.", "nights": "4 nights \u00b7 5 days", "route": "Kiruna (4N)", "aboutNights": "4 nights across 1 stay", "transport": {"1": "Private transfer from Kiruna Airport to your hotel on arrival.", "2": "Dog sled adventure, 2-3 hours, including transfers to and from the kennel.", "3": "Guided tour to the world-famous ICEHOTEL in Jukkasj\u00e4rvi, 3 hours, including transfers.", "4": "Snowmobile safari into the surrounding wilderness, 6 hours, including transfers.", "5": "Private transfer from your hotel to Kiruna Airport for departure."}, "inclusions": ["Private transfer from Kiruna Airport to hotel on arrival", "4 nights accommodation with breakfast", "Dog sled adventure, 2-3 hours, including transfers", "Northern Lights chase by minibus or snowmobile sleigh, 2 pax per snowmobile", "Tour to the iconic ICEHOTEL & Jukkasj\u00e4rvi, 3 hours", "Snowmobile safari, 6 hours", "Private transfer from hotel to Kiruna Airport on departure"]}}, "days": [{"num": 1, "title": "Arrive Kiruna", "overnight": "Overnight: Kiruna", "desc": "Welcome to Swedish Lapland! Arrive at Kiruna Airport and enjoy a comfortable transfer to your hotel. Settle in and take your first breath of the crisp Arctic air as you prepare for the snowy adventures ahead. Overnight in Kiruna.", "experience": "Kiruna sits in the heart of S\u00e1pmi, home to the indigenous Sami people and their reindeer-herding traditions."}, {"num": 2, "title": "Dog Sledding in the Wilderness", "overnight": "Overnight: Kiruna", "desc": "Begin your day with a serene dog sled ride through the snowy wilderness near Jukkasj\u00e4rvi. Seated on reindeer skins, glide behind a team of huskies along frozen trails, guided by an experienced musher. After the ride, enjoy Swedish fika by the fire in a traditional tipi. In the evening, gear up for an exhilarating snowmobile ride in pursuit of the Northern Lights. After a safety briefing at the Laxforsen base, set off in pairs across remote Arctic terrain far from city lights. Stop to warm up by an open fire with sandwiches and hot drinks as you scan the skies for a glimpse of the aurora. A thrilling night under Lapland\u2019s stars. Overnight in Kiruna.", "taste": "Warm up afterwards with reindeer stew (renskav) and cloudberries at Camp Ripan's restaurant, known locally for a Sami-inspired kitchen built on local game, Arctic char and forest berries."}, {"num": 3, "title": "ICEHOTEL & Jukkasj\u00e4rvi", "overnight": "Overnight: Kiruna", "desc": "This morning, journey to the iconic ICEHOTEL and the historic village of Jukkasj\u00e4rvi. Explore the stunning ice art exhibition at your own pace, then visit Sweden\u2019s northernmost church, dating back to 1607. Meet reindeer at the Nutti Sami Siida and learn about Sami culture and Kiruna\u2019s past from your local guide. A perfect mix of art, heritage, and Arctic tradition. Overnight in Kiruna.", "experience": "See resident artists sculpting that season's ice suites, a new design unveiled each winter.", "shopping": "Jukkasj\u00e4rvi's craft shop sells Sami duodji \u2014 hand-carved reindeer-horn knives, woven bands and silverwork made by S\u00e1pmi artisans."}, {"num": 4, "title": "Snowmobile Safari", "overnight": "Overnight: Kiruna", "desc": "Set out on a 6-hour snowmobile safari through the forests and mountains surrounding Kiruna. With your Sami guide, travel along scenic trails near the Kalix River in search of moose, reindeer, grouse, and other Arctic wildlife. Spot animal tracks in the snow and hear stories of traditional reindeer herding and life in the S\u00e1mi north. Enjoy a warming lunch of local Sami dishes before returning to town as the polar twilight settles in. Overnight in Kiruna.", "taste": "A trailside stop for coffee and cinnamon buns, or fika, the Swedish tradition of a warming coffee break."}, {"num": 5, "title": "Depart Kiruna", "overnight": "Departure day", "desc": "After breakfast, check out and transfer to Kiruna Airport. Your Arctic journey through Swedish Lapland comes to an end\u2014taking with you the silence of snowy forests, stories of Sami life, and the glow of the Northern Lights."}], "hotels": [{"city": "Kiruna", "nights": "4 Nights", "h3": "Camp Ripan", "h4": "Scandic Kiruna"}], "about": [{"title": "Best season", "body": "December to March, when polar darkness and clear Arctic nights give the best chance of seeing the Northern Lights."}, {"title": "Weather", "body": "Deep Arctic winter, typically -20\u00b0C to -5\u00b0C, with short daylight hours and frequent snow \u2014 warm thermal layers are essential."}, {"title": "Currency & docs", "body": "Sweden uses the Swedish Krona (SEK), though this package is priced in Euro; Sweden is part of the Schengen area, so standard Schengen entry rules apply."}], "goodToKnow": [{"title": "Northern Lights", "body": "Sightings depend on clear skies and solar activity and can never be guaranteed \u2014 the chase excursion maximises the chance by heading away from town lights."}, {"title": "What to pack", "body": "Thermal base layers, warm socks and sturdy winter boots are essential; outer thermal suits and boots for excursions are typically provided locally."}, {"title": "Combining with Stockholm", "body": "Kiruna is most often paired with a pre- or post-stay in Stockholm, reached by direct flight or the overnight Arctic Circle sleeper train.", "styles": ["trains"]}, {"title": "Daylight hours", "body": "In midwinter, Kiruna sees only a few hours of blue twilight each day \u2014 excursions are timed around this short window."}, {"title": "Money", "body": "Sweden is largely cashless; cards are accepted almost everywhere, including for small purchases."}], "map": {"points": [{"lat": 67.8558, "lng": 20.2253, "label": "Kiruna", "nights": 4}], "closeLoop": true}, "region": "scandinavia-iceland", "eyebrow": "Europe Incoming \u00b7 FIT Packages \u00b7 2026\u201327", "pricesFile": "prices/10.5-2026.json", "heroImage": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1600&q=80", "terms": ["All rates are net and per person for the package.", "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.", "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.", "Rates are not applicable during trade fair periods, major European public holidays, and other major events.", "City taxes are not included in the price.", "If certain attractions are closed during specific periods, alternative options will be arranged.", "All bookings must be confirmed at least 60 working days prior to arrival.", "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.", "Vouchers will be issued after receipt of full payment."]};
-window.PRICES = {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 1210, "twin": 950, "child": 665}}, "4": {"winter": {"single": 1465, "twin": 1150, "child": 805}}}}, "optionalTours": []};
+window.PRICES_BY_YEAR = {"2025-26": {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 1210, "twin": 950, "child": 665}}, "4": {"winter": {"single": 1465, "twin": 1150, "child": 805}}}}, "optionalTours": []}, "2026-27": {"validFrom": "1 Nov 2026", "validTo": "30 Nov 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 1813, "twin": 1351, "child": 580}, "summer": {"single": 1896, "twin": 1413, "child": 607}}, "4": {"winter": {"single": 2033, "twin": 1461, "child": 623}, "summer": {"single": 2126, "twin": 1528, "child": 652}}}}, "optionalTours": []}};
+window.DEFAULT_RATE_YEAR = "2025-26";
 </script>
 <script src="../../assets/package-page.js"></script>
 </body></html>

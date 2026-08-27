@@ -1,0 +1,101 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1133,
+          "twin": 790,
+          "child": 335
+        },
+        "summer": {
+          "single": 1184,
+          "twin": 826,
+          "child": 350
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1496,
+          "twin": 972,
+          "child": 406
+        },
+        "summer": {
+          "single": 1564,
+          "twin": 1016,
+          "child": 424
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1316,
+            "4star": 1497
+          },
+          {
+            "pax": 10,
+            "3star": 1132,
+            "4star": 1314
+          },
+          {
+            "pax": 12,
+            "3star": 1010,
+            "4star": 1192
+          },
+          {
+            "pax": 14,
+            "3star": 923,
+            "4star": 1104
+          },
+          {
+            "pax": 16,
+            "3star": 858,
+            "4star": 1039
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1376,
+            "4star": 1565
+          },
+          {
+            "pax": 10,
+            "3star": 1184,
+            "4star": 1373
+          },
+          {
+            "pax": 12,
+            "3star": 1056,
+            "4star": 1246
+          },
+          {
+            "pax": 14,
+            "3star": 965,
+            "4star": 1154
+          },
+          {
+            "pax": 16,
+            "3star": 897,
+            "4star": 1086
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Rome - Colosseum admission ticket",
+      "price": 36
+    },
+    {
+      "name": "Rome - Vatican Museum admission ticket",
+      "price": 46
+    }
+  ]
+}

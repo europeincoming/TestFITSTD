@@ -1,0 +1,39 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 528,
+          "twin": 528,
+          "child": 238
+        },
+        "summer": {
+          "single": 552,
+          "twin": 552,
+          "child": 248
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1848,
+          "twin": 1188,
+          "child": 495
+        },
+        "summer": {
+          "single": 1932,
+          "twin": 1242,
+          "child": 518
+        }
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Snowmobile Safari in the Nature - Rovaniemi",
+      "price": 130
+    }
+  ]
+}

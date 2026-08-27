@@ -1,0 +1,99 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "£",
+  "variants": {
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 533,
+            "4star": 589
+          },
+          {
+            "pax": 10,
+            "3star": 482,
+            "4star": 539
+          },
+          {
+            "pax": 12,
+            "3star": 448,
+            "4star": 505
+          },
+          {
+            "pax": 14,
+            "3star": 424,
+            "4star": 481
+          },
+          {
+            "pax": 16,
+            "3star": 406,
+            "4star": 463
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 557,
+            "4star": 616
+          },
+          {
+            "pax": 10,
+            "3star": 504,
+            "4star": 563
+          },
+          {
+            "pax": 12,
+            "3star": 469,
+            "4star": 528
+          },
+          {
+            "pax": 14,
+            "3star": 444,
+            "4star": 503
+          },
+          {
+            "pax": 16,
+            "3star": 425,
+            "4star": 484
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "London Eye standard ticket",
+      "price": 31
+    },
+    {
+      "name": "Madam Tussauds ticket",
+      "price": 36
+    },
+    {
+      "name": "Tower of London ticket",
+      "price": 35
+    },
+    {
+      "name": "London - Stonehenge and Bath Tour, 10 hrs regular coach including all entrance tickets",
+      "price": 119
+    },
+    {
+      "name": "Manchester - Windermere & the Lake District, 11 hours coach tour",
+      "price": 72
+    },
+    {
+      "name": "Manchester - Derbyshire & the Peak District, 9 hours coach tour",
+      "price": 67
+    },
+    {
+      "name": "Edinburgh 1 day hop on hop off pass",
+      "price": 21
+    },
+    {
+      "name": "Edinburgh - Loch Lomond, Stirling Castle, 10 hrs coach regular",
+      "price": 64
+    }
+  ]
+}

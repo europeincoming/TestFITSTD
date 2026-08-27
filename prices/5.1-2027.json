@@ -1,0 +1,159 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1876,
+          "twin": 1131,
+          "child": 464
+        },
+        "summer": {
+          "single": 1962,
+          "twin": 1182,
+          "child": 485
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2294,
+          "twin": 1340,
+          "child": 546
+        },
+        "summer": {
+          "single": 2399,
+          "twin": 1401,
+          "child": 570
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2094,
+            "4star": 2303
+          },
+          {
+            "pax": 10,
+            "3star": 1845,
+            "4star": 2054
+          },
+          {
+            "pax": 12,
+            "3star": 1678,
+            "4star": 1887
+          },
+          {
+            "pax": 14,
+            "3star": 1560,
+            "4star": 1769
+          },
+          {
+            "pax": 16,
+            "3star": 1471,
+            "4star": 1680
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2189,
+            "4star": 2407
+          },
+          {
+            "pax": 10,
+            "3star": 1928,
+            "4star": 2147
+          },
+          {
+            "pax": 12,
+            "3star": 1755,
+            "4star": 1973
+          },
+          {
+            "pax": 14,
+            "3star": 1631,
+            "4star": 1849
+          },
+          {
+            "pax": 16,
+            "3star": 1537,
+            "4star": 1756
+          }
+        ]
+      }
+    },
+    "selfdrive": {
+      "3": {
+        "winter": {
+          "single": 2086,
+          "twin": 1340,
+          "child": 558
+        },
+        "summer": {
+          "single": 2181,
+          "twin": 1401,
+          "child": 584
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2504,
+          "twin": 1549,
+          "child": 640
+        },
+        "summer": {
+          "single": 2618,
+          "twin": 1620,
+          "child": 669
+        }
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 191
+    },
+    {
+      "name": "Louvre Museum (Audioguide € 5 pp)",
+      "price": 26
+    },
+    {
+      "name": "Paris Montmartre food tour, 4 hrs walking",
+      "price": 153
+    },
+    {
+      "name": "Wine tasting at a local wineyard in Châteauneuf-du-Pape",
+      "price": 31
+    },
+    {
+      "name": "Wine tasting at a local wineyard in Luberon",
+      "price": 31
+    },
+    {
+      "name": "Boat tour from Marseilles, 4 hrs Côte Bleue Marine Park",
+      "price": 77
+    },
+    {
+      "name": "Half day Saint Remy -Les Baux de Provence with Pont du Gard, group 5 hrs",
+      "price": 88
+    },
+    {
+      "name": "Half day Châteauneuf-du-Pape wineries, AM/PM group, 4 hrs",
+      "price": 93
+    },
+    {
+      "name": "Wine tour to Côtes de Provence Sainte-Victoire vineyards, group 3.5 hrs",
+      "price": 98
+    },
+    {
+      "name": "Cassis & Calanques tour, group 4 hrs",
+      "price": 77
+    }
+  ]
+}

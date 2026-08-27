@@ -1,0 +1,131 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 1294,
+          "twin": 801,
+          "child": 331
+        },
+        "summer": {
+          "single": 1353,
+          "twin": 837,
+          "child": 346
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1464,
+          "twin": 886,
+          "child": 364
+        },
+        "summer": {
+          "single": 1530,
+          "twin": 926,
+          "child": 381
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 1282,
+            "4star": 1367
+          },
+          {
+            "pax": 10,
+            "3star": 1207,
+            "4star": 1292
+          },
+          {
+            "pax": 12,
+            "3star": 1157,
+            "4star": 1242
+          },
+          {
+            "pax": 14,
+            "3star": 1121,
+            "4star": 1206
+          },
+          {
+            "pax": 16,
+            "3star": 1094,
+            "4star": 1179
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 1340,
+            "4star": 1429
+          },
+          {
+            "pax": 10,
+            "3star": 1261,
+            "4star": 1350
+          },
+          {
+            "pax": 12,
+            "3star": 1209,
+            "4star": 1298
+          },
+          {
+            "pax": 14,
+            "3star": 1172,
+            "4star": 1261
+          },
+          {
+            "pax": 16,
+            "3star": 1144,
+            "4star": 1233
+          }
+        ]
+      }
+    },
+    "selfdrive": {
+      "3": {
+        "winter": {
+          "single": 1394,
+          "twin": 901,
+          "child": 376
+        },
+        "summer": {
+          "single": 1457,
+          "twin": 942,
+          "child": 393
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 1564,
+          "twin": 986,
+          "child": 409
+        },
+        "summer": {
+          "single": 1635,
+          "twin": 1031,
+          "child": 427
+        }
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Dublin: Guinness Storehouse, standard ticket with a pint, 90 mins",
+      "price": 26
+    },
+    {
+      "name": "Limerick: Ring of Kerry Tour from Limerick, 11 hrs regular coach",
+      "price": 74
+    },
+    {
+      "name": "Limerick: Dingle Tour from Limerick, 11 hrs regular coach",
+      "price": 67
+    }
+  ]
+}

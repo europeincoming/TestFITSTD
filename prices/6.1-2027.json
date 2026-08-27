@@ -1,0 +1,101 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 2286,
+          "twin": 1442,
+          "child": 598
+        },
+        "summer": {
+          "single": 2390,
+          "twin": 1507,
+          "child": 625
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2558,
+          "twin": 1578,
+          "child": 651
+        },
+        "summer": {
+          "single": 2674,
+          "twin": 1649,
+          "child": 681
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2789,
+            "4star": 2925
+          },
+          {
+            "pax": 10,
+            "3star": 2447,
+            "4star": 2583
+          },
+          {
+            "pax": 12,
+            "3star": 2220,
+            "4star": 2356
+          },
+          {
+            "pax": 14,
+            "3star": 2057,
+            "4star": 2193
+          },
+          {
+            "pax": 16,
+            "3star": 1935,
+            "4star": 2071
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2915,
+            "4star": 3057
+          },
+          {
+            "pax": 10,
+            "3star": 2559,
+            "4star": 2701
+          },
+          {
+            "pax": 12,
+            "3star": 2321,
+            "4star": 2463
+          },
+          {
+            "pax": 14,
+            "3star": 2151,
+            "4star": 2293
+          },
+          {
+            "pax": 16,
+            "3star": 2023,
+            "4star": 2165
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Seville Flamenco Show Ticket without dinner",
+      "price": 52
+    },
+    {
+      "name": "Sagrada Familia ticket",
+      "price": 54
+    }
+  ]
+}

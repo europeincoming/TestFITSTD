@@ -2,76 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>France | Europe Incoming</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"><style>
+<title>France | Europe Incoming FIT Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1733;--navy-tile:#132347;--gold:#F2B91D;--ink:#1A1D2E;--muted:#6B7080;--control-border:#D8DAE1;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#FFFFFF;color:#1A1D2E;line-height:1.6;padding-top:72px;}
-.top-nav{position:fixed;top:0;left:0;right:0;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:1000;padding:12px 0;}
-.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;}
-.logo{height:44px;width:auto;}
-.logo:hover{opacity:0.8;}
-.search-wrap{flex:1;max-width:420px;position:relative;}
-.search-box{width:100%;padding:9px 18px;font-size:0.92em;border:1px solid #e0e0e0;border-radius:24px;background:#fafafa;transition:all 0.2s;font-family:'Inter',sans-serif;}
-.search-box::placeholder{color:#aaa;}
-.search-box:focus{outline:none;border-color:#0B1733;background:white;box-shadow:0 2px 8px rgba(11,23,51,0.12);}
-.header-right{display:flex;align-items:center;gap:24px;margin-left:auto;}
-.site-title-main{font-size:1.0em;font-weight:600;color:#212121;}
-.site-title-sub{font-size:0.82em;color:#757575;}
-.contact-info{text-align:right;padding-left:24px;border-left:1px solid #e0e0e0;}
-.contact-prompt{font-size:0.78em;color:#757575;margin-bottom:2px;}
-.contact-email{font-size:0.85em;color:#0B1733;text-decoration:none;font-weight:500;}
-.contact-email:hover{text-decoration:underline;}
-.breadcrumb{max-width:1200px;margin:0 auto;padding:20px 48px 0;font-size:0.88em;color:#9AA1AE;}
-.breadcrumb a{color:#0B1733;text-decoration:none;}
-.breadcrumb a:hover{text-decoration:underline;}
-.container{max-width:1200px;margin:0 auto;padding:28px 48px 48px;}
-h1{font-family:'Playfair Display',serif;font-size:2.0em;font-weight:700;color:#1A1D2E;margin-bottom:6px;}
-.page-subhead{font-size:14px;color:#6B7280;margin:0 0 28px;}
-footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:0.88em;border-top:1px solid #e8e8e8;}
-@media(max-width:768px){body{padding-top:140px;}.nav-container{flex-wrap:wrap;gap:12px;}.header-right{width:100%;justify-content:center;}.search-wrap{max-width:100%;}.contact-info{border-left:none;border-top:1px solid #e0e0e0;padding-left:0;padding-top:12px;text-align:center;}}
-
-.brochures{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-.brochure-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07);border:1px solid #ebebeb;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;text-decoration:none;color:inherit;}
-.brochure-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);border-color:#d0d0d0;}
-.card-hero{position:relative;height:170px;overflow:hidden;background:#0B1733;}
-.card-hero img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.3s;}
-.brochure-card:hover .card-hero img{opacity:0.85;}
-.card-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.0) 60%);}
-.card-season{position:absolute;top:12px;right:12px;font-size:0.68em;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
-.season-winter{background:rgba(2,119,189,0.85);color:#fff;}
-.season-summer{background:rgba(230,81,0,0.85);color:#fff;}
-.season-allyear{background:rgba(46,125,50,0.85);color:#fff;}
-.card-tour-type{position:absolute;top:12px;left:12px;font-size:0.68em;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(26,58,92,0.85);color:#fff;}
-.card-body{padding:18px 20px 16px;flex:1;display:flex;flex-direction:column;gap:6px;}
-.card-title{font-family:'Playfair Display',serif;font-size:1.08em;font-weight:700;color:#1A1D2E;line-height:1.3;}
-.card-duration{font-size:0.78em;color:#888;font-weight:500;letter-spacing:0.3px;}
-.card-route{font-size:0.80em;color:#555;margin-top:2px;}
-.card-desc{font-size:0.80em;color:#666;font-style:italic;line-height:1.5;margin-top:4px;}
-.card-price{font-size:0.92em;font-weight:700;color:#0B1733;margin-top:auto;padding-top:8px;}
-.card-actions{display:flex;gap:8px;padding:0 20px 16px;margin-top:4px;}
-.btn-view{flex:1;background:#0B1733;color:#fff;border:none;padding:9px 0;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-align:center;text-decoration:none;transition:background 0.2s;}
-.btn-view:hover{background:#0d2238;}
-.btn-pdf{background:transparent;color:#0B1733;border:1.5px solid #0B1733;padding:9px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82em;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
-.btn-pdf:hover{background:#f0f4f8;}
-.card-valid{font-size:0.73em;padding:0 20px 14px;color:#888;}
-.card-valid.expired{color:#e65100;}
-.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;color:#0B1733;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
+body{font-family:'Segoe UI','Open Sans',sans-serif;color:var(--ink);font-size:15px;line-height:1.5;background:#fff;padding-top:0;}
+a{color:inherit;}
+.metro-header{display:flex;align-items:center;gap:28px;padding:26px 40px 0;}
+.metro-logo{height:32px;width:auto;display:block;}
+.metro-search-wrap{flex:1;max-width:360px;}
+.metro-search{width:100%;padding:9px 14px;font-size:13px;font-family:'Segoe UI','Open Sans',sans-serif;border:2px solid var(--control-border);border-radius:0;background:#fff;box-sizing:border-box;outline:none;color:var(--ink);}
+.metro-search::placeholder{color:var(--muted);}
+.metro-trade{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;white-space:nowrap;}
+.metro-trade:hover{color:var(--gold);}
+.metro-title-row{padding:36px 40px 22px;display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;}
+.metro-title-row h1{font-weight:300;font-size:64px;letter-spacing:-0.02em;line-height:1;color:var(--navy);margin:0;}
+.metro-eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-bottom:12px;}
+.metro-intro{padding:0 40px 30px;max-width:640px;font-weight:300;font-size:19px;color:var(--muted);}
+.metro-grid-wrap{padding:0 40px 80px;}
+.metro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;}
+.metro-empty{padding:80px 0;color:var(--muted);font-weight:300;font-size:22px;}
+.metro-tile{display:flex;align-items:stretch;text-decoration:none;color:inherit;min-height:240px;transition:opacity 180ms linear;}
+.metro-tile:hover{opacity:.86;}
+.metro-tile.navy{background:var(--navy-tile);}
+.metro-tile.gold{background:var(--gold);}
+.metro-tile-body{flex:1;min-width:0;padding:22px 24px;display:flex;flex-direction:column;gap:8px;}
+.metro-tile-meta,.metro-tile-route,.metro-tile-from,.metro-tile-note,.metro-tile-validity{font-size:11px;font-weight:700;}
+.metro-tile-meta,.metro-tile-route{letter-spacing:.14em;text-transform:uppercase;}
+.metro-tile-route{letter-spacing:.06em;}
+.metro-tile-from,.metro-tile-validity{letter-spacing:.12em;text-transform:uppercase;}
+.metro-tile-validity{font-size:10px;}
+.metro-tile-note{font-weight:400;}
+.metro-tile.navy .metro-tile-meta,.metro-tile.navy .metro-tile-route,.metro-tile.navy .metro-tile-from,.metro-tile.navy .metro-tile-note,.metro-tile.navy .metro-tile-validity{color:var(--gold);}
+.metro-tile.gold .metro-tile-meta,.metro-tile.gold .metro-tile-route,.metro-tile.gold .metro-tile-from,.metro-tile.gold .metro-tile-note,.metro-tile.gold .metro-tile-validity{color:rgba(11,23,51,.65);}
+.metro-tile-title{font-weight:300;font-size:30px;line-height:1.1;}
+.metro-tile.navy .metro-tile-title{color:#fff;}
+.metro-tile.gold .metro-tile-title{color:var(--navy);}
+.metro-tile-blurb{font-size:13px;line-height:1.55;margin:0;}
+.metro-tile.navy .metro-tile-blurb{color:rgba(255,255,255,.72);}
+.metro-tile.gold .metro-tile-blurb{color:rgba(11,23,51,.8);}
+.metro-tile-price-row{margin-top:auto;padding-top:10px;display:flex;align-items:baseline;gap:8px;}
+.metro-tile-amount{font-weight:300;font-size:34px;line-height:1;}
+.metro-tile.navy .metro-tile-amount{color:#fff;}
+.metro-tile.gold .metro-tile-amount{color:var(--navy);}
+.metro-tile-map-col{width:190px;flex-shrink:0;position:relative;background:#F5F5F3;}
+.metro-tile-map{position:absolute;inset:0;}
+.leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-family:'Segoe UI','Open Sans',sans-serif;font-size:9px;font-weight:600;color:var(--navy);white-space:nowrap;padding:0;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;}
 .leaflet-tooltip.city-tip::before{display:none!important;}
-@media(max-width:900px){.brochures{grid-template-columns:1fr;}}
-
-.dest-card{display:flex;align-items:stretch;text-decoration:none;color:inherit;border-radius:10px;overflow:hidden;background:#FFFFFF;border:1px solid #EBEBEB;box-shadow:0 1px 4px rgba(11,23,51,0.07);transition:all 300ms cubic-bezier(0.4,0,0.2,1);}
-.dest-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(11,23,51,0.12);border-color:#D0D0D0;}
-.dest-card-body{flex:1;min-width:0;padding:20px 22px;display:flex;flex-direction:column;gap:8px;}
-.dest-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1A1D2E;line-height:1.3;}
-.dest-pills{display:flex;gap:6px;flex-wrap:wrap;}
-.dest-pill{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#4B5563;background:#F4F5F7;border-radius:20px;padding:4px 10px;white-space:nowrap;flex-shrink:0;}
-.dest-validity{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:#0B1733;background:#EEF1F7;border-radius:20px;padding:4px 10px;width:fit-content;white-space:nowrap;flex-shrink:0;}
-.dest-blurb{font-size:12.5px;color:#666;font-style:italic;line-height:1.5;margin:2px 0 0;}
-.dest-route{font-size:12px;color:#5B6B85;}
-.dest-price{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#0B1733;margin-top:auto;padding-top:8px;}
-.dest-map-col{width:220px;flex-shrink:0;position:relative;background:#EEF1F7;border-left:1px solid #EBEBEB;}
-.dest-map{position:absolute;inset:0;}
-@media(max-width:900px){.dest-card{flex-direction:column;}.dest-map-col{width:100%;height:160px;}}
+@media(max-width:900px){.metro-grid{grid-template-columns:1fr;}.metro-header{flex-wrap:wrap;}.metro-search-wrap{order:3;max-width:100%;}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6574"></script>
@@ -81,50 +60,64 @@ footer{text-align:center;margin-top:60px;padding:28px 0;color:#9e9e9e;font-size:
 <script>
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
-)();</script><nav class="top-nav"><div class="nav-container">
-<a href="../../"><img src="../../logo.png" alt="Europe Incoming" class="logo"></a>
-<div class="search-wrap"><input type="text" class="search-box" placeholder="Search packages — city, country, landmark" id="searchBox"></div>
-<div class="header-right">
-  <div><div class="site-title-main">Europe Incoming</div><div class="site-title-sub">FIT Packages</div></div>
-  <div class="contact-info"><div class="contact-prompt">Can't find what you're looking for? Email us at:</div>
-  <a href="mailto:fitsales@europeincoming.com" class="contact-email">fitsales@europeincoming.com</a></div>
-</div></div></nav>
-<div class="breadcrumb"><a href="../../">Home</a> › <a href="../">Multi-Country</a> › France</div>
-<div class="container">
-<h1>France.</h1>
-<p class="page-subhead">FIT packages across France — self drive, rail and private coach.</p>
-<div class="brochures" id="brochuresList"><a href="5.1_brochure.html" class="dest-card">
-  <div class="dest-card-body">
-    <div class="dest-title">Paris, Provence & the Côte d'Azur</div>
-    <div class="dest-pills">
-      <span class="dest-pill">8 nights / 9 days</span>
-      <span class="dest-pill">All Year Round</span>
-    </div>
-    <span class="dest-validity">✓ Valid till Mar 2027</span>
-    <p class="dest-blurb">Paris, Avignon and Aix-en-Provence — by train, self-drive or private coach.</p>
-    <div class="dest-route">Paris · Avignon · Aix-en-Provence · Nice</div>
-    <div class="dest-price">From €780 pp (twin)</div>
-  </div>
-  <div class="dest-map-col"><div id="map_5_1" class="dest-map"></div></div>
-</a>
-<a href="5.2_brochure.html" class="dest-card">
-  <div class="dest-card-body">
-    <div class="dest-title">Paris, Normandy & Loire Valley Discovery</div>
-    <div class="dest-pills">
-      <span class="dest-pill">7 nights / 8 days</span>
-      <span class="dest-pill">All Year Round</span>
-    </div>
-    <span class="dest-validity">✓ Valid till Mar 2027</span>
-    <p class="dest-blurb">Paris, Bayeux and Tours — by train, self-drive or private coach.</p>
-    <div class="dest-route">Paris · Bayeux · Tours</div>
-    <div class="dest-price">From €930 pp (twin)</div>
-  </div>
-  <div class="dest-map-col"><div id="map_5_2" class="dest-map"></div></div>
-</a></div>
-<footer><p>Browse packages below for full details.</p></footer>
+)();</script>
+<div class="metro-header">
+  <a href="../../"><img class="metro-logo" src="../../logo.png" alt="Europe Incoming"></a>
+  <div class="metro-search-wrap"><input type="text" class="metro-search" id="metroSearch" placeholder="search packages"></div>
+  <a class="metro-trade" href="mailto:fitsales@europeincoming.com">Trade enquiries</a>
 </div>
-<script src="../../global-search.js"></script>
-<script>window.addEventListener('load',function(){(function(){
+
+<div class="metro-title-row">
+  <h1>France</h1>
+  <div class="metro-eyebrow">Multi-country · FIT</div>
+</div>
+<div class="metro-intro">FIT packages across France — self drive, rail and private coach.</div>
+
+<div class="metro-grid-wrap">
+  <div class="metro-grid" id="metroGrid" style=""><a href="5.1_brochure.html" class="metro-tile navy">
+  <div class="metro-tile-body">
+    <div class="metro-tile-meta">8 nights · 9 days · All Year Round</div>
+    <div class="metro-tile-title">Paris, Provence & the Côte d'Azur</div>
+    <p class="metro-tile-blurb">Paris, Avignon and Aix-en-Provence — by train, self-drive or private coach.</p>
+    <div class="metro-tile-route">Paris · Avignon · Aix-en-Provence · Nice</div>
+    <div class="metro-tile-price-row"><span class="metro-tile-from">From</span><span class="metro-tile-amount">€780</span><span class="metro-tile-note">pp (twin)</span></div>
+    <div class="metro-tile-validity">Valid till Mar 2027</div>
+  </div>
+  <div class="metro-tile-map-col"><div id="map_5_1" class="metro-tile-map"></div></div>
+</a>
+<a href="5.2_brochure.html" class="metro-tile gold">
+  <div class="metro-tile-body">
+    <div class="metro-tile-meta">7 nights · 8 days · All Year Round</div>
+    <div class="metro-tile-title">Paris, Normandy & Loire Valley Discovery</div>
+    <p class="metro-tile-blurb">Paris, Bayeux and Tours — by train, self-drive or private coach.</p>
+    <div class="metro-tile-route">Paris · Bayeux · Tours</div>
+    <div class="metro-tile-price-row"><span class="metro-tile-from">From</span><span class="metro-tile-amount">€930</span><span class="metro-tile-note">pp (twin)</span></div>
+    <div class="metro-tile-validity">Valid till Mar 2027</div>
+  </div>
+  <div class="metro-tile-map-col"><div id="map_5_2" class="metro-tile-map"></div></div>
+</a></div>
+  <div class="metro-empty" id="metroEmpty" style="display:none">No packages match this search yet.</div>
+</div>
+
+<script>
+(function(){
+  var input = document.getElementById('metroSearch');
+  var grid = document.getElementById('metroGrid');
+  var empty = document.getElementById('metroEmpty');
+  var tiles = Array.prototype.slice.call(grid.querySelectorAll('.metro-tile'));
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    tiles.forEach(function(t){
+      var match = !q || t.textContent.toLowerCase().indexOf(q) !== -1;
+      t.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    grid.style.display = shown ? '' : 'none';
+    empty.style.display = shown ? 'none' : '';
+  });
+})();
+window.addEventListener('load',function(){(function(){
   var pts=[{"lat": 48.8566, "lng": 2.3522, "label": "Paris", "nights": 2}, {"lat": 43.9493, "lng": 4.8055, "label": "Avignon", "nights": 2}, {"lat": 43.5297, "lng": 5.4474, "label": "Aix-en-Provence", "nights": 2}, {"lat": 43.7102, "lng": 7.262, "label": "Nice", "nights": 2}];
   if(!pts.length) return;
   var lats=pts.map(function(p){return p.lat;}), lngs=pts.map(function(p){return p.lng;}), pad=0.35;
@@ -133,14 +126,15 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]],{padding:[10,10]});
   var route=pts.map(function(p){return [p.lat,p.lng];});
   if(false) route.push(route[0]);
-  L.polyline(route,{color:'#0B1733',weight:2,dashArray:'5,4'}).addTo(map);
+  L.polyline(route,{color:'#0B1733',weight:1.5,dashArray:'4,4'}).addTo(map);
   pts.forEach(function(p){
     if(p.nights>0){
-      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[14,14],iconAnchor:[7,7],
-        html:'<div style="width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box"></div>'})}).addTo(map)
-       .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-8]});
+      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[10,10],iconAnchor:[5,5],
+        html:'<div style="width:10px;height:10px;background:#F2B91D;box-sizing:border-box"></div>'})}).addTo(map)
+       .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-6]});
     } else {
-      L.circleMarker([p.lat,p.lng],{radius:3.5,fillColor:'#9AA1AE',color:'white',weight:1.5,fillOpacity:1}).addTo(map)
+      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[6,6],iconAnchor:[3,3],
+        html:'<div style="width:6px;height:6px;background:#6B7080"></div>'})}).addTo(map)
        .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-4]});
     }
   });
@@ -154,16 +148,18 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]],{padding:[10,10]});
   var route=pts.map(function(p){return [p.lat,p.lng];});
   if(true) route.push(route[0]);
-  L.polyline(route,{color:'#0B1733',weight:2,dashArray:'5,4'}).addTo(map);
+  L.polyline(route,{color:'#0B1733',weight:1.5,dashArray:'4,4'}).addTo(map);
   pts.forEach(function(p){
     if(p.nights>0){
-      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[14,14],iconAnchor:[7,7],
-        html:'<div style="width:14px;height:14px;border-radius:50%;background:#0B1733;border:2px solid #fff;box-shadow:0 1px 3px rgba(11,23,51,0.3);box-sizing:border-box"></div>'})}).addTo(map)
-       .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-8]});
+      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[10,10],iconAnchor:[5,5],
+        html:'<div style="width:10px;height:10px;background:#F2B91D;box-sizing:border-box"></div>'})}).addTo(map)
+       .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-6]});
     } else {
-      L.circleMarker([p.lat,p.lng],{radius:3.5,fillColor:'#9AA1AE',color:'white',weight:1.5,fillOpacity:1}).addTo(map)
+      L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',iconSize:[6,6],iconAnchor:[3,3],
+        html:'<div style="width:6px;height:6px;background:#6B7080"></div>'})}).addTo(map)
        .bindTooltip(p.label,{permanent:true,direction:'top',className:'city-tip',offset:[0,-4]});
     }
   });
-})();});</script>
+})();});
+</script>
 </body></html>

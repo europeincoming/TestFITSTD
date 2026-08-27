@@ -1,0 +1,113 @@
+{
+  "validFrom": "1 Nov 2026",
+  "validTo": "30 Nov 2027",
+  "currency": "€",
+  "variants": {
+    "trains": {
+      "3": {
+        "winter": {
+          "single": 2196,
+          "twin": 1544,
+          "child": 656
+        },
+        "summer": {
+          "single": 2296,
+          "twin": 1614,
+          "child": 685
+        }
+      },
+      "4": {
+        "winter": {
+          "single": 2648,
+          "twin": 1770,
+          "child": 744
+        },
+        "summer": {
+          "single": 2768,
+          "twin": 1850,
+          "child": 778
+        }
+      }
+    },
+    "private": {
+      "paxTiers": {
+        "winter": [
+          {
+            "pax": 8,
+            "3star": 2041,
+            "4star": 2267
+          },
+          {
+            "pax": 10,
+            "3star": 1793,
+            "4star": 2019
+          },
+          {
+            "pax": 12,
+            "3star": 1628,
+            "4star": 1854
+          },
+          {
+            "pax": 14,
+            "3star": 1510,
+            "4star": 1736
+          },
+          {
+            "pax": 16,
+            "3star": 1422,
+            "4star": 1648
+          }
+        ],
+        "summer": [
+          {
+            "pax": 8,
+            "3star": 2133,
+            "4star": 2370
+          },
+          {
+            "pax": 10,
+            "3star": 1874,
+            "4star": 2111
+          },
+          {
+            "pax": 12,
+            "3star": 1702,
+            "4star": 1938
+          },
+          {
+            "pax": 14,
+            "3star": 1579,
+            "4star": 1815
+          },
+          {
+            "pax": 16,
+            "3star": 1486,
+            "4star": 1723
+          }
+        ]
+      }
+    }
+  },
+  "optionalTours": [
+    {
+      "name": "Moulin Rogue with drinks  9 pm",
+      "price": 170
+    },
+    {
+      "name": "Louvre Museum (Audioguide €5 pp)",
+      "price": 18
+    },
+    {
+      "name": "Grindelwald First (any 2 activities)",
+      "price": 107
+    },
+    {
+      "name": "Rhine Falls, 30 mins boat ride",
+      "price": 23
+    },
+    {
+      "name": "Lindt chocolate museum ticket",
+      "price": 15
+    }
+  ]
+}
