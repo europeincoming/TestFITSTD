@@ -12,6 +12,7 @@
 
   var SEASON_LABEL = { summer: "Apr–Oct", winter: "Nov–Mar" };
   var CAT_LABEL = { "3": "3★", "4": "4★" };
+  var CARTO_API_KEY = window.CARTO_API_KEY || "";
 
   var styleKeys = Object.keys(PRODUCT.styles || {});
 
@@ -348,7 +349,7 @@
       keyboard: interactive,
       attributionControl: false
     });
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", { maxZoom: 18 }).addTo(map);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=" + CARTO_API_KEY, { maxZoom: 18 }).addTo(map);
 
     var lats = points.map(function (p) { return p.lat; });
     var lngs = points.map(function (p) { return p.lng; });

@@ -130,6 +130,11 @@ GA = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-04BZKH6
 LEAFLET_HEAD = """<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>"""
 
+# CARTO's free basemap tiles now watermark unauthenticated requests ("API key
+# required"); this key is meant to be used client-side (like a Mapbox public
+# token), so embedding it in the generated pages' JS is the intended pattern.
+CARTO_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfOHY0OHk0dXMiLCJqdGkiOiIzZThiNWQ5YyJ9.ilJQZ726py6JylFbTHcLkR2JGULqA6Hc_f62KvUqSso"
+
 HTML2PDF = """<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>"""
 
 GF_FONTS = """<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">"""
@@ -463,7 +468,7 @@ def make_map_js(map_id, cities, coords_cache):
   var lats=pts.map(p=>p[0]),lngs=pts.map(p=>p[1]),pad=0.4;
   var bounds=[[Math.min(...lats)-pad,Math.min(...lngs)-pad],[Math.max(...lats)+pad,Math.max(...lngs)+pad]];
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}});
-  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:13}}).addTo(map);
+  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png?key={CARTO_API_KEY}',{{maxZoom:13}}).addTo(map);
   map.fitBounds(bounds,{{padding:[10,10]}});
   if(pts.length>1)L.polyline(pts.map(p=>[p[0],p[1]]),{{color:'#0B1733',weight:2,dashArray:'5,4',opacity:0.8}}).addTo(map);
   pts.forEach((p,i)=>{{
@@ -485,7 +490,7 @@ def make_metro_map_js(map_id, points, close_loop):
   if(!pts.length) return;
   var lats=pts.map(function(p){{return p.lat;}}), lngs=pts.map(function(p){{return p.lng;}}), pad=0.35;
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,attributionControl:false}});
-  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:13}}).addTo(map);
+  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png?key={CARTO_API_KEY}',{{maxZoom:13}}).addTo(map);
   map.fitBounds([[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]],{{padding:[10,10]}});
   var route=pts.map(function(p){{return [p.lat,p.lng];}});
   if({close_js}) route.push(route[0]);
@@ -709,7 +714,7 @@ a{color:inherit;}
 .pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
 .pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
-.pkg-tc-body li::before{content:'\\00b7';position:absolute;left:2px;color:var(--gold);}
+.pkg-tc-body li::before{content:'\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
 .pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
@@ -981,6 +986,7 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
 window.PRODUCT = {json.dumps(product)};
 window.PRICES_BY_YEAR = {json.dumps(prices_by_year)};
 window.DEFAULT_RATE_YEAR = {json.dumps(default_year)};
+window.CARTO_API_KEY = {json.dumps(CARTO_API_KEY)};
 </script>
 <script src="{js_src}"></script>
 </body></html>"""
