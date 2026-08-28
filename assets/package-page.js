@@ -27,6 +27,7 @@
 
   var smallMap = null;
   var largeMap = null;
+  var printMap = null;
 
   function $(id) { return document.getElementById(id); }
   function esc(s) {
@@ -240,10 +241,30 @@
     return { from: PRICES.validFrom || "", to: PRICES.validTo || "" };
   }
 
+  // Print always shows every cat/season combination at once regardless of
+  // the on-screen toggle state (there's no room to page through options on
+  // paper) - the Min-Pax travel style already renders both seasons side by
+  // side on screen, so only the cat/season style needs this extra table.
+  function renderPrintRates(variant, isPax) {
+    var wrap = $("pkgRateTablePrintWrap");
+    if (!wrap) return;
+    wrap.classList.toggle("pkg-rate-print-active", !isPax);
+    if (isPax) return;
+    var combo = function (cat, season) { return (variant[cat] || {})[season] || null; };
+    var g3s = combo("3", "summer"), g3w = combo("3", "winter"), g4s = combo("4", "summer"), g4w = combo("4", "winter");
+    var fmt = function (v) { return v != null ? fmtMoney(v) : "—"; };
+    var rows = [["Single", "single"], ["Twin / Double", "twin"], ["Child (2–11)", "child"]];
+    $("pkgRatesPrintBody").innerHTML = rows.map(function (r) {
+      return "<tr><td>" + r[0] + "</td><td>" + fmt(g3s && g3s[r[1]]) + "</td><td>" + fmt(g3w && g3w[r[1]]) +
+        "</td><td>" + fmt(g4s && g4s[r[1]]) + "</td><td>" + fmt(g4w && g4w[r[1]]) + "</td></tr>";
+    }).join("");
+  }
+
   function renderRates() {
     var styleName = (PRODUCT.styles[state.style] || {}).name || "";
     var variant = (PRICES.variants || {})[state.style] || {};
     var isPax = !!variant.paxTiers;
+    renderPrintRates(variant, isPax);
     $("pkgRateToggles").style.display = isPax ? "none" : "";
     $("pkgPaxRates").style.display = isPax ? "" : "none";
     $("pkgRateTable").style.display = isPax ? "none" : "";
@@ -424,6 +445,16 @@
   function onMapEsc(e) { if (e.key === "Escape") closeMapModal(); }
 
   // ───────────────────────────── PDF / PRINT ─────────────────────────
+  // The print layout drops the sidebar (and its map) entirely but keeps a
+  // route map, so it gets its own small non-interactive Leaflet instance in
+  // a dedicated print-only block rather than exposing the sidebar's.
+  function buildPrintMap() {
+    if (printMap || !$("pkgMapPrint")) return;
+    printMap = buildMap("pkgMapPrint", false);
+    if (printMap) setTimeout(function () { printMap.invalidateSize(); }, 50);
+  }
+  window.addEventListener("beforeprint", buildPrintMap);
+
   function downloadPDF() {
     state.tcOpen = true;
     renderTerms();
