@@ -714,7 +714,7 @@ a{color:inherit;}
 .pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
 .pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
-.pkg-tc-body li::before{content:'\00b7';position:absolute;left:2px;color:var(--gold);}
+.pkg-tc-body li::before{content:'\\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
 .pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
