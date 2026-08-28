@@ -133,7 +133,7 @@ a{color:inherit;}
 .pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
 .pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
-.pkg-tc-body li::before{content:' b7';position:absolute;left:2px;color:var(--gold);}
+.pkg-tc-body li::before{content:'\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
 .pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
@@ -168,6 +168,20 @@ a{color:inherit;}
 .pkg-map-modal-close{background:none;border:none;font-size:16px;color:var(--gold);cursor:pointer;line-height:1;padding:6px;}
 .pkg-map-modal-canvas{flex:1;}
 
+/* Print-only elements: invisible on screen, shown only inside @media print
+   below. .pkg-rate-print-wrap has its own JS-driven "active" class instead
+   of a plain print-only toggle, since it must stay hidden at print for the
+   Min-Pax travel style (its on-screen grid already shows every combination). */
+.print-only-block{display:none;}
+.pkg-rate-print-wrap{display:none;}
+.pkg-rate-print{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.pkg-rate-print th{background:var(--navy);color:#fff;font-weight:700;text-transform:uppercase;text-align:center;border-right:1px solid rgba(255,255,255,.25);}
+.pkg-rate-print th:first-child{text-align:left;}
+.pkg-rate-print th:last-child{border-right:none;}
+.pkg-rate-print td{border-bottom:1px solid var(--line-light);border-right:1px solid var(--line-light);color:var(--ink);text-align:right;}
+.pkg-rate-print td:first-child{text-align:left;color:var(--ink);}
+.pkg-rate-print td:last-child{border-right:none;}
+
 @media(max-width:960px){
   .pkg-body{flex-direction:column;}
   .pkg-sidebar{width:100%;position:static;}
@@ -175,11 +189,62 @@ a{color:inherit;}
   .pkg-inc-grid,.pkg-opt-grid,.pkg-gtk-grid,.pkg-hotels-grid{grid-template-columns:1fr;}
 }
 
+/* Print: a purpose-built compact layout, not the screen layout with bits
+   hidden - see design_handoff_metro's "PDF Export" spec. Photography is
+   dropped per the brand team's call; the route map (kept) prints from its
+   own dedicated block below Day by day, not from the sidebar. */
 @media print{
   .no-print{display:none!important;}
-  body{padding-top:0;}
+  .print-only-block{display:block!important;}
+  .pkg-rate-print-wrap.pkg-rate-print-active{display:block!important;}
+  body{padding-top:0;font-size:13px;}
   .pkg-body{display:block;padding:0;max-width:none;}
-  .pkg-hero{height:auto;}
+
+  .pkg-print-header{padding:0 0 10px;}
+  .pkg-print-header img{height:20px;width:auto;display:block;}
+
+  .pkg-title-row{padding:0 0 4px;}
+  .pkg-hero-title{font-size:26px;}
+  .pkg-hero{padding-top:6px;}
+  #pkgHeroImg{display:none!important;}
+  .pkg-hero-facts{width:100%;}
+  .pkg-print-map{height:170px;page-break-inside:avoid;break-inside:avoid;}
+
+  .pkg-section{margin-bottom:14px;}
+  .pkg-section-label{font-size:16px;margin:10px 0 2px;page-break-after:avoid;break-after:avoid;}
+  .pkg-section-sub{margin-bottom:6px;page-break-after:avoid;break-after:avoid;}
+
+  .pkg-day{grid-template-columns:32px 1fr;gap:10px;padding:6px 0;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-day-num{font-size:16px;}
+  .pkg-day-title{font-size:12px;margin-bottom:1px;}
+  .pkg-day-overnight{margin-bottom:3px;}
+  .pkg-day-desc{font-size:10px;line-height:1.35;margin-bottom:4px;}
+  .pkg-tag{font-size:8px;padding:2px 6px;}
+  .pkg-tag-text{font-size:9.5px;}
+
+  .pkg-inc-item{font-size:10px;padding:4px 0 4px 16px;}
+  .pkg-hotel-card{padding:8px 10px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-hotel-city{font-size:14px;}
+  .pkg-hotel-nights{margin-bottom:4px;}
+  .pkg-hotel-cat{font-size:9px;}
+  .pkg-hotel-name{font-size:9.5px;margin-bottom:4px;}
+
+  #pkgRateTable{display:none!important;}
+  .pkg-rate-note{font-size:9px;margin:0 0 10px;}
+  .pkg-rate-print th,.pkg-rate-print td{padding:6px 10px;}
+  .pkg-rate-print th{font-size:8px;}
+  .pkg-rate-print td{font-size:10px;}
+
+  .pkg-opt-item{padding:8px 10px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-opt-name{font-size:10.5px;}
+  .pkg-opt-price{font-size:14px;}
+
+  .pkg-tc-body{display:block!important;padding:6px 0 0;}
+  .pkg-tc-btn{pointer-events:none;background:none!important;padding:0!important;font-weight:300!important;text-transform:none!important;letter-spacing:0!important;color:var(--navy)!important;page-break-after:avoid;break-after:avoid;}
+  #pkgTcArrow{display:none!important;}
+  .pkg-tc-body li{font-size:9px;padding:4px 0 4px 14px;page-break-inside:avoid;break-inside:avoid;}
+
+  .pkg-sb-footer{padding:8px 0;font-size:8.5px;margin-top:10px;}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -191,6 +256,7 @@ a{color:inherit;}
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script>
+<div class="pkg-print-header print-only-block"><img src="../../logo-europe-incoming.png" alt="Europe Incoming"></div>
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="../../"><img class="pkg-logo" src="../../logo-europe-incoming.png" alt="Europe Incoming"></a>
@@ -236,6 +302,10 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <div class="pkg-body">
   <div class="pkg-main">
+    <div class="pkg-section print-only-block">
+      <div class="pkg-section-label">Route map</div>
+      <div class="pkg-print-map" id="pkgMapPrint"></div>
+    </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Day by day</div>
       <div class="pkg-section-sub" id="pkgDaySub"></div>
@@ -268,17 +338,30 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
         <tbody id="pkgRatesBody"></tbody>
       </table>
       <div class="pkg-pax-grid" id="pkgPaxRates"></div>
+      <div class="pkg-rate-print-wrap" id="pkgRateTablePrintWrap">
+        <table class="pkg-rate-print">
+          <thead>
+            <tr>
+              <th rowspan="2">Occupancy</th>
+              <th colspan="2">3 star</th>
+              <th colspan="2">4 star</th>
+            </tr>
+            <tr><th>Apr–Oct</th><th>Nov–Mar</th><th>Apr–Oct</th><th>Nov–Mar</th></tr>
+          </thead>
+          <tbody id="pkgRatesPrintBody"></tbody>
+        </table>
+      </div>
       <div class="pkg-rate-note" id="pkgRateNote"></div>
     </div>
     <div class="pkg-section">
       <div class="pkg-section-label" style="margin-bottom:14px">Optional tours &amp; extras</div>
       <div class="pkg-opt-grid" id="pkgOptionals"></div>
     </div>
-    <div class="pkg-section">
+    <div class="pkg-section no-print">
       <div class="pkg-section-label" style="margin-bottom:14px">Good to know</div>
       <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
     </div>
-    <div class="pkg-section pkg-tc-wrap no-print">
+    <div class="pkg-section pkg-tc-wrap">
       <button class="pkg-tc-btn" id="pkgTcBtn"><span>Terms &amp; conditions</span><span id="pkgTcArrow">▼</span></button>
       <div class="pkg-tc-body" id="pkgTcBody"><ul id="pkgTerms"></ul></div>
     </div>
@@ -305,7 +388,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   </div>
 </div>
 
-<div class="pkg-sb-footer no-print">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
+<div class="pkg-sb-footer">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
 
 <div class="pkg-map-modal no-print" id="pkgMapModal">
   <div class="pkg-map-modal-panel">
@@ -319,7 +402,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <script>
 window.PRODUCT = {"id": "10.3", "title": "Troms\u00f8 Winter Adventure.", "styles": {"trains": {"name": "Trains & Taxi Transfers", "blurb": "A fully escorted winter base in Troms\u00f8 with private airport transfers and a full programme of Arctic excursions.", "nights": "4 nights \u00b7 5 days", "route": "Troms\u00f8 (4N)", "aboutNights": "4 nights across 1 stay", "transport": {"1": "Private transfer from Troms\u00f8 Airport to your hotel on arrival.", "2": "Troms\u00f8 Island Tour with Arctic Cathedral, including transport across the sound.", "3": "Full-day snowmobile safari into the Arctic wilderness surrounding Troms\u00f8, approx. 7 hours.", "4": "Winter whale watching boat tour into the fjords around Troms\u00f8, approx. 7 hours.", "5": "Private transfer from your hotel to Troms\u00f8 Airport for departure."}, "inclusions": ["Private transfer Troms\u00f8 Airport to hotel on arrival", "Troms\u00f8 Island Tour with Arctic Cathedral", "Northern Lights Cruise", "Night Reindeer Sledding Tour with Dinner", "Snowmobile Safari, approx. 7 hours", "Winter whale watching boat tour, approx. 7 hours", "Private transfer hotel to Troms\u00f8 Airport on departure", "4 nights accommodation with breakfast"]}}, "days": [{"num": 1, "title": "Arrive Troms\u00f8", "overnight": "Overnight: Tromso", "desc": "Arrive in the Arctic capital and transfer privately to your hotel. In the evening, set sail on a serene cruise from Troms\u00f8, gliding into the silent night in search of the Northern Lights. Witness the shimmering Aurora from spacious decks or the cosy lounge of a sustainable sightseeing boat. Overnight in Troms\u00f8.", "taste": "\u00d8lhallen, Troms\u00f8's oldest pub, has poured beer from the adjoining Mack Brewery \u2014 the world's northernmost \u2014 since 1928; a good first stop for a Mack Arctic Pilsner."}, {"num": 2, "title": "Troms\u00f8 & Arctic Cathedral", "overnight": "Overnight: Tromso", "desc": "Enjoy a scenic and informative city tour of Troms\u00f8. Travel across to Kval\u00f8ya for panoramic views of the city and a chance to spot Arctic wildlife. Stop at Telegrafbukta beach and drive through the city centre, learning about its rich history. Cross the Troms\u00f8 Bridge to view the striking Arctic Cathedral (exterior only) and ascend by cable car for breathtaking views of the surrounding islands. Tour ends in the city centre. In the evening, travel to a Sami reindeer camp where you\u2019ll walk among a herd of 300 reindeer, followed by a peaceful sledding ride. Gather inside a warm candlelit hut for a traditional three-course Sami dinner, storytelling, and a joik performance. If skies are clear, step outside and watch the Northern Lights dance above. Overnight in Troms\u00f8.", "taste": "Arctic king crab and Arctic char are Troms\u00f8 specialities \u2014 Fiskekompaniet, on the harbour by Stortorget, is a long-standing choice for both.", "experience": "An evening Northern Lights Cruise takes you out into the fjords, away from the city's lights, for one of the best chances to see the aurora.", "shopping": "Storgata, Troms\u00f8's main pedestrian street, runs the length of the old town for Norwegian knitwear, troll figures and Arctic-fox pelts alongside the everyday shops."}, {"num": 3, "title": "Snowmobile Safari", "overnight": "Overnight: Tromso", "desc": "Embark on a thrilling snowmobile safari through the Lyngen Alps. Paired in twos, you\u2019ll ride across snowy trails with photo stops and scenic views. End your Arctic adventure with a hearty fish soup before heading back. Overnight in Troms\u00f8.", "taste": "A hot bowl of bidos, the traditional Sami reindeer stew, is the usual warm-up during the safari's midway stop \u2014 thick, slow-cooked and built for Arctic cold."}, {"num": 4, "title": "Whale Watching", "overnight": "Overnight: Tromso", "desc": "Take the reins on a dogsledding tour through the Arctic wilderness. Learn to mush and switch roles with your partner midway. This active yet heart-warming experience ends with a steaming bowl of soup back at the kennel. Overnight in Troms\u00f8.", "experience": "Round off the evening with a Night Reindeer Sledding Tour and dinner, gliding across the snow behind reindeer with a taste of Sami tradition.", "taste": "Dinner typically ends with multekrem \u2014 cloudberries folded through whipped cream, a Norwegian classic and a particular treat this far north, where the berries are hand-picked from Arctic marshland each autumn."}, {"num": 5, "title": "Depart Troms\u00f8", "overnight": "Departure day", "desc": "Enjoy a private transfer to Troms\u00f8 Airport. Bid farewell to Norway\u2019s winter wonderland, taking with you memories of the Northern Lights, snowy landscapes, and Arctic encounters."}], "hotels": [{"city": "Tromso", "nights": "4 Nights", "h3": "Scandic Grand Troms\u00f8", "h4": "Clarion Hotel The Edge"}], "about": [{"title": "Best season", "body": "Winter (November\u2013March) is the very reason to visit \u2014 long dark nights this far inside the Arctic Circle give Troms\u00f8 some of the best Northern Lights odds in Norway."}, {"title": "Weather", "body": "Arctic winter conditions typically -5\u00b0C to -15\u00b0C, with snow cover from November through April and only a few hours of blue twilight around midday."}, {"title": "Currency & docs", "body": "The Norwegian Krone (NOK) is the local currency, and Norway is a Schengen Area member so no separate visa is needed for Schengen visa holders travelling from within Europe."}], "goodToKnow": [{"title": "Northern Lights viewing", "body": "Aurora sightings depend on clear skies and solar activity \u2014 no tour can guarantee a sighting on any single night, though the Northern Lights Cruise gets you away from Troms\u00f8's city lights for the best chance."}, {"title": "What to pack", "body": "Full thermal layers, a waterproof outer shell, insulated winter boots and gloves are essential \u2014 tours typically provide extra thermal oversuits, but good personal base layers make a real difference."}, {"title": "Weather-dependent tours", "body": "Snowmobile safaris and whale watching cruises can be rescheduled at short notice for weather and daylight safety \u2014 keep the days either side flexible where possible."}, {"title": "Tipping", "body": "Tipping is not expected in Norway \u2014 a service charge is generally built into restaurant prices, so rounding up for good service is plenty rather than the 10\u201315% common further south."}, {"title": "Airport transfers", "body": "Private transfers are included on both arrival and departure, so there's no need to arrange separate airport pickup in Troms\u00f8.", "styles": ["trains"]}], "map": {"points": [{"lat": 69.6492, "lng": 18.9553, "label": "Tromso", "nights": 4}], "closeLoop": true}, "region": "scandinavia-iceland", "eyebrow": "Europe Incoming \u00b7 FIT Packages \u00b7 2026\u201327", "pricesFile": "prices/10.3-2026.json", "heroImage": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1600&q=80", "terms": ["All rates are net and per person for the package.", "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.", "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.", "Rates are not applicable during trade fair periods, major European public holidays, and other major events.", "City taxes are not included in the price.", "If certain attractions are closed during specific periods, alternative options will be arranged.", "All bookings must be confirmed at least 60 working days prior to arrival.", "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.", "Vouchers will be issued after receipt of full payment."]};
-window.PRICES_BY_YEAR = {"2025-26": {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 1630, "twin": 1270, "child": 910}}, "4": {"winter": {"single": 2250, "twin": 1760, "child": 1270}}}}, "optionalTours": []}, "2026-27": {"validFrom": "1 Nov 2026", "validTo": "30 Nov 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 2342, "twin": 1726, "child": 740}, "summer": {"single": 2448, "twin": 1804, "child": 773}}, "4": {"winter": {"single": 2826, "twin": 1968, "child": 834}, "summer": {"single": 2954, "twin": 2057, "child": 872}}}}, "optionalTours": []}};
+window.PRICES_BY_YEAR = {"2025-26": {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 1630, "twin": 1270, "child": 910}}, "4": {"winter": {"single": 2250, "twin": 1760, "child": 1270}}}}, "optionalTours": []}, "2026-27": {"validFrom": "1 Nov 2026", "validTo": "28 Feb 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 2342, "twin": 1726, "child": 740}}, "4": {"winter": {"single": 2826, "twin": 1968, "child": 834}}, "validity": {"winter": {"from": "1 Nov 2026", "to": "28 Feb 2027"}}}}, "optionalTours": []}};
 window.DEFAULT_RATE_YEAR = "2025-26";
 window.CARTO_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfOHY0OHk0dXMiLCJqdGkiOiIzZThiNWQ5YyJ9.ilJQZ726py6JylFbTHcLkR2JGULqA6Hc_f62KvUqSso";
 </script>

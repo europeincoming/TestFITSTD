@@ -1,6 +1,6 @@
 {
   "validFrom": "1 Nov 2026",
-  "validTo": "30 Nov 2027",
+  "validTo": "28 Feb 2027",
   "currency": "€",
   "variants": {
     "trains": {
@@ -9,11 +9,6 @@
           "single": 528,
           "twin": 528,
           "child": 238
-        },
-        "summer": {
-          "single": 552,
-          "twin": 552,
-          "child": 248
         }
       },
       "4": {
@@ -21,11 +16,12 @@
           "single": 1848,
           "twin": 1188,
           "child": 495
-        },
-        "summer": {
-          "single": 1932,
-          "twin": 1242,
-          "child": 518
+        }
+      },
+      "validity": {
+        "winter": {
+          "from": "1 Nov 2026",
+          "to": "28 Feb 2027"
         }
       }
     }

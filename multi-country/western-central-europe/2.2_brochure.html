@@ -133,7 +133,7 @@ a{color:inherit;}
 .pkg-tc-body{display:none;padding:16px 20px;}
 .pkg-tc-body.open{display:block;}
 .pkg-tc-body li{font-size:12.5px;color:var(--body);padding:7px 0 7px 16px;list-style:none;border-bottom:1px solid var(--line-light);position:relative;line-height:1.55;}
-.pkg-tc-body li::before{content:' b7';position:absolute;left:2px;color:var(--gold);}
+.pkg-tc-body li::before{content:'\00b7';position:absolute;left:2px;color:var(--gold);}
 
 /* Sidebar */
 .pkg-sb-card{background:var(--surface);padding:20px;margin-bottom:8px;}
@@ -168,6 +168,20 @@ a{color:inherit;}
 .pkg-map-modal-close{background:none;border:none;font-size:16px;color:var(--gold);cursor:pointer;line-height:1;padding:6px;}
 .pkg-map-modal-canvas{flex:1;}
 
+/* Print-only elements: invisible on screen, shown only inside @media print
+   below. .pkg-rate-print-wrap has its own JS-driven "active" class instead
+   of a plain print-only toggle, since it must stay hidden at print for the
+   Min-Pax travel style (its on-screen grid already shows every combination). */
+.print-only-block{display:none;}
+.pkg-rate-print-wrap{display:none;}
+.pkg-rate-print{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.pkg-rate-print th{background:var(--navy);color:#fff;font-weight:700;text-transform:uppercase;text-align:center;border-right:1px solid rgba(255,255,255,.25);}
+.pkg-rate-print th:first-child{text-align:left;}
+.pkg-rate-print th:last-child{border-right:none;}
+.pkg-rate-print td{border-bottom:1px solid var(--line-light);border-right:1px solid var(--line-light);color:var(--ink);text-align:right;}
+.pkg-rate-print td:first-child{text-align:left;color:var(--ink);}
+.pkg-rate-print td:last-child{border-right:none;}
+
 @media(max-width:960px){
   .pkg-body{flex-direction:column;}
   .pkg-sidebar{width:100%;position:static;}
@@ -175,11 +189,62 @@ a{color:inherit;}
   .pkg-inc-grid,.pkg-opt-grid,.pkg-gtk-grid,.pkg-hotels-grid{grid-template-columns:1fr;}
 }
 
+/* Print: a purpose-built compact layout, not the screen layout with bits
+   hidden - see design_handoff_metro's "PDF Export" spec. Photography is
+   dropped per the brand team's call; the route map (kept) prints from its
+   own dedicated block below Day by day, not from the sidebar. */
 @media print{
   .no-print{display:none!important;}
-  body{padding-top:0;}
+  .print-only-block{display:block!important;}
+  .pkg-rate-print-wrap.pkg-rate-print-active{display:block!important;}
+  body{padding-top:0;font-size:13px;}
   .pkg-body{display:block;padding:0;max-width:none;}
-  .pkg-hero{height:auto;}
+
+  .pkg-print-header{padding:0 0 10px;}
+  .pkg-print-header img{height:20px;width:auto;display:block;}
+
+  .pkg-title-row{padding:0 0 4px;}
+  .pkg-hero-title{font-size:26px;}
+  .pkg-hero{padding-top:6px;}
+  #pkgHeroImg{display:none!important;}
+  .pkg-hero-facts{width:100%;}
+  .pkg-print-map{height:170px;page-break-inside:avoid;break-inside:avoid;}
+
+  .pkg-section{margin-bottom:14px;}
+  .pkg-section-label{font-size:16px;margin:10px 0 2px;page-break-after:avoid;break-after:avoid;}
+  .pkg-section-sub{margin-bottom:6px;page-break-after:avoid;break-after:avoid;}
+
+  .pkg-day{grid-template-columns:32px 1fr;gap:10px;padding:6px 0;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-day-num{font-size:16px;}
+  .pkg-day-title{font-size:12px;margin-bottom:1px;}
+  .pkg-day-overnight{margin-bottom:3px;}
+  .pkg-day-desc{font-size:10px;line-height:1.35;margin-bottom:4px;}
+  .pkg-tag{font-size:8px;padding:2px 6px;}
+  .pkg-tag-text{font-size:9.5px;}
+
+  .pkg-inc-item{font-size:10px;padding:4px 0 4px 16px;}
+  .pkg-hotel-card{padding:8px 10px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-hotel-city{font-size:14px;}
+  .pkg-hotel-nights{margin-bottom:4px;}
+  .pkg-hotel-cat{font-size:9px;}
+  .pkg-hotel-name{font-size:9.5px;margin-bottom:4px;}
+
+  #pkgRateTable{display:none!important;}
+  .pkg-rate-note{font-size:9px;margin:0 0 10px;}
+  .pkg-rate-print th,.pkg-rate-print td{padding:6px 10px;}
+  .pkg-rate-print th{font-size:8px;}
+  .pkg-rate-print td{font-size:10px;}
+
+  .pkg-opt-item{padding:8px 10px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-opt-name{font-size:10.5px;}
+  .pkg-opt-price{font-size:14px;}
+
+  .pkg-tc-body{display:block!important;padding:6px 0 0;}
+  .pkg-tc-btn{pointer-events:none;background:none!important;padding:0!important;font-weight:300!important;text-transform:none!important;letter-spacing:0!important;color:var(--navy)!important;page-break-after:avoid;break-after:avoid;}
+  #pkgTcArrow{display:none!important;}
+  .pkg-tc-body li{font-size:9px;padding:4px 0 4px 14px;page-break-inside:avoid;break-inside:avoid;}
+
+  .pkg-sb-footer{padding:8px 0;font-size:8.5px;margin-top:10px;}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -191,6 +256,7 @@ a{color:inherit;}
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script>
+<div class="pkg-print-header print-only-block"><img src="../../logo-europe-incoming.png" alt="Europe Incoming"></div>
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="../../"><img class="pkg-logo" src="../../logo-europe-incoming.png" alt="Europe Incoming"></a>
@@ -236,6 +302,10 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <div class="pkg-body">
   <div class="pkg-main">
+    <div class="pkg-section print-only-block">
+      <div class="pkg-section-label">Route map</div>
+      <div class="pkg-print-map" id="pkgMapPrint"></div>
+    </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Day by day</div>
       <div class="pkg-section-sub" id="pkgDaySub"></div>
@@ -268,17 +338,30 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
         <tbody id="pkgRatesBody"></tbody>
       </table>
       <div class="pkg-pax-grid" id="pkgPaxRates"></div>
+      <div class="pkg-rate-print-wrap" id="pkgRateTablePrintWrap">
+        <table class="pkg-rate-print">
+          <thead>
+            <tr>
+              <th rowspan="2">Occupancy</th>
+              <th colspan="2">3 star</th>
+              <th colspan="2">4 star</th>
+            </tr>
+            <tr><th>Apr–Oct</th><th>Nov–Mar</th><th>Apr–Oct</th><th>Nov–Mar</th></tr>
+          </thead>
+          <tbody id="pkgRatesPrintBody"></tbody>
+        </table>
+      </div>
       <div class="pkg-rate-note" id="pkgRateNote"></div>
     </div>
     <div class="pkg-section">
       <div class="pkg-section-label" style="margin-bottom:14px">Optional tours &amp; extras</div>
       <div class="pkg-opt-grid" id="pkgOptionals"></div>
     </div>
-    <div class="pkg-section">
+    <div class="pkg-section no-print">
       <div class="pkg-section-label" style="margin-bottom:14px">Good to know</div>
       <div class="pkg-gtk-grid" id="pkgGoodToKnow"></div>
     </div>
-    <div class="pkg-section pkg-tc-wrap no-print">
+    <div class="pkg-section pkg-tc-wrap">
       <button class="pkg-tc-btn" id="pkgTcBtn"><span>Terms &amp; conditions</span><span id="pkgTcArrow">▼</span></button>
       <div class="pkg-tc-body" id="pkgTcBody"><ul id="pkgTerms"></ul></div>
     </div>
@@ -305,7 +388,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
   </div>
 </div>
 
-<div class="pkg-sb-footer no-print">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
+<div class="pkg-sb-footer">Europe Incoming Holdings Ltd · Company Reg. England &amp; Wales 07053949 · <a href="mailto:fitsales@europeincoming.com" style="color:inherit">fitsales@europeincoming.com</a></div>
 
 <div class="pkg-map-modal no-print" id="pkgMapModal">
   <div class="pkg-map-modal-panel">
@@ -319,7 +402,7 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <script>
 window.PRODUCT = {"id": "2.2", "title": "Paris, Lucerne, Innsbruck & Vienna.", "styles": {"trains": {"name": "Trains & Taxi Transfers", "blurb": "Scenic scheduled trains linking four classic cities, with private transfers at each end.", "nights": "9 nights \u00b7 10 days", "route": "Paris (2N) \u2192 Lucerne (3N) \u2192 Innsbruck (2N) \u2192 Vienna (2N)", "aboutNights": "9 nights across 4 stays", "transport": {"1": "Paris airport to Paris hotel private transfer.", "3": "Paris to Lucerne train ticket, II Class.", "6": "Lucerne to Innsbruck train transfer, II Class, through the Alpine foothills.", "8": "Innsbruck to Vienna train transfer, II Class.", "10": "Vienna hotel to Vienna airport private transfer."}, "inclusions": ["Paris airport\u2013hotel private transfer on arrival", "Paris City Tour with Seine Cruise and Eiffel Tower 2nd Floor, 4-hr coach tour", "Paris to Lucerne train ticket, II Class", "Swiss Travel Pass, consecutive 4 days, II Class", "Titlis excursion with pass; Lake Lucerne cruise included with pass", "Vienna hotel\u2013airport private transfer on departure", "9 nights accommodation with daily breakfast"]}, "private": {"name": "Private Exclusive Coach", "blurb": "A private vehicle and driver on disposal for the whole journey, with guided city tours in Paris and Vienna.", "nights": "9 nights \u00b7 10 days", "route": "Paris (2N) \u2192 Lucerne (3N) \u2192 Innsbruck (2N) \u2192 Vienna (2N)", "aboutNights": "9 nights across 4 stays", "transport": {"1": "Paris airport to Paris hotel private transfer.", "2": "Paris city tour with English-speaking guide, 3 hrs, plus a 1-hour Seine river cruise. Private vehicle on disposal from Day 3.", "3": "Private transfer Paris to Lucerne with the vehicle on disposal for 8 hrs.", "4": "Titlis and Engelberg excursion by private vehicle.", "6": "Private transfer Lucerne to Innsbruck.", "7": "Swarovski Crystal Worlds entrance and visit by private vehicle.", "8": "Private transfer Innsbruck to Vienna.", "9": "Vienna city tour with English-speaking guide, 3 hrs, including Sch\u00f6nbrunn Palace tickets.", "10": "Vienna hotel to Vienna airport private transfer, concluding the vehicle's disposal."}, "inclusions": ["Private coach for 3 hrs on Day 2, then on disposal for 8 hrs daily from Day 3 to Day 10", "Paris airport\u2013hotel and Vienna hotel\u2013airport private transfers", "Paris city tour with English-speaking guide, 3 hrs, and Seine river cruise", "Titlis and Engelberg excursion", "Swarovski Crystal Worlds entrance", "Vienna city tour with English-speaking guide, 3 hrs, and Sch\u00f6nbrunn Palace tickets", "9 nights accommodation with daily breakfast"]}}, "days": [{"num": 1, "title": "Arrive Paris", "overnight": "Overnight: Paris", "desc": "Welcome to the enchanting French capital! Upon arrival at the airport, enjoy a seamless transfer to your hotel. Dive into Parisian life by exploring iconic sites like the Champs-\u00c9lys\u00e9es for high-end shopping, or relishing the artistic vibes of Montmartre. Experience the city's allure with a stroll along the Seine River or indulge in renowned French cuisine. Overnight in Paris", "taste": "Steak-frites and a glass of Bordeaux at a Left Bank brasserie is the classic first evening in Paris \u2014 Le Procope, open since 1686 and said to be the oldest caf\u00e9 in the world, is the address for it."}, {"num": 2, "title": "Paris City Tour, Seine Cruise & Eiffel Tower", "overnight": "Overnight: Paris", "desc": "Embark on a captivating 4-hour coach tour of Paris, immersing yourself in its timeless beauty. Cruise along the Seine River for an hour, admiring iconic landmarks from a unique perspective. Ascend to the Eiffel Tower's second floor, embracing panoramic views of the city's splendour. Overnight in Paris.", "shopping": "The grand boulevards around the Op\u00e9ra Garnier and the Champs-\u00c9lys\u00e9es are Paris's classic shopping mile, from flagship couture houses to department stores like Galeries Lafayette."}, {"num": 3, "title": "Paris \u2192 Lucerne", "overnight": "Overnight: Lucerne", "desc": "Check out and board the train to Basel or Zurich, commencing your Swiss adventure. Upon arrival in Switzerland, utilize the Swiss Travel Pass for your onward journey to Lucerne. The Pass covers seamless travel across the Swiss Travel System, enjoying unlimited travel on trains, boats, trams, and buses. Overnight in Lucerne.", "taste": "Try a hearty plate of Lucerne-style Ch\u00fcgelipastete or a Swiss fondue in one of the old town's lakeside restaurants."}, {"num": 4, "title": "Mount Titlis & Lake Lucerne Cruise", "overnight": "Overnight: Lucerne", "desc": "Utilize your Swiss Travel Pass to explore Mount Titlis, a breathtaking alpine experience. Revel in the stunning vistas, engage in snow activities, and relish the revolving Titlis Rotair gondola. Later, you can take a cruise on Lake Lucerne, enjoying the serene waters and picturesque surroundings. Overnight in Lucerne.", "experience": "Cross the glacier's suspension bridge, the Titlis Cliff Walk, one of the highest of its kind in Europe."}, {"num": 5, "title": "Lucerne at Leisure", "overnight": "Overnight: Lucerne", "desc": "Enjoy the freedom to explore Switzerland at your leisure using the Swiss Travel Pass. Delve into the scenic wonders of Grindelwald and Interlaken, known for their stunning landscapes. Optionally, consider a visit to Grindelwald First for panoramic views and thrilling activities. Overnight in Lucerne.", "shopping": "Bucherer's flagship on Schwanenplatz, the Swiss watch and jewellery house founded in Lucerne in 1888, is the natural stop for a Swiss timepiece.", "fallbackIncluded": "Day at leisure \u2014 optional Mount Pilatus or Interlaken excursion available."}, {"num": 6, "title": "Lucerne \u2192 Innsbruck", "overnight": "Overnight: Innsbruck", "desc": "Depart from Lucerne via train using the Swiss Travel Pass, connecting through Zurich, and continuing onwards to Innsbruck. Nestled in Tyrol, Austria, Innsbruck boasts stunning Alpine vistas and rich Austrian heritage. Overnight in Innsbruck", "taste": "Tyrolean Kn\u00f6del and apple strudel at the Goldener Adler, a guesthouse on the Altstadt's main square that has been serving guests since 1390."}, {"num": 7, "title": "Innsbruck & Swarovski Crystal Worlds", "overnight": "Overnight: Innsbruck", "desc": "Immerse yourself in the enchanting Swarovski Crystal World, accessible via a convenient shuttle bus. Optionally, indulge in a visit to Nordkette for breathtaking views. Overnight in Innsbruck", "experience": "Swarovski Crystal Worlds in nearby Wattens is one of Austria's most visited attractions, a museum of crystal art and installations built around a giant crystal-faced giant.", "shopping": "Maria-Theresien-Stra\u00dfe, running south from the Altstadt with the Nordkette as a backdrop, is Innsbruck's principal shopping street.", "fallbackIncluded": "Day at leisure \u2014 optional Swarovski Crystal Worlds visit available."}, {"num": 8, "title": "Innsbruck \u2192 Vienna", "overnight": "Overnight: Vienna", "desc": "Bid adieu to Innsbruck and embark on a scenic train journey to Vienna. Discover Vienna's grandeur, steeped in imperial history and musical heritage, as you explore this cultural gem. Overnight in Vienna", "taste": "A slice of Sachertorte with a Wiener Melange is the essential first taste of Vienna \u2014 Caf\u00e9 Sacher, beside the State Opera, has served the original recipe since 1876."}, {"num": 9, "title": "Vienna City Tour & Sch\u00f6nbrunn Palace", "overnight": "Overnight: Vienna", "desc": "Delve into Vienna's landmarks along Ringstrasse via coach, highlighting the State Opera, Hofburg Palace, Parliament, and City Hall. Explore Sch\u00f6nbrunn Palace's historic rooms and gardens. Wrap up at the Vienna State Opera after this 3.5-hour immersive experience. Overnight in Vienna.", "experience": "An evening at the Vienna State Opera or a Strauss concert is a fitting way to experience the city's musical heritage.", "fallbackIncluded": "Day at leisure \u2014 optional Vienna city tour and Sch\u00f6nbrunn Palace visit available."}, {"num": 10, "title": "Depart Vienna", "overnight": "Departure day", "desc": "Enjoy a private transfer from your Vienna hotel to Vienna airport, marking the conclusion of this captivating tour through Paris, Switzerland, and Austria."}], "hotels": [{"city": "Paris", "nights": "2 Nights", "h3": "H\u00f4tel Berne Op\u00e9ra", "h4": "Marceau Bastille"}, {"city": "Lucerne", "nights": "3 Nights", "h3": "Boutique Hotel Karl", "h4": "Altstadt Hotel Krone Apartments Luzern"}, {"city": "Innsbruck", "nights": "2 Nights", "h3": "Basic hotel Innsbruck", "h4": "Altstadthotel Weisses Kreuz"}, {"city": "Vienna", "nights": "2 Nights", "h3": "ibis Styles Wien City Hotel", "h4": "arte Hotel Wien"}], "about": [{"title": "Best season", "body": "May\u2013September for warm days and long daylight, though winter brings festive markets and snow-capped Alpine views."}, {"title": "Weather", "body": "Continental climate throughout \u2014 mild summers around 20\u201326\u00b0C, cold winters down to freezing in the Alps, so pack layers year-round."}, {"title": "Currency & docs", "body": "Euro (\u20ac) is used in France, Switzerland's neighbours and Austria, though Switzerland itself uses the Swiss Franc (CHF); all four countries are within the Schengen Area."}], "goodToKnow": [{"title": "Tickets & timing", "body": "Book Eiffel Tower and Sch\u00f6nbrunn Palace slots ahead in summer \u2014 both sell out days in advance. Titlis cable cars are quietest before 10:00."}, {"title": "Rail travel", "body": "Seat reservations are included on the international legs. The Swiss Travel Pass also covers city trams and museum entry in Lucerne.", "styles": ["trains"]}, {"title": "Your vehicle", "body": "Driver working hours are limited to 10 hrs per day by law \u2014 day-trip timings are planned around this. Luggage space fits one large case per guest.", "styles": ["private"]}, {"title": "What to pack", "body": "Layers and a waterproof jacket for the Alps in any season, plus comfortable shoes for cobbled old towns. No formal dress codes apply on this programme."}, {"title": "Money", "body": "Cards are accepted almost everywhere; a little Swiss Franc cash is useful in Lucerne, since Switzerland sits outside the Eurozone despite its neighbours. Tipping around 10% in restaurants is customary, not obligatory."}], "map": {"points": [{"lat": 48.8566, "lng": 2.3522, "label": "Paris", "nights": 2}, {"lat": 47.0502, "lng": 8.3093, "label": "Lucerne", "nights": 3}, {"lat": 47.2692, "lng": 11.3933, "label": "Innsbruck", "nights": 2}, {"lat": 48.2082, "lng": 16.3738, "label": "Vienna", "nights": 2}], "closeLoop": false}, "region": "western-central-europe", "eyebrow": "Europe Incoming \u00b7 FIT Packages \u00b7 2026\u201327", "pricesFile": "prices/2.2-2026.json", "heroImage": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1600&q=80", "terms": ["All rates are net and per person for the package.", "Child rates apply for children aged 2 to 11 years old. One child sharing a room with 2 adults, subject to hotel policy.", "All rates are subject to availability at the time of booking. Europe Incoming will endeavour to match the rates quoted.", "Rates are not applicable during trade fair periods, major European public holidays, and other major events.", "City taxes are not included in the price.", "If certain attractions are closed during specific periods, alternative options will be arranged.", "All bookings must be confirmed at least 60 working days prior to arrival.", "100% pre-payment required by bank transfer or credit card (Visa or Mastercard). All bank transfer charges covered by the Agent.", "Vouchers will be issued after receipt of full payment."]};
-window.PRICES_BY_YEAR = {"2025-26": {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"summer": {"single": 2600, "twin": 2050, "child": 1440}, "winter": {"single": 2290, "twin": 1800, "child": 1260}}, "4": {"summer": {"single": 3120, "twin": 2460, "child": 1720}, "winter": {"single": 2740, "twin": 2160, "child": 1510}}}, "private": {"paxTiers": {"winter": [{"pax": 8, "3star": 2017, "4star": 2155}, {"pax": 10, "3star": 1778, "4star": 1916}, {"pax": 12, "3star": 1618, "4star": 1757}, {"pax": 16, "3star": 1419, "4star": 1557}], "summer": [{"pax": 8, "3star": 2109, "4star": 2253}, {"pax": 10, "3star": 1858, "4star": 2003}, {"pax": 12, "3star": 1692, "4star": 1837}, {"pax": 16, "3star": 1483, "4star": 1628}]}}}, "optionalTours": [{"name": "Moulin Rogue with drinks  9 pm", "price": 185}, {"name": "Louvre Museum (Audioguide \u20ac5 pp)", "price": 25}, {"name": "Paris Montmartre food tour, 4 hrs walking", "price": 149}, {"name": "Grindelwald First (with any two activities)", "price": 75}, {"name": "Nordkette Tops of Innsbruck cable car return ticket", "price": 55}, {"name": "Versailles Palace admission ticket", "price": 30}, {"name": "Grindelwald First (any 2 activities)", "price": 116}]}, "2026-27": {"validFrom": "1 Nov 2026", "validTo": "30 Nov 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 2392, "twin": 1726, "child": 737}, "summer": {"single": 2500, "twin": 1804, "child": 770}}, "4": {"winter": {"single": 2677, "twin": 1868, "child": 792}, "summer": {"single": 2799, "twin": 1953, "child": 828}}}, "private": {"paxTiers": {"winter": [{"pax": 8, "3star": 2077, "4star": 2220}, {"pax": 10, "3star": 1831, "4star": 1974}, {"pax": 12, "3star": 1667, "4star": 1809}, {"pax": 14, "3star": 1549, "4star": 1692}, {"pax": 16, "3star": 1461, "4star": 1604}], "summer": [{"pax": 8, "3star": 2172, "4star": 2321}, {"pax": 10, "3star": 1914, "4star": 2063}, {"pax": 12, "3star": 1742, "4star": 1892}, {"pax": 14, "3star": 1620, "4star": 1769}, {"pax": 16, "3star": 1528, "4star": 1677}]}}}, "optionalTours": [{"name": "Moulin Rogue with drinks  9 pm", "price": 191}, {"name": "Louvre Museum (Audioguide \u20ac5 pp)", "price": 26}, {"name": "Paris Montmartre food tour, 4 hrs walking", "price": 153}, {"name": "Grindelwald First (with any two activities)", "price": 77}, {"name": "Nordkette Tops of Innsbruck cable car return ticket", "price": 57}]}};
+window.PRICES_BY_YEAR = {"2025-26": {"validFrom": "1 Apr 2026", "validTo": "31 Mar 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"summer": {"single": 2600, "twin": 2050, "child": 1440}, "winter": {"single": 2290, "twin": 1800, "child": 1260}}, "4": {"summer": {"single": 3120, "twin": 2460, "child": 1720}, "winter": {"single": 2740, "twin": 2160, "child": 1510}}}, "private": {"paxTiers": {"winter": [{"pax": 8, "3star": 2017, "4star": 2155}, {"pax": 10, "3star": 1778, "4star": 1916}, {"pax": 12, "3star": 1618, "4star": 1757}, {"pax": 16, "3star": 1419, "4star": 1557}], "summer": [{"pax": 8, "3star": 2109, "4star": 2253}, {"pax": 10, "3star": 1858, "4star": 2003}, {"pax": 12, "3star": 1692, "4star": 1837}, {"pax": 16, "3star": 1483, "4star": 1628}]}}}, "optionalTours": [{"name": "Moulin Rogue with drinks  9 pm", "price": 185}, {"name": "Louvre Museum (Audioguide \u20ac5 pp)", "price": 25}, {"name": "Paris Montmartre food tour, 4 hrs walking", "price": 149}, {"name": "Grindelwald First (with any two activities)", "price": 75}, {"name": "Nordkette Tops of Innsbruck cable car return ticket", "price": 55}, {"name": "Versailles Palace admission ticket", "price": 30}, {"name": "Grindelwald First (any 2 activities)", "price": 116}]}, "2026-27": {"validFrom": "1 Nov 2026", "validTo": "30 Nov 2027", "currency": "\u20ac", "variants": {"trains": {"3": {"winter": {"single": 2392, "twin": 1726, "child": 737}, "summer": {"single": 2500, "twin": 1804, "child": 770}}, "4": {"winter": {"single": 2677, "twin": 1868, "child": 792}, "summer": {"single": 2799, "twin": 1953, "child": 828}}, "validity": {"winter": {"from": "1 Nov 2026", "to": "31 Mar 2027"}, "summer": {"from": "1 Apr 2027", "to": "30 Nov 2027"}}}, "private": {"paxTiers": {"winter": [{"pax": 8, "3star": 2077, "4star": 2220}, {"pax": 10, "3star": 1831, "4star": 1974}, {"pax": 12, "3star": 1667, "4star": 1809}, {"pax": 14, "3star": 1549, "4star": 1692}, {"pax": 16, "3star": 1461, "4star": 1604}], "summer": [{"pax": 8, "3star": 2172, "4star": 2321}, {"pax": 10, "3star": 1914, "4star": 2063}, {"pax": 12, "3star": 1742, "4star": 1892}, {"pax": 14, "3star": 1620, "4star": 1769}, {"pax": 16, "3star": 1528, "4star": 1677}]}, "validity": {"winter": {"from": "1 Nov 2026", "to": "31 Mar 2027"}, "summer": {"from": "1 Apr 2027", "to": "30 Nov 2027"}}}}, "optionalTours": [{"name": "Moulin Rogue with drinks  9 pm", "price": 191}, {"name": "Louvre Museum (Audioguide \u20ac5 pp)", "price": 26}, {"name": "Paris Montmartre food tour, 4 hrs walking", "price": 153}, {"name": "Grindelwald First (with any two activities)", "price": 77}, {"name": "Nordkette Tops of Innsbruck cable car return ticket", "price": 57}]}};
 window.DEFAULT_RATE_YEAR = "2025-26";
 window.CARTO_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfOHY0OHk0dXMiLCJqdGkiOiIzZThiNWQ5YyJ9.ilJQZ726py6JylFbTHcLkR2JGULqA6Hc_f62KvUqSso";
 </script>

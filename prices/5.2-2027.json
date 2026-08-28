@@ -27,6 +27,16 @@
           "twin": 1273,
           "child": 521
         }
+      },
+      "validity": {
+        "winter": {
+          "from": "1 Nov 2026",
+          "to": "31 Mar 2027"
+        },
+        "summer": {
+          "from": "1 Apr 2027",
+          "to": "30 Nov 2027"
+        }
       }
     },
     "private": {
@@ -85,6 +95,16 @@
             "4star": 1552
           }
         ]
+      },
+      "validity": {
+        "winter": {
+          "from": "1 Nov 2026",
+          "to": "31 Mar 2027"
+        },
+        "summer": {
+          "from": "1 Apr 2027",
+          "to": "30 Nov 2027"
+        }
       }
     },
     "selfdrive": {
@@ -110,6 +130,16 @@
           "single": 2138,
           "twin": 1267,
           "child": 518
+        }
+      },
+      "validity": {
+        "winter": {
+          "from": "1 Nov 2026",
+          "to": "31 Mar 2027"
+        },
+        "summer": {
+          "from": "1 Apr 2027",
+          "to": "30 Nov 2027"
         }
       }
     }

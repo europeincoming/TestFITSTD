@@ -25,6 +25,46 @@ XLSX = sys.argv[1] if len(sys.argv) > 1 else None
 
 STYLE_MAP = {"Regular FIT": "trains", "Private tour": "private", "Self Drive": "selfdrive"}
 
+# The 8 Finland/Norway/Sweden winter & Xmas route sheets whose Regular FIT
+# Start/End date *cells* are a full year ahead of every other sheet (a stale
+# copy-paste - confirmed against each sheet's own Self Drive block and every
+# other route, which all agree on Nov 2026 - Nov 2027). Only 5 of the 8 have
+# a live product page today; the date-shift correction below applies to
+# whichever of these are actually parsed.
+NORDIC_CORRUPTED_DATE_ROUTES = {"10.1", "10.2", "10.3", "10.4", "10.5", "10.6", "11.1", "11.2"}
+
+# These Arctic-winter routes (Tromso, Kiruna, Rovaniemi) only ever run in
+# winter - the "summer" row present in their Regular FIT season table is a
+# leftover template row, not a real second product, and must be dropped
+# rather than shown as a second season (confirmed by the user, who sells
+# these routes and knows they never run in summer).
+WINTER_ONLY_ROUTES = {"10.1", "10.2", "10.3", "10.4", "10.5", "10.6"}
+
+# The private-tour Min-Pax tables' own "summer window" date label is a typo
+# repeated verbatim across all 23 sheets ("01.04.2026 - 30.11.2027" - a
+# 20-month span, one year earlier at the start than every Regular FIT/Self
+# Drive season table's own Apr 2027 start for the same 2026-27 rate cycle).
+# Rather than reproduce that typo, private-tour validity uses the same
+# Nov 2026 - Mar 2027 / Apr 2027 - Nov 2027 cycle every other table in the
+# workbook agrees on.
+PRIVATE_TOUR_WINDOWS = {
+    "winter": (datetime(2026, 11, 1), datetime(2027, 3, 31)),
+    "summer": (datetime(2027, 4, 1), datetime(2027, 11, 30)),
+}
+
+
+def fmt_date(dt):
+    return dt.strftime("%-d %b %Y")
+
+
+def shift_years(dt, years):
+    if years == 0:
+        return dt
+    try:
+        return dt.replace(year=dt.year + years)
+    except ValueError:
+        return dt.replace(month=2, day=28, year=dt.year + years)
+
 # Excel sheet name -> repo product id (only "1.5" differs: repo file is ireland-discovery)
 SHEET_TO_PRODUCT_ID = {
     "1.1": "1.1", "1.2": "1.2", "1.3": "1.3", "1.4": "1.4", "1.5": "ireland-discovery",
@@ -151,7 +191,7 @@ def route_currency(ws):
     return "€"
 
 
-def parse_route(ws):
+def parse_route(ws, sheet_name):
     comp_rows, opt_row = find_component_sections(ws)
     ext = comp_rows + [(opt_row or ws.max_row + 1, None)]
 
@@ -164,18 +204,28 @@ def parse_route(ws):
     season_tables = [rows for (_r, rows) in find_all_season_standard_tables(ws)]
     paxtier_tables = [rows for (_r, rows) in find_all_paxtier_standard_tables(ws)]
 
+    date_shift_years = -1 if sheet_name in NORDIC_CORRUPTED_DATE_ROUTES else 0
+    drop_summer = sheet_name in WINTER_ONLY_ROUTES
+
     variants = {}
+    all_windows = []  # (start, end) across every season kept, for the route-level bounds
     season_i = 0
     for style in live_styles:
         if style == "private":
             if not paxtier_tables:
                 raise ValueError("private is live but no paxtier standard table found")
             rows = paxtier_tables[0]
+            validity = {
+                season: {"from": fmt_date(start), "to": fmt_date(end)}
+                for season, (start, end) in PRIVATE_TOUR_WINDOWS.items()
+            }
+            all_windows.extend(PRIVATE_TOUR_WINDOWS.values())
             variants["private"] = {
                 "paxTiers": {
                     "winter": [{"pax": t["pax"], "3star": money(t["window1"]["3star"]), "4star": money(t["window1"]["4star"])} for t in rows],
                     "summer": [{"pax": t["pax"], "3star": money(t["window2"]["3star"]), "4star": money(t["window2"]["4star"])} for t in rows],
-                }
+                },
+                "validity": validity,
             }
         else:
             if season_i >= len(season_tables):
@@ -183,15 +233,23 @@ def parse_route(ws):
             rows = season_tables[season_i]
             season_i += 1
             variant = {"3": {}, "4": {}}
+            validity = {}
             for row in rows:
+                start = shift_years(row["start"], date_shift_years)
+                end = shift_years(row["end"], date_shift_years)
                 # winter window starts in Nov, summer window starts in Apr
-                season = "winter" if row["start"].month in (10, 11, 12) else "summer"
+                season = "winter" if start.month in (10, 11, 12) else "summer"
+                if season == "summer" and drop_summer:
+                    continue
                 for cat in ("3", "4"):
                     variant[cat][season] = {
                         "single": money(row[cat]["single"]),
                         "twin": money(row[cat]["twin"]),
                         "child": money(row[cat]["child"]),
                     }
+                validity[season] = {"from": fmt_date(start), "to": fmt_date(end)}
+                all_windows.append((start, end))
+            variant["validity"] = validity
             variants[style] = variant
 
     optionals = []
@@ -205,16 +263,14 @@ def parse_route(ws):
                 optionals.append({"name": name.strip() if isinstance(name, str) else name, "price": money(price)})
             r += 1
 
-    # NOTE: some sheets (the Finland/Norway/Sweden winter & Xmas routes) have
-    # their Regular FIT date *cells* shifted a full year ahead of the rest of
-    # the workbook (a stale copy-paste in the source file - confirmed against
-    # that same sheet's own Self Drive block and every other route, which all
-    # agree on Nov 2026 - Nov 2027). Winter/summer bucketing above only uses
-    # the month, so it's unaffected; the validity label is fixed here instead
-    # of trusting the corrupted year.
+    # Route-level validFrom/validTo is only used where there's no season
+    # selection to key off (e.g. the destination-index card blurb) - the
+    # outer bound across every season window actually kept above.
+    valid_from = fmt_date(min(w[0] for w in all_windows))
+    valid_to = fmt_date(max(w[1] for w in all_windows))
     return {
-        "validFrom": "1 Nov 2026",
-        "validTo": "30 Nov 2027",
+        "validFrom": valid_from,
+        "validTo": valid_to,
         "currency": route_currency(ws),
         "variants": variants,
         "optionalTours": optionals,
@@ -230,7 +286,7 @@ def main():
     report = []
     for sheet_name, product_id in SHEET_TO_PRODUCT_ID.items():
         ws = wb[sheet_name]
-        data, live_styles = parse_route(ws)
+        data, live_styles = parse_route(ws, sheet_name)
 
         product_path = os.path.join(REPO, "products", f"{product_id}.json")
         product = json.load(open(product_path))
