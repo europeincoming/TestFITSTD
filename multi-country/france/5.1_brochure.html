@@ -193,6 +193,7 @@ a{color:inherit;}
    hidden - see design_handoff_metro's "PDF Export" spec. Photography is
    dropped per the brand team's call; the route map (kept) prints from its
    own dedicated block below Day by day, not from the sidebar. */
+@page{margin:12mm 14mm;}
 @media print{
   .no-print{display:none!important;}
   .print-only-block{display:block!important;}
@@ -200,15 +201,15 @@ a{color:inherit;}
   body{padding-top:0;font-size:13px;}
   .pkg-body{display:block;padding:0;max-width:none;}
 
-  .pkg-print-header{padding:0 0 10px;}
-  .pkg-print-header img{height:20px;width:auto;display:block;}
+  .pkg-print-header{padding:0 0 8px;}
+  .pkg-print-header img{height:28px;width:auto;display:block;}
 
   .pkg-title-row{padding:0 0 4px;}
   .pkg-hero-title{font-size:26px;}
-  .pkg-hero{padding-top:6px;}
+  .pkg-hero{padding:6px 0 0;}
   #pkgHeroImg{display:none!important;}
   .pkg-hero-facts{width:100%;}
-  .pkg-print-map{height:170px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-print-map{height:150px;page-break-inside:avoid;break-inside:avoid;}
 
   .pkg-section{margin-bottom:14px;}
   .pkg-section-label{font-size:16px;margin:10px 0 2px;page-break-after:avoid;break-after:avoid;}
@@ -256,7 +257,7 @@ a{color:inherit;}
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
 if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}}catch(e){}}
 )();</script>
-<div class="pkg-print-header print-only-block"><img src="../../logo-europe-incoming.png" alt="Europe Incoming"></div>
+<div class="pkg-print-header print-only-block"><img src="../../assets/logo-print.png" alt="Europe Incoming"></div>
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="../../"><img class="pkg-logo" src="../../logo-europe-incoming.png" alt="Europe Incoming"></a>
