@@ -190,9 +190,9 @@ a{color:inherit;}
 }
 
 /* Print: a purpose-built compact layout, not the screen layout with bits
-   hidden - see design_handoff_metro's "PDF Export" spec. Photography is
-   dropped per the brand team's call; the route map (kept) prints from its
-   own dedicated block below Day by day, not from the sidebar. */
+   hidden - see design_handoff_metro's "PDF Export" spec. Photography and
+   the route map are both dropped per direct business feedback - text and
+   rates only. */
 @page{margin:12mm 14mm;}
 @media print{
   .no-print{display:none!important;}
@@ -201,15 +201,24 @@ a{color:inherit;}
   body{padding-top:0;font-size:13px;}
   .pkg-body{display:block;padding:0;max-width:none;}
 
-  .pkg-print-header{padding:0 0 8px;}
-  .pkg-print-header img{height:28px;width:auto;display:block;}
+  /* Full-bleed navy header bar - the logo image already carries its own
+     navy fill, so the bar is just that image at a fixed height plus a
+     matching background so it reads as one continuous strip. */
+  .pkg-print-header{background:var(--navy);padding:10px 14px;margin-bottom:10px;}
+  .pkg-print-header img{height:32px;width:auto;display:block;}
 
   .pkg-title-row{padding:0 0 4px;}
   .pkg-hero-title{font-size:26px;}
   .pkg-hero{padding:6px 0 0;}
   #pkgHeroImg{display:none!important;}
   .pkg-hero-facts{width:100%;}
-  .pkg-print-map{height:150px;page-break-inside:avoid;break-inside:avoid;}
+
+  /* Restore multi-column flow for the card grids - the shared
+     max-width:960px breakpoint above (aimed at phone screens) also
+     matches a printed page's width and was collapsing all of these to a
+     single wasteful column. */
+  .pkg-inc-grid,.pkg-opt-grid{grid-template-columns:1fr 1fr;}
+  .pkg-hotels-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
 
   .pkg-section{margin-bottom:14px;}
   .pkg-section-label{font-size:16px;margin:10px 0 2px;page-break-after:avoid;break-after:avoid;}
@@ -303,10 +312,6 @@ if(['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div styl
 
 <div class="pkg-body">
   <div class="pkg-main">
-    <div class="pkg-section print-only-block">
-      <div class="pkg-section-label">Route map</div>
-      <div class="pkg-print-map" id="pkgMapPrint"></div>
-    </div>
     <div class="pkg-section">
       <div class="pkg-section-label">Day by day</div>
       <div class="pkg-section-sub" id="pkgDaySub"></div>

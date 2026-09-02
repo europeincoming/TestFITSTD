@@ -27,7 +27,6 @@
 
   var smallMap = null;
   var largeMap = null;
-  var printMap = null;
 
   function $(id) { return document.getElementById(id); }
   function esc(s) {
@@ -445,16 +444,6 @@
   function onMapEsc(e) { if (e.key === "Escape") closeMapModal(); }
 
   // ───────────────────────────── PDF / PRINT ─────────────────────────
-  // The print layout drops the sidebar (and its map) entirely but keeps a
-  // route map, so it gets its own small non-interactive Leaflet instance in
-  // a dedicated print-only block rather than exposing the sidebar's.
-  function buildPrintMap() {
-    if (printMap || !$("pkgMapPrint")) return;
-    printMap = buildMap("pkgMapPrint", false);
-    if (printMap) setTimeout(function () { printMap.invalidateSize(); }, 50);
-  }
-  window.addEventListener("beforeprint", buildPrintMap);
-
   function downloadPDF() {
     state.tcOpen = true;
     renderTerms();
