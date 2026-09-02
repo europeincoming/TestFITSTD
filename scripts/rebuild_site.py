@@ -774,6 +774,7 @@ a{color:inherit;}
    hidden - see design_handoff_metro's "PDF Export" spec. Photography is
    dropped per the brand team's call; the route map (kept) prints from its
    own dedicated block below Day by day, not from the sidebar. */
+@page{margin:12mm 14mm;}
 @media print{
   .no-print{display:none!important;}
   .print-only-block{display:block!important;}
@@ -781,15 +782,15 @@ a{color:inherit;}
   body{padding-top:0;font-size:13px;}
   .pkg-body{display:block;padding:0;max-width:none;}
 
-  .pkg-print-header{padding:0 0 10px;}
-  .pkg-print-header img{height:20px;width:auto;display:block;}
+  .pkg-print-header{padding:0 0 8px;}
+  .pkg-print-header img{height:28px;width:auto;display:block;}
 
   .pkg-title-row{padding:0 0 4px;}
   .pkg-hero-title{font-size:26px;}
-  .pkg-hero{padding-top:6px;}
+  .pkg-hero{padding:6px 0 0;}
   #pkgHeroImg{display:none!important;}
   .pkg-hero-facts{width:100%;}
-  .pkg-print-map{height:170px;page-break-inside:avoid;break-inside:avoid;}
+  .pkg-print-map{height:150px;page-break-inside:avoid;break-inside:avoid;}
 
   .pkg-section{margin-bottom:14px;}
   .pkg-section-label{font-size:16px;margin:10px 0 2px;page-break-after:avoid;break-after:avoid;}
@@ -905,6 +906,9 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
     RATE_YEARS label (e.g. "2025-26"); default_year is which one is preselected."""
     root_rel = "../" * depth
     logo_src = root_rel + "logo-europe-incoming.png"
+    # PDF/print gets its own logo (transparent, light-background wordmark) -
+    # the navy-block on-screen logo would print as a heavy ink rectangle.
+    print_logo_src = root_rel + "assets/logo-print.png"
     js_src   = root_rel + "assets/package-page.js"
     title    = product.get("title", "")
     style_keys = list(product.get("styles", {}).keys())
@@ -921,7 +925,7 @@ def render_package_page(product, prices_by_year, default_year, depth, back_href)
 </head>
 <body>
 {GEO_BLOCK}
-<div class="pkg-print-header print-only-block"><img src="{logo_src}" alt="Europe Incoming"></div>
+<div class="pkg-print-header print-only-block"><img src="{print_logo_src}" alt="Europe Incoming"></div>
 <div class="pkg-topbar no-print"><div class="pkg-topbar-inner">
   <div class="pkg-topbar-left">
     <a href="{root_rel}"><img class="pkg-logo" src="{logo_src}" alt="Europe Incoming"></a>
